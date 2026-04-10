@@ -1,3 +1,31 @@
+// ── BLOG DATA ─────────────────────────────────────────────────────────────────
+// All blog posts live here. The blog page and individual post pages are driven
+// entirely by this file — no CMS needed.
+//
+// HOW TO ADD A POST:
+//   1. Copy an existing post object (from opening { to closing },)
+//   2. Paste it at the TOP of the blogPosts array (newest first)
+//   3. Fill in the fields:
+//      slug      → URL path: /blog/your-slug-here (use lowercase-kebab-case)
+//      title     → Full article title shown on the page
+//      date      → Publication date in "YYYY-MM-DD" format
+//      readTime  → E.g. "7 min read"
+//      category  → One of: "Engineering Culture" | "Security & Compliance" |
+//                          "DevOps & Deployment" | "AI & Engineering"
+//      tags      → Array of strings shown as pill badges
+//      excerpt   → 1–2 sentence summary shown in the blog grid (no HTML)
+//      sections  → Array of { heading?, paragraphs[] } objects.
+//                  heading is optional (omit for intro/closing paragraphs).
+//                  Each string in paragraphs becomes one <p> tag.
+//
+// HOW TO REMOVE A POST:
+//   Delete the entire object (from opening { to closing },) and save.
+//
+// FEATURED / HERO POST:
+//   The first post in the array is automatically featured in the blog marquee.
+//   The slug "the-infrastructure-nobody-thinks-about" is hardcoded as the hero
+//   post in app/blog/[slug]/page.tsx — update that constant if you change it.
+
 export interface BlogSection {
   heading?: string
   paragraphs: string[]
@@ -488,6 +516,257 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+
+  {
+    slug: "soc-alert-fatigue-policy-as-code",
+    title: "Reducing SOC Alert Fatigue: Why Prevention, Not Detection, Is the Enterprise Security Imperative",
+    date: "2026-04-09",
+    readTime: "9 min read",
+    tags: ["Security", "SOC", "Policy-as-Code", "Compliance", "Enterprise"],
+    category: "Security & Compliance",
+    excerpt:
+      "Analysts are ignoring 42 percent of alerts. The instinct is to buy a better SIEM. The correct response is to stop generating the alerts in the first place.",
+    sections: [
+      {
+        paragraphs: [
+          `The Microsoft State of the SOC report is not comfortable reading for anyone responsible for a security operations function. Analysts are losing approximately 20 percent of their working week to manual data correlation and triage — tasks that add no direct investigative value. Nearly half of all alerts generated are false positives. And 42 percent of alerts are being ignored entirely.`,
+          `That last figure is the one that should concern CISOs and security leadership most. When nearly half your alert volume is being dismissed, you do not have a monitoring programme. You have a noise generator that your analysts have learned to tune out — and somewhere inside that noise, your actual threat signals are waiting to be found.`,
+          `The instinct, when confronted with these numbers, is to reach for a better platform. Consolidate telemetry, unify dashboards, add a SOAR layer to automate the triage. These are reasonable operational improvements. But they address the symptoms rather than the condition. If your security estate is generating thousands of alerts per day, the question worth asking is not "how do we process this volume faster?" but "why is this volume being generated in the first place?"`,
+        ],
+      },
+      {
+        heading: "The Alert Tax of Reactive Security",
+        paragraphs: [
+          `Most SOC alert volume does not originate from sophisticated threat actors. It originates from misconfiguration — cloud storage buckets with overly permissive access policies, virtual machines deployed outside approved SKU boundaries, service accounts with privileges that exceed their documented function, network security groups with rules that contradict the organisation's stated security baseline.`,
+          `These are not failures of threat intelligence. They are failures of configuration governance. And the cost of detecting them reactively — through a SOC that is already operating at capacity — is substantial. Each alert requires analyst time to triage, context to investigate, and a decision about escalation. When the same misconfiguration category generates fifty alerts per week because the conditions that produce it have not been structurally addressed, that is fifty analyst-hours spent on a problem that should not exist.`,
+          `For enterprise organisations operating at scale, and for government environments where security team headcount is constrained by budget cycles rather than operational need, this cost is not theoretical. It is an ongoing tax on your security operations capacity.`,
+        ],
+      },
+      {
+        heading: "Shifting the Model: From Detection to Prevention at the Pipeline",
+        paragraphs: [
+          `The more effective architectural response is to prevent insecure configuration from reaching production environments in the first place. Policy-as-Code is the mechanism that makes this possible at scale.`,
+          `Rather than defining security requirements in a standards document that is reviewed periodically and enforced manually, Policy-as-Code encodes those requirements as executable rules that are evaluated automatically every time infrastructure is deployed or modified. The result is that configuration which violates your security baseline — an open port, an unencrypted storage resource, a public endpoint that should be private — does not deploy. It fails at the pipeline stage, before it reaches production, before it generates an alert, and before it becomes an analyst workload.`,
+          `For organisations using Infrastructure as Code — Terraform, Bicep, AWS CloudFormation, Azure Resource Manager — integration points are well established. Tools such as Azure Policy, AWS Config Rules, Open Policy Agent, and Checkov allow policy evaluation to be embedded directly into CI/CD pipelines. Every proposed change is evaluated against your defined controls before deployment approval is granted.`,
+        ],
+      },
+      {
+        heading: "What This Means for Enterprise and Government Environments",
+        paragraphs: [
+          `For enterprise organisations, the operational benefit is measurable. Analyst time currently consumed by misconfiguration-related alerts is redirected toward genuine threat investigation. Alert volumes decrease not because alerts are being suppressed or filtered, but because the conditions that generate them are prevented structurally. The signal-to-noise ratio improves because the noise is eliminated upstream.`,
+          `For government environments, the compliance dimension is equally significant. Policy-as-Code does not only prevent misconfiguration — it produces an auditable record of every policy evaluation, every deployment decision, and every exception. For organisations operating under frameworks such as NIST 800-53, ISO 27001, or Cyber Essentials, this continuous evidence stream substantially reduces the manual effort required for audit preparation and ongoing compliance attestation.`,
+          `Government technology programmes increasingly face requirements to demonstrate that security controls are structural rather than procedural — that they are enforced by the system rather than depending on individual compliance. Policy-as-Code satisfies this requirement directly.`,
+        ],
+      },
+      {
+        heading: "The Structural Argument",
+        paragraphs: [
+          `The SOC will always have a role. Threat actors adapt. Insider risk is real. Zero-days occur. There will always be signals that require human investigation and judgment.`,
+          `But the current model — where a meaningful portion of SOC capacity is dedicated to processing misconfiguration alerts that should never have reached the alert stage — is a structural inefficiency that no amount of better tooling will resolve. The correct response to an analyst spending 20 percent of their time on data plumbing is not a better plumbing tool. It is a security architecture that prevents the plumbing from becoming necessary.`,
+          `Build the infrastructure so it cannot be misconfigured. Let the SOC do what it was designed to do.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "siloed-architecture-knowledge-enterprise-risk",
+    title: "The Business Risk of Siloed Architecture Knowledge in Enterprise IT Teams",
+    date: "2026-04-07",
+    readTime: "7 min read",
+    tags: ["Architecture", "Documentation", "Enterprise", "Team Culture", "Risk"],
+    category: "Engineering Culture",
+    excerpt:
+      "When architectural understanding lives in two or three people's heads, it is not a knowledge management problem. It is a business continuity risk with measurable consequences.",
+    sections: [
+      {
+        paragraphs: [
+          `There is a failure mode in enterprise engineering organisations that does not appear on any risk register but is responsible for a disproportionate share of incidents, delivery delays, and onboarding inefficiencies. It is the concentration of architectural understanding in a small number of individuals — typically the senior engineers or architects who designed the system — while the broader team operates in a state of partial visibility.`,
+          `This is not a knowledge management problem in the abstract sense. It is a business continuity risk with measurable consequences.`,
+        ],
+      },
+      {
+        heading: "What Siloed Architecture Knowledge Looks Like in Practice",
+        paragraphs: [
+          `In most enterprise technology teams, there is an informal distinction between those who understand how the system fits together — how a request flows from the public endpoint through the load balancer, into the application tier, through the message queue, to the database — and those who understand their specific component within that flow.`,
+          `This arrangement feels efficient. Architects design the system. Engineers implement their assigned piece. Delivery continues. The problem is that this model is fragile in precisely the moments when robustness matters most.`,
+          `When an incident occurs at 2am, the engineers on call need to understand not just their component but the failure propagation path. A database connection pool exhaustion that manifests as a timeout in the application tier is not diagnosable by someone who only understands the application tier. When a key architect leaves the organisation — a reality that enterprise HR teams deal with regularly — the knowledge that departed with them is rarely fully recoverable from code and documentation alone.`,
+        ],
+      },
+      {
+        heading: "Architecture Documentation as Operational Infrastructure",
+        paragraphs: [
+          `Architecture diagrams are often treated as artefacts produced at the beginning of a project and updated infrequently thereafter. This is a misunderstanding of their purpose. A current, accurate architecture diagram is not a deliverable. It is operational infrastructure — as important to your engineering function as the monitoring dashboards that tell you the system is running.`,
+          `For enterprise organisations, the business case for maintaining architectural documentation is not primarily about helping engineers navigate complexity. It is about reducing organisational risk. It is about ensuring that the people who are on call have the context to resolve incidents without escalating to architects at every turn. It is about enabling procurement reviewers and security assessors to understand what they are evaluating. It is about giving a new CTO or engineering director the ability to understand the environment they have inherited without a six-month tour of tribal knowledge.`,
+          `Government technology programmes face a particular version of this challenge. Systems built and documented for an original team frequently survive multiple technology refresh cycles, vendor transitions, and staff rotations. The gap between documented architecture and actual architecture is itself a security and audit risk.`,
+        ],
+      },
+      {
+        heading: "What Shared Architectural Understanding Requires",
+        paragraphs: [
+          `Building a culture of architectural literacy across an engineering team is not a training programme. It is a practice of documentation, communication, and expectation.`,
+          `It means that architecture diagrams are maintained as a living artefact and referenced in sprint planning, incident post-mortems, and code review. It means that new engineers are onboarded not just to their component but to the system they are operating within. It means that code reviews include consideration of how a change affects adjacent components, not only whether the implementation is correct in isolation.`,
+          `For engineering leaders, this requires treating architecture documentation with the same seriousness applied to test coverage and deployment procedures. It should be a condition of delivery, not an afterthought. A team that ships a feature without updating the architecture documentation to reflect the change has incurred a form of knowledge debt — one that compounds with every subsequent change.`,
+          `The architecture diagram is not for the architect. It is for the organisation — and for the incident at 2am that nobody saw coming.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "over-engineering-enterprise-cost",
+    title: "The Business Cost of Over-Engineered IT Systems: Why Architectural Simplicity Is an Enterprise Advantage",
+    date: "2026-04-06",
+    readTime: "8 min read",
+    tags: ["Architecture", "Simplicity", "Technical Debt", "Enterprise", "Engineering"],
+    category: "Engineering Culture",
+    excerpt:
+      "Complexity accumulates incrementally. Each new service, each additional integration. The cumulative cost is rarely calculated until an incident forces the calculation.",
+    sections: [
+      {
+        paragraphs: [
+          `There is a persistent assumption in enterprise technology — reinforced by vendor marketing, conference culture, and the natural instinct of technically ambitious teams — that architectural sophistication is a proxy for quality. The more components, the more cutting-edge the tooling, the more intricate the integration pattern, the more impressive the result.`,
+          `This assumption is wrong. And in enterprise and government environments, where the cost of operational failure is not an inconvenience but a business continuity event, it is an assumption worth examining carefully.`,
+        ],
+      },
+      {
+        heading: "The Complexity Premium and Where It Shows Up",
+        paragraphs: [
+          `Complex systems are expensive in ways that are not always visible at the point of architectural decision. The costs are deferred, and they compound.`,
+          `A distributed microservices architecture built on the latest managed Kubernetes offering may perform well at launch. But every additional component in the dependency graph is an additional failure mode. Every inter-service communication boundary is a latency source, a serialisation overhead, and a potential failure point. Every novel managed service introduced into the estate requires someone to understand it deeply enough to operate it, troubleshoot it, and plan for its version lifecycle.`,
+          `These costs are paid in engineering time — specifically, in the engineering time required to debug, maintain, and evolve the system. A system that requires specialist knowledge across eight distinct platforms to diagnose a production incident is not a technical achievement. It is an operational liability. For regulated industries and government environments, this carries additional weight: security assessors and compliance auditors need to understand what a system does and how it does it. Simplicity is not only operationally advantageous — it is a compliance asset.`,
+        ],
+      },
+      {
+        heading: "The Principle of Minimum Viable Architecture",
+        paragraphs: [
+          `The discipline worth developing is architectural frugality: the practice of solving the stated business requirement with the minimum number of components, integration points, and platform dependencies that can reliably meet the non-functional requirements.`,
+          `This is not a mandate for under-engineering. It is a recognition that architectural decisions have a cost that extends well beyond the initial build, and that cost should be weighed against the benefit with the same rigour applied to any other business investment.`,
+          `A well-designed monolith that can be understood by any senior engineer on the team in thirty minutes is, in many contexts, a superior engineering outcome to a microservices platform that requires three specialists and two weeks to debug. A managed cloud service with clear operational boundaries is preferable to a self-managed alternative that offers marginally more flexibility at the cost of significant operational overhead.`,
+        ],
+      },
+      {
+        heading: "What This Looks Like in Practice",
+        paragraphs: [
+          `Applying architectural simplicity as a discipline means asking a specific question at every significant design decision: what is the simplest system that reliably meets this requirement at the scale we actually need, not the scale we might theoretically reach?`,
+          `For technology leaders making budget and investment decisions, architectural simplicity translates directly into cost control. Systems that are easier to understand are faster to onboard engineers into. Systems with fewer components have fewer failure modes. Systems built on well-understood platforms are easier to find experienced engineers for. Every point of unnecessary complexity is a point of ongoing cost.`,
+          `For government programmes, where technology procurement is subject to multi-year planning horizons and eventual transition requirements, simplicity is a procurement criterion in its own right. A system that a competent engineering team can operate without vendor lock-in or deep specialist dependency is a system that can be sustained through the staff rotations and vendor changes that are inevitable over a government programme's lifecycle.`,
+        ],
+      },
+      {
+        heading: "Complexity as a Risk Signal",
+        paragraphs: [
+          `A useful heuristic for evaluating existing systems and proposed architectures: if the system cannot be explained to a senior engineer unfamiliar with the codebase in a one-hour review, the architectural complexity is likely exceeding the business requirement.`,
+          `In practice, the majority of enterprise systems that have accumulated architectural complexity did not do so because they faced genuinely complex problems. They did so because complexity accumulates incrementally — one new service, one additional integration, one supplementary platform — and the cumulative cost is rarely calculated until an incident forces the calculation.`,
+          `The organisations that operate the most reliably, at scale, over time, are rarely those with the most sophisticated architectures. They are those that have maintained the discipline to solve business problems with the fewest moving parts that can do the job. Build boring systems. Operate them confidently. Save the sophistication for the problems that genuinely require it.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "change-management-deployment-risk-enterprise",
+    title: "Change Management in Enterprise IT: Why Deployment Timing Is a Risk Management Decision, Not an Engineering Preference",
+    date: "2026-04-05",
+    readTime: "7 min read",
+    tags: ["Change Management", "Deployment", "ITIL", "Risk Management", "Operations"],
+    category: "DevOps & Deployment",
+    excerpt:
+      "The pipeline is green. The Terraform plan is clean. The question of whether to deploy is not a technical question. It is a risk management question — and it has a well-established answer.",
+    sections: [
+      {
+        paragraphs: [
+          `The pipeline is green. The Terraform plan shows no unexpected changes. The code has passed review, staging has been validated, and the deployment is technically ready. The question is whether to push to production.`,
+          `This is, on the surface, a technical question. But for enterprise and government technology teams, it is actually a risk management question — one that has a well-established answer in the IT service management literature, and one that has significant implications for operational stability, incident response capacity, and business continuity.`,
+          `The answer, for most production deployments on a Friday afternoon, is: not yet.`,
+        ],
+      },
+      {
+        heading: "The Risk Window Concept",
+        paragraphs: [
+          `Change management disciplines exist because experience has demonstrated a consistent pattern: the period immediately following a production change is when incidents are most likely to occur. Configuration changes, even well-tested ones, interact with production environments in ways that staging cannot fully replicate. Edge cases emerge. Load patterns differ. Integrations that behaved correctly in test exhibit unexpected behaviour under real traffic conditions.`,
+          `The relevant variable is not whether a deployment will succeed. It is whether the organisation has the capacity to respond effectively if it does not.`,
+          `A deployment made on a Friday afternoon — when senior engineers are winding down, when staffing levels are at their weekly low, when the weekend on-call rota is about to take effect — introduces change into the production environment at precisely the moment when the organisation's ability to respond to that change is at its weakest. An incident that would take two hours to resolve on a Tuesday morning, with full team availability and leadership oversight, may take eight hours on a Friday night. For enterprise customers whose SLAs carry financial consequences for downtime, that difference is a material business risk.`,
+        ],
+      },
+      {
+        heading: "What ITIL Change Management Establishes",
+        paragraphs: [
+          `The ITIL framework — widely adopted across enterprise IT and mandated in various forms across government technology programmes — formalises these principles through change management process. Change Advisory Boards evaluate proposed changes against risk criteria. Change windows define the periods during which different categories of change may be deployed. Emergency change procedures govern the exceptions, with appropriate escalation and approval requirements.`,
+          `These are not bureaucratic impositions. They are codified experience — the accumulated learning of organisations that discovered, often through costly incidents, that deployment discipline is inseparable from operational stability.`,
+          `Standard change management practice distinguishes between pre-approved routine changes, which may be deployed within defined parameters without individual approval, and significant changes, which require formal review against the current operational risk picture. A major release on a Friday afternoon — regardless of how cleanly the pipeline has run — would not meet the criteria for routine change deployment under most enterprise change management frameworks.`,
+        ],
+      },
+      {
+        heading: "Using Deployment Freeze Periods Productively",
+        paragraphs: [
+          `The value of change control discipline is not only in the incidents it prevents. It is also in what it enables during the periods when deployment is constrained.`,
+          `Engineering teams that are not deploying on Fridays are not idle. Architecture documentation updated during low-deployment periods reflects the current system state and reduces the knowledge gap that every team manages. Log and monitoring review conducted outside the pressure of active incident response identifies performance degradation and configuration drift before they become incidents. Backlog refinement done at week's end means the following week's delivery begins with clarity rather than catch-up.`,
+          `For government technology programmes specifically, the documentation and review activities that are often neglected under delivery pressure — network diagrams, data flow documentation, access control reviews — benefit directly from the protected time that deployment discipline creates.`,
+        ],
+      },
+      {
+        heading: "The Organisational Signal",
+        paragraphs: [
+          `There is a further dimension to change management discipline that matters for enterprise technology culture. Teams that respect change control processes are demonstrating something to their stakeholders: that operational stability is treated as a non-negotiable commitment, not a constraint to be optimised around when the pipeline is green.`,
+          `For a technology function that serves a business with revenue or regulatory obligations, this signal matters. It is the difference between an engineering organisation that runs the business and one that the business has to manage around.`,
+          `The pipeline will be green again on Monday — with full team availability, clear monitoring, and the capacity to respond quickly if something requires attention. The production environment will be in better hands.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "policy-as-code-cicd-compliance-enterprise",
+    title: "How Policy-as-Code Enforces Infrastructure Compliance Across Enterprise CI/CD Pipelines",
+    date: "2026-04-04",
+    readTime: "9 min read",
+    tags: ["Policy-as-Code", "CI/CD", "Compliance", "Infrastructure", "DevSecOps", "Enterprise"],
+    category: "Security & Compliance",
+    excerpt:
+      "Cloud misconfiguration — not sophisticated adversary tradecraft — is consistently identified as a leading cause of enterprise data breaches. Manual review does not scale. Policy-as-Code does.",
+    sections: [
+      {
+        paragraphs: [
+          `The IBM Cost of a Data Breach Report 2024 puts the global average cost of a data breach at $4.88 million. Cloud misconfiguration — not sophisticated adversary tradecraft, not zero-day vulnerabilities — is consistently identified as one of the leading causes. Gartner has projected that through 2025, the overwhelming majority of cloud security failures will result from customer-side configuration errors rather than provider-side compromise.`,
+          `These are not edge cases. Misconfigured cloud resources are the most common, most preventable, and arguably most expensive class of security failure in enterprise and government IT environments. And the dominant response — manual review by engineers at the point of infrastructure change — is not working at the pace, scale, or reliability that modern deployment velocity demands.`,
+        ],
+      },
+      {
+        heading: "The Human Review Problem at Enterprise Scale",
+        paragraphs: [
+          `Manual infrastructure review is a reasonable process for small teams making infrequent changes. It does not scale to enterprise environments where hundreds of infrastructure changes are proposed, reviewed, and deployed each month, where teams are distributed across time zones and business units, and where the complexity of the infrastructure estate exceeds the cognitive load that any reviewer can reliably hold.`,
+          `The problem is not that engineers lack expertise. It is that manual review is inherently variable. Review quality is affected by time pressure, reviewer fatigue, the volume of changes in a single pull request, and the depth of context the reviewer holds about the specific component being changed.`,
+          `A storage account with public network access enabled, in a pull request that contains 300 lines of infrastructure configuration, at the end of a busy week, reviewed by an engineer who is also managing an active incident — this is a plausible failure scenario in most enterprise engineering teams. It is not a failure of individual competence. It is a structural failure of the review mechanism.`,
+        ],
+      },
+      {
+        heading: "Policy-as-Code as Automated Compliance Enforcement",
+        paragraphs: [
+          `Policy-as-Code addresses this problem by relocating compliance enforcement from human review to automated pipeline evaluation. Security and compliance requirements — the specific, codified rules that govern what configuration is and is not acceptable in your environment — are encoded as machine-evaluable policies and integrated directly into the CI/CD pipeline.`,
+          `The effect is that every proposed infrastructure change is evaluated against your defined compliance baseline before it can proceed. A virtual machine deployed outside approved SKU boundaries fails the pipeline. A storage account with public blob access enabled fails the pipeline. A network security group rule that permits unrestricted inbound traffic on sensitive ports fails the pipeline. These failures occur automatically, consistently, and before the change reaches a human reviewer — or production.`,
+          `The practical tooling for this is mature. Azure Policy provides native evaluation with enterprise-grade policy libraries. Open Policy Agent and Checkov provide framework-level enforcement that integrates with most major CI/CD platforms. AWS Config Rules and Service Control Policies provide equivalent functionality at both the pipeline and the account level.`,
+        ],
+      },
+      {
+        heading: "What This Means for Compliance and Audit",
+        paragraphs: [
+          `For regulated industries — financial services, healthcare, government — the compliance implications extend beyond operational security. Every policy evaluation generates a structured log record: what was evaluated, which policies were applied, what the result was, and what action was taken. This continuous, machine-generated evidence stream is directly applicable to the compliance demonstration requirements of frameworks including ISO 27001, SOC 2 Type II, HIPAA, PCI-DSS, and the government security frameworks that align to NIST 800-53.`,
+          `The traditional audit preparation cycle — assembling evidence from disparate systems, reconciling configuration state with documented policy, producing attestations that accurately reflect the production environment — is substantially simplified when compliance enforcement is structural rather than procedural. The evidence exists because the process generates it continuously, not because an audit is approaching and someone needs to produce it.`,
+          `For government technology programmes subject to security accreditation, the ability to demonstrate that security controls are enforced by the pipeline — not by individual human review — is a materially stronger compliance position than reliance on documented procedures alone.`,
+        ],
+      },
+      {
+        heading: "Implementing Policy-as-Code in Practice",
+        paragraphs: [
+          `The implementation path begins with policy library definition. Before anything can be enforced automatically, the organisation must articulate what its security baseline actually requires — the specific configuration rules that distinguish acceptable from unacceptable infrastructure state. For most enterprise organisations, this is an exercise that surfaces informal standards that have existed in team practice but were never formally documented. This is valuable independent of the tooling question.`,
+          `Once policies are defined, pipeline integration is an engineering task with well-established patterns. The enforcement model — block, warn, or report — should be calibrated to the policy category and the team's operational maturity. Starting with warning mode for lower-severity policies while enforcing blocking for high-severity security controls allows teams to build confidence in the policy library before moving to full enforcement.`,
+          `Human reviewers can then focus on architectural appropriateness, design intent, and edge cases that require contextual judgment, rather than performing the same configuration checklist that automation can execute more reliably. Infrastructure compliance is not a checkpoint. It is a continuous state — one that automated enforcement is far better equipped to maintain than manual review alone.`,
+        ],
+      },
+    ],
+  },
+
 ]
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

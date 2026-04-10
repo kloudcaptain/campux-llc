@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Terms of Service — NexCore",
-  description: "NexCore Terms of Service governing the provision of enterprise IT consulting and managed services.",
+  title: "Terms of Service — ThomsUp",
+  description: "ThomsUp Terms of Service governing the provision of enterprise IT consulting and managed services.",
 }
 
 const sections = [
@@ -8,7 +8,7 @@ const sections = [
     number: "1",
     title: "Agreement to Terms",
     content: [
-      `These Terms of Service ("Agreement") constitute a legally binding contract between NexCore ("Company," "we," "us," or "our") and any individual, entity, or organisation ("Client," "you," or "your") that engages our services, accesses our platforms, or enters into any commercial relationship with us. By executing a Statement of Work, engaging our services verbally or in writing, or accessing any NexCore platform or resource, you represent that you have read, understood, and agree to be bound by this Agreement in its entirety.`,
+      `These Terms of Service ("Agreement") constitute a legally binding contract between ThomsUp ("Company," "we," "us," or "our") and any individual, entity, or organisation ("Client," "you," or "your") that engages our services, accesses our platforms, or enters into any commercial relationship with us. By executing a Statement of Work, engaging our services verbally or in writing, or accessing any ThomsUp platform or resource, you represent that you have read, understood, and agree to be bound by this Agreement in its entirety.`,
       `If you are entering into this Agreement on behalf of an organisation, you warrant that you have the legal authority to bind that organisation to these terms, and that your organisation accepts this Agreement. If you do not have such authority, or if you do not agree to these terms, you must not engage our services.`,
       `This Agreement is effective from the date of first engagement and supersedes all prior understandings, negotiations, representations, and agreements, whether written or oral, relating to its subject matter.`,
     ],
@@ -17,7 +17,7 @@ const sections = [
     number: "2",
     title: "Description of Services",
     content: [
-      `NexCore provides enterprise technology consulting, managed infrastructure services, cloud architecture design and implementation, security and compliance advisory, and related professional services (collectively, "Services"). The specific scope, deliverables, timelines, and commercial terms of any engagement shall be defined in a mutually executed Statement of Work ("SOW"), Master Services Agreement ("MSA"), or equivalent engagement document.`,
+      `ThomsUp provides enterprise technology consulting, managed infrastructure services, cloud architecture design and implementation, security and compliance advisory, and related professional services (collectively, "Services"). The specific scope, deliverables, timelines, and commercial terms of any engagement shall be defined in a mutually executed Statement of Work ("SOW"), Master Services Agreement ("MSA"), or equivalent engagement document.`,
       `Services are provided on a project basis, a retained advisory basis, or a managed services basis, as agreed in the applicable engagement documentation. In the event of any conflict between the terms of this Agreement and the terms of an applicable SOW or MSA, the terms of the SOW or MSA shall prevail with respect to the specific engagement, unless the SOW or MSA expressly states otherwise.`,
       `We reserve the right to modify, expand, or discontinue any aspect of our service offering at any time, provided that we shall honour the terms of any executed engagement documentation for the duration of that engagement.`,
     ],
@@ -27,7 +27,7 @@ const sections = [
     title: "Client Obligations",
     content: [
       `To enable us to deliver the Services effectively, you agree to: (a) provide timely, accurate, and complete information as reasonably requested by us; (b) grant us access to systems, platforms, documentation, personnel, and environments as necessary to perform the Services; (c) assign a qualified point of contact with appropriate authority to make or facilitate decisions required during the engagement; (d) respond to requests for approval, feedback, or clarification within the timeframes agreed in the engagement documentation; and (e) comply with all applicable laws and regulations in connection with your use of the Services.`,
-      `You acknowledge that our ability to deliver the Services as specified is contingent upon the fulfilment of your obligations under this section. Any delay or failure on your part to fulfil these obligations may result in timeline extensions, additional costs, or limitations on the Services we can deliver, for which NexCore shall not be held liable.`,
+      `You acknowledge that our ability to deliver the Services as specified is contingent upon the fulfilment of your obligations under this section. Any delay or failure on your part to fulfil these obligations may result in timeline extensions, additional costs, or limitations on the Services we can deliver, for which ThomsUp shall not be held liable.`,
       `You are solely responsible for all decisions made regarding your infrastructure, systems, or business operations, including decisions informed by our recommendations or deliverables. Our advice and deliverables are provided to support your decision-making process, not to replace your internal governance and oversight responsibilities.`,
     ],
   },
@@ -45,8 +45,8 @@ const sections = [
     title: "Intellectual Property Rights",
     content: [
       `Pre-existing intellectual property owned by either party prior to the commencement of an engagement, or developed independently outside of the engagement, shall remain the sole property of its respective owner. Nothing in this Agreement shall be construed to transfer ownership of any pre-existing intellectual property.`,
-      `With respect to intellectual property developed by NexCore specifically for you in the course of an engagement and paid for in full by you ("Bespoke Deliverables"), ownership shall vest in you upon receipt of full payment, unless otherwise specified in the applicable SOW. Generic methodologies, frameworks, tools, know-how, and reusable components developed or refined by NexCore during an engagement, even where incorporated into Bespoke Deliverables, shall remain the property of NexCore, and NexCore grants you a perpetual, non-exclusive, royalty-free licence to use such elements as incorporated in the Bespoke Deliverables.`,
-      `You grant NexCore a limited, non-exclusive licence to access and use your systems, data, and materials solely to the extent necessary to perform the Services during the engagement period. This licence terminates upon conclusion of the engagement, unless otherwise agreed.`,
+      `With respect to intellectual property developed by ThomsUp specifically for you in the course of an engagement and paid for in full by you ("Bespoke Deliverables"), ownership shall vest in you upon receipt of full payment, unless otherwise specified in the applicable SOW. Generic methodologies, frameworks, tools, know-how, and reusable components developed or refined by ThomsUp during an engagement, even where incorporated into Bespoke Deliverables, shall remain the property of ThomsUp, and ThomsUp grants you a perpetual, non-exclusive, royalty-free licence to use such elements as incorporated in the Bespoke Deliverables.`,
+      `You grant ThomsUp a limited, non-exclusive licence to access and use your systems, data, and materials solely to the extent necessary to perform the Services during the engagement period. This licence terminates upon conclusion of the engagement, unless otherwise agreed.`,
     ],
   },
   {
@@ -62,8 +62,8 @@ const sections = [
     number: "7",
     title: "Warranties and Representations",
     content: [
-      `NexCore warrants that: (a) the Services will be performed in a professional and workmanlike manner by qualified personnel consistent with industry standards; (b) we have the right and authority to enter into this Agreement and to perform the Services; and (c) the Services will not knowingly infringe any third-party intellectual property rights.`,
-      `EXCEPT AS EXPRESSLY SET FORTH IN THIS SECTION, THE SERVICES AND ALL DELIVERABLES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, NEXCORE EXPRESSLY DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.`,
+      `ThomsUp warrants that: (a) the Services will be performed in a professional and workmanlike manner by qualified personnel consistent with industry standards; (b) we have the right and authority to enter into this Agreement and to perform the Services; and (c) the Services will not knowingly infringe any third-party intellectual property rights.`,
+      `EXCEPT AS EXPRESSLY SET FORTH IN THIS SECTION, THE SERVICES AND ALL DELIVERABLES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THOMSUP EXPRESSLY DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.`,
       `You warrant that you have all necessary rights, permissions, and consents to provide us with access to your systems, data, and environments in connection with the Services, and that such access will not violate any applicable law, regulation, or third-party agreement.`,
     ],
   },
@@ -71,17 +71,17 @@ const sections = [
     number: "8",
     title: "Limitation of Liability",
     content: [
-      `TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL NEXCORE OR ITS DIRECTORS, OFFICERS, EMPLOYEES, AGENTS, CONTRACTORS, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING LOSS OF PROFITS, LOSS OF REVENUE, LOSS OF DATA, LOSS OF BUSINESS OPPORTUNITY, OR LOSS OF GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT OR THE SERVICES, REGARDLESS OF WHETHER SUCH DAMAGES WERE FORESEEABLE AND REGARDLESS OF THE FORM OF ACTION.`,
-      `TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, NEXCORE'S TOTAL CUMULATIVE LIABILITY TO YOU ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT OR THE SERVICES, WHETHER ARISING IN CONTRACT, TORT (INCLUDING NEGLIGENCE), BREACH OF STATUTORY DUTY, OR OTHERWISE, SHALL NOT EXCEED THE TOTAL FEES ACTUALLY PAID BY YOU TO NEXCORE IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.`,
-      `Nothing in this Agreement shall limit or exclude NexCore's liability for: (a) death or personal injury caused by negligence; (b) fraud or fraudulent misrepresentation; or (c) any other liability that cannot be excluded or limited by applicable law.`,
+      `TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THOMSUP OR ITS DIRECTORS, OFFICERS, EMPLOYEES, AGENTS, CONTRACTORS, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING LOSS OF PROFITS, LOSS OF REVENUE, LOSS OF DATA, LOSS OF BUSINESS OPPORTUNITY, OR LOSS OF GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT OR THE SERVICES, REGARDLESS OF WHETHER SUCH DAMAGES WERE FORESEEABLE AND REGARDLESS OF THE FORM OF ACTION.`,
+      `TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THOMSUP'S TOTAL CUMULATIVE LIABILITY TO YOU ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT OR THE SERVICES, WHETHER ARISING IN CONTRACT, TORT (INCLUDING NEGLIGENCE), BREACH OF STATUTORY DUTY, OR OTHERWISE, SHALL NOT EXCEED THE TOTAL FEES ACTUALLY PAID BY YOU TO THOMSUP IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.`,
+      `Nothing in this Agreement shall limit or exclude ThomsUp's liability for: (a) death or personal injury caused by negligence; (b) fraud or fraudulent misrepresentation; or (c) any other liability that cannot be excluded or limited by applicable law.`,
     ],
   },
   {
     number: "9",
     title: "Indemnification",
     content: [
-      `You agree to indemnify, defend, and hold harmless NexCore and its directors, officers, employees, agents, contractors, and successors from and against any and all claims, demands, suits, proceedings, losses, liabilities, damages, costs, and expenses (including reasonable legal fees) arising out of or relating to: (a) your breach of any representation, warranty, or obligation under this Agreement; (b) your use of the Services in violation of applicable law or regulation; (c) your infringement or alleged infringement of any third-party intellectual property right in connection with information or materials you provide to us; or (d) your gross negligence or wilful misconduct.`,
-      `NexCore agrees to indemnify, defend, and hold harmless you and your directors, officers, and employees from and against any third-party claims, losses, and expenses (including reasonable legal fees) arising out of NexCore's gross negligence or wilful misconduct in the performance of the Services.`,
+      `You agree to indemnify, defend, and hold harmless ThomsUp and its directors, officers, employees, agents, contractors, and successors from and against any and all claims, demands, suits, proceedings, losses, liabilities, damages, costs, and expenses (including reasonable legal fees) arising out of or relating to: (a) your breach of any representation, warranty, or obligation under this Agreement; (b) your use of the Services in violation of applicable law or regulation; (c) your infringement or alleged infringement of any third-party intellectual property right in connection with information or materials you provide to us; or (d) your gross negligence or wilful misconduct.`,
+      `ThomsUp agrees to indemnify, defend, and hold harmless you and your directors, officers, and employees from and against any third-party claims, losses, and expenses (including reasonable legal fees) arising out of ThomsUp's gross negligence or wilful misconduct in the performance of the Services.`,
     ],
   },
   {
@@ -90,7 +90,7 @@ const sections = [
     content: [
       `This Agreement commences on the date of first engagement and continues until terminated in accordance with this section or until all active SOWs have been completed and all obligations have been fulfilled.`,
       `Either party may terminate this Agreement or any active SOW for convenience upon thirty (30) days' written notice. Either party may terminate immediately upon written notice if the other party: (a) materially breaches this Agreement and fails to cure such breach within fifteen (15) days of written notice specifying the breach; (b) becomes insolvent, makes an assignment for the benefit of creditors, or becomes subject to bankruptcy, administration, or similar proceedings; or (c) ceases to carry on business.`,
-      `Upon termination: (a) you shall pay NexCore for all Services performed and expenses incurred up to the effective date of termination; (b) NexCore shall deliver all work in progress and completed deliverables for which payment has been received; (c) each party shall promptly return or destroy the other party's Confidential Information; and (d) provisions that by their nature should survive termination shall survive, including sections on confidentiality, intellectual property, limitation of liability, indemnification, and governing law.`,
+      `Upon termination: (a) you shall pay ThomsUp for all Services performed and expenses incurred up to the effective date of termination; (b) ThomsUp shall deliver all work in progress and completed deliverables for which payment has been received; (c) each party shall promptly return or destroy the other party's Confidential Information; and (d) provisions that by their nature should survive termination shall survive, including sections on confidentiality, intellectual property, limitation of liability, indemnification, and governing law.`,
     ],
   },
   {
@@ -117,7 +117,7 @@ const sections = [
       `Amendments. This Agreement may only be amended by a written instrument signed by duly authorised representatives of both parties. No waiver of any provision shall be effective unless in writing, and no waiver shall constitute a waiver of any other provision or of the same provision on any future occasion.`,
       `Severability. If any provision of this Agreement is found by a court of competent jurisdiction to be invalid, illegal, or unenforceable, that provision shall be modified to the minimum extent necessary to make it enforceable, or if it cannot be so modified, severed from this Agreement, without affecting the validity and enforceability of the remaining provisions.`,
       `Entire Agreement. This Agreement, together with any applicable SOWs and MSAs, constitutes the entire agreement between the parties with respect to its subject matter and supersedes all prior and contemporaneous agreements, understandings, and representations. Neither party has relied on any representation or warranty not contained in this Agreement in entering into it.`,
-      `Assignment. Neither party may assign this Agreement or any rights or obligations hereunder without the prior written consent of the other party, except that NexCore may assign this Agreement to an affiliate or in connection with a merger, acquisition, or sale of all or substantially all of its assets, upon written notice to you.`,
+      `Assignment. Neither party may assign this Agreement or any rights or obligations hereunder without the prior written consent of the other party, except that ThomsUp may assign this Agreement to an affiliate or in connection with a merger, acquisition, or sale of all or substantially all of its assets, upon written notice to you.`,
       `Force Majeure. Neither party shall be liable for any failure or delay in performance of its obligations under this Agreement to the extent such failure or delay is caused by circumstances beyond that party's reasonable control, including acts of God, war, terrorism, pandemic, governmental action, or disruption to essential infrastructure, provided that the affected party gives prompt written notice and uses reasonable efforts to mitigate the impact.`,
     ],
   },
@@ -148,7 +148,7 @@ export default function TermsPage() {
         {/* Intro */}
         <div className="mb-12 bg-[#1a1a1a] border border-cyan-500/20 rounded-xl p-6">
           <p className="text-gray-300 text-sm leading-relaxed">
-            These Terms of Service govern all engagements between NexCore and its clients. Please read
+            These Terms of Service govern all engagements between ThomsUp and its clients. Please read
             them carefully. By engaging our services, you acknowledge that you have read and agree to
             be bound by this Agreement. If you are entering into this Agreement on behalf of an
             organisation, you represent that you have authority to bind that organisation.

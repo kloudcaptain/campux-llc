@@ -63,13 +63,17 @@ export default function Hero() {
         transition={{ ease: "easeInOut", delay: 0.4, duration: 0.8 }}
         className="relative z-50 flex flex-col items-center text-center px-4 -translate-y-8"
       >
-        {/* Eyebrow */}
+        {/* ── EYEBROW BADGE ──────────────────────────────────────────────────────
+             Edit the text between the <span> tags below.
+             Use "·" (middle dot) as a separator between items.             */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-cyan-400">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
           Infrastructure · Security · Cloud Operations
         </div>
 
-        {/* Headline */}
+        {/* ── HEADLINE ───────────────────────────────────────────────────────────
+             Line 1 (gradient text): edit the first <span> content.
+             Line 2 (white text):    edit the second <span> content.          */}
         <h1 className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.08]">
           <span
             style={{
@@ -85,14 +89,16 @@ export default function Hero() {
           <span className="text-white">just runs. Ours keeps running.</span>
         </h1>
 
-        {/* Subtitle */}
+        {/* ── SUBTITLE ───────────────────────────────────────────────────────── */}
         <p className="max-w-2xl text-lg text-gray-400 mb-10 leading-relaxed">
           Managed infrastructure, security operations, and cloud architecture for
           startups, enterprises, and government organisations where downtime is
           never an acceptable outcome — and doesn't have to be.
         </p>
 
-        {/* CTAs */}
+        {/* ── CTA BUTTONS ────────────────────────────────────────────────────────
+             Primary button (solid cyan):  edit label + href below.
+             Secondary button (outline):   edit label + href below.           */}
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           <Link
             href="/solutions"
@@ -110,7 +116,8 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Trust line */}
+        {/* ── TRUST LINE ─────────────────────────────────────────────────────────
+             Small text below CTAs. Edit the industries listed here.          */}
         <p className="mt-10 text-xs text-gray-600 tracking-wide">
           Trusted across healthcare · financial services · SaaS · government
         </p>

@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: "Security Operations",
   description:
     "Continuous security monitoring, threat response, and compliance alignment for organisations where a breach is not a recoverable event.",
-  alternates: { canonical: "https://nexcore.io/services/security" },
+  alternates: { canonical: "https://thomsup.com/services/security" },
   openGraph: {
-    title: "Security Operations — NexCore",
+    title: "Security Operations — ThomsUp",
     description:
       "Security is not a product you buy and deploy. It is a practice you maintain. We help organisations build and sustain the security posture their environment and obligations require.",
   },

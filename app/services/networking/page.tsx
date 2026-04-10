@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: "Network Engineering",
   description:
     "Software-defined networks designed with explicit redundancy, documented failover paths, and traffic segmentation built for enterprise and government connectivity requirements.",
-  alternates: { canonical: "https://nexcore.io/services/networking" },
+  alternates: { canonical: "https://thomsup.com/services/networking" },
   openGraph: {
-    title: "Network Engineering — NexCore",
+    title: "Network Engineering — ThomsUp",
     description:
       "Network failures are the silent disruption of distributed systems. We design networks with documented redundancy, tested failover, and the segmentation that modern security requires.",
   },

@@ -6,15 +6,18 @@ import { usePathname } from "next/navigation"
 import { Server, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+// ── NAV LINKS ──────────────────────────────────────────────────────────────────
+// Edit the desktop + mobile navigation items here.
+// Order determines left-to-right display order on desktop.
 const navLinks = [
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Solutions", href: "/solutions" },
+  { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ]
 
 function isLinkActive(href: string, pathname: string) {
-  if (href === "/#services") return pathname === "/"
   return pathname === href || pathname.startsWith(href + "/")
 }
 
@@ -68,7 +71,7 @@ export default function Navbar() {
           <div className="flex h-6 w-6 items-center justify-center rounded-md bg-cyan-500/15">
             <Server className="w-3.5 h-3.5 text-cyan-400" strokeWidth={2} />
           </div>
-          <span className="text-white font-semibold text-sm tracking-wide">NexCore</span>
+          <span className="text-white font-semibold text-sm tracking-wide">ThomsUp</span>
         </Link>
 
         {/* Desktop nav links */}

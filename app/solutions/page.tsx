@@ -4,11 +4,11 @@ import { ArrowRight, Search, FileText, Wrench, BarChart2 } from "lucide-react"
 
 export const metadata = {
   title: "Solutions",
-  description: "Client engagements across retail, financial services, healthcare, and SaaS — showing how NexCore solves real infrastructure, security, and cloud challenges with measurable results.",
-  alternates: { canonical: "https://nexcore.io/solutions" },
+  description: "Client engagements across retail, financial services, healthcare, and SaaS — showing how ThomsUp solves real infrastructure, security, and cloud challenges with measurable results.",
+  alternates: { canonical: "https://thomsup.com/solutions" },
   openGraph: {
-    title: "NexCore Solutions — Client Engagements & Results",
-    description: "Real engagements, real constraints, real outcomes. See how NexCore approaches enterprise infrastructure and security challenges.",
+    title: "ThomsUp Solutions — Client Engagements & Results",
+    description: "Real engagements, real constraints, real outcomes. See how ThomsUp approaches enterprise infrastructure and security challenges.",
   },
 }
 

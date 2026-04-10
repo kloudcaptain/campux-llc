@@ -7,7 +7,7 @@ import CTAStrip from "./components/CTAStrip"
 import Footer from "./components/Footer"
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://nexcore.io" },
+  alternates: { canonical: "https://thomsup.com" },
 }
 
 export default function Home() {

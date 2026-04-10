@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: "Server Infrastructure",
   description:
     "Dedicated and virtualised server infrastructure managed to documented SLAs. Built for organisations where uptime is a commercial obligation, not an aspiration.",
-  alternates: { canonical: "https://nexcore.io/services/infrastructure" },
+  alternates: { canonical: "https://thomsup.com/services/infrastructure" },
   openGraph: {
-    title: "Server Infrastructure — NexCore",
+    title: "Server Infrastructure — ThomsUp",
     description:
       "Purpose-built server environments managed to documented SLAs. Proactive capacity management, redundant configurations, and engineers who monitor before you have to call.",
   },

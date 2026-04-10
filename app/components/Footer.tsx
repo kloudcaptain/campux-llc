@@ -2,6 +2,11 @@ import React from "react"
 import Link from "next/link"
 import { Server, Globe, Rss, ExternalLink, Mail } from "lucide-react"
 
+// ── FOOTER LINK COLUMNS ────────────────────────────────────────────────────────
+// Edit the nav columns shown in the footer.
+// To add a column: add a new object with title + links array.
+// To add a link: add { name: "Label", href: "/path" } to any links array.
+// href can be internal ("/about") or external ("https://...").
 const sections = [
   {
     title: "Services",
@@ -16,6 +21,7 @@ const sections = [
   {
     title: "Company",
     links: [
+      { name: "About", href: "/about" },
       { name: "Solutions", href: "/solutions" },
       { name: "Blog", href: "/blog" },
       { name: "Contact", href: "/contact" },
@@ -50,7 +56,7 @@ export default function Footer() {
           <div className="max-w-xs">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Server className="w-5 h-5 text-cyan-400" strokeWidth={1.5} />
-              <span className="text-white font-semibold text-lg tracking-wide">NexCore</span>
+              <span className="text-white font-semibold text-lg tracking-wide">ThomsUp</span>
             </Link>
             <p className="text-sm leading-relaxed">
               Enterprise infrastructure, security, and cloud services — built for organisations
@@ -96,7 +102,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-          <p>© {new Date().getFullYear()} NexCore. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ThomsUp &middot; A Campux Company. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-cyan-400 transition-colors duration-200">Privacy</Link>
             <Link href="/terms" className="hover:text-cyan-400 transition-colors duration-200">Terms</Link>

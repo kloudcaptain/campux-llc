@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: "Cloud Services",
   description:
     "Multi-cloud and hybrid cloud architecture, migration, and ongoing operational management across AWS, Azure, and GCP — built with cost governance and compliance guardrails from the start.",
-  alternates: { canonical: "https://nexcore.io/services/cloud" },
+  alternates: { canonical: "https://thomsup.com/services/cloud" },
   openGraph: {
-    title: "Cloud Services — NexCore",
+    title: "Cloud Services — ThomsUp",
     description:
       "Moving to the cloud is not a destination. Managed cloud operations is the part nobody talks about before they get there. We handle it.",
   },

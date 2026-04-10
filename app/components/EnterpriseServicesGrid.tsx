@@ -64,6 +64,12 @@ interface EnterpriseServicesProps {
   className?: string
 }
 
+// ── SERVICE CARDS ──────────────────────────────────────────────────────────────
+// These six cards appear in the homepage services grid.
+// To edit: update title, description, or swap the icon.
+// Icons: import any name from lucide-react — https://lucide.dev/icons
+// To add a card: duplicate an object and add it to the array (grid auto-expands).
+// To remove a card: delete its object from the array.
 const EnterpriseServices: React.FC<EnterpriseServicesProps> = ({
   title = "What we do — and why it matters",
   services = [

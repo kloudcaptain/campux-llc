@@ -12,16 +12,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://nexcore.io"
+// ── SITE-WIDE SEO CONFIG ───────────────────────────────────────────────────────
+// siteUrl: update when the domain goes live.
+// title.default: the <title> shown on the homepage.
+// title.template: used on all inner pages — "%s" becomes the page title.
+// description: shown in Google search results for the homepage.
+// keywords: supplementary — modern SEO is mostly content-driven, but keep updated.
+// openGraph.images: the default social share image (update with a real OG image).
+const siteUrl = "https://thomsup.com"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "NexCore — Managed Infrastructure, Security & Cloud Operations",
-    template: "%s — NexCore",
+    default: "ThomsUp — Managed Infrastructure, Security & Cloud Operations",
+    template: "%s — ThomsUp",
   },
   description:
-    "NexCore delivers managed infrastructure, security operations, and cloud architecture for startups, enterprises, and government organisations that cannot afford downtime.",
+    "ThomsUp delivers managed infrastructure, security operations, and cloud architecture for startups, enterprises, and government organisations that cannot afford downtime.",
   keywords: [
     "managed infrastructure",
     "security operations",
@@ -36,15 +43,15 @@ export const metadata: Metadata = {
     "zero trust security",
     "identity access management",
   ],
-  authors: [{ name: "NexCore" }],
-  creator: "NexCore",
-  publisher: "NexCore",
+  authors: [{ name: "ThomsUp" }],
+  creator: "ThomsUp",
+  publisher: "ThomsUp",
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: siteUrl,
-    siteName: "NexCore",
-    title: "NexCore — Managed Infrastructure, Security & Cloud Operations",
+    siteName: "ThomsUp",
+    title: "ThomsUp — Managed Infrastructure, Security & Cloud Operations",
     description:
       "Managed infrastructure, security operations, and cloud architecture for organisations where downtime is never an acceptable outcome.",
     images: [
@@ -52,13 +59,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "NexCore — Enterprise Infrastructure & Security",
+        alt: "ThomsUp — Enterprise Infrastructure & Security",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexCore — Managed Infrastructure, Security & Cloud Operations",
+    title: "ThomsUp — Managed Infrastructure, Security & Cloud Operations",
     description:
       "Managed infrastructure, security operations, and cloud architecture for enterprises and government organisations.",
     images: ["/og-image.png"],
@@ -85,7 +92,7 @@ const orgJsonLd = {
     {
       "@type": "Organization",
       "@id": `${siteUrl}/#organization`,
-      name: "NexCore",
+      name: "ThomsUp",
       url: siteUrl,
       description:
         "Managed infrastructure, security operations, and cloud architecture for enterprises and government organisations.",
@@ -100,7 +107,7 @@ const orgJsonLd = {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: "NexCore",
+      name: "ThomsUp",
       publisher: { "@id": `${siteUrl}/#organization` },
       potentialAction: {
         "@type": "SearchAction",
@@ -127,7 +134,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      {/* suppressHydrationWarning: browser extensions (e.g. password managers) can
+          inject attributes onto <body> after SSR, causing a benign hydration mismatch.
+          This prop tells React to skip attribute comparison on this element only. */}
+      <body suppressHydrationWarning className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

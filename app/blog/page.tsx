@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { blogPosts, type BlogPost } from "@/app/data/blog"
-import { Marquee } from "@/components/ui/marquee"
 import { ArrowRight } from "lucide-react"
 
 export const metadata = {
@@ -12,12 +11,12 @@ export const metadata = {
     "deployment strategy", "cloud architecture", "engineering culture", "agile",
   ],
   openGraph: {
-    title: "NexCore Blog — Engineering Perspectives Worth Reading",
+    title: "ThomsUp Blog — Engineering Perspectives Worth Reading",
     description:
       "Honest takes on infrastructure, deployment, security, and the craft of building software that holds up under real conditions.",
     type: "website",
   },
-  alternates: { canonical: "https://nexcore.io/blog" },
+  alternates: { canonical: "https://thomsup.com/blog" },
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -41,45 +40,7 @@ function categoryClass(cat: string) {
   return categoryColour[cat] ?? "bg-white/10 text-gray-400 border-white/10"
 }
 
-// ─── Marquee card ─────────────────────────────────────────────────────────────
-
-function MarqueeCard({ post }: { post: BlogPost }) {
-  return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className="group block w-[22rem] shrink-0 rounded-xl bg-[#1a1a1a] border border-white/10 p-5 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-[0_0_24px_rgba(6,182,212,0.12)]"
-    >
-      {/* Category + tag */}
-      <div className="flex flex-wrap items-center gap-1.5 mb-3">
-        <span className={`text-xs px-2.5 py-0.5 rounded-full border font-medium ${categoryClass(post.category)}`}>
-          {post.category}
-        </span>
-        {post.tags.slice(0, 1).map((tag) => (
-          <span key={tag} className="text-xs text-gray-600">
-            · {tag}
-          </span>
-        ))}
-      </div>
-
-      <h3 className="text-white font-semibold text-[15px] leading-snug mb-2 line-clamp-2 group-hover:text-cyan-50 transition-colors duration-200">
-        {post.title}
-      </h3>
-
-      <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 mb-4">
-        {post.excerpt}
-      </p>
-
-      <div className="flex items-center justify-between text-xs text-gray-500">
-        <span>{formatDate(post.date)} · {post.readTime}</span>
-        <span className="flex items-center gap-1 text-cyan-500 group-hover:gap-1.5 transition-all duration-200">
-          Read <ArrowRight className="w-3 h-3" />
-        </span>
-      </div>
-    </Link>
-  )
-}
-
-// ─── Static grid card (for SEO + browsing) ────────────────────────────────────
+// ─── Static grid card ─────────────────────────────────────────────────────────
 
 function GridCard({ post }: { post: BlogPost }) {
   return (
@@ -121,7 +82,7 @@ export default function BlogPage() {
       {/* ── Page header ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">
-          The NexCore Blog
+          The ThomsUp Blog
         </p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white mb-5 leading-tight">
           Thinking out loud
@@ -180,30 +141,7 @@ export default function BlogPage() {
         </Link>
       </div>
 
-      {/* ── Divider ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      </div>
-
-      {/* ── Single continuous marquee — all articles ── */}
-      <div className="mb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-          <p className="text-xs text-gray-600 uppercase tracking-widest">All articles · scroll to browse</p>
-        </div>
-
-        <div className="relative w-full">
-          <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent" />
-          <div className="pointer-events-none absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent" />
-
-          <Marquee className="[--gap:1.25rem] [--duration:90s] py-2" pauseOnHover>
-            {sorted.map((post) => (
-              <MarqueeCard key={post.slug} post={post} />
-            ))}
-          </Marquee>
-        </div>
-      </div>
-
-      {/* ── Static grid — full index for SEO ── */}
+      {/* ── All articles grid ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <h2 className="text-2xl font-semibold text-white mb-8">All articles</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

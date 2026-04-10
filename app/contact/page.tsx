@@ -22,7 +22,7 @@ export default function ContactPage() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\n\n${form.message}`
     )
-    const subject = encodeURIComponent(form.subject || "NexCore Enquiry")
+    const subject = encodeURIComponent(form.subject || "ThomsUp Enquiry")
     window.open(`mailto:project@thomsup.com?subject=${subject}&body=${body}`)
     setSubmitted(true)
   }

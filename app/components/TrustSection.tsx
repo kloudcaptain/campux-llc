@@ -1,6 +1,11 @@
 import React from "react"
 import { Shield, Clock, FileCheck } from "lucide-react"
 
+// ── TRUST PILLARS ──────────────────────────────────────────────────────────────
+// Add, remove, or edit the three credibility cards shown on the homepage.
+// icon: any icon name from lucide-react (https://lucide.dev/icons)
+// title: short heading (keep under ~30 chars for best layout)
+// description: 2–3 sentences max
 const pillars = [
   {
     icon: Shield,
@@ -30,7 +35,7 @@ export default function TrustSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">
-            Why organisations choose NexCore
+            Why organisations choose ThomsUp
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Built for buyers who need to justify the decision
@@ -57,7 +62,8 @@ export default function TrustSection() {
           ))}
         </div>
 
-        {/* Industry strip */}
+        {/* ── INDUSTRY STRIP ───────────────────────────────────────────────────────
+             Edit the array below to change the industries shown.             */}
         <div className="border-t border-white/5 pt-10">
           <p className="text-center text-xs text-gray-600 uppercase tracking-widest mb-6">
             Engagements across

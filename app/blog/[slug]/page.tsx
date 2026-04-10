@@ -3,7 +3,7 @@ import Link from "next/link"
 import { blogPosts, getPostBySlug, getRelatedPosts } from "@/app/data/blog"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
-const siteUrl = "https://nexcore.io"
+const siteUrl = "https://thomsup.com"
 const HERO_SLUG = "the-infrastructure-nobody-thinks-about"
 
 // ─── Per-category service CTAs ────────────────────────────────────────────────
@@ -109,10 +109,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    author: { "@type": "Organization", name: "NexCore", url: siteUrl },
+    author: { "@type": "Organization", name: "ThomsUp", url: siteUrl },
     publisher: {
       "@type": "Organization",
-      name: "NexCore",
+      name: "ThomsUp",
       url: siteUrl,
       logo: { "@type": "ImageObject", url: `${siteUrl}/logo.png` },
     },

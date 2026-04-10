@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: "Database Management",
   description:
     "Fully managed database operations with high availability, point-in-time recovery, and automated failover. Your data, exactly as you left it — even when something goes wrong.",
-  alternates: { canonical: "https://nexcore.io/services/database" },
+  alternates: { canonical: "https://thomsup.com/services/database" },
   openGraph: {
-    title: "Database Management — NexCore",
+    title: "Database Management — ThomsUp",
     description:
       "The backup that was never tested is not a backup. We manage your database layer with the rigour that irreplaceable data deserves.",
   },
