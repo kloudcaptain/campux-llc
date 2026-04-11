@@ -101,8 +101,14 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Disclaimer */}
+        <p className="mt-10 text-xs text-gray-600 leading-relaxed max-w-2xl">
+          We are an independent consulting firm and are not affiliated with any government agency.
+          Services are provided to commercial and public sector clients.
+        </p>
+
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+        <div className="mt-6 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
           <p>© {new Date().getFullYear()} ThomsUp &middot; A Campux Company. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-cyan-400 transition-colors duration-200">Privacy</Link>

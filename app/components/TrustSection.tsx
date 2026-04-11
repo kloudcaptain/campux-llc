@@ -1,69 +1,73 @@
 import React from "react"
-import { Shield, Clock, FileCheck } from "lucide-react"
+import { Cloud, ShieldCheck, Zap, Target } from "lucide-react"
 
-// ── TRUST PILLARS ──────────────────────────────────────────────────────────────
-// Add, remove, or edit the three credibility cards shown on the homepage.
-// icon: any icon name from lucide-react (https://lucide.dev/icons)
-// title: short heading (keep under ~30 chars for best layout)
-// description: 2–3 sentences max
 const pillars = [
   {
-    icon: Shield,
-    title: "Security-first by design",
+    icon: Cloud,
+    title: "Built for Modern Cloud",
     description:
-      "Every engagement is structured around documented controls, not assumptions. ISO 27001 alignment, SOC 2 readiness, and HIPAA technical safeguards are built into how we work — not bolted on later.",
+      "We work natively in Azure and AWS using proven, scalable patterns — not vendor-agnostic abstractions that add complexity without clarity.",
   },
   {
-    icon: Clock,
-    title: "Accountability over availability",
+    icon: ShieldCheck,
+    title: "Security-First Mindset",
     description:
-      "We respond to every serious enquiry within one business day and deliver against written scopes of work. You always know what we committed to, and whether we delivered it.",
+      "Everything we build is designed to reduce risk — not introduce it. Security is a design input, not a post-deployment concern.",
   },
   {
-    icon: FileCheck,
-    title: "Audit-ready from day one",
+    icon: Zap,
+    title: "Automation-Driven Approach",
     description:
-      "Our engagements produce documentation suitable for internal audit, procurement review, and regulatory evidence. Government and enterprise buyers can account for every decision we made together.",
+      "Less manual work, fewer errors, faster delivery. We automate what should be automated and document what needs to be understood.",
+  },
+  {
+    icon: Target,
+    title: "Direct, Practical Execution",
+    description:
+      "No layers, no fluff — just focused engineering that gets results. You work directly with the people doing the work.",
   },
 ]
 
 export default function TrustSection() {
   return (
-    <section className="bg-[#0a0a0a] py-24 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#0a0a0a] py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">
-            Why organisations choose ThomsUp
+            Why ThomsUp
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Built for buyers who need to justify the decision
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5 leading-tight">
+            Why Teams Choose
+            <br />
+            <span className="text-gray-500">to Work With Us</span>
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-            Whether you are a startup CTO, an enterprise procurement team, or a government
-            technology officer — the standard we hold ourselves to is the same.
+            We are an independent engineering firm — not a reseller, not a staffing agency.
+            The standard we hold ourselves to is the same regardless of company size.
           </p>
         </div>
 
         {/* Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {pillars.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="bg-[#111] border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-colors duration-300"
+              className="group bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 rounded-2xl p-7 hover:border-cyan-500/30 transition-all duration-300"
             >
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6">
-                <Icon className="w-5 h-5 text-cyan-400" />
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/15 border border-cyan-500/20 flex items-center justify-center mb-5">
+                <Icon className="w-5 h-5 text-cyan-400" strokeWidth={1.5} />
               </div>
-              <h3 className="text-white font-semibold text-lg mb-3">{title}</h3>
+              <h3 className="text-white font-semibold text-base mb-3 group-hover:text-cyan-50 transition-colors">
+                {title}
+              </h3>
               <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
             </div>
           ))}
         </div>
 
-        {/* ── INDUSTRY STRIP ───────────────────────────────────────────────────────
-             Edit the array below to change the industries shown.             */}
+        {/* Industry strip */}
         <div className="border-t border-white/5 pt-10">
           <p className="text-center text-xs text-gray-600 uppercase tracking-widest mb-6">
             Engagements across
@@ -74,7 +78,7 @@ export default function TrustSection() {
               "Financial Services",
               "Retail & E-Commerce",
               "B2B SaaS",
-              "Government & Public Sector",
+              "Regulated Industries",
               "Professional Services",
             ].map((industry) => (
               <span key={industry} className="text-sm text-gray-500">
