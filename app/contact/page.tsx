@@ -125,7 +125,7 @@ export default function ContactPage() {
                   >
                     <option value="" className="bg-[#1a1a1a]">Select a topic</option>
                     <option value="Infrastructure Modernisation" className="bg-[#1a1a1a]">Infrastructure Modernisation</option>
-                    <option value="Security & Compliance" className="bg-[#1a1a1a]">Security & Compliance</option>
+                    <option value="Security" className="bg-[#1a1a1a]">Security</option>
                     <option value="Cloud Architecture" className="bg-[#1a1a1a]">Cloud Architecture</option>
                     <option value="DevOps & CI/CD" className="bg-[#1a1a1a]">DevOps & CI/CD</option>
                     <option value="General Enquiry" className="bg-[#1a1a1a]">General Enquiry</option>

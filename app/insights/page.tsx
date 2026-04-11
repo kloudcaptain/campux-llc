@@ -3,7 +3,7 @@ import { blogPosts, type BlogPost } from "@/app/data/blog"
 import { ArrowRight } from "lucide-react"
 
 export const metadata = {
-  title: "Blog",
+  title: "Insights",
   description:
     "Engineering insights on infrastructure, security, DevOps, and the craft of building software that holds up under real conditions. Written by practitioners, relevant to decision-makers.",
   keywords: [
@@ -11,12 +11,12 @@ export const metadata = {
     "deployment strategy", "cloud architecture", "engineering culture", "agile",
   ],
   openGraph: {
-    title: "ThomsUp Blog — Engineering Perspectives Worth Reading",
+    title: "ThomsUp Insights — Engineering Perspectives Worth Reading",
     description:
       "Honest takes on infrastructure, deployment, security, and the craft of building software that holds up under real conditions.",
     type: "website",
   },
-  alternates: { canonical: "https://thomsup.com/blog" },
+  alternates: { canonical: "https://thomsup.com/insights" },
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -30,10 +30,10 @@ function formatDate(dateStr: string) {
 }
 
 const categoryColour: Record<string, string> = {
-  "AI & Engineering":     "bg-violet-500/10 text-violet-400 border-violet-500/20",
-  "Security & Compliance":"bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-  "DevOps & Deployment":  "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-  "Engineering Culture":  "bg-amber-500/10 text-amber-400 border-amber-500/20",
+  "AI & Engineering":    "bg-violet-500/10 text-violet-400 border-violet-500/20",
+  "Security":            "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+  "DevOps & Deployment": "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+  "Engineering Culture": "bg-amber-500/10 text-amber-400 border-amber-500/20",
 }
 
 function categoryClass(cat: string) {
@@ -45,7 +45,7 @@ function categoryClass(cat: string) {
 function GridCard({ post }: { post: BlogPost }) {
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/insights/${post.slug}`}
       className="group block rounded-xl bg-[#111] border border-white/8 p-6 hover:border-cyan-500/30 transition-all duration-300"
     >
       <div className="flex items-center gap-2 mb-4">
@@ -69,7 +69,7 @@ function GridCard({ post }: { post: BlogPost }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function BlogPage() {
+export default function InsightsPage() {
   const sorted = [...blogPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
@@ -82,7 +82,7 @@ export default function BlogPage() {
       {/* ── Page header ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">
-          The ThomsUp Blog
+          ThomsUp Insights
         </p>
         <h1 className="text-5xl sm:text-6xl font-bold text-white mb-5 leading-tight">
           Thinking out loud
@@ -107,7 +107,7 @@ export default function BlogPage() {
       {/* ── Featured latest post ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <Link
-          href={`/blog/${latest.slug}`}
+          href={`/insights/${latest.slug}`}
           className="group block relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-[0_0_50px_rgba(6,182,212,0.1)]"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />

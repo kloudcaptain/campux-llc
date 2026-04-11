@@ -144,10 +144,10 @@ export default function NetworkingPage() {
           </Link>
 
           <Link
-            href="/blog/policy-as-code-enterprise"
+            href="/insights/policy-as-code-enterprise"
             className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
           >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">From the blog</p>
+            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">From our insights</p>
             <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
               Policy as Code: How Enterprises Enforce Compliance at Scale
             </p>

@@ -160,10 +160,10 @@ export default function CloudPage() {
           </Link>
 
           <Link
-            href="/blog/best-deployment-strategy"
+            href="/insights/best-deployment-strategy"
             className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
           >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">From the blog</p>
+            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">From our insights</p>
             <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
               We've Decided This Is the Best Deployment Strategy
             </p>

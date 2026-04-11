@@ -163,13 +163,13 @@ export default function SolutionsPage() {
                 The thinking behind the work
               </h3>
               <p className="text-gray-500 text-sm mb-5">
-                Our blog covers the engineering principles and trade-offs behind the approaches used in these engagements — deployment strategy, compliance as code, zero-trust architecture, and more.
+                Our insights cover the engineering principles and trade-offs behind the approaches used in these engagements — deployment strategy, compliance as code, zero-trust architecture, and more.
               </p>
               <Link
-                href="/blog"
+                href="/insights"
                 className="inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
               >
-                Read the blog <ArrowRight className="w-4 h-4" />
+                Read our insights <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="bg-[#111] border border-white/8 rounded-2xl p-8">

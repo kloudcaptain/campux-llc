@@ -22,7 +22,7 @@ const serviceCTA: Record<string, {
     primary: { label: "Explore infrastructure services", href: "/#services" },
     secondary: { label: "See client results", href: "/solutions" },
   },
-  "Security & Compliance": {
+  "Security": {
     service: "Security Operations",
     headline: "Compliance shouldn't consume your engineering team",
     body: "We automate policy enforcement and compliance evidence pipelines, and help organisations maintain ISO 27001, SOC 2, and HIPAA posture — without the quarterly scramble.",
@@ -58,12 +58,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `${siteUrl}/blog/${post.slug}` },
+    alternates: { canonical: `${siteUrl}/insights/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: `${siteUrl}/insights/${post.slug}`,
       publishedTime: post.date,
       tags: post.tags,
       images: [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -72,10 +72,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const categoryColour: Record<string, string> = {
-  "AI & Engineering":      "bg-violet-500/10 text-violet-400 border-violet-500/20",
-  "Security & Compliance": "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-  "DevOps & Deployment":   "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-  "Engineering Culture":   "bg-amber-500/10 text-amber-400 border-amber-500/20",
+  "AI & Engineering":    "bg-violet-500/10 text-violet-400 border-violet-500/20",
+  "Security":            "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+  "DevOps & Deployment": "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+  "Engineering Culture": "bg-amber-500/10 text-amber-400 border-amber-500/20",
 }
 
 function categoryClass(cat: string) {
@@ -92,7 +92,7 @@ function formatDate(dateStr: string) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function InsightsPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) notFound()
@@ -116,8 +116,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       url: siteUrl,
       logo: { "@type": "ImageObject", url: `${siteUrl}/logo.png` },
     },
-    url: `${siteUrl}/blog/${post.slug}`,
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/blog/${post.slug}` },
+    url: `${siteUrl}/insights/${post.slug}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/insights/${post.slug}` },
     keywords: post.tags.join(", "),
     articleSection: post.category,
   }
@@ -134,11 +134,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {/* Back */}
           <Link
-            href="/blog"
+            href="/insights"
             className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 transition-colors mb-10"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to blog
+            Back to insights
           </Link>
 
           {/* Category + tags */}
@@ -222,7 +222,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 If infrastructure reliability is relevant to your work, this piece ties together a lot of what we write about.
               </p>
               <Link
-                href={`/blog/${HERO_SLUG}`}
+                href={`/insights/${HERO_SLUG}`}
                 className="group inline-flex items-center gap-2 text-white text-sm font-medium hover:text-cyan-400 transition-colors"
               >
                 {heroPost.title}
@@ -239,7 +239,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {related.map((rp) => (
                   <Link
                     key={rp.slug}
-                    href={`/blog/${rp.slug}`}
+                    href={`/insights/${rp.slug}`}
                     className="group block rounded-xl bg-[#1a1a1a] border border-white/8 p-5 hover:border-cyan-500/20 transition-colors"
                   >
                     <span className={`text-xs px-2 py-0.5 rounded-full border ${categoryClass(rp.category)} mb-3 inline-block`}>

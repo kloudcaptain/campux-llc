@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "mcp__magic__21st_magic_component_builder",
+      "Bash(curl -s http://localhost:3000)",
+      "mcp__magic__21st_magic_component_inspiration",
+      "Bash(node:*)",
+      "Bash(npx tsc:*)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)",
+      "Bash(git -C \"C:/Users/TEST/mynewproj\" remote -v)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(git -C \"C:/Users/TEST/mynewproj\" remote add origin https://github.com/kloudcaptain/thomsup.git)",
+      "Bash(git -C \"C:/Users/TEST/mynewproj\" branch -m master main)",
+      "Bash(git:*)"
+    ]
+  }
+}

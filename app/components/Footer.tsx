@@ -23,7 +23,8 @@ const sections = [
     links: [
       { name: "About", href: "/about" },
       { name: "Solutions", href: "/solutions" },
-      { name: "Blog", href: "/blog" },
+      { name: "Industries", href: "/industries" },
+      { name: "Insights", href: "/insights" },
       { name: "Contact", href: "/contact" },
     ],
   },
@@ -39,7 +40,7 @@ const sections = [
 
 const socialLinks = [
   { Icon: Globe, href: "#", label: "Website" },
-  { Icon: Rss, href: "#", label: "Blog" },
+  { Icon: Rss, href: "#", label: "Insights" },
   { Icon: ExternalLink, href: "#", label: "Docs" },
   { Icon: Mail, href: "#", label: "Email" },
 ]

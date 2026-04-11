@@ -157,7 +157,7 @@ const EnterpriseServices: React.FC<EnterpriseServicesProps> = ({
               See client results <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link
-              href="/blog"
+              href="/insights"
               className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
             >
               Read our thinking <ArrowRight className="w-3.5 h-3.5" />
