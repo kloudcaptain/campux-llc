@@ -31,9 +31,9 @@ const sections = [
   {
     title: "Legal",
     links: [
-      { name: "Privacy Policy", href: "#" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
       { name: "Terms of Service", href: "/terms" },
-      { name: "Cookie Policy", href: "#" },
+      { name: "Cookie Policy", href: "/cookie-policy" },
     ],
   },
 ]
@@ -111,9 +111,9 @@ export default function Footer() {
         <div className="mt-6 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
           <p>© {new Date().getFullYear()} ThomsUp &middot; A Campux Company. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-cyan-400 transition-colors duration-200">Privacy</Link>
+            <Link href="/privacy-policy" className="hover:text-cyan-400 transition-colors duration-200">Privacy</Link>
             <Link href="/terms" className="hover:text-cyan-400 transition-colors duration-200">Terms</Link>
-            <Link href="#" className="hover:text-cyan-400 transition-colors duration-200">Sitemap</Link>
+            <Link href="/cookie-policy" className="hover:text-cyan-400 transition-colors duration-200">Cookies</Link>
           </div>
         </div>
       </div>

@@ -81,8 +81,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
+      lastModified: new Date("2026-04-11"),
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/privacy-policy`,
+      lastModified: new Date("2026-04-11"),
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/cookie-policy`,
+      lastModified: new Date("2026-04-11"),
+      changeFrequency: "monthly",
       priority: 0.3,
     },
   ]
