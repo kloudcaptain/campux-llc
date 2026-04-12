@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next"
+
+export const dynamic = "force-static"
 import { blogPosts } from "@/app/data/blog"
 
 const siteUrl = "https://thomsup.com"
@@ -30,7 +32,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/blog`,
+      url: `${siteUrl}/industries`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/insights`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
@@ -73,14 +81,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
+      lastModified: new Date("2026-04-11"),
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/privacy-policy`,
+      lastModified: new Date("2026-04-11"),
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/cookie-policy`,
+      lastModified: new Date("2026-04-11"),
+      changeFrequency: "monthly",
       priority: 0.3,
     },
   ]
 
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
+    url: `${siteUrl}/insights/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.6,

@@ -6,11 +6,11 @@
 //   1. Copy an existing post object (from opening { to closing },)
 //   2. Paste it at the TOP of the blogPosts array (newest first)
 //   3. Fill in the fields:
-//      slug      → URL path: /blog/your-slug-here (use lowercase-kebab-case)
+//      slug      → URL path: /insights/your-slug-here (use lowercase-kebab-case)
 //      title     → Full article title shown on the page
 //      date      → Publication date in "YYYY-MM-DD" format
 //      readTime  → E.g. "7 min read"
-//      category  → One of: "Engineering Culture" | "Security & Compliance" |
+//      category  → One of: "Engineering Culture" | "Security" |
 //                          "DevOps & Deployment" | "AI & Engineering"
 //      tags      → Array of strings shown as pill badges
 //      excerpt   → 1–2 sentence summary shown in the blog grid (no HTML)
@@ -24,7 +24,7 @@
 // FEATURED / HERO POST:
 //   The first post in the array is automatically featured in the blog marquee.
 //   The slug "the-infrastructure-nobody-thinks-about" is hardcoded as the hero
-//   post in app/blog/[slug]/page.tsx — update that constant if you change it.
+//   post in app/insights/[slug]/page.tsx — update that constant if you change it.
 
 export interface BlogSection {
   heading?: string
@@ -210,7 +210,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-02-19",
     readTime: "9 min read",
     tags: ["Compliance", "Security", "Infrastructure", "Enterprise"],
-    category: "Security & Compliance",
+    category: "Security",
     excerpt:
       "Manual compliance is a liability at scale. Policy as Code turns regulatory requirements into version-controlled, automatically enforced guardrails — and transforms audit season from a scramble into a formality.",
     sections: [
@@ -266,7 +266,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-02-05",
     readTime: "6 min read",
     tags: ["Compliance", "Security", "Small Business", "DevOps"],
-    category: "Security & Compliance",
+    category: "Security",
     excerpt:
       "You do not need OPA to start with Policy as Code. Pre-commit hooks and GitHub Actions are already in your stack. The question is whether you are using them deliberately.",
     sections: [
@@ -523,7 +523,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-09",
     readTime: "9 min read",
     tags: ["Security", "SOC", "Policy-as-Code", "Compliance", "Enterprise"],
-    category: "Security & Compliance",
+    category: "Security",
     excerpt:
       "Analysts are ignoring 42 percent of alerts. The instinct is to buy a better SIEM. The correct response is to stop generating the alerts in the first place.",
     sections: [
@@ -722,7 +722,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-04",
     readTime: "9 min read",
     tags: ["Policy-as-Code", "CI/CD", "Compliance", "Infrastructure", "DevSecOps", "Enterprise"],
-    category: "Security & Compliance",
+    category: "Security",
     excerpt:
       "Cloud misconfiguration — not sophisticated adversary tradecraft — is consistently identified as a leading cause of enterprise data breaches. Manual review does not scale. Policy-as-Code does.",
     sections: [

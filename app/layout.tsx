@@ -111,7 +111,7 @@ const orgJsonLd = {
       publisher: { "@id": `${siteUrl}/#organization` },
       potentialAction: {
         "@type": "SearchAction",
-        target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}/blog?q={search_term_string}` },
+        target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}/insights?q={search_term_string}` },
         "query-input": "required name=search_term_string",
       },
     },

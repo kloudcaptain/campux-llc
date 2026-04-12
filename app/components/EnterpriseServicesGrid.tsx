@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
-import { Server, Shield, Cloud, Database, Network, Lock, ArrowRight } from "lucide-react"
+import { Cloud, Zap, ArrowUpRight, Shield, Brain, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -71,37 +71,32 @@ interface EnterpriseServicesProps {
 // To add a card: duplicate an object and add it to the array (grid auto-expands).
 // To remove a card: delete its object from the array.
 const EnterpriseServices: React.FC<EnterpriseServicesProps> = ({
-  title = "What we do — and why it matters",
+  title = "What We Do",
   services = [
     {
-      icon: Server,
-      title: "Server Infrastructure",
-      description: "Purpose-built environments for workloads that don't tolerate surprises. Documented SLAs, redundant power, proactive capacity management — and engineers who monitor before you have to call.",
+      icon: Cloud,
+      title: "Cloud Engineering",
+      description: "Design scalable, resilient infrastructure tailored to your business — on Azure and AWS — not generic templates that need to be unwound six months later.",
+    },
+    {
+      icon: Zap,
+      title: "DevOps & Automation",
+      description: "Streamline deployments, eliminate manual work, and ship faster with confidence. Pipelines built for reliability, not just speed.",
+    },
+    {
+      icon: ArrowUpRight,
+      title: "Cloud Migration",
+      description: "Move from on-prem or legacy systems to modern cloud environments without disruption. Phased, documented, and tested before cutover.",
     },
     {
       icon: Shield,
-      title: "Security Operations",
-      description: "Continuous threat monitoring, structured incident response, and controls aligned to ISO 27001. We treat your security posture as an ongoing programme, not a one-time project.",
+      title: "Cloud Security",
+      description: "Protect your systems with secure configurations, identity and access controls, and continuous monitoring — from initial architecture through ongoing operations.",
     },
     {
-      icon: Cloud,
-      title: "Cloud & Hybrid Architecture",
-      description: "Multi-cloud environments that are actually managed — across AWS, Azure, and GCP — with cost governance, compliance guardrails, and the operational visibility your team deserves.",
-    },
-    {
-      icon: Database,
-      title: "Database Management",
-      description: "High-availability operations with point-in-time recovery, synchronous replication, and automated failover. Your data, exactly as you left it — even when something goes wrong.",
-    },
-    {
-      icon: Network,
-      title: "Network Engineering",
-      description: "Software-defined networks with documented redundancy, explicit failover paths, and traffic segmentation built for enterprise-grade connectivity requirements.",
-    },
-    {
-      icon: Lock,
-      title: "Identity & Access Control",
-      description: "Role-based access, MFA, and privileged access management. Shrink your attack surface, satisfy your auditors, and stop worrying about who has access to what.",
+      icon: Brain,
+      title: "AI Security",
+      description: "Secure data pipelines and AI workflows to reduce risk and protect sensitive information. Built for organisations deploying AI in production.",
     },
   ],
   className,
@@ -127,7 +122,7 @@ const EnterpriseServices: React.FC<EnterpriseServicesProps> = ({
             </span>
           </h2>
           <p className="mt-5 text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-            Six service areas. One goal: infrastructure that earns your trust every single day.
+            Five focused service areas. One goal: infrastructure and systems your business can rely on.
           </p>
           <div className="mt-6 h-px w-24 mx-auto bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
         </motion.div>
@@ -157,7 +152,7 @@ const EnterpriseServices: React.FC<EnterpriseServicesProps> = ({
               See client results <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <Link
-              href="/blog"
+              href="/insights"
               className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
             >
               Read our thinking <ArrowRight className="w-3.5 h-3.5" />

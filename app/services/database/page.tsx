@@ -164,10 +164,10 @@ export default function DatabasePage() {
           </Link>
 
           <Link
-            href="/blog/the-infrastructure-nobody-thinks-about"
+            href="/insights/the-infrastructure-nobody-thinks-about"
             className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
           >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">From the blog</p>
+            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">From our insights</p>
             <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
               The Infrastructure Nobody Thinks About (Until It's 3am)
             </p>
