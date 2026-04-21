@@ -1,8 +1,8 @@
 name = "thomsup"
 compatibility_date = "2025-01-01"
 routes = [
-  { pattern = "thomsup.com", custom_domain = true },
-  { pattern = "www.thomsup.com", custom_domain = true },
+  { pattern = "thomsup.com", custom_domain = true, override_existing_dns_record = true },
+  { pattern = "www.thomsup.com", custom_domain = true, override_existing_dns_record = true },
 ]
 
 [assets]
