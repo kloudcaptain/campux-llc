@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+    <section className="relative flex min-h-screen w-full flex-col items-start sm:items-center justify-start sm:justify-center overflow-hidden bg-[#0a0a0a] pt-28 sm:pt-0">
 
       {/* Lamp effect */}
       <div className="absolute top-0 isolate z-0 flex w-full flex-1 items-start justify-center pointer-events-none">
@@ -61,7 +61,7 @@ export default function Hero() {
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeInOut", delay: 0.4, duration: 0.8 }}
-        className="relative z-50 flex flex-col items-center text-center px-4 -translate-y-8"
+        className="relative z-50 flex flex-col items-center text-center px-4 sm:-translate-y-8 w-full"
       >
         {/* Eyebrow badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-cyan-400">
@@ -70,7 +70,7 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.08]">
+        <h1 className="max-w-4xl text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.08]">
           <span
             style={{
               backgroundImage: "linear-gradient(to right, #22d3ee, #ffffff, #22d3ee)",
