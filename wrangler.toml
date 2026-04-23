@@ -1,9 +1,6 @@
 name = "campux"
 compatibility_date = "2025-01-01"
-routes = [
-  { pattern = "capux.co", custom_domain = true, override_existing_dns_record = true },
-  { pattern = "www.capux.co", custom_domain = true, override_existing_dns_record = true },
-]
 
 [assets]
 directory = "./out"
+not_found_handling = "single-page-application"
