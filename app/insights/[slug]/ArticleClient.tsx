@@ -44,7 +44,7 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
 
       {/* ── NAV ── */}
       <nav style={{ position: 'sticky', top: 0, zIndex: 200, background: 'rgba(240,235,226,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div className="rsp-nav-inner" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
               <rect x="3" y="3" width="13" height="13" rx="3" fill="#1a1a1a" />
@@ -54,9 +54,9 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
             </svg>
             <span style={{ fontWeight: 700, fontSize: 19, letterSpacing: '-0.04em', color: '#1a1a1a' }}>Campux</span>
           </Link>
-          <div style={{ display: 'flex', gap: 10 }}>
+          <div className="rsp-nav-links" style={{ display: 'flex', gap: 10 }}>
             <Link href="/insights" className="link-dark" style={{ padding: '8px 16px', borderRadius: 6, fontSize: 13, fontWeight: 500 }}>All Insights</Link>
-            <Link href="/#contact-form" style={{ background: '#1a1a1a', color: 'white', padding: '8px 18px', borderRadius: 6, fontSize: 13, fontWeight: 600, transition: 'opacity 0.2s' }}
+            <Link href="/contact" style={{ background: '#1a1a1a', color: 'white', padding: '8px 18px', borderRadius: 6, fontSize: 13, fontWeight: 600, transition: 'opacity 0.2s' }}
               onMouseOver={e => (e.currentTarget.style.opacity = '0.8')}
               onMouseOut={e => (e.currentTarget.style.opacity = '1')}>
               Get in touch
@@ -66,7 +66,7 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
       </nav>
 
       {/* ── ARTICLE ── */}
-      <main style={{ maxWidth: 1160, margin: '0 auto', padding: '56px 48px 120px', display: 'grid', gridTemplateColumns: '1fr 340px', gap: 80, alignItems: 'start' }}>
+      <main className="rsp-article-main" style={{ maxWidth: 1160, margin: '0 auto', padding: '56px 48px 120px', display: 'grid', gridTemplateColumns: '1fr 340px', gap: 80, alignItems: 'start' }}>
 
         <article>
           {/* Back */}
@@ -112,7 +112,7 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
         </article>
 
         {/* ── SIDEBAR ── */}
-        <aside style={{ position: 'sticky', top: 100 }}>
+        <aside className="rsp-sidebar" style={{ position: 'sticky', top: 100 }}>
           {/* Author */}
           <div style={{ background: 'white', border: '1px solid rgba(0,0,0,0.08)', borderRadius: 10, padding: 28, marginBottom: 20 }}>
             <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: 16 }}>Written by</p>
@@ -164,7 +164,7 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
         <section style={{ background: 'white', borderTop: '1px solid rgba(0,0,0,0.08)', padding: '60px 48px' }}>
           <div style={{ maxWidth: 1160, margin: '0 auto' }}>
             <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)', marginBottom: 32 }}>More from Campux</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+            <div className="rsp-related-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
               {related.map((rp, i) => (
                 <Link key={rp.slug} href={`/insights/${rp.slug}`} style={{ display: 'flex', flexDirection: 'column', gap: 10, transition: 'opacity 0.2s' }}
                   onMouseOver={e => (e.currentTarget.style.opacity = '0.75')}

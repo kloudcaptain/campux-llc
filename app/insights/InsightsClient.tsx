@@ -30,6 +30,7 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
   const [cat, setCat] = useState('All')
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [mobMenu, setMobMenu] = useState(false)
   const gridRef = useRef<HTMLDivElement>(null)
 
   const featured = posts[0]
@@ -57,7 +58,7 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
 
       {/* ── NAV ── */}
       <nav style={{ position: 'sticky', top: 0, zIndex: 200, background: 'rgba(240,235,226,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 68, display: 'flex', alignItems: 'center' }}>
+        <div className="rsp-nav-inner" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 68, display: 'flex', alignItems: 'center' }}>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, flex: '0 0 auto', marginRight: 48 }}>
             <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
               <rect x="3" y="3" width="13" height="13" rx="3" fill="#1a1a1a" />
@@ -67,27 +68,43 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
             </svg>
             <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em', color: '#1a1a1a' }}>Campux</span>
           </Link>
-          <div style={{ display: 'flex', gap: 2, flex: 1 }}>
+          <div className="rsp-nav-links" style={{ display: 'flex', gap: 2, flex: 1 }}>
             <Link href="/#services" className="link-dark" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500 }}>Services</Link>
             <Link href="/insights" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500, color: '#1a1a1a', background: 'rgba(0,0,0,0.06)' }}>Insights</Link>
-            <Link href="/#contact-form" className="link-dark" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500 }}>About</Link>
+            <Link href="/about" className="link-dark" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500 }}>About</Link>
           </div>
-          <div style={{ display: 'flex', gap: 10 }}>
-            <Link href="/#contact-form" style={{ background: '#1a1a1a', color: 'white', padding: '8px 18px', borderRadius: 6, fontSize: 13, fontWeight: 600, transition: 'opacity 0.2s' }}
-              onMouseOver={e => (e.currentTarget.style.opacity = '0.8')}
-              onMouseOut={e => (e.currentTarget.style.opacity = '1')}>
-              Get in touch
-            </Link>
-          </div>
+          <Link href="/contact" style={{ background: '#1a1a1a', color: 'white', padding: '8px 18px', borderRadius: 6, fontSize: 13, fontWeight: 600 }} className="rsp-nav-links">
+            Get in touch
+          </Link>
+          <button className="mob-hamburger" onClick={() => setMobMenu(true)} aria-label="Open menu" style={{ color: '#1a1a1a', background: 'rgba(0,0,0,0.07)', borderColor: 'rgba(0,0,0,0.15)' }}>
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect y="0" width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
+          </button>
         </div>
+        {mobMenu && (
+          <div style={{ position: 'fixed', inset: 0, background: 'rgba(240,235,226,0.99)', zIndex: 600, display: 'flex', flexDirection: 'column', padding: '0 20px', overflowY: 'auto' }}>
+            <div style={{ height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Link href="/" onClick={() => setMobMenu(false)} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <svg width="24" height="24" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="#1a1a1a"/><rect x="20" y="3" width="13" height="13" rx="3" fill="#1a1a1a" opacity="0.3"/><rect x="3" y="20" width="13" height="13" rx="3" fill="#1a1a1a" opacity="0.3"/><rect x="20" y="20" width="13" height="13" rx="3" fill="#1a1a1a"/></svg>
+                <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '-0.04em', color: '#1a1a1a' }}>Campux</span>
+              </Link>
+              <button onClick={() => setMobMenu(false)} style={{ background: 'rgba(0,0,0,0.07)', border: '1px solid rgba(0,0,0,0.12)', borderRadius: 8, padding: '8px 12px', cursor: 'pointer', fontSize: 18, color: '#1a1a1a', lineHeight: 1 }}>✕</button>
+            </div>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', paddingTop: 40, gap: 8 }}>
+              {[{href:'/', label:'Home'},{href:'/services',label:'Services'},{href:'/industries',label:'Sectors'},{href:'/insights',label:'Insights'},{href:'/about',label:'About'}].map(l => (
+                <Link key={l.href} href={l.href} onClick={() => setMobMenu(false)} style={{ fontSize: 28, fontFamily: 'var(--font-dm-serif),Georgia,serif', fontWeight: 400, color: '#1a1a1a', padding: '14px 0', borderBottom: '1px solid rgba(0,0,0,0.08)', letterSpacing: '-0.02em' }}>{l.label}</Link>
+              ))}
+              <Link href="/contact" onClick={() => setMobMenu(false)} style={{ marginTop: 32, display: 'block', background: '#1a1a1a', color: 'white', padding: '16px 24px', borderRadius: 10, fontSize: 16, fontWeight: 600, textAlign: 'center' }}>Get in touch</Link>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '64px 48px 0' }}>
+      <section className="rsp-section-top" style={{ maxWidth: 1320, margin: '0 auto', padding: '64px 48px 0' }}>
         <h1 className="fu" style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 72px)', fontWeight: 400, color: '#1a1a1a', letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 40 }}>Insights</h1>
 
         {/* Featured post */}
-        <Link href={`/insights/${featured.slug}`} className="fu2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 4, overflow: 'hidden', marginBottom: 40, background: 'white' }}>
+        <Link href={`/insights/${featured.slug}`} className="fu2 rsp-featured-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 4, overflow: 'hidden', marginBottom: 40, background: 'white' }}>
           <div style={{ padding: '48px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRight: '1px solid rgba(0,0,0,0.08)' }}>
             <div>
               <span style={{ fontSize: 10, fontWeight: 700, background: '#1a1a1a', color: 'white', padding: '3px 9px', borderRadius: 3, letterSpacing: '0.08em', textTransform: 'uppercase', display: 'inline-block', marginBottom: 16 }}>{featured.category}</span>
@@ -109,7 +126,7 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
         </Link>
 
         {/* Newsletter */}
-        <div className="fu3" style={{ border: '1px solid rgba(0,0,0,0.1)', borderRadius: 4, padding: '24px 32px', marginBottom: 40, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, background: 'white' }}>
+        <div className="fu3 rsp-newsletter" style={{ border: '1px solid rgba(0,0,0,0.1)', borderRadius: 4, padding: '24px 32px', marginBottom: 40, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, background: 'white' }}>
           <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.6)', lineHeight: 1.5, maxWidth: 360 }}>Subscribe to new posts and stay up to date on infrastructure, security, and deployment thinking.</p>
           {subscribed ? (
             <span style={{ fontSize: 14, color: 'rgba(0,0,0,0.5)' }}>✓ Subscribed. Talk soon.</span>
@@ -131,11 +148,11 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
       </section>
 
       {/* ── GRID ── */}
-      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px 100px' }}>
+      <section className="rsp-section-top" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px 100px' }}>
         {filtered.length === 0 ? (
           <div style={{ padding: '80px 0', textAlign: 'center', color: 'rgba(0,0,0,0.35)', fontSize: 16 }}>No posts found.</div>
         ) : (
-          <div ref={gridRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div ref={gridRef} className="rsp-insights-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
             {filtered.map((p, i) => (
               <Link key={p.slug} href={`/insights/${p.slug}`} className="post-card" style={{ opacity: 0, transform: 'translateY(22px)', transition: `opacity 0.7s ${i * 0.05}s ease, transform 0.7s ${i * 0.05}s ease, box-shadow 0.3s` }}>
                 <div style={{ background: postGradient(p.category, i), minHeight: 160, display: 'flex', alignItems: 'flex-end', padding: 20, position: 'relative', overflow: 'hidden' }}>
