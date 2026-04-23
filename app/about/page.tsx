@@ -2,14 +2,14 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "About Campux — UK Managed Infrastructure & Security",
+  title: "About Campux — US Managed Infrastructure & Security",
   description:
-    "We take operational ownership of server estates, cloud environments, networks, and security posture. Not a helpdesk. Not a consultant. We own the outcome. UK-based since 2018.",
-  alternates: { canonical: "https://capux.co/about" },
+    "We take operational ownership of server estates, cloud environments, networks, and security posture. Not a helpdesk. Not a consultant. We own the outcome. US-based since 2023.",
+  alternates: { canonical: "https://campux.co/about" },
   openGraph: {
-    title: "About Campux — UK Managed Infrastructure & Security",
-    description: "UK-based managed infrastructure and security operations firm. We own the outcome, not just the activity.",
-    url: "https://capux.co/about",
+    title: "About Campux — US Managed Infrastructure & Security",
+    description: "US-based managed infrastructure and security operations firm. We own the outcome, not just the activity.",
+    url: "https://campux.co/about",
     type: "website",
   },
 }
@@ -63,7 +63,7 @@ export default function AboutPage() {
             </div>
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32, marginBottom: 32 }}>
               <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>Where we work</p>
-              <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.68)', lineHeight: 1.8 }}>UK and internationally. Healthcare, financial services, retail, government, and regulated technology companies. Organisations from Series A to enterprise — where the common factor is that infrastructure is critical and needs to be managed properly.</p>
+              <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.68)', lineHeight: 1.8 }}>US and internationally. Healthcare, financial services, retail, government, and regulated technology companies. Organizations from Series A to enterprise — where the common factor is that infrastructure is critical and needs to be managed properly.</p>
             </div>
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32 }}>
               <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>Compliance</p>

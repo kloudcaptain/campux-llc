@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Campux collects, uses, and protects personal data under UK GDPR in connection with its managed infrastructure and security operations services.",
+  description: "How Campux collects, uses, and protects personal data under applicable US privacy law in connection with its managed infrastructure and security operations services.",
   alternates: { canonical: "https://capux.co/privacy-policy" },
   robots: { index: false, follow: false },
 }
@@ -14,7 +14,7 @@ const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, 
 const sections = [
   {
     title: "Who we are",
-    content: "Campux is a managed infrastructure and security operations firm registered in England and Wales. We are the data controller for personal data collected through this website and in connection with our services. You can contact us at project@campux.co.",
+    content: "Campux is a managed infrastructure and security operations firm registered in the United States. We are the data controller for personal data collected through this website and in connection with our services. You can contact us at project@campux.co.",
   },
   {
     title: "What we collect and why",
@@ -42,11 +42,11 @@ const sections = [
   },
   {
     title: "Your rights",
-    content: "Under UK GDPR, you have the right to access personal data we hold about you, to correct inaccurate data, to request erasure, to restrict processing, and to data portability. You also have the right to object to processing based on legitimate interests. To exercise any of these rights, contact us at project@campux.co. We will respond within one month. If you are not satisfied with our response, you have the right to lodge a complaint with the Information Commissioner's Office (ico.org.uk).",
+    content: "Under applicable US privacy law, you have the right to access personal data we hold about you, to correct inaccurate data, to request erasure, to restrict processing, and to data portability. You also have the right to object to processing based on legitimate interests. To exercise any of these rights, contact us at project@campux.co. We will respond within thirty days.",
   },
   {
     title: "International transfers",
-    content: "We store and process data primarily within the UK and the European Economic Area. Where data is transferred outside these regions — for example, to a service provider with infrastructure in another country — we ensure that appropriate safeguards are in place, including standard contractual clauses approved by the UK Information Commissioner's Office.",
+    content: "We store and process data primarily within the United States. Where data is transferred outside the US — for example, to a service provider with infrastructure in another country — we ensure that appropriate safeguards are in place, including standard contractual clauses and applicable data transfer mechanisms.",
   },
   {
     title: "Changes to this policy",
@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
 
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 40, marginTop: 0 }}>
           <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
-            Privacy enquiries: <a href="mailto:project@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>project@campux.co</a>. You may also write to us at our registered address. Campux is registered in England and Wales.
+            Privacy enquiries: <a href="mailto:project@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>project@campux.co</a>. You may also write to us at our registered address. Campux is incorporated in the United States.
           </p>
         </div>
       </section>

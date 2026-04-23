@@ -70,7 +70,7 @@ export default async function InsightsPostPage({ params }: { params: Promise<{ s
     url: `${siteUrl}/insights/${post.slug}`,
     articleSection: post.category,
     keywords: post.tags.join(", "),
-    inLanguage: "en-GB",
+    inLanguage: "en-US",
   }
 
   return (

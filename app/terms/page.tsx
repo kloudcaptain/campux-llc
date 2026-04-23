@@ -46,7 +46,7 @@ const sections = [
   },
   {
     title: "Governing Law",
-    content: "These Terms and any Agreements incorporating them are governed by the laws of England and Wales. Both parties submit to the exclusive jurisdiction of the courts of England and Wales for any dispute arising under or in connection with these Terms.",
+    content: "These Terms and any Agreements incorporating them are governed by the laws of the State of Delaware, United States. Both parties submit to the exclusive jurisdiction of the courts of the State of Delaware, United States for any dispute arising under or in connection with these Terms.",
   },
   {
     title: "Changes to These Terms",
@@ -92,7 +92,7 @@ export default function TermsPage() {
 
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 40, marginTop: 0 }}>
           <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
-            Questions about these Terms should be directed to <a href="mailto:project@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>project@campux.co</a>. Campux is registered in England and Wales.
+            Questions about these Terms should be directed to <a href="mailto:project@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>project@campux.co</a>. Campux is incorporated in the United States.
           </p>
         </div>
       </section>
