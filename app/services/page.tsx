@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "Managed Infrastructure & Security Services",
   description:
     "Server infrastructure, cloud environments, security operations, network engineering, and database management — operated as one accountable team. No handoffs. No gaps.",
-  alternates: { canonical: "https://capux.co/services" },
+  alternates: { canonical: "https://campux.co/services" },
   openGraph: {
     title: "Managed Infrastructure & Security Services | Campux",
     description: "Six fully managed service lines operated as one team. One SLA, one quarterly review, one escalation path.",
-    url: "https://capux.co/services",
+    url: "https://campux.co/services",
     type: "website",
   },
 }

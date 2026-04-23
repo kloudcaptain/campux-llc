@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Campux — Managed Infrastructure & Security Operations | UK",
   description:
     "UK-based managed infrastructure and security operations. We run your servers, cloud environments, networks, databases, and compliance posture — one team, one contract, no handoffs.",
-  alternates: { canonical: "https://capux.co" },
+  alternates: { canonical: "https://campux.co" },
 }
 
 export default function Home() {

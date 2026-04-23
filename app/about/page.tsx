@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "About Campux — UK Managed Infrastructure & Security",
   description:
     "We take operational ownership of server estates, cloud environments, networks, and security posture. Not a helpdesk. Not a consultant. We own the outcome. UK-based since 2018.",
-  alternates: { canonical: "https://capux.co/about" },
+  alternates: { canonical: "https://campux.co/about" },
   openGraph: {
     title: "About Campux — UK Managed Infrastructure & Security",
     description: "UK-based managed infrastructure and security operations firm. We own the outcome, not just the activity.",
-    url: "https://capux.co/about",
+    url: "https://campux.co/about",
     type: "website",
   },
 }

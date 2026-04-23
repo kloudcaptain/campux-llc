@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import { blogPosts, getPostBySlug, getRelatedPosts } from "@/app/data/blog"
 import ArticleClient from "./ArticleClient"
 
-const siteUrl = "https://capux.co"
+const siteUrl = "https://campux.co"
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }))

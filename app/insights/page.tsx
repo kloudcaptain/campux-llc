@@ -5,12 +5,12 @@ export const metadata = {
   title: "Insights — Infrastructure, Security & DevOps",
   description:
     "Operational thinking on infrastructure, security, cloud, and DevOps — written by engineers who manage these systems daily, not content teams. No filler, no trend pieces.",
-  alternates: { canonical: "https://capux.co/insights" },
+  alternates: { canonical: "https://campux.co/insights" },
   openGraph: {
     title: "Insights — Infrastructure, Security & DevOps | Campux",
     description:
       "Operational thinking on infrastructure, security, and DevOps from engineers who manage these systems daily.",
-    url: "https://capux.co/insights",
+    url: "https://campux.co/insights",
     type: "website",
   },
 }

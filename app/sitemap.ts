@@ -3,7 +3,7 @@ import { blogPosts } from "@/app/data/blog"
 
 export const dynamic = "force-static"
 
-const siteUrl = "https://capux.co"
+const siteUrl = "https://campux.co"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

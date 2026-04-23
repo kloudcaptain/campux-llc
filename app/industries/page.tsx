@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "Sectors We Serve — Healthcare, Finance & Government",
   description:
     "Managed infrastructure for regulated industries — healthcare, financial services, government, retail, and technology. HIPAA, PCI-DSS, ISO 27001, Cyber Essentials Plus.",
-  alternates: { canonical: "https://capux.co/industries" },
+  alternates: { canonical: "https://campux.co/industries" },
   openGraph: {
     title: "Sectors We Serve — Healthcare, Finance & Government | Campux",
     description: "Managed infrastructure for regulated industries where downtime carries real consequences.",
-    url: "https://capux.co/industries",
+    url: "https://campux.co/industries",
     type: "website",
   },
 }

@@ -14,7 +14,7 @@ const dmSerif = DM_Serif_Display({
   style: ["normal", "italic"],
 });
 
-const siteUrl = "https://capux.co"
+const siteUrl = "https://campux.co"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

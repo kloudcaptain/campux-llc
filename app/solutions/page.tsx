@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "Managed IT Solutions — Migration, Compliance & Recovery",
   description:
     "From legacy migration to compliance uplift and incident recovery — specific infrastructure problems with specific answers, from a team that has seen them before.",
-  alternates: { canonical: "https://capux.co/solutions" },
+  alternates: { canonical: "https://campux.co/solutions" },
   openGraph: {
     title: "Managed IT Solutions — Migration, Compliance & Recovery | Campux",
     description: "Specific infrastructure problems. Specific answers. Legacy migration, compliance uplift, incident recovery, cloud governance.",
-    url: "https://capux.co/solutions",
+    url: "https://campux.co/solutions",
     type: "website",
   },
 }

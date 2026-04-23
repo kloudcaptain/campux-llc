@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "Contact Campux — Talk to Our Infrastructure Team",
   description:
     "Describe your environment. No pitch decks, no qualification calls — a direct conversation about what you're running and whether we're the right fit. Reply within one business day.",
-  alternates: { canonical: "https://capux.co/contact" },
+  alternates: { canonical: "https://campux.co/contact" },
   openGraph: {
     title: "Contact Campux — Talk to Our Infrastructure Team",
     description: "Tell us what you're running. Direct conversation, no sales process. Reply within one business day.",
-    url: "https://capux.co/contact",
+    url: "https://campux.co/contact",
     type: "website",
   },
 }
