@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 
 const serviceData = [
-  { tag: 'Server Infrastructure', title: 'On-premises, colo, hybrid — we run it.', body: 'Full operational ownership: provisioning, patching, monitoring, change records, and runbooks that reflect actual state. When something fails at 2am, there is a current document to follow — not someone\'s memory of how it used to work.' },
-  { tag: 'Cloud Environments', title: 'Every resource tracked. Nothing drifting.', body: 'AWS, Azure, GCP — version-controlled, policy-enforced, auditable against a known baseline. Drift is caught and remediated before it causes an incident. IAM boundaries and multi-account structures are designed in from the start, not bolted on when the access model breaks.' },
-  { tag: 'Security Operations', title: 'Compliance year-round, not just before audits.', body: 'ISO 27001, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials. Controls are structural where possible — Policy-as-Code means misconfigured resources fail before they deploy. Audit prep takes hours, not weeks of emergency effort.' },
-  { tag: 'Network Engineering', title: 'Designed for your environment, not templated.', body: 'SD-WAN, firewalls, segmentation, access control — built to your actual security obligations, not a generic template applied to every engagement. Networks we manage have topology diagrams that reflect current routing, not original design intent.' },
-  { tag: 'Database Management', title: 'Backup that gets tested. Recovery that works.', body: 'RTO and RPO targets agreed before we start, then actually met. We restore backups on a schedule and document the results. If the last restore test was more than a quarter ago, that is not a backup strategy — it is a backup habit.' },
-  { tag: 'Integrated Managed IT', title: 'Everything under one contract.', body: 'All five service lines as a single managed function. One SLA, one quarterly review, one escalation path. For organisations that want infrastructure genuinely off their plate — not distributed across three suppliers, each owning a third of the failure.' },
+  { tag: 'Server Infrastructure', title: 'On-premises, cloud, hybrid — we run it.', body: 'Full operational ownership: provisioning, patching, monitoring, change records, and runbooks that reflect actual state. When something fails at 2am, there is a current document to follow — not someone\'s memory of how it used to work.', image: '/Screenshot.png' },
+  { tag: 'Cloud Environments', title: 'Every resource tracked. Nothing drifting.', body: 'AWS, Azure, GCP — version-controlled, policy-enforced, auditable against a known baseline. Drift is caught and remediated before it causes an incident. IAM boundaries and multi-account structures are designed in from the start, not bolted on when the access model breaks.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'Security Operations', title: 'Compliance year-round, not just before audits.', body: 'ISO 27001, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials. Controls are structural where possible — Policy-as-Code means misconfigured resources fail before they deploy. Audit prep takes hours, not weeks of emergency effort.', image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'Network Engineering', title: 'Designed for your environment, not templated.', body: 'SD-WAN, firewalls, segmentation, access control — built to your actual security obligations, not a generic template applied to every engagement. Networks we manage have topology diagrams that reflect current routing, not original design intent.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'Database Management', title: 'Backup that gets tested. Recovery that works.', body: 'RTO and RPO targets agreed before we start, then actually met. We restore backups on a schedule and document the results. If the last restore test was more than a quarter ago, that is not a backup strategy — it is a backup habit.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'Integrated Managed IT', title: 'Everything under one contract.', body: 'All five service lines as a single managed function. One SLA, one quarterly review, one escalation path. For organisations that want infrastructure genuinely off their plate — not distributed across three suppliers, each owning a third of the failure.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&h=380&fit=crop&q=80&auto=format' },
 ]
 
 export default function HomePageClient() {
@@ -19,7 +19,7 @@ export default function HomePageClient() {
   const [openAcc, setOpenAcc] = useState<number | null>(null)
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle')
-  const [panelData, setPanelData] = useState({ tag: 'Select a service line', title: 'One team. Everything under one roof.', body: "We are not a helpdesk, a cloud reseller, or a consultancy that delivers reports and moves on. We manage infrastructure as an ongoing function and own the operational outcomes — not just the activity." })
+  const [panelData, setPanelData] = useState<{ tag: string; title: string; body: string; image?: string }>({ tag: 'Select a service line', title: 'One team. Everything under one roof.', body: "We are not a helpdesk, a cloud reseller, or a consultancy that delivers reports and moves on. We manage infrastructure as an ongoing function and own the operational outcomes — not just the activity." })
 
   const toggleAcc = useCallback((idx: number) => {
     setOpenAcc(prev => {
@@ -448,14 +448,26 @@ export default function HomePageClient() {
 
             {/* Sticky panel */}
             <div style={{ position: 'sticky', top: 120 }}>
-              <div id="service-panel" style={{ background: 'rgba(6,4,10,0.5)', borderRadius: 20, border: '1px solid rgba(255,255,255,0.1)', padding: 48, minHeight: 480, backdropFilter: 'blur(12px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 28 }}>{panelData.tag}</p>
-                  <h3 style={{ fontFamily: serif, fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 400, color: 'white', lineHeight: 1.25, marginBottom: 20, letterSpacing: '-0.02em' }}>{panelData.title}</h3>
-                  <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.8 }}>{panelData.body}</p>
-                </div>
-                <div style={{ marginTop: 36, paddingTop: 28, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                  <a href="#contact-form" className="btn-ghost" style={{ fontSize: 14, padding: '11px 22px' }}>Talk to our team</a>
+              <div id="service-panel" style={{ background: 'rgba(6,4,10,0.5)', borderRadius: 20, border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden', backdropFilter: 'blur(12px)', display: 'flex', flexDirection: 'column', minHeight: 480 }}>
+                {panelData.image && (
+                  <div style={{ position: 'relative', height: 220, overflow: 'hidden', flexShrink: 0 }}>
+                    <img
+                      src={panelData.image}
+                      alt={panelData.tag}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(6,4,10,0.1) 0%, rgba(6,4,10,0.7) 100%)' }} />
+                  </div>
+                )}
+                <div style={{ padding: 40, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
+                  <div>
+                    <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 20 }}>{panelData.tag}</p>
+                    <h3 style={{ fontFamily: serif, fontSize: 'clamp(22px, 2.5vw, 32px)', fontWeight: 400, color: 'white', lineHeight: 1.25, marginBottom: 16, letterSpacing: '-0.02em' }}>{panelData.title}</h3>
+                    <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)', lineHeight: 1.8 }}>{panelData.body}</p>
+                  </div>
+                  <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                    <a href="#contact-form" className="btn-ghost" style={{ fontSize: 14, padding: '11px 22px' }}>Talk to our team</a>
+                  </div>
                 </div>
               </div>
             </div>
