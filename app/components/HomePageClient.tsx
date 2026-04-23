@@ -353,7 +353,7 @@ export default function HomePageClient() {
           <div>
             <div className="hero-h1" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 100, padding: '5px 16px 5px 12px', marginBottom: 36, backdropFilter: 'blur(8px)' }}>
               <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 100, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', padding: '3px 10px', color: 'white', textTransform: 'uppercase' }}>Managed IT</span>
-              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>UK-based · Since 2018</span>
+              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>US-based · Since 2023</span>
             </div>
             <h1 className="hero-h1" style={{ fontFamily: serif, fontSize: 'clamp(52px, 6.5vw, 92px)', fontWeight: 400, lineHeight: 1.02, letterSpacing: '-0.02em', color: 'white', marginBottom: 32 }}>
               We operate the<br />infrastructure<br /><em style={{ opacity: 0.55, fontStyle: 'italic' }}>others avoid.</em>
@@ -579,12 +579,13 @@ export default function HomePageClient() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, alignItems: 'start' }}>
               {[
-                { delay: '', bg: 'linear-gradient(160deg,#2a1a10 0%,#1a0c08 100%)', tags: ['ENGINEERING'], title: "The Infrastructure Nobody Thinks About (Until It's 3am)", href: '/insights/the-infrastructure-nobody-thinks-about' },
-                { delay: 'reveal-delay-1', bg: 'linear-gradient(160deg,#1a2a18 0%,#0e1810 100%)', tags: ['SECURITY'], title: 'Why Most Security Audits Miss the Point', href: '/insights' },
-                { delay: 'reveal-delay-2', bg: 'linear-gradient(160deg,#1a1a2a 0%,#0e0e1a 100%)', tags: ['DEVOPS'], title: 'The Deployment Pipeline Nobody Reviewed for Eighteen Months', href: '/insights' },
+                { delay: '', bg: 'linear-gradient(160deg,#2a1a10 0%,#1a0c08 100%)', tags: ['ENGINEERING'], title: "The Infrastructure Nobody Thinks About (Until It's 3am)", href: '/insights/the-infrastructure-nobody-thinks-about', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=320&fit=crop&q=80&auto=format' },
+                { delay: 'reveal-delay-1', bg: 'linear-gradient(160deg,#1a2a18 0%,#0e1810 100%)', tags: ['SECURITY'], title: 'Why Most Security Audits Miss the Point', href: '/insights', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&h=320&fit=crop&q=80&auto=format' },
+                { delay: 'reveal-delay-2', bg: 'linear-gradient(160deg,#1a1a2a 0%,#0e0e1a 100%)', tags: ['DEVOPS'], title: 'The Deployment Pipeline Nobody Reviewed for Eighteen Months', href: '/insights', img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=320&fit=crop&q=80&auto=format' },
               ].map((card, i) => (
                 <a key={i} href={card.href} className={`reveal card-lift ${card.delay}`} style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 8px 40px rgba(0,0,0,0.4)' }}>
                   <div style={{ background: card.bg, padding: 24, minHeight: 160, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative', overflow: 'hidden' }}>
+                    <img src={card.img} alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18, mixBlendMode: 'luminosity', pointerEvents: 'none' }} />
                     <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(135deg, transparent, transparent 20px, rgba(255,255,255,0.015) 20px, rgba(255,255,255,0.015) 21px)' }} />
                     <div style={{ position: 'relative' }}><span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '-0.02em', color: 'white' }}>Campux</span></div>
                     <div style={{ position: 'relative' }}><p style={{ fontSize: 16, fontWeight: 600, color: 'white', lineHeight: 1.35, letterSpacing: '-0.02em' }}>{card.title}</p></div>
@@ -706,7 +707,7 @@ export default function HomePageClient() {
                 </svg>
                 <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
               </div>
-              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.35)', lineHeight: 1.75, maxWidth: 260, marginBottom: 20 }}>Managed infrastructure for organisations where downtime is not an option. UK-based. Operating since 2018.</p>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.35)', lineHeight: 1.75, maxWidth: 260, marginBottom: 20 }}>Managed infrastructure for organisations where downtime is not an option. US-based. Operating since 2023.</p>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {['ISO 27001', 'SOC 2', 'Cyber Essentials'].map(b => (
                   <span key={b} style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', border: '1px solid rgba(255,255,255,0.1)', padding: '3px 8px', borderRadius: 3 }}>{b}</span>

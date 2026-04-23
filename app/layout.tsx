@@ -19,19 +19,19 @@ const siteUrl = "https://campux.co"
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Campux — Managed Infrastructure & Security Operations | UK",
+    default: "Campux — Managed Infrastructure & Security Operations | US",
     template: "%s | Campux",
   },
   description:
-    "UK-based managed infrastructure and security operations. We run your servers, cloud environments, networks, databases, and compliance posture — one team, one contract, no handoffs.",
+    "US-based managed infrastructure and security operations. We run your servers, cloud environments, networks, databases, and compliance posture — one team, one contract, no handoffs.",
   keywords: [
-    "managed infrastructure UK",
+    "managed infrastructure US",
     "managed IT services",
     "managed security operations",
     "cloud infrastructure management",
     "ISO 27001 managed service",
     "SOC 2 compliance",
-    "HIPAA compliance UK",
+    "HIPAA compliance US",
     "PCI-DSS managed service",
     "Cyber Essentials",
     "server management",
@@ -46,12 +46,12 @@ export const metadata: Metadata = {
   publisher: "Campux",
   openGraph: {
     type: "website",
-    locale: "en_GB",
+    locale: "en_US",
     url: siteUrl,
     siteName: "Campux",
-    title: "Campux — Managed Infrastructure & Security Operations | UK",
+    title: "Campux — Managed Infrastructure & Security Operations | US",
     description:
-      "UK-based managed infrastructure and security operations. Server estates, cloud environments, networks, databases, and compliance posture — operated as one accountable function.",
+      "US-based managed infrastructure and security operations. Server estates, cloud environments, networks, databases, and compliance posture — operated as one accountable function.",
     images: [
       {
         url: "/og-image.png",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Campux — Managed Infrastructure & Security Operations",
     description:
-      "UK-based managed infrastructure and security operations for healthcare, financial services, and government. One team. No handoffs.",
+      "US-based managed infrastructure and security operations for healthcare, financial services, and government. One team. No handoffs.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -103,10 +103,9 @@ const orgJsonLd = {
         height: 630,
       },
       description:
-        "UK-based managed infrastructure and security operations firm. We take operational ownership of server estates, cloud environments, networks, databases, and security posture.",
-      foundingDate: "2018",
+        "US-based managed infrastructure and security operations firm. We take operational ownership of server estates, cloud environments, networks, databases, and security posture.",
+      foundingDate: "2023",
       areaServed: [
-        { "@type": "Country", name: "United Kingdom" },
         { "@type": "Country", name: "United States" },
       ],
       knowsAbout: [

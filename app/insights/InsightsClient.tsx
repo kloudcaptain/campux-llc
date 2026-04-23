@@ -13,6 +13,13 @@ const gradients: Record<string, string> = {
   'AI & Engineering':    'linear-gradient(140deg,#3a1a5a,#1a0a2a)',
 }
 
+const categoryImages: Record<string, string> = {
+  'Engineering Culture': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop&q=80&auto=format',
+  'Security':            'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop&q=80&auto=format',
+  'DevOps & Deployment': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop&q=80&auto=format',
+  'AI & Engineering':    'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop&q=80&auto=format',
+}
+
 function postGradient(cat: string, i: number) {
   return gradients[cat] ?? `linear-gradient(140deg,#2a${10 + i * 5}10,#100808)`
 }
@@ -92,6 +99,7 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
             </div>
           </div>
           <div style={{ background: 'linear-gradient(140deg,#c85a20 0%,#8a2010 50%,#3a1020 100%)', minHeight: 340, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 32, position: 'relative', overflow: 'hidden' }}>
+            <img src={categoryImages[featured.category] ?? 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop&q=80&auto=format'} alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18, mixBlendMode: 'luminosity', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(135deg,transparent,transparent 24px,rgba(255,255,255,0.025) 24px,rgba(255,255,255,0.025) 25px)' }} />
             <div style={{ position: 'relative' }}>
               <p style={{ fontSize: 14, fontWeight: 700, color: 'white', letterSpacing: '-0.02em', marginBottom: 8 }}>Campux</p>
@@ -131,12 +139,13 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
             {filtered.map((p, i) => (
               <Link key={p.slug} href={`/insights/${p.slug}`} className="post-card" style={{ opacity: 0, transform: 'translateY(22px)', transition: `opacity 0.7s ${i * 0.05}s ease, transform 0.7s ${i * 0.05}s ease, box-shadow 0.3s` }}>
                 <div style={{ background: postGradient(p.category, i), minHeight: 160, display: 'flex', alignItems: 'flex-end', padding: 20, position: 'relative', overflow: 'hidden' }}>
+                  <img src={categoryImages[p.category] ?? 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=260&fit=crop&q=80&auto=format'} alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.16, mixBlendMode: 'luminosity', pointerEvents: 'none' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(135deg,transparent,transparent 20px,rgba(255,255,255,0.02) 20px,rgba(255,255,255,0.02) 21px)' }} />
                   <span style={{ position: 'relative', fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.5)', letterSpacing: '-0.01em' }}>Campux</span>
                 </div>
                 <div style={{ padding: '20px 22px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <span style={{ fontSize: 10, fontWeight: 700, background: '#1a1a1a', color: 'white', padding: '3px 8px', borderRadius: 3, letterSpacing: '0.08em', textTransform: 'uppercase', display: 'inline-block', marginBottom: 14, alignSelf: 'flex-start' }}>{p.category.split(' ')[0].toUpperCase()}</span>
-                  <p style={{ fontSize: 11, color: 'rgba(0,0,0,0.4)', marginBottom: 8, fontWeight: 500 }}>{new Date(p.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })} · {p.readTime}</p>
+                  <p style={{ fontSize: 11, color: 'rgba(0,0,0,0.4)', marginBottom: 8, fontWeight: 500 }}>{new Date(p.date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })} · {p.readTime}</p>
                   <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', lineHeight: 1.45, letterSpacing: '-0.01em', flex: 1, marginBottom: 16 }}>{p.title}</h3>
                   <span style={{ fontSize: 13, color: '#c04818', fontWeight: 500 }}>Read more →</span>
                 </div>

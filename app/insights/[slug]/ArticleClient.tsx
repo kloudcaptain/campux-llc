@@ -13,6 +13,13 @@ const gradients: Record<string, string> = {
   'AI & Engineering':    'linear-gradient(140deg,#3a1a5a,#1a0a2a,#100818)',
 }
 
+const categoryImages: Record<string, string> = {
+  'Engineering Culture': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&q=80&auto=format',
+  'Security':            'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop&q=80&auto=format',
+  'DevOps & Deployment': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80&auto=format',
+  'AI & Engineering':    'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=500&fit=crop&q=80&auto=format',
+}
+
 export default function ArticleClient({ post, related }: { post: BlogPost; related: BlogPost[] }) {
   // Reading progress bar
   useEffect(() => {
@@ -76,13 +83,14 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
           {/* Meta */}
           <div className="fu2" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 40, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 10, fontWeight: 700, background: '#1a1a1a', color: 'white', padding: '3px 9px', borderRadius: 3, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{post.category}</span>
-            <span style={{ fontSize: 13, color: 'rgba(0,0,0,0.4)' }}>{new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+            <span style={{ fontSize: 13, color: 'rgba(0,0,0,0.4)' }}>{new Date(post.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
             <span style={{ fontSize: 13, color: 'rgba(0,0,0,0.25)' }}>·</span>
             <span style={{ fontSize: 13, color: 'rgba(0,0,0,0.4)' }}>{post.readTime}</span>
           </div>
 
           {/* Hero image */}
           <div className="fu2" style={{ borderRadius: 8, overflow: 'hidden', marginBottom: 48, background: heroGradient, minHeight: 380, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 36, position: 'relative' }}>
+            <img src={categoryImages[post.category] ?? 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop&q=80&auto=format'} alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.2, mixBlendMode: 'luminosity', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(135deg,transparent,transparent 24px,rgba(255,255,255,0.02) 24px,rgba(255,255,255,0.02) 25px)' }} />
             <div style={{ position: 'relative' }}>
               <p style={{ fontSize: 15, fontWeight: 700, color: 'white', letterSpacing: '-0.02em', marginBottom: 8 }}>Campux</p>
@@ -130,7 +138,7 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
                     style={{ padding: '14px 0', borderBottom: i < related.length - 1 ? '1px solid rgba(0,0,0,0.07)' : undefined, display: 'block', transition: 'color 0.15s', color: '#1a1a1a' }}
                     onMouseOver={e => (e.currentTarget.style.color = '#c04818')}
                     onMouseOut={e => (e.currentTarget.style.color = '#1a1a1a')}>
-                    <p style={{ fontSize: 12, color: 'rgba(0,0,0,0.4)', marginBottom: 5 }}>{rp.category} · {new Date(rp.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                    <p style={{ fontSize: 12, color: 'rgba(0,0,0,0.4)', marginBottom: 5 }}>{rp.category} · {new Date(rp.date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
                     <p style={{ fontSize: 14, fontWeight: 500, lineHeight: 1.4 }}>{rp.title}</p>
                   </Link>
                 ))}
@@ -161,8 +169,9 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
                 <Link key={rp.slug} href={`/insights/${rp.slug}`} style={{ display: 'flex', flexDirection: 'column', gap: 10, transition: 'opacity 0.2s' }}
                   onMouseOver={e => (e.currentTarget.style.opacity = '0.75')}
                   onMouseOut={e => (e.currentTarget.style.opacity = '1')}>
-                  <div style={{ background: gradients[rp.category] ?? `linear-gradient(140deg,#2a1a10,#100808)`, borderRadius: 8, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'monospace', letterSpacing: '0.08em' }}>{rp.category}</span>
+                  <div style={{ background: gradients[rp.category] ?? `linear-gradient(140deg,#2a1a10,#100808)`, borderRadius: 8, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+                    <img src={categoryImages[rp.category] ?? 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=240&fit=crop&q=80&auto=format'} alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18, mixBlendMode: 'luminosity', pointerEvents: 'none' }} />
+                    <span style={{ position: 'relative', fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: 'monospace', letterSpacing: '0.08em' }}>{rp.category}</span>
                   </div>
                   <span style={{ fontSize: 10, fontWeight: 700, background: '#1a1a1a', color: 'white', padding: '2px 8px', borderRadius: 2, letterSpacing: '0.08em', textTransform: 'uppercase', alignSelf: 'flex-start' }}>{rp.category.split(' ')[0].toUpperCase()}</span>
                   <h3 style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', lineHeight: 1.4, letterSpacing: '-0.01em' }}>{rp.title}</h3>
