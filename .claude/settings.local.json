@@ -13,7 +13,19 @@
       "Bash(echo \"exit:$?\")",
       "Bash(git -C \"C:/Users/TEST/mynewproj\" remote add origin https://github.com/kloudcaptain/thomsup.git)",
       "Bash(git -C \"C:/Users/TEST/mynewproj\" branch -m master main)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(gunzip -c \"C:/Users/TEST/.claude/projects/C--Users-TEST-mynewproj/8b474bbc-1a52-40ff-9c18-70865995200a/tool-results/webfetch-1776908869998-6bel8f.bin\")",
+      "Read(//tmp/**)",
+      "Bash(mkdir -p /tmp/design_files)",
+      "Bash(tar -xf /tmp/design_extracted.tar -C /tmp/design_files)",
+      "Bash(xargs grep:*)",
+      "Bash(npx next:*)",
+      "Bash(curl -s http://localhost:3000/insights)",
+      "Bash(curl -s \"http://localhost:3000/insights/the-infrastructure-nobody-thinks-about\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/insights)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/insights/the-infrastructure-nobody-thinks-about)",
+      "Bash(grep:*)"
     ]
   }
 }
