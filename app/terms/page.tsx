@@ -1,145 +1,116 @@
-export const metadata = {
-  title: "Terms of Service — ThomsUp",
-  description: "Terms governing use of the ThomsUp website at thomsup.com.",
+import type { Metadata } from "next"
+import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description: "Terms and conditions governing Campux managed infrastructure and security operations services.",
+  alternates: { canonical: "https://capux.co/terms" },
+  robots: { index: false, follow: false },
 }
+
+const serif = "var(--font-dm-serif), Georgia, serif"
+const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, transparent 46%), radial-gradient(ellipse 60% 38% at 92% 22%, rgba(140,28,80,0.55) 0%, transparent 42%), radial-gradient(ellipse 80% 62% at 50% 58%, rgba(50,16,65,0.75) 0%, transparent 52%), #0a0610"
 
 const sections = [
   {
-    number: "1",
-    title: "Acceptance of Terms",
-    content: [
-      `By accessing or using thomsup.com, you agree to these Terms of Service. If you do not agree, please do not use the site.`,
-      `These terms govern your use of this website only. They do not constitute a client engagement agreement. Any consulting engagement with ThomsUp is governed by a separate written agreement between ThomsUp and the client.`,
-    ],
+    title: "Services",
+    content: "Campux provides managed infrastructure, security operations, cloud environment management, network engineering, database management, and related professional services ('Services') as described in the applicable statement of work or service agreement ('Agreement') entered into between Campux and the client. These Terms and Conditions ('Terms') apply to all Services unless expressly superseded by a written Agreement signed by both parties.",
   },
   {
-    number: "2",
-    title: "Who We Are",
-    content: [
-      `ThomsUp is an independent boutique cloud and DevOps consulting firm based in the United States. We provide Azure and AWS architecture, DevOps automation, CI/CD pipelines, cloud migration, cloud security, and AI security services to startups, SaaS companies, growing businesses, enterprise teams, and public sector clients.`,
-      `ThomsUp is not affiliated with any government agency. Services are provided to commercial and public sector clients on an independent basis.`,
-    ],
+    title: "Engagement and Scope",
+    content: "The scope of Services delivered by Campux is defined in each individual Agreement. Campux will not undertake work outside the agreed scope without written authorisation. Any changes to scope, including additions, removals, or modifications to managed environments, must be agreed in writing before implementation. Verbal instructions to expand scope are not binding on Campux.",
   },
   {
-    number: "3",
-    title: "Informational Use Only",
-    content: [
-      `The content on this site — including service descriptions, case studies, insights articles, and industry pages — is provided for general informational purposes. It does not constitute professional advice specific to your situation.`,
-      `If you need advice on cloud architecture, security, DevOps, or infrastructure specific to your environment, contact ThomsUp directly through the contact form on this site. We are happy to discuss your situation before any engagement begins.`,
-    ],
+    title: "Client Obligations",
+    content: "Clients are required to provide Campux with timely access to systems, documentation, and personnel necessary to deliver the agreed Services. Where client delays obstruct service delivery, Campux is not liable for resulting failures to meet agreed service levels. Clients are responsible for ensuring that Campux is informed of all regulatory obligations, compliance frameworks, and data classification requirements applicable to their environments prior to engagement commencement.",
   },
   {
-    number: "4",
-    title: "Acceptable Use",
-    content: [
-      `You agree to use this site only for lawful purposes. You must not attempt to gain unauthorized access to any part of the site or its underlying infrastructure, introduce malicious code, scrape content at scale, or use the site in any way that could damage or impair its operation.`,
-      `This site does not support user accounts, subscriptions, or financial transactions. There is no account to create or protect on your behalf.`,
-    ],
+    title: "Confidentiality",
+    content: "Both parties agree to treat all information received from the other as confidential and not to disclose it to third parties without prior written consent, except as required by law or regulation. Campux implements technical and organisational controls to protect client environment data and credentials. These controls are described in the applicable Data Processing Agreement where regulated data is involved.",
   },
   {
-    number: "5",
     title: "Intellectual Property",
-    content: [
-      `All content on this site — including copy, design, structure, and original written work — is owned by ThomsUp. You may not reproduce, redistribute, or republish any content from this site without written permission.`,
-      `Linking to thomsup.com from another website is permitted without prior approval, provided the link does not misrepresent ThomsUp or present our content in a misleading context.`,
-    ],
+    content: "Campux retains ownership of all methodologies, tooling, processes, and documentation frameworks developed independently of the client engagement. Client-specific configuration, runbooks, and documentation produced as part of the agreed Services are the property of the client and will be transferred upon termination of the Agreement in a format agreed between both parties.",
   },
   {
-    number: "6",
-    title: "Disclaimer of Warranties",
-    content: [
-      `This site is provided as-is. ThomsUp makes no warranties, express or implied, regarding the accuracy, completeness, or fitness for any particular purpose of the content on this site.`,
-      `We do not guarantee uninterrupted access to the site and are not liable for any downtime, errors, or technical issues that may occur.`,
-    ],
+    title: "Liability",
+    content: "Campux's liability in connection with any claim arising from the Services is limited to the total fees paid in the three months preceding the event giving rise to the claim. Campux is not liable for indirect, consequential, or incidental losses, including loss of revenue, loss of data, or loss of business opportunity, whether or not Campux was advised of the possibility of such losses. Nothing in these Terms limits liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded by law.",
   },
   {
-    number: "7",
-    title: "Limitation of Liability",
-    content: [
-      `To the maximum extent permitted by applicable law, ThomsUp is not liable for any direct, indirect, incidental, or consequential damages arising from your use of this site or reliance on any content found here.`,
-      `This includes, without limitation, damages from decisions made based on informational content on this site. For advice specific to your situation, engage ThomsUp directly.`,
-    ],
+    title: "Service Levels",
+    content: "Service level commitments, including response times, resolution targets, and uptime obligations, are defined in the applicable Service Level Agreement ('SLA'). Where no SLA exists, Campux will use reasonable endeavours to deliver Services in a timely and professional manner. Service level credits, where applicable, are the exclusive remedy for service level failures and do not affect the limitation of liability clause above.",
   },
   {
-    number: "8",
+    title: "Termination",
+    content: "Either party may terminate an Agreement by providing written notice as specified in that Agreement. Campux may terminate with immediate effect if a client fails to pay undisputed invoices within thirty days of the due date, or if the client breaches these Terms in a material way and fails to remedy the breach within fourteen days of written notice. Upon termination, Campux will provide reasonable transition assistance as agreed between both parties.",
+  },
+  {
     title: "Governing Law",
-    content: [
-      `These Terms of Service are governed by the laws of the State of Georgia, United States, without regard to conflict of law provisions.`,
-      `Any disputes arising from use of this site that cannot be resolved informally shall be subject to the exclusive jurisdiction of the courts of the State of Georgia.`,
-    ],
+    content: "These Terms and any Agreements incorporating them are governed by the laws of England and Wales. Both parties submit to the exclusive jurisdiction of the courts of England and Wales for any dispute arising under or in connection with these Terms.",
   },
   {
-    number: "9",
-    title: "Disclaimer",
-    content: [
-      `ThomsUp is an independent consulting firm and is not affiliated with any government agency. Services are provided to commercial and public sector clients on an independent basis.`,
-    ],
-  },
-  {
-    number: "10",
     title: "Changes to These Terms",
-    content: [
-      `ThomsUp may update these terms from time to time. The "Last updated" date at the top of this page reflects when the most recent changes were made. Continued use of the site after changes are posted constitutes acceptance of the updated terms.`,
-    ],
-  },
-  {
-    number: "11",
-    title: "Contact",
-    content: [
-      `If you have questions about these terms, contact us through the form on this site. We will respond within one business day.`,
-    ],
+    content: "Campux may update these Terms from time to time. Where updates materially affect ongoing service engagements, Campux will provide written notice at least thirty days before the updated Terms take effect. Continued use of Campux Services after that date constitutes acceptance of the updated Terms.",
   },
 ]
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-32 pb-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <div style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontSize: 18, lineHeight: 1.6, color: '#fff', background: bg, minHeight: '100vh' }}>
 
-        {/* Header */}
-        <div className="mb-12 pb-12 border-b border-white/10">
-          <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">Legal</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Terms of Service</h1>
-          <p className="text-gray-400 text-sm">
-            Last updated: 11 April 2026
-          </p>
+      {/* NAV */}
+      <nav style={{ position: 'sticky', top: 0, zIndex: 300, background: 'rgba(10,6,14,0.9)', backdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
+            <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em' }}>Campux</span>
+          </Link>
+          <div style={{ display: 'flex', gap: 4, flex: 1 }}>
+            <Link href="/services" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Services</Link>
+            <Link href="/industries" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Sectors</Link>
+            <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
+            <Link href="/about" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>About</Link>
+          </div>
+          <Link href="/contact" className="btn-dark" style={{ padding: '9px 22px', fontSize: 14 }}>Talk to our team</Link>
         </div>
+      </nav>
 
-        {/* Intro */}
-        <div className="mb-12 bg-[#1a1a1a] border border-cyan-500/20 rounded-xl p-6">
-          <p className="text-gray-300 text-sm leading-relaxed">
-            These terms govern your use of thomsup.com. They cover the website only — not client engagements,
-            which are handled under separate written agreements. If you have questions before engaging our
-            services, reach out through the contact form.
-          </p>
-        </div>
+      {/* CONTENT */}
+      <section style={{ maxWidth: 860, margin: '0 auto', padding: '100px 48px 120px' }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 20 }}>Legal</p>
+        <h1 style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 16 }}>Terms &amp; Conditions</h1>
+        <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.45)', marginBottom: 72 }}>Last updated: April 2026</p>
 
-        {/* Sections */}
-        <div className="space-y-10">
-          {sections.map((section) => (
-            <div key={section.number} id={`section-${section.number}`}>
-              <h2 className="text-xl font-semibold text-white mb-4">
-                <span className="text-cyan-400 mr-3">{section.number}.</span>
-                {section.title}
-              </h2>
-              <div className="space-y-4 pl-8">
-                {section.content.map((para, i) => (
-                  <p key={i} className="text-gray-400 text-sm leading-relaxed">
-                    {para}
-                  </p>
-                ))}
-              </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+          {sections.map((section, i) => (
+            <div key={section.title} style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 40, paddingBottom: 40 }}>
+              <h2 style={{ fontFamily: serif, fontSize: 22, fontWeight: 400, lineHeight: 1.3, letterSpacing: '-0.01em', marginBottom: 16, color: 'white' }}>{i + 1}. {section.title}</h2>
+              <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.70)', lineHeight: 1.85, margin: 0 }}>{section.content}</p>
             </div>
           ))}
         </div>
 
-        {/* Footer note */}
-        <div className="mt-16 pt-10 border-t border-white/10 text-center">
-          <p className="text-gray-500 text-sm">
-            Questions about these terms? Contact us through the form on this site.
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 40, marginTop: 0 }}>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
+            Questions about these Terms should be directed to <a href="mailto:project@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>project@campux.co</a>. Campux is registered in England and Wales.
           </p>
         </div>
-      </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ background: '#141414', padding: '40px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <svg width="20" height="20" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
+          </Link>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.32)' }}>© 2026 Campux. All rights reserved.</p>
+          <div style={{ display: 'flex', gap: 24 }}>
+            <Link href="/terms" style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>Terms</Link>
+            <Link href="/privacy-policy" className="link-muted" style={{ fontSize: 12 }}>Privacy</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

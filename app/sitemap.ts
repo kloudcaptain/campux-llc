@@ -1,32 +1,20 @@
 import type { MetadataRoute } from "next"
-
-export const dynamic = "force-static"
 import { blogPosts } from "@/app/data/blog"
 
-const siteUrl = "https://thomsup.com"
+export const dynamic = "force-static"
+
+const siteUrl = "https://capux.co"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
+      changeFrequency: "weekly",
+      priority: 1.0,
     },
     {
       url: `${siteUrl}/services`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/solutions`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
@@ -38,37 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
-      url: `${siteUrl}/insights`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/services/infrastructure`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${siteUrl}/services/security`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${siteUrl}/services/cloud`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${siteUrl}/services/database`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${siteUrl}/services/networking`,
+      url: `${siteUrl}/solutions`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.85,
@@ -76,26 +34,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${siteUrl}/contact`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/insights`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${siteUrl}/terms`,
-      lastModified: new Date("2026-04-11"),
-      changeFrequency: "monthly",
-      priority: 0.3,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
     {
       url: `${siteUrl}/privacy-policy`,
-      lastModified: new Date("2026-04-11"),
-      changeFrequency: "monthly",
-      priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/cookie-policy`,
-      lastModified: new Date("2026-04-11"),
-      changeFrequency: "monthly",
-      priority: 0.3,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
   ]
 
@@ -103,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteUrl}/insights/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
-    priority: 0.6,
+    priority: 0.65,
   }))
 
   return [...staticRoutes, ...blogRoutes]

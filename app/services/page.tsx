@@ -1,280 +1,174 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Server, Shield, Cloud, Database, Network, CheckCircle } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Managed Infrastructure & Security Services",
   description:
-    "Managed infrastructure, security operations, cloud services, database management, and network engineering — six service lines, one operational standard.",
-  alternates: { canonical: "https://thomsup.com/services" },
+    "Server infrastructure, cloud environments, security operations, network engineering, and database management — operated as one accountable team. No handoffs. No gaps.",
+  alternates: { canonical: "https://capux.co/services" },
   openGraph: {
-    title: "Services — ThomsUp",
-    description:
-      "Enterprise IT services managed to documented SLAs. Infrastructure, security, cloud, database, and networking — built for organisations that cannot afford the alternative.",
+    title: "Managed Infrastructure & Security Services | Campux",
+    description: "Six fully managed service lines operated as one team. One SLA, one quarterly review, one escalation path.",
+    url: "https://capux.co/services",
+    type: "website",
   },
 }
 
+const serif = "var(--font-dm-serif), Georgia, serif"
+
+const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, transparent 46%), radial-gradient(ellipse 60% 38% at 92% 22%, rgba(140,28,80,0.55) 0%, transparent 42%), radial-gradient(ellipse 80% 62% at 50% 58%, rgba(50,16,65,0.75) 0%, transparent 52%), #0a0610"
+
 const services = [
   {
-    icon: Server,
+    number: "01",
     name: "Server Infrastructure",
-    slug: "infrastructure",
-    tagline: "The environment that never needs explaining.",
-    description:
-      "Dedicated and virtualised server infrastructure managed to documented SLAs. Proactive capacity planning, 24/7 monitoring calibrated to your baseline, patch management across your full estate, and incident response with agreed RTO targets — before you need them.",
-    capabilities: [
-      "Documented SLAs covering availability, response time, and escalation paths",
-      "24/7 monitoring with alert thresholds calibrated to your baseline",
-      "Patch management and OS lifecycle across the full estate",
-      "Quarterly infrastructure reviews with written recommendations",
+    headline: "We run the servers. Properly.",
+    body: [
+      "On-premises, colocation, hybrid — full operational ownership. Provisioning, patching, monitoring, change records, and runbooks that reflect actual state, not original design intent. Every server estate we manage has documented procedures, patch compliance tracked to schedule, and a change history that survives staff turnover.",
+      "When something fails at 2am, there is a current document to follow — not someone's memory of how it used to work. That is the standard we hold ourselves to across every environment we manage.",
     ],
+    detail: "Bare metal, VMware, Hyper-V, Proxmox. Hardware lifecycle management. Colocation coordination. Patch management with defined SLAs.",
   },
   {
-    icon: Shield,
+    number: "02",
+    name: "Cloud Environments",
+    headline: "Infrastructure as Code. Not as improvisation.",
+    body: [
+      "AWS, Azure, GCP — every resource version-controlled, every change tracked, every configuration auditable against a known baseline. Drift is caught and remediated before it causes an incident, not discovered during a post-mortem. IAM boundaries and multi-account structures are designed in from the start, not bolted on when the access model breaks.",
+      "We implement automated compliance scanning, cost controls, and resource governance that keeps your cloud estate manageable. What engineers can deploy is defined by policy, not by whether someone senior is paying attention.",
+    ],
+    detail: "Terraform, Bicep, CloudFormation. Multi-account structures. Cost governance. Drift detection and automated remediation. IAM and access boundary management.",
+  },
+  {
+    number: "03",
     name: "Security Operations",
-    slug: "security",
-    tagline: "Security is not something you buy once and deploy.",
-    description:
-      "Continuous threat monitoring, vulnerability management, and compliance alignment across cloud, on-premises, and hybrid environments. We implement controls that are structural rather than procedural — enforced by the system, not by someone remembering to check.",
-    capabilities: [
-      "Continuous threat monitoring across cloud and hybrid environments",
-      "Policy-as-Code enforcement for ISO 27001, SOC 2, HIPAA, PCI-DSS",
-      "Automated compliance evidence generation and audit pack preparation",
-      "Incident response planning and live response support",
+    headline: "Compliance as a state, not a season.",
+    body: [
+      "ISO 27001, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials — we align your environment to the frameworks you need to pass and maintain that alignment year-round. Not just in the six weeks before an audit. Controls are structural where possible: Policy-as-Code means misconfigured resources fail before they deploy, generating a continuous evidence stream.",
+      "Audit preparation becomes a matter of hours rather than weeks. We do not deliver a report and move on. We manage the security posture as an ongoing function and track remediation to completion.",
     ],
+    detail: "Vulnerability management. Continuous compliance scanning. Security incident response. Evidence pack production. Framework alignment across ISO, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials.",
   },
   {
-    icon: Cloud,
-    name: "Cloud Services",
-    slug: "cloud",
-    tagline: "Moving to the cloud is just the beginning.",
-    description:
-      "Multi-cloud and hybrid architecture, phased migration, and ongoing managed operations across AWS, Azure, and GCP. Infrastructure as Code at the foundation, cost governance built in, and compliance guardrails enforced at the infrastructure layer — not reviewed manually after the fact.",
-    capabilities: [
-      "Architecture design across AWS, Azure, and GCP built for your workload",
-      "Phased migration with documented cutover plans and zero-downtime strategies",
-      "Infrastructure as Code — every resource version-controlled and auditable",
-      "Cost governance with tagging standards, budget alerts, and monthly reporting",
-    ],
-  },
-  {
-    icon: Database,
-    name: "Database Management",
-    slug: "database",
-    tagline: "The backup that was never tested is not a backup.",
-    description:
-      "Fully managed database operations with high availability, point-in-time recovery, and automated failover — tested against documented RTO and RPO targets. Performance monitoring, query optimisation, migration planning, and version lifecycle management across 11 major database engines.",
-    capabilities: [
-      "High-availability with synchronous replication and automated failover",
-      "Point-in-time recovery tested to documented recovery objectives",
-      "Database migration planning and execution with agreed rollback procedures",
-      "Version lifecycle management across PostgreSQL, MySQL, SQL Server, MongoDB, and more",
-    ],
-  },
-  {
-    icon: Network,
+    number: "04",
     name: "Network Engineering",
-    slug: "networking",
-    tagline: "Networks that hold together when everything else is under pressure.",
-    description:
-      "Software-defined networks designed with explicit redundancy, documented failover paths, and zero-trust segmentation. From SD-WAN and BGP configuration to network access control and wireless design — every architecture decision is documented and every failover path is tested.",
-    capabilities: [
-      "Zero-trust network architecture replacing flat, implicitly trusted environments",
-      "Redundant uplinks with documented and tested failover procedures",
-      "SD-WAN and software-defined networking design and implementation",
-      "Network performance monitoring with baseline-calibrated alerting",
+    headline: "Designed for your obligations, not templated from someone else's.",
+    body: [
+      "We design, implement, and manage enterprise networks with your specific security and regulatory requirements as the starting point — not a generic template from a previous engagement. SD-WAN, firewall architecture, segmentation, and access control are built to your actual operational reality, then managed with full documentation and ongoing support.",
+      "Networks we operate have topology diagrams that reflect current routing, not the original design intent. Firewall rules have owners and review dates. Access policy is testable. Nothing about it is a black box.",
     ],
+    detail: "SD-WAN. Firewall management (Fortinet, Palo Alto, pfSense, Cisco). Network segmentation and micro-segmentation. VLAN architecture. NAC. VPN and remote access.",
   },
-]
-
-const engagementPrinciples = [
-  "Written SLAs with defined availability, response time, and escalation commitments — agreed before engagement begins",
-  "Infrastructure as Code as the operational baseline — every resource defined, every change tracked",
-  "Quarterly written reviews covering performance, incidents, recommendations, and forward planning",
-  "Compliance alignment to your specific framework obligations, not a generic security checklist",
-  "Transparent escalation paths — you always know who is responsible and what they are doing",
-  "Evidence packs for audit and accreditation, produced continuously rather than assembled under pressure",
+  {
+    number: "05",
+    name: "Database Management",
+    headline: "Backup that gets tested. Recovery that works when you need it.",
+    body: [
+      "We manage relational and NoSQL database operations with a focus on what actually matters during an incident: backup integrity, tested recovery procedures, and failover paths that function under real pressure. RTO and RPO targets are agreed before we start — not estimated after something breaks. We test restores on a schedule and document the results.",
+      "If the last restore test was more than a quarter ago, that is not a backup strategy. It is a backup habit. We run the procedure before the incident, not during it.",
+    ],
+    detail: "PostgreSQL, MySQL, SQL Server, MongoDB, Redis. Backup and recovery planning. Restore testing. Performance monitoring and query optimisation. Replication and high availability.",
+  },
+  {
+    number: "06",
+    name: "Integrated Managed IT",
+    headline: "Everything under one contract. One team. One place to call.",
+    body: [
+      "All five service lines operating as a single managed function. One SLA, one quarterly review, one escalation path. For organisations that want infrastructure genuinely off their plate — not distributed across three suppliers, each owning a third of the failure and pointing at each other when something spans two of them.",
+      "We replace or augment internal infrastructure teams, handle the operational work so engineers can focus on product, and produce written quarterly reviews covering what happened, what we recommend, and what we are watching.",
+    ],
+    detail: "Full-scope managed service. Dedicated account management. Monthly reporting. Quarterly operational reviews with written recommendations. On-call coverage to agreed SLAs.",
+  },
 ]
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-32 pb-24">
+    <div style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontSize: 18, lineHeight: 1.6, color: '#fff', background: bg, minHeight: '100vh' }}>
 
-      {/* ── Hero ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="max-w-4xl">
-          <span className="text-cyan-400 text-sm font-medium uppercase tracking-widest block mb-6">
-            Services
-          </span>
-
-          <h1 className="text-5xl sm:text-6xl font-bold text-white leading-[1.08] mb-6">
-            Everything your infrastructure
-            <br />
-            <span className="text-gray-400">requires. Nothing it doesn&apos;t.</span>
-          </h1>
-
-          <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mb-6">
-            Five service lines, managed to a single operational standard: documented, tested, and accountable. Whether you need a single managed service or an integrated IT operations partner, the engagement model is the same — written SLAs, regular reporting, and engineers who treat your environment as if it were their own.
-          </p>
-
-          <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mb-10">
-            We work across infrastructure, security, cloud, database, and networking — independently or as an integrated function, depending on what your organisation actually needs.
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-7 py-3.5 text-sm font-semibold text-black hover:bg-cyan-400 transition-colors"
-            >
-              Talk to our team <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/solutions"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-gray-300 hover:text-white hover:border-white/30 transition-colors"
-            >
-              See client outcomes
-            </Link>
+      {/* NAV */}
+      <nav style={{ position: 'sticky', top: 0, zIndex: 300, background: 'rgba(10,6,14,0.9)', backdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
+            <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em' }}>Campux</span>
+          </Link>
+          <div style={{ display: 'flex', gap: 4, flex: 1 }}>
+            <Link href="/services" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'white', background: 'rgba(255,255,255,0.08)' }}>Services</Link>
+            <Link href="/industries" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Sectors</Link>
+            <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
+            <Link href="/about" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>About</Link>
           </div>
+          <Link href="/contact" className="btn-dark" style={{ padding: '9px 22px', fontSize: 14 }}>Talk to our team</Link>
         </div>
-      </div>
+      </nav>
 
-      {/* ── Service cards ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="border-t border-white/8 pt-16 space-y-8">
-          {services.map(({ icon: Icon, name, slug, tagline, description, capabilities }) => (
-            <div
-              key={slug}
-              className="bg-[#0d0d0d] border border-white/8 rounded-2xl p-8 lg:p-10 hover:border-white/12 transition-colors"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+      {/* HERO */}
+      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '100px 48px 80px' }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 20 }}>What we do</p>
+        <h1 style={{ fontFamily: serif, fontSize: 'clamp(48px, 6vw, 84px)', fontWeight: 400, lineHeight: 1.04, letterSpacing: '-0.02em', marginBottom: 32, maxWidth: 760 }}>
+          Six disciplines.<br /><em style={{ opacity: 0.5 }}>One operational team.</em>
+        </h1>
+        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.72)', lineHeight: 1.75, maxWidth: 560, fontWeight: 300 }}>
+          Not a helpdesk. Not a consultant with slides. We operate infrastructure and own what happens to it — server estates, cloud environments, networks, databases, and security posture, managed as a single function.
+        </p>
+      </section>
 
-                {/* Left: summary */}
-                <div>
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-500/10">
-                      <Icon className="w-4.5 h-4.5 text-cyan-400" />
-                    </div>
-                    <span className="text-cyan-400 text-sm font-medium">{name}</span>
-                  </div>
-
-                  <p className="text-white text-xl font-semibold mb-4 leading-snug">{tagline}</p>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6">{description}</p>
-
-                  <Link
-                    href={`/services/${slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
-                  >
-                    Full service overview <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-
-                {/* Right: capability highlights */}
-                <ul className="space-y-3 pt-1">
-                  {capabilities.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
-                      <span className="text-gray-300 text-sm leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* SERVICES */}
+      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px 160px' }}>
+        {services.map((svc) => (
+          <div key={svc.number} style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr', gap: '0 64px', paddingTop: 64, paddingBottom: 64, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            <div style={{ paddingTop: 6 }}>
+              <span style={{ fontFamily: 'monospace', fontSize: 13, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em' }}>{svc.number}</span>
+            </div>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 16 }}>{svc.name}</p>
+              <h2 style={{ fontFamily: serif, fontSize: 'clamp(24px, 2.8vw, 38px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: 28, color: 'white' }}>{svc.headline}</h2>
+              {svc.body.map((p, pi) => (
+                <p key={pi} style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)', lineHeight: 1.8, marginBottom: 16 }}>{p}</p>
+              ))}
+            </div>
+            <div style={{ paddingTop: 50 }}>
+              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 28 }}>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.42)', marginBottom: 14 }}>What this covers</p>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>{svc.detail}</p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        ))}
+      </section>
 
-      {/* ── How we engage ── */}
-      <div className="bg-[#0d0d0d] border-y border-white/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-5">How every engagement works</h2>
-              <p className="text-gray-400 leading-relaxed mb-5">
-                Regardless of which service line you engage, the operational standard is consistent. We do not offer different levels of rigour for different clients — every environment is managed to the same documentation, testing, and reporting requirements.
-              </p>
-              <p className="text-gray-400 leading-relaxed mb-5">
-                Engagement begins with a documented baseline assessment of your current environment — what exists, what is configured correctly, what is not, and what represents the highest operational risk. From that baseline, we produce a prioritised programme of work and agree the ongoing managed service scope.
-              </p>
-              <p className="text-gray-400 leading-relaxed">
-                You receive quarterly written reviews, monthly reporting where relevant, and direct access to the engineers managing your environment — not a support desk. When something requires attention, you know before we tell you.
-              </p>
-            </div>
-
-            <ul className="space-y-4 pt-2">
-              {engagementPrinciples.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
-                  <span className="text-gray-300 text-sm leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
+      {/* CTA */}
+      <section style={{ background: '#141414', padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+          <div>
+            <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 58px)', fontWeight: 400, lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: 20 }}>
+              Talk about your environment.
+            </h2>
+            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, maxWidth: 440 }}>
+              No obligation. A direct conversation about what you are running, what needs attention, and whether we are the right fit to manage it.
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 340 }}>
+            <Link href="/contact" style={{ display: 'block', background: 'white', color: '#111', padding: '18px 28px', borderRadius: 10, fontSize: 16, fontWeight: 600, textAlign: 'center', letterSpacing: '-0.01em' }}>Get in touch</Link>
+            <Link href="/insights" style={{ display: 'block', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.65)', padding: '18px 28px', borderRadius: 10, fontSize: 15, fontWeight: 500, textAlign: 'center' }}>Read our thinking</Link>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── Framework compliance strip ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <p className="text-xs text-gray-600 uppercase tracking-widest mb-5">Frameworks we align to</p>
-        <div className="flex flex-wrap gap-3">
-          {[
-            "ISO 27001", "SOC 2 Type II", "HIPAA", "PCI-DSS",
-            "Cyber Essentials", "NIST CSF", "NIST 800-53", "CIS Controls",
-            "GDPR", "ITIL", "FedRAMP-aligned",
-          ].map((f) => (
-            <span
-              key={f}
-              className="text-sm px-4 py-2 rounded-full border border-white/10 bg-white/3 text-gray-400"
-            >
-              {f}
-            </span>
-          ))}
+      {/* FOOTER */}
+      <footer style={{ background: '#141414', padding: '40px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <svg width="20" height="20" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
+          </Link>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.32)' }}>© 2026 Campux. All rights reserved.</p>
+          <div style={{ display: 'flex', gap: 24 }}>
+            <Link href="/terms" className="link-muted" style={{ fontSize: 12 }}>Terms</Link>
+            <Link href="/privacy-policy" className="link-muted" style={{ fontSize: 12 }}>Privacy</Link>
+          </div>
         </div>
-      </div>
-
-      {/* ── Bottom CTA ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <Link
-            href="/contact"
-            className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
-          >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">Start here</p>
-            <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
-              Talk to our team — we will scope the engagement and baseline your environment before any commitment
-            </p>
-            <span className="inline-flex items-center gap-1 text-xs text-cyan-500 mt-2">
-              Get in touch <ArrowRight className="w-3 h-3" />
-            </span>
-          </Link>
-
-          <Link
-            href="/solutions"
-            className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
-          >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">Client results</p>
-            <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
-              How we reduced a financial firm&apos;s compliance cycle from six weeks to four hours
-            </p>
-            <span className="inline-flex items-center gap-1 text-xs text-cyan-500 mt-2">
-              See case studies <ArrowRight className="w-3 h-3" />
-            </span>
-          </Link>
-
-          <Link
-            href="/about"
-            className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
-          >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">About ThomsUp</p>
-            <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
-              ThomsUp &mdash; A Campux Company. Who we are, how we work, and why operational accountability is non-negotiable.
-            </p>
-            <span className="inline-flex items-center gap-1 text-xs text-cyan-500 mt-2">
-              Learn more <ArrowRight className="w-3 h-3" />
-            </span>
-          </Link>
-        </div>
-      </div>
-
+      </footer>
     </div>
   )
 }

@@ -1,232 +1,138 @@
+import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Shield, FileText, Users, Award } from "lucide-react"
 
-const principles = [
-  {
-    icon: FileText,
-    title: "Documentation is not optional",
-    body: "Every environment we manage produces documentation that reflects its actual state — not its intended state. Runbooks, topology diagrams, failover procedures, and change records exist because operations depend on them, not because an audit asked for them.",
+export const metadata: Metadata = {
+  title: "About Campux — UK Managed Infrastructure & Security",
+  description:
+    "We take operational ownership of server estates, cloud environments, networks, and security posture. Not a helpdesk. Not a consultant. We own the outcome. UK-based since 2018.",
+  alternates: { canonical: "https://capux.co/about" },
+  openGraph: {
+    title: "About Campux — UK Managed Infrastructure & Security",
+    description: "UK-based managed infrastructure and security operations firm. We own the outcome, not just the activity.",
+    url: "https://capux.co/about",
+    type: "website",
   },
-  {
-    icon: Shield,
-    title: "Security is structural, not procedural",
-    body: "Controls that depend on someone remembering to apply them are not controls. We design environments where security requirements are enforced by the system — at the pipeline, at the infrastructure layer, at the access boundary — so that compliance is a continuous state, not a periodic review.",
-  },
-  {
-    icon: Users,
-    title: "Accountability without ambiguity",
-    body: "When something goes wrong, you should know exactly who is responsible, what they are doing, and when resolution is expected. We operate under documented SLAs with defined escalation paths — not as a formality, but because operational accountability is the foundation of the relationship.",
-  },
-  {
-    icon: Award,
-    title: "Tested, not assumed",
-    body: "A backup that has never been restored is an assumption. A failover that has never been tested is a hope. We treat untested capabilities as capabilities that do not yet exist, and we schedule the testing that converts assumptions into evidence.",
-  },
-]
+}
 
-const differentiators = [
-  "Documented SLAs with defined RTO and RPO targets, agreed before engagement",
-  "Infrastructure as Code at the foundation — every resource version-controlled and auditable",
-  "Policy-as-Code compliance enforcement across cloud and hybrid environments",
-  "Quarterly operational reviews with written recommendations and evidence packs",
-  "Alignment to ISO 27001, SOC 2, HIPAA, PCI-DSS, NIST, and Cyber Essentials",
-  "Government security framework experience including data classification and accreditation support",
-]
-
-const audiences = [
-  {
-    segment: "Startups and growth-stage companies",
-    copy: "Early infrastructure decisions compound. The architecture choices made in your first year shape the cost, complexity, and security posture you carry into Series B and beyond. We work with founding and growth-stage teams to build environments that scale cleanly — without the technical debt that forms when speed is the only priority.",
-  },
-  {
-    segment: "Enterprise and Fortune-class organisations",
-    copy: "Large organisations face a specific infrastructure challenge: sprawl. Cloud accounts without governance, on-premises hardware without documentation, legacy systems nobody has read in years. We take an estate-wide view, prioritise the highest-risk gaps, and bring the operational discipline that enterprise environments require but rarely have.",
-  },
-  {
-    segment: "Government and regulated sectors",
-    copy: "Government technology programmes carry obligations that commercial environments do not — data sovereignty, access audit trails, procurement compliance, and the public accountability that follows when something goes wrong. We design and operate to these requirements from the start, not as an afterthought when accreditation is approaching.",
-  },
-]
+const serif = "var(--font-dm-serif), Georgia, serif"
+const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, transparent 46%), radial-gradient(ellipse 60% 38% at 92% 22%, rgba(140,28,80,0.55) 0%, transparent 42%), radial-gradient(ellipse 80% 62% at 50% 58%, rgba(50,16,65,0.75) 0%, transparent 52%), #0a0610"
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-32 pb-24">
+    <div style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontSize: 18, lineHeight: 1.6, color: '#fff', background: bg, minHeight: '100vh' }}>
 
-      {/* ── Hero ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="max-w-4xl">
-
-          {/* Company badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/3 px-4 py-1.5 mb-8">
-            <span className="text-gray-400 text-xs tracking-widest uppercase">ThomsUp</span>
-            <span className="text-white/20 text-xs">·</span>
-            <span className="text-cyan-400 text-xs tracking-widest uppercase">A Campux Company</span>
+      {/* NAV */}
+      <nav style={{ position: 'sticky', top: 0, zIndex: 300, background: 'rgba(10,6,14,0.9)', backdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
+            <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em' }}>Campux</span>
+          </Link>
+          <div style={{ display: 'flex', gap: 4, flex: 1 }}>
+            <Link href="/services" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Services</Link>
+            <Link href="/industries" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Sectors</Link>
+            <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
+            <Link href="/about" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'white', background: 'rgba(255,255,255,0.08)' }}>About</Link>
           </div>
-
-          <h1 className="text-5xl sm:text-6xl font-bold text-white leading-[1.08] mb-6">
-            We operate the infrastructure
-            <br />
-            <span className="text-gray-400">others avoid thinking about.</span>
-          </h1>
-
-          <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mb-6">
-            ThomsUp is an enterprise IT managed services company, part of the Campux family of companies. We manage the environments that regulated industries, government programmes, and high-growth companies depend on — not as a background service, but as a managed operational function with documented accountability.
-          </p>
-
-          <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mb-10">
-            Infrastructure becomes visible at the worst possible moment: during an incident, an audit, or a board question that nobody can answer. We make it visible before that — through documentation, testing, and the operational discipline that prevents the call nobody wants to make at 3am.
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-7 py-3.5 text-sm font-semibold text-black hover:bg-cyan-400 transition-colors"
-            >
-              Talk to our team <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-gray-300 hover:text-white hover:border-white/30 transition-colors"
-            >
-              Explore our services
-            </Link>
-          </div>
+          <Link href="/contact" className="btn-dark" style={{ padding: '9px 22px', fontSize: 14 }}>Talk to our team</Link>
         </div>
-      </div>
+      </nav>
 
-      {/* ── What we are ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="border-t border-white/8 pt-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-5">Managed IT operations, not infrastructure reselling</h2>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                The distinction matters. We are not a hosting provider, a cloud reseller, or a break-fix support desk. We are an operational partner — the team responsible for ensuring that your infrastructure estate is reliable, documented, secure, and aligned with your obligations at all times, not only when something is wrong.
-              </p>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                That means we own the outcomes, not just the tasks. We do not submit a ticket and wait. We monitor proactively, respond with defined SLAs, escalate with documented paths, and review quarterly with written recommendations that reflect the current state of your environment rather than a generic health report.
-              </p>
-              <p className="text-gray-400 leading-relaxed">
-                We work across server infrastructure, cloud environments, network engineering, database management, and security operations — as individual service lines or as an integrated managed IT function, depending on what your organisation needs.
-              </p>
+      {/* HERO */}
+      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '100px 48px 80px' }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 20 }}>About Campux</p>
+        <h1 style={{ fontFamily: serif, fontSize: 'clamp(48px, 6vw, 80px)', fontWeight: 400, lineHeight: 1.04, letterSpacing: '-0.02em', marginBottom: 40, maxWidth: 800 }}>
+          We run infrastructure.<br /><em style={{ opacity: 0.5 }}>That is the whole job.</em>
+        </h1>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+          <div>
+            <p style={{ fontSize: 19, color: 'rgba(255,255,255,0.85)', lineHeight: 1.75, marginBottom: 24, fontWeight: 300 }}>
+              Campux is a managed infrastructure and security operations firm. We take operational ownership of the environments others struggle to run consistently — server estates, cloud infrastructure, networks, databases, and security posture.
+            </p>
+            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.8, marginBottom: 24 }}>
+              We work with regulated industries, government programmes, and companies scaling past the point where informal infrastructure management still works. The common thread is that downtime carries real consequences — financial, regulatory, or reputational — and the organisation needs someone who takes the infrastructure function as seriously as the core business.
+            </p>
+            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.8 }}>
+              We are not a consultancy that delivers a report and leaves. We manage environments on an ongoing basis, produce written quarterly reviews, and take accountability for the operational outcomes.
+            </p>
+          </div>
+          <div style={{ paddingTop: 8 }}>
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32, marginBottom: 32 }}>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>What we are not</p>
+              <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.68)', lineHeight: 1.8 }}>Not a helpdesk. Not a break-fix support desk. Not a cloud reseller. Not an IT recruiter. Not a consulting firm that delivers recommendations and bills hours. We manage infrastructure. That means we own the outcome.</p>
             </div>
-
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-5">What you can expect from us</h2>
-              <ul className="space-y-4">
-                {differentiators.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
-                    <span className="text-gray-300 text-sm leading-relaxed">{item}</span>
-                  </li>
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32, marginBottom: 32 }}>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>Where we work</p>
+              <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.68)', lineHeight: 1.8 }}>UK and internationally. Healthcare, financial services, retail, government, and regulated technology companies. Organisations from Series A to enterprise — where the common factor is that infrastructure is critical and needs to be managed properly.</p>
+            </div>
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32 }}>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>Compliance</p>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {['ISO 27001', 'SOC 2', 'PCI-DSS', 'HIPAA', 'NIST', 'Cyber Essentials'].map(b => (
+                  <span key={b} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.16)', padding: '4px 10px', borderRadius: 4 }}>{b}</span>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── Principles ── */}
-      <div className="bg-[#0d0d0d] border-y border-white/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-white mb-3">How we work</h2>
-          <p className="text-gray-400 mb-12 max-w-2xl">
-            These are not values statements. They are the operational commitments that define how ThomsUp engages with every client environment.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {principles.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="bg-[#111] border border-white/8 rounded-xl p-7">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-500/10 mb-5">
-                  <Icon className="w-4.5 h-4.5 text-cyan-400" />
-                </div>
-                <h3 className="text-white font-semibold mb-3">{title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── ThomsUp / Campux ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-1.5 mb-6">
-            <span className="text-cyan-400 text-xs tracking-widest uppercase">Part of the Campux Group</span>
-          </div>
-          <h2 className="text-3xl font-bold text-white mb-5">
-            ThomsUp &mdash; built on the principle that enterprise infrastructure deserves serious operational management.
+      {/* PRINCIPLES */}
+      <section style={{ background: '#141414', padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 20 }}>How we work</p>
+          <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 58px)', fontWeight: 400, lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: 72 }}>
+            A few things we believe.
           </h2>
-          <p className="text-gray-400 leading-relaxed mb-5">
-            Founded as part of the Campux family of companies, ThomsUp was built around a specific observation: most organisations treat infrastructure management as an operational afterthought — something that runs in the background until it demands to be the only concern.
-          </p>
-          <p className="text-gray-400 leading-relaxed mb-5">
-            We exist because that approach is genuinely dangerous at scale. An infrastructure estate that is not actively managed does not stay in the condition it was provisioned in. It accumulates configuration drift, deferred patches, undocumented dependencies, and untested failover paths — quietly, until the accumulation becomes visible through an incident.
-          </p>
-          <p className="text-gray-400 leading-relaxed">
-            Our engagement model is built on written accountability, regular reporting, and the expectation that you should never have to wonder what state your environment is in. We are the operational partner that enterprise and government organisations rely on with the same confidence they expect from their own internal teams.
-          </p>
-        </div>
-      </div>
-
-      {/* ── Who we work with ── */}
-      <div className="bg-[#0d0d0d] border-y border-white/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-white mb-12">The organisations we work with</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {audiences.map(({ segment, copy }) => (
-              <div key={segment} className="border-l-2 border-cyan-500/30 pl-6">
-                <h3 className="text-white font-semibold mb-3">{segment}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{copy}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 48 }}>
+            {[
+              {
+                title: "Documentation is not optional.",
+                body: "Every environment we manage has runbooks, topology diagrams, change records, and failover procedures that reflect actual state. Not what was intended when the system was built. What is actually running now. When an incident happens, there is a document to follow."
+              },
+              {
+                title: "Tested recovery, not assumed recovery.",
+                body: "We test failover and restore procedures on a schedule. If a backup has not been restored to confirm it works, it is not a backup — it is a file. We run the drill before the incident, not during it."
+              },
+              {
+                title: "One point of accountability.",
+                body: "When something goes wrong, there should be one team to call. Not three suppliers each owning a third of the failure. We operate as a single function with one SLA, one quarterly review, and one escalation path."
+              },
+            ].map(p => (
+              <div key={p.title} style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32 }}>
+                <h3 style={{ fontFamily: serif, fontSize: 22, fontWeight: 400, lineHeight: 1.3, letterSpacing: '-0.01em', marginBottom: 16, color: 'white' }}>{p.title}</h3>
+                <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>{p.body}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── CTA ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <Link
-            href="/services"
-            className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
-          >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">What we do</p>
-            <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
-              Six service lines — infrastructure, security, cloud, database, networking, and integrated managed IT
-            </p>
-            <span className="inline-flex items-center gap-1 text-xs text-cyan-500 mt-2">
-              Explore services <ArrowRight className="w-3 h-3" />
-            </span>
-          </Link>
-
-          <Link
-            href="/solutions"
-            className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
-          >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">Results</p>
-            <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
-              Client outcomes across healthcare, financial services, retail, and government
-            </p>
-            <span className="inline-flex items-center gap-1 text-xs text-cyan-500 mt-2">
-              See case studies <ArrowRight className="w-3 h-3" />
-            </span>
-          </Link>
-
-          <Link
-            href="/contact"
-            className="group block bg-[#111] border border-white/8 rounded-xl p-6 hover:border-cyan-500/20 transition-colors"
-          >
-            <p className="text-xs text-gray-600 uppercase tracking-widest mb-2">Start here</p>
-            <p className="text-white text-sm font-medium mb-1 group-hover:text-cyan-50 transition-colors">
-              Talk to our team — no obligation, no sales playbook, just a direct conversation about your environment
-            </p>
-            <span className="inline-flex items-center gap-1 text-xs text-cyan-500 mt-2">
-              Get in touch <ArrowRight className="w-3 h-3" />
-            </span>
-          </Link>
+      {/* CTA */}
+      <section style={{ padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.06)', background: '#141414' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 48, flexWrap: 'wrap' }}>
+          <div>
+            <h2 style={{ fontFamily: serif, fontSize: 'clamp(28px, 3.5vw, 46px)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 12 }}>Want to talk about your environment?</h2>
+            <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.55)', maxWidth: 480 }}>We will tell you honestly whether we are the right fit — and if we are not, we will say so.</p>
+          </div>
+          <Link href="/contact" style={{ display: 'block', background: 'white', color: '#111', padding: '16px 32px', borderRadius: 10, fontSize: 15, fontWeight: 600, whiteSpace: 'nowrap', letterSpacing: '-0.01em' }}>Get in touch</Link>
         </div>
-      </div>
+      </section>
 
+      {/* FOOTER */}
+      <footer style={{ background: '#141414', padding: '40px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <svg width="20" height="20" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
+          </Link>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.32)' }}>© 2026 Campux. All rights reserved.</p>
+          <div style={{ display: 'flex', gap: 24 }}>
+            <Link href="/terms" className="link-muted" style={{ fontSize: 12 }}>Terms</Link>
+            <Link href="/privacy-policy" className="link-muted" style={{ fontSize: 12 }}>Privacy</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

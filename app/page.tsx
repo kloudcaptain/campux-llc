@@ -1,36 +1,13 @@
 import type { Metadata } from "next"
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
-import PositioningStrip from "./components/PositioningStrip"
-import EnterpriseServicesGrid from "./components/EnterpriseServicesGrid"
-import OutcomesSection from "./components/OutcomesSection"
-import SolutionsStrip from "./components/SolutionsStrip"
-import WhoWeHelp from "./components/WhoWeHelp"
-import SecuritySection from "./components/SecuritySection"
-import TrustSection from "./components/TrustSection"
-import CTAStrip from "./components/CTAStrip"
-import Footer from "./components/Footer"
+import HomePageClient from "./components/HomePageClient"
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://thomsup.com" },
+  title: "Campux — Managed Infrastructure & Security Operations | UK",
+  description:
+    "UK-based managed infrastructure and security operations. We run your servers, cloud environments, networks, databases, and compliance posture — one team, one contract, no handoffs.",
+  alternates: { canonical: "https://capux.co" },
 }
 
 export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <PositioningStrip />
-      <section id="services">
-        <EnterpriseServicesGrid />
-      </section>
-      <OutcomesSection />
-      <SolutionsStrip />
-      <WhoWeHelp />
-      <SecuritySection />
-      <TrustSection />
-      <CTAStrip />
-      <Footer />
-    </>
-  )
+  return <HomePageClient />
 }

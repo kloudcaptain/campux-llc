@@ -1,73 +1,71 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSerif = DM_Serif_Display({
+  variable: "--font-dm-serif",
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
-// ── SITE-WIDE SEO CONFIG ───────────────────────────────────────────────────────
-// siteUrl: update when the domain goes live.
-// title.default: the <title> shown on the homepage.
-// title.template: used on all inner pages — "%s" becomes the page title.
-// description: shown in Google search results for the homepage.
-// keywords: supplementary — modern SEO is mostly content-driven, but keep updated.
-// openGraph.images: the default social share image (update with a real OG image).
-const siteUrl = "https://thomsup.com"
+const siteUrl = "https://capux.co"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "ThomsUp — Managed Infrastructure, Security & Cloud Operations",
-    template: "%s — ThomsUp",
+    default: "Campux — Managed Infrastructure & Security Operations | UK",
+    template: "%s | Campux",
   },
   description:
-    "ThomsUp delivers managed infrastructure, security operations, and cloud architecture for startups, enterprises, and government organisations that cannot afford downtime.",
+    "UK-based managed infrastructure and security operations. We run your servers, cloud environments, networks, databases, and compliance posture — one team, one contract, no handoffs.",
   keywords: [
-    "managed infrastructure",
-    "security operations",
-    "cloud architecture",
-    "enterprise IT",
-    "government IT",
-    "ISO 27001",
-    "SOC 2",
-    "HIPAA compliance",
-    "DevOps",
-    "cloud migration",
-    "zero trust security",
-    "identity access management",
+    "managed infrastructure UK",
+    "managed IT services",
+    "managed security operations",
+    "cloud infrastructure management",
+    "ISO 27001 managed service",
+    "SOC 2 compliance",
+    "HIPAA compliance UK",
+    "PCI-DSS managed service",
+    "Cyber Essentials",
+    "server management",
+    "network engineering",
+    "database management",
+    "DevOps managed service",
+    "government IT management",
+    "healthcare IT infrastructure",
   ],
-  authors: [{ name: "ThomsUp" }],
-  creator: "ThomsUp",
-  publisher: "ThomsUp",
+  authors: [{ name: "Campux", url: siteUrl }],
+  creator: "Campux",
+  publisher: "Campux",
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: siteUrl,
-    siteName: "ThomsUp",
-    title: "ThomsUp — Managed Infrastructure, Security & Cloud Operations",
+    siteName: "Campux",
+    title: "Campux — Managed Infrastructure & Security Operations | UK",
     description:
-      "Managed infrastructure, security operations, and cloud architecture for organisations where downtime is never an acceptable outcome.",
+      "UK-based managed infrastructure and security operations. Server estates, cloud environments, networks, databases, and compliance posture — operated as one accountable function.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ThomsUp — Enterprise Infrastructure & Security",
+        alt: "Campux — Managed Infrastructure & Security Operations",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ThomsUp — Managed Infrastructure, Security & Cloud Operations",
+    title: "Campux — Managed Infrastructure & Security Operations",
     description:
-      "Managed infrastructure, security operations, and cloud architecture for enterprises and government organisations.",
+      "UK-based managed infrastructure and security operations for healthcare, financial services, and government. One team. No handoffs.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -84,22 +82,64 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  verification: {
+    // Add Google Search Console verification token here when available
+    // google: "your-verification-token",
+  },
 };
 
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "ProfessionalService"],
       "@id": `${siteUrl}/#organization`,
-      name: "ThomsUp",
+      name: "Campux",
       url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+      },
       description:
-        "Managed infrastructure, security operations, and cloud architecture for enterprises and government organisations.",
+        "UK-based managed infrastructure and security operations firm. We take operational ownership of server estates, cloud environments, networks, databases, and security posture.",
+      foundingDate: "2018",
+      areaServed: [
+        { "@type": "Country", name: "United Kingdom" },
+        { "@type": "Country", name: "United States" },
+      ],
+      knowsAbout: [
+        "Managed Infrastructure",
+        "Security Operations",
+        "ISO 27001",
+        "SOC 2",
+        "HIPAA",
+        "PCI-DSS",
+        "NIST",
+        "Cyber Essentials",
+        "Cloud Infrastructure",
+        "Network Engineering",
+        "Database Management",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Managed IT Services",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Server Infrastructure Management" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cloud Environment Management" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Security Operations" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Network Engineering" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Database Management" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Integrated Managed IT" } },
+        ],
+      },
       contactPoint: {
         "@type": "ContactPoint",
-        email: "project@thomsup.com",
-        contactType: "sales",
+        email: "project@campux.co",
+        contactType: "customer service",
+        areaServed: "GB",
+        availableLanguage: "English",
       },
       sameAs: [],
     },
@@ -107,7 +147,7 @@ const orgJsonLd = {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: "ThomsUp",
+      name: "Campux",
       publisher: { "@id": `${siteUrl}/#organization` },
       potentialAction: {
         "@type": "SearchAction",
@@ -124,20 +164,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${dmSans.variable} ${dmSerif.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
       </head>
-      {/* suppressHydrationWarning: browser extensions (e.g. password managers) can
-          inject attributes onto <body> after SSR, causing a benign hydration mismatch.
-          This prop tells React to skip attribute comparison on this element only. */}
-      <body suppressHydrationWarning className="min-h-full flex flex-col">{children}</body>
+      <body suppressHydrationWarning style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", margin: 0, padding: 0 }}>
+        {children}
+      </body>
     </html>
   );
 }

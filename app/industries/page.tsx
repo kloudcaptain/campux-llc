@@ -1,143 +1,161 @@
+import type { Metadata } from "next"
 import Link from "next/link"
-import { Heart, TrendingUp, ShoppingCart, Cpu, ArrowRight } from "lucide-react"
 
-export const metadata = {
-  title: "Industries",
+export const metadata: Metadata = {
+  title: "Sectors We Serve — Healthcare, Finance & Government",
   description:
-    "ThomsUp works with healthcare providers, financial services firms, retail operations, and SaaS platforms — wherever infrastructure reliability and security are non-negotiable.",
+    "Managed infrastructure for regulated industries — healthcare, financial services, government, retail, and technology. HIPAA, PCI-DSS, ISO 27001, Cyber Essentials Plus.",
+  alternates: { canonical: "https://capux.co/industries" },
   openGraph: {
-    title: "Industries — ThomsUp",
-    description:
-      "Infrastructure and security engineering for healthcare, financial services, retail, and SaaS — built around the constraints that actually matter in your sector.",
+    title: "Sectors We Serve — Healthcare, Finance & Government | Campux",
+    description: "Managed infrastructure for regulated industries where downtime carries real consequences.",
+    url: "https://capux.co/industries",
     type: "website",
   },
-  alternates: { canonical: "https://thomsup.com/industries" },
 }
 
-// ─── Industry definitions ─────────────────────────────────────────────────────
+const serif = "var(--font-dm-serif), Georgia, serif"
 
-const industries = [
+const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, transparent 46%), radial-gradient(ellipse 60% 38% at 92% 22%, rgba(140,28,80,0.55) 0%, transparent 42%), radial-gradient(ellipse 80% 62% at 50% 58%, rgba(50,16,65,0.75) 0%, transparent 52%), #0a0610"
+
+const sectors = [
   {
-    Icon: Heart,
-    name: "Healthcare",
-    tagline: "Infrastructure that clinicians trust and compliance teams approve",
-    body: "Patient care depends on systems that are fast, available, and tightly controlled. We design network architectures and access policies that meet HIPAA technical safeguards without adding friction to clinical workflows.",
-    metric: "8.3s → 90ms average query time",
-    caseStudyLabel: "Zero Trust for a 12-facility healthcare network",
+    number: "01",
+    name: "Healthcare & Life Sciences",
+    headline: "Clinical systems don't get a maintenance window during a ward handover.",
+    body: [
+      "We manage healthcare infrastructure with HIPAA, HL7, and FHIR compliance built into the architecture from the start — not applied retroactively when an audit surfaces the gap. EHR systems, medical device integrations, and telehealth platforms each carry different availability and data residency requirements. We design environments that handle the clinical load and produce the compliance evidence when the auditors arrive.",
+      "The obligation is not just to pass a framework. It is to keep systems available when clinical decisions depend on them, and to protect patient data in a way that holds up under scrutiny — not just on paper.",
+    ],
+    standards: ['HIPAA', 'HL7 FHIR', 'ISO 27001', 'Cyber Essentials'],
   },
   {
-    Icon: TrendingUp,
+    number: "02",
     name: "Financial Services",
-    tagline: "Auditability built in — not assembled at quarter-end",
-    body: "Compliance obligations in financial services don't pause between audits. We implement Policy as Code frameworks that enforce SOC 2 and ISO 27001 controls continuously, so evidence gathering takes hours instead of weeks.",
-    metric: "6 weeks → 4 hrs audit cycle",
-    caseStudyLabel: "Compliance automation for a mid-market investment firm",
+    headline: "Regulated, audited, and expected to be available without exception.",
+    body: [
+      "Financial infrastructure sits at the intersection of three things that do not forgive mistakes: real-time transaction processing, strict regulatory oversight, and customers who notice a two-minute outage. We manage environments built to PCI-DSS, FCA guidance, and SOX requirements, with change management that is auditable by design — not reconstructed after the fact.",
+      "Every change to production is tracked, reviewed, and documented against a change record. Quarterly reviews cover what happened, what we caught before it escalated, and what we are currently watching. The paper trail exists before anyone asks for it.",
+    ],
+    standards: ['PCI-DSS', 'SOC 2', 'ISO 27001', 'FCA guidance'],
   },
   {
-    Icon: ShoppingCart,
-    name: "Retail & E-Commerce",
-    tagline: "Scales for peak, costs nothing during quiet",
-    body: "Seasonal traffic spikes shouldn't require six-week procurement cycles or a war room on Black Friday. We build auto-scaling infrastructure that handles 4x normal peak and costs proportionally less when demand is low.",
-    metric: "99.97% uptime post-migration",
-    caseStudyLabel: "Cloud migration for a 400-store national retailer",
+    number: "03",
+    name: "Government & Public Sector",
+    headline: "Security obligations set by framework, not by preference.",
+    body: [
+      "Government infrastructure carries requirements that commercial environments do not. Data classification, network separation, Cyber Essentials Plus, and the expectation that systems remain available during periods when they are most politically visible. We work with government programmes and public sector bodies where the security and availability obligations are fixed — and the consequences of failure are public.",
+      "We understand procurement constraints, can operate within existing supplier structures, and produce the documentation that internal assurance teams need to sign off. We are not here to own the politics. We are here to own the infrastructure.",
+    ],
+    standards: ['Cyber Essentials Plus', 'ISO 27001', 'NIST', 'IL2/IL3'],
   },
   {
-    Icon: Cpu,
-    name: "SaaS & Technology",
-    tagline: "Ship faster without waking anyone at 3am",
-    body: "When a monolith becomes a bottleneck for three squads and a four-hour deploy, the architecture needs to change. We decompose, containerise, and rebuild CI/CD pipelines so teams can ship independently and confidently.",
-    metric: "4 hrs → 12 min deployment time",
-    caseStudyLabel: "Microservices migration for a B2B SaaS platform",
+    number: "04",
+    name: "Retail & E-commerce",
+    headline: "Peak season is not the time to discover a capacity problem.",
+    body: [
+      "Retail infrastructure has two modes: normal operation and peak season. We manage environments sized and tested for the highest load — with auto-scaling that has been validated under real traffic patterns, not theoretical projections made during a planning meeting. Payment processing, inventory systems, and warehouse integrations are all critical paths with no tolerance for degradation.",
+      "We manage the full stack with PCI-DSS compliance, CDN configuration, and monitoring that surfaces a failing checkout flow before customers report it. The post-mortem after a peak outage is an expensive document. We try not to need it.",
+    ],
+    standards: ['PCI-DSS', 'ISO 27001', 'SOC 2'],
+  },
+  {
+    number: "05",
+    name: "Technology Companies",
+    headline: "You built the product. We run everything underneath it.",
+    body: [
+      "Scaling technology companies reach a point where the infrastructure function is doing everything at once: on-call coverage, compliance prep, security operations, capacity planning, incident response. Something always gets deprioritised. Usually security. We take the operational work off engineering teams so they can focus on product, not firefighting.",
+      "We integrate with existing tooling, operate inside deployment pipelines, and produce the documentation that makes SOC 2 and ISO 27001 audits a matter of hours — not a panic sprint every twelve months. We do not compete with your product engineers. We give them back the time they were spending on infrastructure.",
+    ],
+    standards: ['SOC 2', 'ISO 27001', 'Cyber Essentials'],
   },
 ]
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
-
 export default function IndustriesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-32 pb-24">
+    <div style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontSize: 18, lineHeight: 1.6, color: '#fff', background: bg, minHeight: '100vh' }}>
 
-      {/* ── Page header ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">
-          Industries We Serve
-        </p>
-        <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
-          We know your constraints
-          <br />
-          <span className="text-gray-500">because we&apos;ve worked inside them</span>
-        </h1>
-        <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
-          Every sector has non-negotiables — regulatory requirements, uptime expectations,
-          data access rules. We don&apos;t treat these as complications. We treat them as design inputs.
-        </p>
-      </div>
-
-      {/* ── Industry cards ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {industries.map(({ Icon, name, tagline, body, metric, caseStudyLabel }) => (
-            <div
-              key={name}
-              className="group bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.07)]"
-            >
-              {/* Icon */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-500/20 mb-6">
-                <Icon className="w-5 h-5 text-cyan-400" strokeWidth={1.5} />
-              </div>
-
-              {/* Name + tagline */}
-              <h2 className="text-xl font-bold text-white mb-2">{name}</h2>
-              <p className="text-cyan-400/80 text-sm font-medium mb-4">{tagline}</p>
-
-              {/* Body */}
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">{body}</p>
-
-              {/* Metric */}
-              <div className="bg-white/5 border border-white/8 rounded-xl px-4 py-3 mb-6">
-                <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Client outcome</p>
-                <p className="text-white font-semibold text-sm">{metric}</p>
-              </div>
-
-              {/* Case study link */}
-              <Link
-                href="/solutions"
-                className="inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 group-hover:gap-3 transition-all duration-200"
-              >
-                {caseStudyLabel} <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          ))}
+      {/* NAV */}
+      <nav style={{ position: 'sticky', top: 0, zIndex: 300, background: 'rgba(10,6,14,0.9)', backdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
+            <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em' }}>Campux</span>
+          </Link>
+          <div style={{ display: 'flex', gap: 4, flex: 1 }}>
+            <Link href="/services" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Services</Link>
+            <Link href="/industries" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'white', background: 'rgba(255,255,255,0.08)' }}>Sectors</Link>
+            <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
+            <Link href="/about" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>About</Link>
+          </div>
+          <Link href="/contact" className="btn-dark" style={{ padding: '9px 22px', fontSize: 14 }}>Talk to our team</Link>
         </div>
-      </div>
+      </nav>
 
-      {/* ── CTA banner ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-10 sm:p-14 text-center">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-cyan-500/8 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative">
-            <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">
-              Work with us
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Your sector has specific requirements.
-              <br />
-              <span className="text-gray-400">We&apos;ve already accounted for them.</span>
-            </h2>
-            <p className="text-gray-400 text-lg max-w-xl mx-auto mb-8">
-              Tell us what you&apos;re working on. We&apos;ll tell you whether we&apos;ve seen it before
-              and what worked.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-cyan-400 text-black font-semibold text-sm hover:from-cyan-400 hover:to-cyan-300 transition-all duration-200"
-            >
-              Request Consultation <ArrowRight className="w-4 h-4" />
-            </Link>
+      {/* HERO */}
+      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '100px 48px 80px' }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 20 }}>Who we work with</p>
+        <h1 style={{ fontFamily: serif, fontSize: 'clamp(48px, 6vw, 84px)', fontWeight: 400, lineHeight: 1.04, letterSpacing: '-0.02em', marginBottom: 32, maxWidth: 760 }}>
+          Sectors where<br /><em style={{ opacity: 0.5 }}>downtime has a cost.</em>
+        </h1>
+        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.72)', lineHeight: 1.75, maxWidth: 560, fontWeight: 300 }}>
+          We work in regulated industries and high-stakes operational environments. The common thread is not the sector — it is that infrastructure failure carries consequences the organisation cannot absorb.
+        </p>
+      </section>
+
+      {/* SECTORS */}
+      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px 160px' }}>
+        {sectors.map((sector) => (
+          <div key={sector.number} style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr', gap: '0 64px', paddingTop: 64, paddingBottom: 64, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            <div style={{ paddingTop: 6 }}>
+              <span style={{ fontFamily: 'monospace', fontSize: 13, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em' }}>{sector.number}</span>
+            </div>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 16 }}>{sector.name}</p>
+              <h2 style={{ fontFamily: serif, fontSize: 'clamp(22px, 2.5vw, 34px)', fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: 28, color: 'white' }}>{sector.headline}</h2>
+              {sector.body.map((p, pi) => (
+                <p key={pi} style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)', lineHeight: 1.8, marginBottom: 16 }}>{p}</p>
+              ))}
+            </div>
+            <div style={{ paddingTop: 50 }}>
+              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: 28 }}>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.42)', marginBottom: 16 }}>Compliance frameworks</p>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  {sector.standards.map(s => (
+                    <span key={s} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.16)', padding: '4px 10px', borderRadius: 4 }}>{s}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* CTA */}
+      <section style={{ background: '#141414', padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 48, flexWrap: 'wrap' }}>
+          <div>
+            <h2 style={{ fontFamily: serif, fontSize: 'clamp(28px, 3.5vw, 46px)', fontWeight: 400, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 12 }}>Your sector, your obligations.</h2>
+            <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.55)', maxWidth: 480 }}>Tell us what you are running. We will tell you what we can do with it — and whether we are the right fit.</p>
+          </div>
+          <Link href="/contact" style={{ display: 'block', background: 'white', color: '#111', padding: '16px 32px', borderRadius: 10, fontSize: 15, fontWeight: 600, whiteSpace: 'nowrap', letterSpacing: '-0.01em' }}>Get in touch</Link>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ background: '#141414', padding: '40px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <svg width="20" height="20" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
+          </Link>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.32)' }}>© 2026 Campux. All rights reserved.</p>
+          <div style={{ display: 'flex', gap: 24 }}>
+            <Link href="/terms" className="link-muted" style={{ fontSize: 12 }}>Terms</Link>
+            <Link href="/privacy-policy" className="link-muted" style={{ fontSize: 12 }}>Privacy</Link>
           </div>
         </div>
-      </div>
-
+      </footer>
     </div>
   )
 }

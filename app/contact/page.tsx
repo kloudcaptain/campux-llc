@@ -1,247 +1,150 @@
-"use client"
+import type { Metadata } from "next"
+import Link from "next/link"
 
-import React, { useState } from "react"
-import { Mail, Clock, ArrowRight, Check, ShieldCheck } from "lucide-react"
+export const metadata: Metadata = {
+  title: "Contact Campux — Talk to Our Infrastructure Team",
+  description:
+    "Describe your environment. No pitch decks, no qualification calls — a direct conversation about what you're running and whether we're the right fit. Reply within one business day.",
+  alternates: { canonical: "https://capux.co/contact" },
+  openGraph: {
+    title: "Contact Campux — Talk to Our Infrastructure Team",
+    description: "Tell us what you're running. Direct conversation, no sales process. Reply within one business day.",
+    url: "https://capux.co/contact",
+    type: "website",
+  },
+}
+
+const serif = "var(--font-dm-serif), Georgia, serif"
+const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, transparent 46%), radial-gradient(ellipse 60% 38% at 92% 22%, rgba(140,28,80,0.55) 0%, transparent 42%), radial-gradient(ellipse 80% 62% at 50% 58%, rgba(50,16,65,0.75) 0%, transparent 52%), #0a0610"
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false)
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    subject: "",
-    message: "",
-  })
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\n\n${form.message}`
-    )
-    const subject = encodeURIComponent(form.subject || "ThomsUp Enquiry")
-    window.open(`mailto:project@thomsup.com?subject=${subject}&body=${body}`)
-    setSubmitted(true)
-  }
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-32 pb-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", fontSize: 18, lineHeight: 1.6, color: '#fff', background: bg, minHeight: '100vh' }}>
 
-        {/* Header */}
-        <div className="mb-16 max-w-2xl">
-          <p className="text-cyan-400 text-sm font-medium uppercase tracking-widest mb-4">Contact</p>
-          <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
-            Let&apos;s talk about
-            <br />
-            <span className="text-gray-400">what you&apos;re dealing with</span>
-          </h1>
-          <p className="text-gray-400 text-lg leading-relaxed">
-            Whether you have a specific technical problem or you are evaluating providers
-            for a future engagement — we respond to every serious enquiry within one business day
-            and we review it properly before replying.
-          </p>
+      {/* NAV */}
+      <nav style={{ position: 'sticky', top: 0, zIndex: 300, background: 'rgba(10,6,14,0.9)', backdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
+            <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em' }}>Campux</span>
+          </Link>
+          <div style={{ display: 'flex', gap: 4, flex: 1 }}>
+            <Link href="/services" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Services</Link>
+            <Link href="/industries" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Sectors</Link>
+            <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
+            <Link href="/about" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>About</Link>
+          </div>
+          <Link href="/contact" style={{ display: 'inline-block', background: 'white', color: '#111', padding: '9px 22px', borderRadius: 8, fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em' }}>Talk to our team</Link>
         </div>
+      </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+      {/* HERO */}
+      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '100px 48px 80px' }}>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 20 }}>Get in touch</p>
+        <h1 style={{ fontFamily: serif, fontSize: 'clamp(48px, 6vw, 80px)', fontWeight: 400, lineHeight: 1.04, letterSpacing: '-0.02em', marginBottom: 24, maxWidth: 700 }}>
+          Tell us what you are running.
+        </h1>
+        <p style={{ fontSize: 19, color: 'rgba(255,255,255,0.78)', lineHeight: 1.7, maxWidth: 560, fontWeight: 300 }}>
+          No pitch deck. No qualification call. A direct conversation about your environment — what it is, what is not working, and whether we are the right people to manage it.
+        </p>
+      </section>
 
-          {/* Form */}
-          <div className="lg:col-span-3">
-            {submitted ? (
-              <div className="bg-[#1a1a1a] border border-cyan-500/30 rounded-2xl p-10 text-center">
-                <div className="w-14 h-14 rounded-full bg-cyan-500/15 flex items-center justify-center mx-auto mb-6">
-                  <Check className="w-7 h-7 text-cyan-400" />
-                </div>
-                <h2 className="text-2xl font-semibold text-white mb-3">Your email client should have opened</h2>
-                <p className="text-gray-400 mb-8">
-                  If it did not open automatically, send your message directly to{" "}
-                  <a href="mailto:project@thomsup.com" className="text-cyan-400 hover:underline">
-                    project@thomsup.com
-                  </a>
-                  . We look forward to hearing from you.
-                </p>
-                <button
-                  onClick={() => { setSubmitted(false); setForm({ name: "", email: "", company: "", subject: "", message: "" }) }}
-                  className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-2">
-                      Full name <span className="text-cyan-400">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Jane Smith"
-                      className="w-full bg-[#1a1a1a] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-cyan-500/50 transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-2">
-                      Work email <span className="text-cyan-400">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="jane@company.com"
-                      className="w-full bg-[#1a1a1a] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-cyan-500/50 transition-colors"
-                    />
-                  </div>
-                </div>
+      {/* FORM + DETAILS */}
+      <section style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px 120px', display: 'grid', gridTemplateColumns: '1fr 420px', gap: 80, alignItems: 'start' }}>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">Company</label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={form.company}
-                    onChange={handleChange}
-                    placeholder="Acme Corp"
-                    className="w-full bg-[#1a1a1a] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-cyan-500/50 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">Subject</label>
-                  <select
-                    name="subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    className="w-full bg-[#1a1a1a] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-colors appearance-none"
-                  >
-                    <option value="" className="bg-[#1a1a1a]">Select a topic</option>
-                    <option value="Infrastructure Modernisation" className="bg-[#1a1a1a]">Infrastructure Modernisation</option>
-                    <option value="Security" className="bg-[#1a1a1a]">Security</option>
-                    <option value="Cloud Architecture" className="bg-[#1a1a1a]">Cloud Architecture</option>
-                    <option value="DevOps & CI/CD" className="bg-[#1a1a1a]">DevOps & CI/CD</option>
-                    <option value="General Enquiry" className="bg-[#1a1a1a]">General Enquiry</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
-                    Message <span className="text-cyan-400">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={6}
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about the challenge you are facing, the scale of your environment, and any constraints that are relevant."
-                    className="w-full bg-[#1a1a1a] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-cyan-500/50 transition-colors resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-6 py-4 text-sm font-semibold text-black hover:bg-cyan-400 transition-colors"
-                >
-                  Send message
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
-            )}
+        {/* FORM */}
+        <form
+          action="https://formspree.io/f/placeholder"
+          method="POST"
+          style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
+        >
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>First name</label>
+              <input name="firstName" type="text" required style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>Last name</label>
+              <input name="lastName" type="text" required style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
+            </div>
           </div>
 
-          {/* Info panel */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-7">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-5">
-                <Mail className="w-5 h-5 text-cyan-400" />
-              </div>
-              <h3 className="text-white font-semibold mb-2">Email us directly</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                For direct correspondence, RFPs, or if you prefer not to use the form.
-              </p>
-              <a
-                href="mailto:project@thomsup.com"
-                className="text-cyan-400 text-sm font-medium hover:underline"
-              >
-                project@thomsup.com
-              </a>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>Work email</label>
+            <input name="email" type="email" required style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
+          </div>
 
-            <div className="bg-[#1a1a1a] border border-cyan-500/20 rounded-2xl p-7">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-5">
-                <ShieldCheck className="w-5 h-5 text-cyan-400" />
-              </div>
-              <h3 className="text-white font-semibold mb-3">Our commitment</h3>
-              <ul className="space-y-2.5">
-                {[
-                  "No unsolicited follow-up after initial reply",
-                  "NDA available before any detailed discussion",
-                  "Written summary of approach before engagement",
-                  "No lock-in without mutual agreement on scope",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
-                    <span className="text-gray-400 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>Company</label>
+            <input name="company" type="text" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
+          </div>
 
-            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-7">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-5">
-                <Clock className="w-5 h-5 text-cyan-400" />
-              </div>
-              <h3 className="text-white font-semibold mb-2">Response time</h3>
-              <p className="text-gray-400 text-sm">
-                We respond to every serious enquiry within one business day. Complex technical
-                questions may take slightly longer as we review them properly before replying.
-              </p>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>What are you running?</label>
+            <textarea name="message" required rows={6} placeholder="Describe your environment — on-prem, cloud, hybrid, compliance obligations, team size, what is keeping you up at night." style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none', resize: 'vertical' }} />
+          </div>
 
-            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-7">
-              <h3 className="text-white font-semibold mb-4">What to include</h3>
-              <ul className="space-y-3">
-                {[
-                  "The nature of the challenge you are facing",
-                  "The approximate scale of your environment",
-                  "Any hard constraints on timeline or technology",
-                  "Whether you have an existing team or need full delivery",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
-                    <span className="text-gray-400 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>How urgent is this?</label>
+            <select name="urgency" style={{ background: 'rgba(10,6,14,0.95)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', outline: 'none', appearance: 'none' }}>
+              <option value="">Select one</option>
+              <option value="urgent">Something is broken right now</option>
+              <option value="weeks">We need to act within weeks</option>
+              <option value="planning">We are planning ahead, not on fire</option>
+              <option value="exploring">Early stage, just exploring</option>
+            </select>
+          </div>
 
-            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-7">
-              <h3 className="text-white font-semibold mb-4">What happens next</h3>
-              <ol className="space-y-4">
-                {[
-                  { step: "1", text: "We review your message and confirm receipt within one business day." },
-                  { step: "2", text: "A technical lead reaches out to clarify scope and arrange a discovery call." },
-                  { step: "3", text: "We provide a written summary of our proposed approach before any engagement begins." },
-                ].map(({ step, text }) => (
-                  <li key={step} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-cyan-500/15 text-cyan-400 text-xs font-semibold flex items-center justify-center mt-0.5">{step}</span>
-                    <span className="text-gray-400 text-sm leading-relaxed">{text}</span>
-                  </li>
-                ))}
-              </ol>
+          <button type="submit" style={{ background: 'white', color: '#111', border: 'none', padding: '16px 32px', borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '-0.01em', alignSelf: 'flex-start' }}>
+            Send message
+          </button>
+        </form>
+
+        {/* CONTACT DETAILS */}
+        <div style={{ paddingTop: 8 }}>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32, marginBottom: 40 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>Direct email</p>
+            <a href="mailto:project@campux.co" style={{ fontSize: 17, color: 'white', textDecoration: 'none', fontWeight: 500 }}>project@campux.co</a>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.62)', marginTop: 8, lineHeight: 1.65 }}>We read everything. If it is relevant, we will respond — usually within one business day.</p>
+          </div>
+
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32, marginBottom: 40 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>What happens next</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {[
+                { step: '01', text: 'We read your message and decide if we can actually help.' },
+                { step: '02', text: 'If we can, we come back with specific questions about your environment — not a proposal.' },
+                { step: '03', text: 'A direct call, scoped to your situation. We will tell you if we are not the right fit.' },
+              ].map(s => (
+                <div key={s.step} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                  <span style={{ fontFamily: 'monospace', fontSize: 12, color: 'rgba(255,255,255,0.32)', flexShrink: 0, paddingTop: 2 }}>{s.step}</span>
+                  <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.68)', lineHeight: 1.7, margin: 0 }}>{s.text}</p>
+                </div>
+              ))}
             </div>
           </div>
+
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 16 }}>We work with</p>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>Healthcare, financial services, regulated technology, retail operations, and government programmes. From Series A to enterprise. The common factor is that infrastructure matters — and needs to be managed by someone who takes it seriously.</p>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ background: '#141414', padding: '40px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <svg width="20" height="20" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.35"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+            <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
+          </Link>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.32)' }}>© 2026 Campux. All rights reserved.</p>
+          <div style={{ display: 'flex', gap: 24 }}>
+            <Link href="/terms" className="link-muted" style={{ fontSize: 12 }}>Terms</Link>
+            <Link href="/privacy-policy" className="link-muted" style={{ fontSize: 12 }}>Privacy</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
