@@ -20,6 +20,7 @@ export default function HomePageClient() {
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle')
   const [panelData, setPanelData] = useState<{ tag: string; title: string; body: string; image?: string }>({ tag: 'Select a service line', title: 'One team. Everything under one roof.', body: "We are not a helpdesk, a cloud reseller, or a consultancy that delivers reports and moves on. We manage infrastructure as an ongoing function and own the operational outcomes — not just the activity." })
+  const [mobMenu, setMobMenu] = useState(false)
 
   const toggleAcc = useCallback((idx: number) => {
     setOpenAcc(prev => {
@@ -284,7 +285,7 @@ export default function HomePageClient() {
 
       {/* ── NAV ── */}
       <nav ref={navRef} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 300, transition: 'background 0.4s, backdrop-filter 0.4s, border-color 0.4s', borderBottom: '1px solid transparent' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
+        <div className="rsp-nav-inner" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
           {/* Logo */}
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
             <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
@@ -297,7 +298,7 @@ export default function HomePageClient() {
           </a>
 
           {/* Links */}
-          <div style={{ display: 'flex', gap: 2, flex: 1, position: 'relative' }}>
+          <div className="rsp-nav-links" style={{ display: 'flex', gap: 2, flex: 1, position: 'relative' }}>
             <div style={{ position: 'relative' }}>
               <button data-menu="services" className="link-nav" style={{ padding: '9px 16px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.75)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'inherit', transition: 'color 0.2s' }}>
                 Services
@@ -341,15 +342,40 @@ export default function HomePageClient() {
           </div>
 
           {/* CTAs */}
-          <div style={{ display: 'flex', gap: 12, flex: '0 0 auto' }}>
+          <div style={{ display: 'flex', gap: 12, flex: '0 0 auto', alignItems: 'center' }}>
             <a href="#contact-form" className="btn-dark" style={{ padding: '9px 22px', fontSize: 14 }}>Get in touch</a>
+            <button className="mob-hamburger" onClick={() => setMobMenu(true)} aria-label="Open menu">
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect y="0" width="18" height="2" rx="1" fill="white"/><rect y="6" width="18" height="2" rx="1" fill="white"/><rect y="12" width="18" height="2" rx="1" fill="white"/></svg>
+            </button>
           </div>
         </div>
       </nav>
 
+      {/* ── MOBILE MENU ── */}
+      {mobMenu && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(10,6,14,0.98)', zIndex: 600, display: 'flex', flexDirection: 'column', padding: '0 20px', overflowY: 'auto' }}>
+          <div style={{ height: 72, display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.1)', flexShrink: 0 }}>
+            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
+              <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
+            </a>
+            <button onClick={() => setMobMenu(false)} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 8, padding: '8px 12px', color: 'white', cursor: 'pointer', fontSize: 18, lineHeight: 1 }}>✕</button>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 16, flex: 1 }}>
+            {[['Services', '/services'], ['Sectors', '/industries'], ['Insights', '/insights'], ['Solutions', '/solutions'], ['About', '/about']].map(([label, href]) => (
+              <a key={label} href={href} onClick={() => setMobMenu(false)} style={{ fontSize: 28, fontWeight: 400, color: 'white', padding: '20px 0', borderBottom: '1px solid rgba(255,255,255,0.07)', letterSpacing: '-0.02em', fontFamily: 'var(--font-dm-serif), Georgia, serif' }}>{label}</a>
+            ))}
+          </div>
+          <div style={{ paddingTop: 32, paddingBottom: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <a href="#contact-form" onClick={() => setMobMenu(false)} style={{ display: 'block', background: 'white', color: '#111', padding: '16px 24px', borderRadius: 8, fontSize: 16, fontWeight: 600, textAlign: 'center', letterSpacing: '-0.01em' }}>Get in touch</a>
+            <a href="mailto:project@campux.co" style={{ display: 'block', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)', padding: '14px 24px', borderRadius: 8, fontSize: 15, textAlign: 'center' }}>project@campux.co</a>
+          </div>
+        </div>
+      )}
+
       {/* ── HERO ── */}
-      <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '0 48px', position: 'relative', zIndex: 1 }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingTop: 72 }}>
+      <section className="rsp-hero-section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '0 48px', position: 'relative', zIndex: 1 }}>
+        <div className="rsp-hero-grid" style={{ maxWidth: 1320, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingTop: 72 }}>
           <div>
             <div className="hero-h1" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 100, padding: '5px 16px 5px 12px', marginBottom: 36, backdropFilter: 'blur(8px)' }}>
               <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 100, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', padding: '3px 10px', color: 'white', textTransform: 'uppercase' }}>Managed IT</span>
@@ -368,7 +394,7 @@ export default function HomePageClient() {
           </div>
 
           {/* Dashboard visual */}
-          <div className="hero-vis" ref={heroVisRef}>
+          <div className="hero-vis rsp-hero-vis" ref={heroVisRef}>
             <div style={{ background: 'rgba(6,4,10,0.7)', borderRadius: 16, border: '1px solid rgba(255,255,255,0.12)', overflow: 'hidden', boxShadow: '0 40px 100px rgba(0,0,0,0.6)', backdropFilter: 'blur(16px)' }}>
               <div style={{ background: 'rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '14px 20px', display: 'flex', alignItems: 'center', gap: 8 }}>
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#d06030' }} />
@@ -417,10 +443,10 @@ export default function HomePageClient() {
       </div>
 
       {/* ── SERVICES ── */}
-      <section id="services" style={{ padding: '140px 48px', position: 'relative', zIndex: 1 }}>
+      <section id="services" className="rsp-section" style={{ padding: '140px 48px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <p className="reveal" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 20 }}>What we do</p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+          <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
             <div>
               <h2 className="reveal" style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 72px)', fontWeight: 400, letterSpacing: '-0.02em', color: 'white', lineHeight: 1.06, marginBottom: 28 }}>
                 Six disciplines. One operational team.
@@ -447,7 +473,7 @@ export default function HomePageClient() {
             </div>
 
             {/* Sticky panel */}
-            <div style={{ position: 'sticky', top: 120 }}>
+            <div className="rsp-service-panel" style={{ position: 'sticky', top: 120 }}>
               <div id="service-panel" style={{ background: 'rgba(6,4,10,0.5)', borderRadius: 20, border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden', backdropFilter: 'blur(12px)', display: 'flex', flexDirection: 'column', minHeight: 480 }}>
                 {panelData.image && (
                   <div style={{ position: 'relative', height: 220, overflow: 'hidden', flexShrink: 0 }}>
@@ -476,20 +502,20 @@ export default function HomePageClient() {
       </section>
 
       {/* ── DARK FOLD: STATS ── */}
-      <section className="dark-fold" style={{ padding: '120px 48px' }}>
+      <section className="dark-fold rsp-section" style={{ padding: '120px 48px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
           <p className="reveal" style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 24 }}>By the numbers</p>
           <h2 className="reveal" style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 68px)', fontWeight: 400, color: 'white', letterSpacing: '-0.02em', lineHeight: 1.06, marginBottom: 96 }}>
             Straightforward to measure.<br />Hard to fake.
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
-            <div className="reveal" style={{ padding: '0 56px 0 0', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="rsp-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="reveal rsp-stat-pad" style={{ padding: '0 56px 0 0', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.5), rgba(255,255,255,0.1))', marginBottom: 32 }} />
               <div className="stat-num" data-target="100" data-suffix="%" style={{ fontFamily: serif, fontSize: 'clamp(64px, 8vw, 108px)', fontWeight: 400, color: 'white', lineHeight: 1, marginBottom: 24, letterSpacing: '-0.04em' }}>0<span style={{ fontSize: '0.6em' }}>%</span></div>
               <div style={{ width: 48, height: 2, background: 'rgba(208,96,48,0.8)', marginBottom: 24 }} />
               <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>of environments we manage have written runbooks and tested failover procedures. Not scheduled. Done.</div>
             </div>
-            <div className="reveal reveal-delay-1" style={{ padding: '0 56px', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="reveal reveal-delay-1 rsp-stat-pad" style={{ padding: '0 56px', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
               <div style={{ width: 36, height: 36, borderRadius: 4, border: '1.5px solid rgba(255,255,255,0.25)', background: 'rgba(255,255,255,0.04)', marginBottom: 32, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, padding: 6 }}>
                 <div style={{ background: 'rgba(255,255,255,0.3)', borderRadius: 1 }} />
                 <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 1 }} />
@@ -500,7 +526,7 @@ export default function HomePageClient() {
               <div style={{ width: 48, height: 2, background: 'rgba(208,96,48,0.8)', marginBottom: 24 }} />
               <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>service lines. One contract, one SLA, one escalation path. No gaps between who owns what.</div>
             </div>
-            <div className="reveal reveal-delay-2" style={{ padding: '0 0 0 56px' }}>
+            <div className="reveal reveal-delay-2 rsp-stat-pad rsp-stat-last" style={{ padding: '0 0 0 56px' }}>
               <div style={{ width: 36, height: 36, marginBottom: 32, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div style={{ position: 'absolute', width: 36, height: 1.5, background: 'rgba(255,255,255,0.25)', transform: 'rotate(45deg)' }} />
                 <div style={{ position: 'absolute', width: 36, height: 1.5, background: 'rgba(255,255,255,0.25)', transform: 'rotate(-45deg)' }} />
@@ -515,11 +541,11 @@ export default function HomePageClient() {
       </section>
 
       {/* ── FEATURE BLOCKS ── */}
-      <section style={{ padding: '140px 48px 0', position: 'relative', zIndex: 1 }}>
+      <section className="rsp-section-top" style={{ padding: '140px 48px 0', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
 
           {/* Feature 1 */}
-          <div className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingBottom: 120, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <div className="reveal rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingBottom: 120, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ background: 'rgba(6,4,10,0.5)', borderRadius: 16, border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden', backdropFilter: 'blur(12px)' }}>
               <div style={{ background: 'rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '16px 24px', fontSize: 11, color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em', fontFamily: 'monospace', textTransform: 'uppercase' }}>Quarterly Operational Review — Q1 2026</div>
               <div style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -549,7 +575,7 @@ export default function HomePageClient() {
           </div>
 
           {/* Feature 2 */}
-          <div className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingTop: 120, paddingBottom: 140 }}>
+          <div className="reveal rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingTop: 120, paddingBottom: 140 }}>
             <div>
               <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 20 }}>Security & compliance</p>
               <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 56px)', fontWeight: 400, color: 'white', lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 24 }}>
@@ -578,9 +604,9 @@ export default function HomePageClient() {
       </section>
 
       {/* ── INSIGHTS CARDS ── */}
-      <section style={{ padding: '0 48px 140px', position: 'relative', zIndex: 1 }}>
+      <section className="rsp-section" style={{ padding: '0 48px 140px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 0, alignItems: 'start' }}>
+          <div className="rsp-insights-layout" style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 0, alignItems: 'start' }}>
             <div style={{ paddingRight: 48, paddingTop: 12 }}>
               <h2 className="reveal" style={{ fontFamily: serif, fontSize: 'clamp(32px, 3.8vw, 54px)', fontWeight: 400, color: 'white', lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: 28 }}>From the<br />Campux desk</h2>
               <a href="/insights" className="reveal" style={{ display: 'inline-block', border: '1px solid rgba(255,255,255,0.4)', color: 'white', padding: '9px 20px', borderRadius: 6, fontSize: 13, fontWeight: 500, transition: 'background 0.2s' }}
@@ -589,7 +615,7 @@ export default function HomePageClient() {
                 View All Insights
               </a>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, alignItems: 'start' }}>
+            <div className="rsp-insights-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, alignItems: 'start' }}>
               {[
                 { delay: '', bg: 'linear-gradient(160deg,#2a1a10 0%,#1a0c08 100%)', tags: ['ENGINEERING'], title: "The Infrastructure Nobody Thinks About (Until It's 3am)", href: '/insights/the-infrastructure-nobody-thinks-about', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=320&fit=crop&q=80&auto=format' },
                 { delay: 'reveal-delay-1', bg: 'linear-gradient(160deg,#1a2a18 0%,#0e1810 100%)', tags: ['SECURITY'], title: 'Why Most Security Audits Miss the Point', href: '/insights', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&h=320&fit=crop&q=80&auto=format' },
@@ -617,8 +643,8 @@ export default function HomePageClient() {
       </section>
 
       {/* ── CONTACT FORM ── */}
-      <section id="contact-form" style={{ position: 'relative', zIndex: 1, padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+      <section id="contact-form" className="rsp-section" style={{ position: 'relative', zIndex: 1, padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="rsp-grid-2" style={{ maxWidth: 1320, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
           <div className="reveal">
             <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>Get in touch</p>
             <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 58px)', fontWeight: 400, color: 'white', letterSpacing: '-0.02em', lineHeight: 1.08, marginBottom: 24 }}>Tell us what you're dealing with.</h2>
@@ -649,7 +675,7 @@ export default function HomePageClient() {
                 setFormState('sending')
                 setTimeout(() => setFormState('sent'), 1200)
               }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
                   {([['name', 'Name', 'Your name', true], ['email', 'Email', 'your@email.com', true]] as const).map(([field, label, placeholder, required]) => (
                     <div key={field}>
                       <label style={{ display: 'block', fontSize: 12, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 8 }}>{label}</label>
@@ -708,7 +734,7 @@ export default function HomePageClient() {
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
 
           {/* Footer links */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr 1fr 1fr 1fr', gap: 40, paddingTop: 64, paddingBottom: 60 }}>
+          <div className="rsp-footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr 1fr 1fr 1fr', gap: 40, paddingTop: 64, paddingBottom: 60 }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
                 <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
@@ -743,7 +769,7 @@ export default function HomePageClient() {
             ))}
           </div>
 
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="rsp-footer-bottom" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)' }}>© 2026 Campux. All rights reserved.</p>
             <div style={{ display: 'flex', gap: 28 }}>
               {[['Terms & Conditions', '/terms'], ['Privacy Policy', '/privacy-policy'], ['Security', '/about']].map(([label, href]) => (
