@@ -79,9 +79,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: siteUrl,
-  },
+  alternates: {},
   verification: {
     // Add Google Search Console verification token here when available
     // google: "your-verification-token",

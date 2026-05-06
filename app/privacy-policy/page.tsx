@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Campux collects, uses, and protects personal data under applicable US privacy law in connection with its managed infrastructure and security operations services.",
   alternates: { canonical: "https://campux.co/privacy-policy" },
-  robots: { index: false, follow: false },
 }
 
 const serif = "var(--font-dm-serif), Georgia, serif"

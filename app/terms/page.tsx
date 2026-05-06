@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   title: "Terms & Conditions",
   description: "Terms and conditions governing Campux managed infrastructure and security operations services.",
   alternates: { canonical: "https://campux.co/terms" },
-  robots: { index: false, follow: false },
 }
 
 const serif = "var(--font-dm-serif), Georgia, serif"
