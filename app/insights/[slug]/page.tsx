@@ -23,14 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url: `${siteUrl}/insights/${post.slug}`,
       publishedTime: post.date,
       tags: post.tags,
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
       siteName: "Campux",
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: ["/og-image.png"],
     },
   }
 }
@@ -47,6 +45,7 @@ export default async function InsightsPostPage({ params }: { params: Promise<{ s
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
+    image: `${siteUrl}/insights/${post.slug}/opengraph-image`,
     datePublished: post.date,
     dateModified: post.date,
     author: {
@@ -60,7 +59,7 @@ export default async function InsightsPostPage({ params }: { params: Promise<{ s
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/og-image.png`,
+        url: `${siteUrl}/opengraph-image`,
       },
     },
     mainEntityOfPage: {

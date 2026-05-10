@@ -52,21 +52,12 @@ export const metadata: Metadata = {
     title: "Campux — Managed Infrastructure & Security Operations | US",
     description:
       "US-based managed infrastructure and security operations. Server estates, cloud environments, networks, databases, and compliance posture — operated as one accountable function.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Campux — Managed Infrastructure & Security Operations",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Campux — Managed Infrastructure & Security Operations",
     description:
       "US-based managed infrastructure and security operations for healthcare, financial services, and government. One team. No handoffs.",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -78,11 +69,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  alternates: {},
-  verification: {
-    // Add Google Search Console verification token here when available
-    // google: "your-verification-token",
   },
 };
 
@@ -96,7 +82,7 @@ const orgJsonLd = {
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/og-image.png`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
       },
@@ -135,10 +121,9 @@ const orgJsonLd = {
         "@type": "ContactPoint",
         email: "project@campux.co",
         contactType: "customer service",
-        areaServed: "GB",
+        areaServed: "US",
         availableLanguage: "English",
       },
-      sameAs: [],
     },
     {
       "@type": "WebSite",
@@ -146,11 +131,6 @@ const orgJsonLd = {
       url: siteUrl,
       name: "Campux",
       publisher: { "@id": `${siteUrl}/#organization` },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}/insights?q={search_term_string}` },
-        "query-input": "required name=search_term_string",
-      },
     },
   ],
 }

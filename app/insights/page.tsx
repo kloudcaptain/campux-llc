@@ -1,7 +1,8 @@
+import type { Metadata } from "next"
 import { blogPosts } from "@/app/data/blog"
 import InsightsClient from "./InsightsClient"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Insights — Infrastructure, Security & DevOps",
   description:
     "Operational thinking on infrastructure, security, cloud, and DevOps — written by engineers who manage these systems daily, not content teams. No filler, no trend pieces.",
