@@ -63,7 +63,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Where the paper-only approach breaks",
         paragraphs: [
           `The headline change in 4.0 was never the documentation. It was the introduction of requirements that only mean anything if you produce runtime evidence — telemetry, logs, attestations from systems that were actually doing the thing on the day the auditor asked.`,
-          `Requirement 6.4.3 is the cleanest example. Every script loaded on a page that touches cardholder data has to be inventoried, authorised, and monitored for integrity. The intent is obvious to anyone who watched the Ticketmaster breach play out in 2024, when attackers used a compromised third-party tag manager to skim payment details from the front end of a fully PCI-certified merchant. The certificate didn't fail. The control wasn't there in the first place.`,
+          `Requirement 6.4.3 is the cleanest example. Every script loaded on a page that touches cardholder data has to be inventoried, authorised, and monitored for integrity. The intent is obvious to anyone who studied the British Airways breach disclosed in 2018, when attackers modified a third-party script on the airline's payment page and skimmed more than 380,000 card details from a fully PCI-certified merchant. The certificate didn't fail. The control wasn't there in the first place.`,
           `Most mid-market merchants we have walked through 4.0 readiness can produce a spreadsheet of third-party scripts that was accurate the day it was compiled. They cannot produce a system that would have noticed when marketing added a new tag last Thursday. The auditor accepts the spreadsheet because the requirement is new and the interpretation is still settling. The skimmer doesn't.`,
         ],
       },
@@ -87,7 +87,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Magecart is the warning, not the worst case",
         paragraphs: [
-          `The Ticketmaster intrusion disclosed in 2024 was not the most sophisticated attack of the year. The technique — compromising a third-party script provider and exfiltrating card data from the client side — has been documented under the Magecart name since 2016. What made it notable was that the victim was a large, well-resourced organisation with mature server-side controls, undone by a part of the stack that historically sat outside the cardholder data environment in the auditor's mental model.`,
+          `The British Airways intrusion is the textbook case because the playbook hasn't materially changed. The technique — compromising a third-party script on a payment page and exfiltrating card data from the client side — has been documented under the Magecart name since 2016 and has continued in steady form through Newegg, Ticketmaster Brazil, and dozens of smaller merchants in the years since. What made BA notable was that the victim was a large, well-resourced organisation with mature server-side controls, undone by a part of the stack that historically sat outside the cardholder data environment in the auditor's mental model.`,
           `4.0 closes that gap by definition. The payment page is in scope. The scripts on the payment page are in scope. The tag manager that injects the scripts is in scope. Operators who haven't updated their CDE diagram to reflect this are working from an architecture that no longer matches the standard, and they will discover the mismatch either at the next audit or at the next incident.`,
         ],
       },

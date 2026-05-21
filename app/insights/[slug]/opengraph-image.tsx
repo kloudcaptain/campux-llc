@@ -25,8 +25,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background:
-            "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, transparent 46%), radial-gradient(ellipse 60% 38% at 92% 22%, rgba(140,28,80,0.55) 0%, transparent 42%), #0a0610",
+          background: "linear-gradient(135deg, #2a0a18 0%, #1a0612 45%, #0a0610 100%)",
         }}
       >
         <div

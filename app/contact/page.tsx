@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import ContactForm from "./ContactForm"
 
 export const metadata: Metadata = {
   title: "Contact Campux — Talk to Our Infrastructure Team",
@@ -67,52 +68,7 @@ export default function ContactPage() {
       <section className="rsp-contact-inner" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px 120px', display: 'grid', gridTemplateColumns: '1fr 420px', gap: 80, alignItems: 'start' }}>
 
         {/* FORM */}
-        <form
-          action="https://formspree.io/f/placeholder"
-          method="POST"
-          style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
-        >
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>First name</label>
-              <input name="firstName" type="text" required style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>Last name</label>
-              <input name="lastName" type="text" required style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>Work email</label>
-            <input name="email" type="email" required style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>Company</label>
-            <input name="company" type="text" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none' }} />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>What are you running?</label>
-            <textarea name="message" required rows={6} placeholder="Describe your environment — on-prem, cloud, hybrid, compliance obligations, team size, what is keeping you up at night." style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'white', fontFamily: 'inherit', outline: 'none', resize: 'vertical' }} />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>How urgent is this?</label>
-            <select name="urgency" style={{ background: 'rgba(10,6,14,0.95)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '13px 16px', fontSize: 15, color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', outline: 'none', appearance: 'none' }}>
-              <option value="">Select one</option>
-              <option value="urgent">Something is broken right now</option>
-              <option value="weeks">We need to act within weeks</option>
-              <option value="planning">We are planning ahead, not on fire</option>
-              <option value="exploring">Early stage, just exploring</option>
-            </select>
-          </div>
-
-          <button type="submit" style={{ background: 'white', color: '#111', border: 'none', padding: '16px 32px', borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '-0.01em', alignSelf: 'flex-start' }}>
-            Send message
-          </button>
-        </form>
+        <ContactForm />
 
         {/* CONTACT DETAILS */}
         <div style={{ paddingTop: 8 }}>

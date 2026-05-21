@@ -18,7 +18,7 @@ export default function HomePageClient() {
   const particlesCanvasRef = useRef<HTMLCanvasElement>(null)
   const [openAcc, setOpenAcc] = useState<number | null>(null)
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
-  const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle')
+  const [formState, setFormState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [panelData, setPanelData] = useState<{ tag: string; title: string; body: string; image?: string }>({ tag: 'Select a service line', title: 'One team. Everything under one roof.', body: "We are not a helpdesk, a cloud reseller, or a consultancy that delivers reports and moves on. We manage infrastructure as an ongoing function and own the operational outcomes — not just the activity." })
   const [mobMenu, setMobMenu] = useState(false)
 
@@ -670,11 +670,42 @@ export default function HomePageClient() {
                 <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.45)' }}>We'll be in touch within one business day.</p>
               </div>
             ) : (
-              <form onSubmit={e => {
+              <form onSubmit={async e => {
                 e.preventDefault()
+                if (formState === 'sending') return
+                const honeypot = (e.currentTarget.elements.namedItem('company_url') as HTMLInputElement | null)?.value || ''
                 setFormState('sending')
-                setTimeout(() => setFormState('sent'), 1200)
+                try {
+                  const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      source: 'home',
+                      name: form.name,
+                      email: form.email,
+                      company: form.company,
+                      message: form.message,
+                      company_url: honeypot,
+                    }),
+                  })
+                  if (!res.ok) {
+                    setFormState('error')
+                    return
+                  }
+                  setFormState('sent')
+                  setForm({ name: '', email: '', company: '', message: '' })
+                } catch {
+                  setFormState('error')
+                }
               }}>
+                <input
+                  type="text"
+                  name="company_url"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0, pointerEvents: 'none' }}
+                />
                 <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
                   {([['name', 'Name', 'Your name', true], ['email', 'Email', 'your@email.com', true]] as const).map(([field, label, placeholder, required]) => (
                     <div key={field}>
@@ -723,6 +754,11 @@ export default function HomePageClient() {
                   style={{ width: '100%', background: 'white', color: '#111', border: 'none', borderRadius: 8, padding: '14px 24px', fontSize: 15, fontWeight: 700, cursor: formState === 'sending' ? 'wait' : 'pointer', fontFamily: 'inherit', letterSpacing: '-0.01em', transition: 'opacity 0.2s', opacity: formState === 'sending' ? 0.6 : 1 }}>
                   {formState === 'sending' ? 'Sending…' : 'Send message'}
                 </button>
+                {formState === 'error' && (
+                  <p role="alert" style={{ marginTop: 14, fontSize: 13, color: '#ff8a65', lineHeight: 1.5 }}>
+                    Something went wrong. Please email <a href="mailto:project@campux.co" style={{ color: '#ff8a65', textDecoration: 'underline' }}>project@campux.co</a> directly.
+                  </p>
+                )}
               </form>
             )}
           </div>

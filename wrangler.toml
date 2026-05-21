@@ -1,6 +1,8 @@
 name = "campux"
 compatibility_date = "2025-01-01"
+main = "./worker/index.ts"
 
 [assets]
 directory = "./out"
+binding = "ASSETS"
 not_found_handling = "404-page"
