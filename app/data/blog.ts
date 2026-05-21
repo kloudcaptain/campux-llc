@@ -44,6 +44,473 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "pci-dss-4-0-mandatory-mid-market-gaps",
+    title: "PCI-DSS 4.0 Is Now Mandatory — What Mid-Market Operators Are Still Missing",
+    date: "2026-05-19",
+    readTime: "9 min read",
+    tags: ["PCI-DSS", "Compliance", "Financial Services", "Payments"],
+    category: "Security",
+    excerpt:
+      "PCI-DSS 4.0 compliance became fully mandatory on 31 March 2025. Most mid-market operators passed the audit on paper while leaving the new runtime requirements quietly unevidenced.",
+    sections: [
+      {
+        paragraphs: [
+          `The audit closed in May. The QSA signed the Report on Compliance. The card brands got their attestation. Somewhere in the same week, a developer pushed a change to the checkout page that swapped one analytics tag for another, and nobody in the organisation could have told you whether the new script was loading anything it shouldn't.`,
+          `That gap — between the document that says you are PCI-DSS 4.0 compliant and the system that would actually behave compliantly under attack — is where most mid-market operators are sitting right now. The full PCI-DSS 4.0 requirements became mandatory on 31 March 2025, and a year into the regime, the pattern is consistent. The companies who treated 4.0 as 3.2.1 with new paperwork passed their first Report on Compliance and inherited a set of obligations they are not actually meeting.`,
+        ],
+      },
+      {
+        heading: "Where the paper-only approach breaks",
+        paragraphs: [
+          `The headline change in 4.0 was never the documentation. It was the introduction of requirements that only mean anything if you produce runtime evidence — telemetry, logs, attestations from systems that were actually doing the thing on the day the auditor asked.`,
+          `Requirement 6.4.3 is the cleanest example. Every script loaded on a page that touches cardholder data has to be inventoried, authorised, and monitored for integrity. The intent is obvious to anyone who watched the Ticketmaster breach play out in 2024, when attackers used a compromised third-party tag manager to skim payment details from the front end of a fully PCI-certified merchant. The certificate didn't fail. The control wasn't there in the first place.`,
+          `Most mid-market merchants we have walked through 4.0 readiness can produce a spreadsheet of third-party scripts that was accurate the day it was compiled. They cannot produce a system that would have noticed when marketing added a new tag last Thursday. The auditor accepts the spreadsheet because the requirement is new and the interpretation is still settling. The skimmer doesn't.`,
+        ],
+      },
+      {
+        heading: "Authenticated scans, targeted risk, and the customised approach",
+        paragraphs: [
+          `Requirement 11.3.1.2 asks for authenticated internal vulnerability scans on a defined cadence. The point is that an unauthenticated scan tells you what an outsider sees on the network, which is rarely the surface that gets compromised. An authenticated scan tells you what the configured, patched, real version of the host actually looks like. Most teams we audit are still running the same Nessus job they had in 2019, unauthenticated, and pasting the clean report into the evidence folder.`,
+          `Requirement 12.3.1 introduced the targeted risk analysis — a written assessment, per control, of why your chosen frequency or method is sufficient. It is meant to replace the lazy "we do it annually because the standard says annually" reasoning with something defensible. In practice, organisations are producing one TRA template, copying it across every applicable control, and changing the title. That is not what the standard asks for, and it will not survive the second cycle of audits as QSAs sharpen their reading.`,
+          `The customised approach — the option to meet a requirement with a control of your own design, provided you can demonstrate equivalent risk reduction — is the most powerful and most misused part of 4.0. Done well, it lets a mature organisation map their existing controls to the intent of the standard rather than contorting their architecture to match the defined approach. Done badly, it becomes a paragraph of hand-waving attached to a control that does less than the original requirement asked for.`,
+        ],
+      },
+      {
+        heading: "What runtime evidence actually looks like",
+        paragraphs: [
+          `The gap between documented compliance and operational compliance closes when you start thinking of the requirement as a query you should be able to run, not a paragraph you should be able to point to. For 6.4.3, the query is: show me every script currently being served from a checkout page, who authorised it, when its hash last changed, and what alerted when it changed. If the answer requires a meeting, the control isn't there.`,
+          `For 11.3.1.2, the query is: when did we last run an authenticated scan against this segment, what credentials did it use, and what findings remained open beyond their remediation window. For 12.3.1, the query is: which controls have a current targeted risk analysis, who signed it, and when is it due for review. These are not exotic questions. They are the operational state a QSA will start asking for once the grace period of charitable interpretation runs out.`,
+          `Mid-market operators tend to underinvest in the systems that produce these answers because the cost is concentrated and the benefit is diffuse. A script integrity monitor, an authenticated scanning workflow, a risk register that someone actually maintains — none of them produce revenue. All of them produce the difference between a clean ROC and the kind of post-breach forensic report that ends careers.`,
+          `The economics rarely look attractive in isolation. A subresource integrity monitoring tool costs a few thousand dollars a year and produces a stream of alerts that someone has to triage. An authenticated scanning programme requires credential management, host onboarding, and the ongoing work of sifting findings from noise. A maintained risk register requires a named owner and a calendar of review meetings. Each line item, on its own, is an easy cut in a budget cycle. The difficulty is that the consequences only show up under attack, and by then the cost comparison is no longer with the tooling — it is with the breach response, the card brand fines, and the time the merchant spends suspended from card acceptance while remediation is verified.`,
+        ],
+      },
+      {
+        heading: "Magecart is the warning, not the worst case",
+        paragraphs: [
+          `The Ticketmaster intrusion disclosed in 2024 was not the most sophisticated attack of the year. The technique — compromising a third-party script provider and exfiltrating card data from the client side — has been documented under the Magecart name since 2016. What made it notable was that the victim was a large, well-resourced organisation with mature server-side controls, undone by a part of the stack that historically sat outside the cardholder data environment in the auditor's mental model.`,
+          `4.0 closes that gap by definition. The payment page is in scope. The scripts on the payment page are in scope. The tag manager that injects the scripts is in scope. Operators who haven't updated their CDE diagram to reflect this are working from an architecture that no longer matches the standard, and they will discover the mismatch either at the next audit or at the next incident.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this because we have spent the last year working through PCI-DSS 4.0 readiness with operators in payments, healthcare billing, and ecommerce, and the same conversation happens almost every time. The certificate is on the wall. The control is not in the system. The distance between the two is the actual security posture, and closing it is the work the audit cannot do for you.`,
+          `Compliance is the floor of the conversation, not the ceiling. The merchants who treated 4.0 as a chance to actually instrument their environment will spend the next audit cycle answering questions easily. The ones who treated it as a paperwork exercise will spend it explaining why the runtime didn't match the report.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "disaster-recovery-is-not-a-backup-strategy",
+    title: "Disaster Recovery Is Not a Backup Strategy",
+    date: "2026-05-15",
+    readTime: "8 min read",
+    tags: ["Disaster Recovery", "Reliability", "RTO", "RPO", "Infrastructure"],
+    category: "Engineering Culture",
+    excerpt:
+      "Understanding disaster recovery vs backup is the difference between restoring data and restoring the business. Most organisations have the first and assume they have the second.",
+    sections: [
+      {
+        paragraphs: [
+          `The backups ran. The S3 lifecycle policy worked. The nightly snapshots are sitting in another region, encrypted, and the dashboard is green. At 4am on a Wednesday, none of that helps the engineer staring at a wiped production estate, trying to remember which runbook references the bootstrap account that nobody has logged into for fourteen months.`,
+          `The conversation about disaster recovery vs backup is one most organisations have already had, badly, with themselves. They have backups. They believe they have disaster recovery. The two are not the same thing, and the gap between them is where the recovery actually fails.`,
+        ],
+      },
+      {
+        heading: "What backups actually buy you",
+        paragraphs: [
+          `Backups are a snapshot. They answer a single question — can we get the data back — and on a good day they answer it well. The technology is mature, the costs are predictable, and any competent engineer can configure them. They are necessary, and on their own they are not nearly sufficient.`,
+          `The hard half of recovery is the documented, practised path from "everything is on fire" to "we are serving traffic again." That path includes the order in which services come back, the dependencies between them, the credentials that need to be rotated because the old ones are presumed compromised, the DNS changes, the certificate renewals, the data integrity checks that confirm the restored state is actually consistent. None of that lives in the backup. All of it has to be written down, tested, and owned by someone whose job it is to keep it current.`,
+        ],
+      },
+      {
+        heading: "RTO and RPO are commitments, not preferences",
+        paragraphs: [
+          `Recovery Time Objective and Recovery Point Objective get treated, in too many planning documents, as engineering choices. They are not. They are commitments the business makes to its customers and its regulators about how much downtime and how much data loss are tolerable. The technology has to be built to meet them, not the other way around.`,
+          `An RTO of four hours sounds reasonable until you map it against the actual recovery sequence. Restoring a thirty-terabyte database from a cold snapshot in another region is not a four-hour operation if you've never timed it. Rebuilding the application tier from infrastructure-as-code is not a four-hour operation if half the templates haven't been run in eighteen months and reference deprecated AMI IDs. Cutting DNS over isn't a four-hour operation if the propagation TTL was set to 86,400 seconds by someone who is no longer at the company.`,
+          `An RPO of fifteen minutes is a different conversation. It rules out nightly snapshots. It implies streaming replication, transaction log shipping, or continuous backup with point-in-time recovery — none of which is provided by the default settings on the database your team set up three years ago.`,
+        ],
+      },
+      {
+        heading: "The 2024 lesson everybody had backups",
+        paragraphs: [
+          `CDK Global was breached in June 2024, and the ransomware attack took down the dealer management systems that roughly 15,000 US auto dealerships rely on. Sales, service scheduling, parts inventory, financing — all paused for over three weeks while CDK worked through recovery. Dealerships ran on paper. The damages have been estimated north of a billion dollars across the affected dealer network.`,
+          `CDK had backups. That was never the issue. The issue was the time to restore a multi-tenant SaaS platform safely while a sophisticated actor still had a foothold somewhere in the environment. The recovery wasn't a tape restore. It was a full forensic rebuild against a moving target, and the RTO that customers had implicitly assumed — measured in hours — turned out to be measured in weeks.`,
+          `Halliburton was hit in August 2024 with a similar pattern — a disruptive ransomware intrusion that forced the company to take systems offline while it investigated and rebuilt. Change Healthcare in February 2024 followed the same arc, with months of downstream disruption to claims processing and prior authorisations across the US healthcare system. Each of these organisations had backups. None of them recovered within a window that the rest of the business considered acceptable, because nobody had drawn the line between "we have data" and "we have a working business" and stress-tested the path between the two.`,
+          `The pattern repeats because the failure mode is structural, not technical. Backups answer a procurement question — do we hold a recoverable copy of the data — and procurement was happy. Recovery answers an operational question — can we be back in production by Tuesday with the right data and the right access — and the operational answer was never assembled in advance. By the time the incident exposes the gap, the only path forward is to discover the answer in real time, under pressure, with the wrong people in the room.`,
+        ],
+      },
+      {
+        heading: "The recovery you haven't practised is the recovery you don't have",
+        paragraphs: [
+          `Tested recovery is a different artefact from documented recovery. The documented version describes what should happen. The tested version is what happens when you actually try it, in conditions that approximate the real incident, with the people who would actually be on the call. The two differ in ways that are only ever visible once you run the exercise.`,
+          `The runbook says restore the database from snapshot. The exercise reveals that the snapshot encryption key is in a KMS in the failed region. The runbook says fail over DNS. The exercise reveals that the failover record is in a Route 53 hosted zone that the new account doesn't have access to. The runbook says alert customers. The exercise reveals that the status page provider is hosted in the same cloud account that just went down.`,
+          `Game days catch these. Tabletops surface the organisational gaps — who has authority to declare an incident, who talks to the press, who calls the insurer. Neither replaces the other. Together they convert disaster recovery from a document into a practised capability, and the difference becomes visible the day you need it.`,
+          `The cadence matters too. An annual exercise produces an annual snapshot of readiness. Quarterly exercises, even small ones — a partial restore drill, a credential rotation walk-through, a DNS failover test in a non-production environment — keep the muscle warm and surface drift between the major reviews. Engineering teams that practise this way tend to discover problems at the rate they can fix them, rather than discovering all of them on the day of the real incident.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this because the calls we get after major incidents almost always start the same way. The backups were fine. The data is recoverable. The recovery itself is going to take a week, and the customer-facing commitment was four hours. By that point there is nothing to do except work the incident and renegotiate the SLAs in the next contract cycle.`,
+          `Disaster recovery is an investment with no obvious return until the day it has the only return that matters. The organisations that take it seriously practise it before they need it. The ones that don't discover, on the worst day of the year, that having the data was never the same thing as being able to operate.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "hipaa-in-the-cloud-shared-responsibility",
+    title: "HIPAA in the Cloud Isn't Inherited: What Healthcare Operators Get Wrong About Shared Responsibility",
+    date: "2026-05-13",
+    readTime: "9 min read",
+    tags: ["HIPAA", "Healthcare", "Cloud", "Compliance"],
+    category: "Security",
+    excerpt:
+      "HIPAA cloud shared responsibility is the most misunderstood phrase in healthcare IT. A signed BAA is the start of your obligations, not the end of them.",
+    sections: [
+      {
+        paragraphs: [
+          `A health system signs a Business Associate Agreement with AWS, migrates the patient portal into a VPC, and the IT director tells the board the workload is now HIPAA compliant. Six months later a misconfigured S3 bucket gets indexed by a search engine, and the resulting OCR investigation finds that the BAA covered exactly what it said it covered, and nothing the organisation actually needed it to cover.`,
+          `HIPAA cloud shared responsibility is one of those phrases that sounds reassuring until you read the agreement underneath it. The cloud provider takes responsibility for the security of the cloud. The covered entity takes responsibility for security in the cloud. Where one ends and the other begins is the entire conversation, and most healthcare operators are still working from a mental model that gives the cloud provider more credit than the contract does.`,
+        ],
+      },
+      {
+        heading: "What the BAA actually covers",
+        paragraphs: [
+          `A BAA from AWS, Azure, or Google Cloud is a binding commitment that the underlying platform meets HIPAA's technical, administrative, and physical safeguards as they apply to the infrastructure layer. Physical security of the data centres. Hypervisor isolation. The integrity of the managed services on the eligible services list. These are real obligations and the major providers take them seriously.`,
+          `The BAA does not cover your IAM policy that grants a developer read access to a production bucket because they needed to debug something in 2022 and nobody revoked it. It doesn't cover the snapshot you exported to a non-HIPAA-eligible service for an analytics experiment. It doesn't cover the engineer who pulled a deidentified dataset to their laptop that turned out to be reidentifiable when joined with a public registry. It doesn't cover the third-party SaaS the marketing team integrated last quarter that now receives webhook payloads containing PHI.`,
+          `The list of things the BAA does not cover is, in practice, longer than the list of things it does. That is not a defect in the agreement. It is the structure of the cloud model, and it requires the covered entity to do the work of identifying which controls are still theirs.`,
+        ],
+      },
+      {
+        heading: "The Change Healthcare lesson",
+        paragraphs: [
+          `In February 2024, Change Healthcare — the UnitedHealth subsidiary that processes roughly a third of US medical claims — was breached by the ALPHV/BlackCat ransomware group. The initial access was an exposed Citrix portal without multi-factor authentication. The ransom paid was reported at $22 million. The downstream effect was a months-long disruption to pharmacy claims, prior authorisations, and provider payments across the US healthcare system. Notifications later confirmed that PHI for approximately 190 million individuals was affected, making it the largest healthcare breach in US history.`,
+          `The technical lesson is the one everybody focused on first — MFA on every internet-facing access point, including the ones that have been there forever and nobody is sure who owns. The shared-responsibility lesson is the one that deserves more attention. Change Healthcare's parent operated in a cloud-hybrid environment with sophisticated tooling. The control that failed wasn't a cloud provider obligation. It was an authentication policy on a service the organisation owned, and no BAA in the world would have changed the outcome.`,
+        ],
+      },
+      {
+        heading: "What healthcare operators still get wrong",
+        paragraphs: [
+          `The most common gap is encryption posture. The BAA confirms that managed services support encryption at rest and in transit. It does not confirm that your buckets have encryption enabled, that your snapshots are encrypted with customer-managed keys, that your RDS instances aren't running with default TLS settings that accept downgrade attacks. We routinely find healthcare workloads where the engineer believed encryption was on because the provider supports it, and the actual configuration tells a different story.`,
+          `Access logging is the next gap. CloudTrail or Activity Log is enabled at the account level, but the S3 data events that would show who actually read which object are off by default, because turning them on costs money and nobody costed it. The audit trail required by 164.312(b) ends at the API call to list objects. It doesn't show the actual access to the PHI inside them.`,
+          `Vendor sprawl is the third gap and the one nobody wants to talk about. The official PHI inventory says protected health information lives in three systems. The reality, surfaced when we run a discovery, is that PHI has been copied into a data warehouse for analytics, into a customer support tool for triage, into a marketing automation platform for outreach, and into a developer's local SQLite cache for debugging. Each of those copies is a new system that needs a BAA, an inventory entry, and a deletion path. Few have any of the three.`,
+          `Identity drift compounds all of these. The IAM role that was created for a one-time migration in 2022 still has full access to a production bucket containing claims data. The third-party vendor account provisioned for a discontinued integration is still trusted by a cross-account policy that nobody has reviewed. The federated user from a partner organisation whose contract ended a year ago can still assume a role into the analytics account. Each of these is a finding that an OCR investigator or a determined attacker would surface in an afternoon, and the work of cleaning them up is exactly the kind of unglamorous maintenance that gets postponed until something forces the conversation.`,
+        ],
+      },
+      {
+        heading: "OCR enforcement is sharpening",
+        paragraphs: [
+          `The HHS Office for Civil Rights has been visibly more active in 2024 and 2025, with a series of enforcement actions targeting risk-analysis failures, missing access controls, and inadequate response to known vulnerabilities. The pattern of settlements has shifted from large breaches with obvious negligence toward smaller incidents where the underlying programme was demonstrably weak — a six-figure settlement attached to a breach affecting a few thousand patients, with the citation pointing at a risk analysis that hadn't been refreshed in years.`,
+          `That direction matters for mid-sized providers and health-tech operators who have historically assumed they were too small to attract OCR attention. The data suggests that the threshold for an enforceable case has dropped, and the questions investigators ask are operational ones — show us the risk analysis, show us the access reviews, show us the BAA inventory, show us the incident response test results. Documents that exist only when the auditor arrives do not survive these questions.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this because the conversation we have most often with healthcare clients starts with the same misconception. We are on AWS, we have a BAA, the workload is compliant. The first part is true. The second is true. The third is a conclusion that doesn't follow from the first two, and the gap between the assumption and the reality is where the breach happens.`,
+          `Cloud is a powerful environment for healthcare workloads. It is also a model that requires the covered entity to own more of the security stack than the on-premises equivalent ever asked of them. Treating the BAA as a starting point, not a finish line, is the difference between a programme that survives an OCR review and one that explains itself in the aftermath of an incident.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "hidden-cost-of-cloud-migration",
+    title: "The Hidden Cost of Cloud Migration: What AWS Cost Calculators Don't Show",
+    date: "2026-05-09",
+    readTime: "9 min read",
+    tags: ["Cloud", "FinOps", "AWS", "Cost Optimisation"],
+    category: "DevOps & Deployment",
+    excerpt:
+      "The hidden cloud migration costs aren't compute and storage. They're the line items the calculator never asked about and the engineering hours nobody costed.",
+    sections: [
+      {
+        paragraphs: [
+          `The calculator said $47,000 a month. The first invoice said $89,000. By the third month, after the team had wired up observability, finished the lift-and-shift of the secondary environment, and turned on cross-region replication for the database, the run rate was approaching $140,000 and the CFO wanted a meeting.`,
+          `Every cloud migration story we've seen at scale has a version of this moment. The hidden cloud migration costs are not hidden in any conspiratorial sense — they are itemised on the bill, available in the documentation, and clearly explained in the FAQ if you happen to read the right page. They are hidden in the sense that the cost calculator the migration team used to justify the project to the board does not ask about them, and the team building the architecture has no reason to surface them until the bill arrives.`,
+        ],
+      },
+      {
+        heading: "The line items the calculator skips",
+        paragraphs: [
+          `Data transfer is the most predictable surprise. EC2 to internet egress on AWS is $0.09 per GB in most regions for the first 10 TB, and the volume discounts only become meaningful at scale that mid-market workloads don't reach. A workload that moves 50 TB a month out of the cloud — not unusual for a backend serving a web and mobile audience — costs roughly $4,500 just in egress before you have priced a single compute hour.`,
+          `NAT gateway is the next one. The price is $0.045 per hour for the gateway itself, plus $0.045 per GB of data processed. A single NAT gateway running continuously costs $32 a month, which sounds trivial, until you realise that an architecture with three availability zones and isolated subnets per environment ends up with twenty of them, and the data processing charge on a moderately busy private subnet can run into thousands a month. We have seen organisations whose NAT gateway data processing fees exceeded their EC2 spend.`,
+          `CloudWatch ingestion deserves its own paragraph. Logs are billed at $0.50 per GB ingested in most regions. A verbose application logging at debug level can produce hundreds of gigabytes a month per service. Multiply by the number of services. Add custom metrics at $0.30 each per month. Add the dashboards, the alarms, the contributor insights rules. A non-trivial production environment can run a four-figure CloudWatch bill without anyone making a deliberate decision to spend that much.`,
+        ],
+      },
+      {
+        heading: "The infrastructure that compounds",
+        paragraphs: [
+          `Snapshot retention follows the same pattern. The first snapshot of a 500 GB volume is roughly $25 a month at standard EBS snapshot pricing. The seventh nightly snapshot, retained because the data retention policy says seven days, is another $25 minus whatever the incremental changes deduplicate. The monthly snapshot retained for a year is another $25. None of these are individually expensive. The accumulated snapshot bill across a hundred volumes and a multi-tier retention policy is regularly the third largest line on the invoice.`,
+          `Cross-AZ traffic is the one that catches teams who designed for resilience without modelling the cost. Traffic between availability zones is $0.01 per GB in each direction. A chatty microservice architecture with services placed across three AZs for high availability can produce terabytes of inter-AZ traffic a month, and the bill makes a strong case for either re-thinking the placement strategy or accepting that resilience has a recurring price tag.`,
+          `Observability vendors add their own markup on top. Datadog, New Relic, and the modern equivalents typically charge per host, per container, per custom metric, per million events ingested. A migration that replaces a single on-premises monitoring server with a per-host SaaS bill can quietly add six figures a year to operating costs, justified entirely on the basis of features the team is not yet using.`,
+        ],
+      },
+      {
+        heading: "The engineering hours nobody costed",
+        paragraphs: [
+          `The migration plan budgeted for the lift. It did not budget for the steady-state operational load — the engineer hours spent debugging cost spikes, tagging resources for chargeback, writing Lambda functions to enforce lifecycle policies, building the dashboards that show finance what their teams are spending. FinOps work is real engineering work and on most teams it is unfunded, which means it doesn't happen, which means the bill keeps growing in ways nobody is reviewing.`,
+          `The FinOps Foundation's 2024 State of FinOps report estimated that organisations were wasting upward of 30% of their cloud spend on idle resources, oversized instances, and forgotten infrastructure. That number has been remarkably stable across years of the same survey, which suggests not that organisations are getting worse at cost management, but that the rate at which new waste accumulates roughly matches the rate at which the FinOps team can address it.`,
+          `The other engineering cost is the design tax. Cloud architectures that minimise the bill look different from cloud architectures that maximise developer convenience. Reserved instances and savings plans require a forecast nobody wants to commit to. Spot instances require a workload that tolerates interruption. Right-sizing requires baseline data that the team hasn't been collecting. Each of these optimisations is a meaningful percentage off the bill, and each one requires engineering effort that competes with feature work. Teams that haven't budgeted for the optimisation work tend to pay the unoptimised price indefinitely.`,
+        ],
+      },
+      {
+        heading: "37signals and the case for re-evaluation",
+        paragraphs: [
+          `In 2023, 37signals — the company behind Basecamp and HEY — announced they were exiting the cloud for most of their workloads, citing an annual cloud bill of roughly $3.2 million and projecting savings of around $7 million over five years by moving back to colocated hardware. The numbers were controversial and the conclusions were specific to a workload with predictable scale, mature operations, and the engineering capability to run their own infrastructure. The case became a touchstone not because every workload should follow the same path, but because it forced a conversation that the cloud-by-default consensus had largely suppressed.`,
+          `The honest reading is not that cloud is a mistake. It is that the cloud-versus-on-prem decision is a workload-by-workload analysis, and the calculator that compared cloud against a hypothetical data centre at the start of a migration is not the right tool to make the inverse comparison three years later. Workloads with steady, predictable load and high data egress tend to look very different on the cloud bill than they did in the original business case.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this because we spend a meaningful share of our engagements helping clients understand where their cloud bill actually goes. The conversation almost always uncovers two things — line items the team didn't know were on the invoice, and architectural decisions made for reasons that no longer apply but that continue to cost money every hour of every day.`,
+          `Cloud cost optimisation is not glamorous work. It is the slow accumulation of small improvements, governance that prevents the next surprise, and the discipline to look at the bill carefully rather than just paying it. The teams that do this well end up with cloud costs that scale with usage. The ones that don't end up with cloud costs that scale with neglect.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "soc-2-type-ii-realistic-timeline",
+    title: "SOC 2 Type II in 12 Months: A Realistic Operator's Timeline",
+    date: "2026-05-06",
+    readTime: "9 min read",
+    tags: ["SOC 2", "Compliance", "Audit", "B2B"],
+    category: "Security",
+    excerpt:
+      "A realistic SOC 2 Type II timeline is twelve months, not three. Compressing it tends to produce a Type I report and a Type II report nobody can pass.",
+    sections: [
+      {
+        paragraphs: [
+          `The deal closed on a Wednesday. The procurement team wanted a SOC 2 report by end of quarter. The sales engineer promised a Type I within eight weeks and a Type II by year-end, and the head of engineering, who had heard "SOC 2" exactly twice before, agreed to the timeline because the alternative was losing a seven-figure ARR commitment.`,
+          `That conversation is the origin of most failed SOC 2 programmes. A realistic SOC 2 Type II timeline is twelve months, not three, and the compression that happens when sales drives the deadline produces a Type I report that closed the deal and a Type II audit a year later that quietly fails because nobody could sustain the controls in production.`,
+        ],
+      },
+      {
+        heading: "Type I and Type II are different artefacts",
+        paragraphs: [
+          `A Type I report says: as of a single point in time, the organisation has designed controls that, if operating effectively, would meet the relevant Trust Services Criteria. The auditor confirms the controls exist on paper and that the design is sound. The whole engagement can be completed in a few weeks once the underlying work is done.`,
+          `A Type II report says something materially different. It says: across a defined observation period — typically six to twelve months — the controls operated effectively, and the auditor has sampled the evidence to confirm it. The deliverable is longer, the assurance is much higher, and the buyers who actually care about SOC 2 will tell you that Type I gets you onto the shortlist and Type II is what gets you signed.`,
+          `The mistake that keeps repeating is treating the two as stages of the same project. They aren't. Type I is a snapshot. Type II is a film, and the film has to actually run for the observation window before there is anything to audit.`,
+        ],
+      },
+      {
+        heading: "Month 0: readiness, honestly done",
+        paragraphs: [
+          `The readiness assessment is the only part of the timeline that doesn't reward rushing. A serious readiness exercise takes four to six weeks and produces a gap analysis against the Trust Services Criteria you've chosen — Security at minimum, plus whichever of Availability, Confidentiality, Processing Integrity, and Privacy are relevant to your customers.`,
+          `What it surfaces is rarely a surprise to anyone who has worked at the company for more than a year. The access review that was supposed to happen quarterly and last happened eighteen months ago. The change management process that says all production changes go through code review when in practice the founders push directly to main. The vendor management programme that consists of a spreadsheet with thirty entries and a hundred and forty vendors actually in use.`,
+        ],
+      },
+      {
+        heading: "Months 1 to 3: gap remediation",
+        paragraphs: [
+          `Closing the gaps is the work nobody enjoys and the work that determines whether the audit ever succeeds. Onboarding and offboarding workflows have to be documented and consistently followed, not just for engineers but for everyone with access to any system in scope. Access reviews have to happen on whatever cadence you've committed to, with evidence that someone actually looked at the output and made a decision. Backup and restoration procedures have to be tested with a real restore, not a checkbox confirming the snapshot exists.`,
+          `The instinct at this stage is to write policies first and operationalise them later. That sequence almost always fails the Type II. The auditor isn't sampling your policy document, they are sampling the evidence that the activity described in the policy actually happened. A policy written in February that the team didn't start practising until August produces six months of clean evidence and six months that won't survive the sampling.`,
+        ],
+      },
+      {
+        heading: "Months 3 to 9: the observation window nobody warned you about",
+        paragraphs: [
+          `Once the controls are in place, the observation window starts. Nothing dramatic happens during this period from the outside. The internal experience is the opposite — every access change, every code deployment, every vendor onboarding, every backup test is now an evidence-generating event, and the systems that produce that evidence need to keep producing it reliably for the duration.`,
+          `The failure mode here is drift. A control that worked in month four stops working in month six because the engineer who maintained it left. A vendor added in month seven doesn't go through the procurement workflow because the workflow felt like overhead. A production change in month eight skipped the change management ticket because it was an emergency. Each of these is a finding the auditor will eventually surface, and the cumulative effect is the difference between a clean report and a qualified one.`,
+          `The teams that get through Type II cleanly tend to have someone — internal compliance officer, fractional security leader, or external partner — whose actual job is watching the evidence streams during the observation window and catching drift before it becomes an exception.`,
+        ],
+      },
+      {
+        heading: "Months 10 to 12: fieldwork, report, and the price tag",
+        paragraphs: [
+          `Fieldwork takes four to eight weeks and is mostly the auditor pulling samples from the evidence you've been generating. Findings come back, you respond, the auditor either accepts the response or notes the exception, and a few weeks later the report arrives. Total elapsed time from readiness kickoff to signed Type II report is realistically twelve to fourteen months for a mid-market organisation doing this for the first time.`,
+          `Cost lands between $30,000 and $80,000 in audit fees depending on scope, plus the internal time spent on remediation and evidence collection, plus whatever you spend on tooling — Drata, Vanta, Secureframe, or a hand-rolled equivalent. The tooling helps; it does not replace the operational discipline, and a SOC 2 programme that depends entirely on a compliance platform tends to surface the same drift findings the second cycle that it did the first.`,
+          `The internal time cost is the number that tends to surprise founders. A reasonable estimate for a first-time programme at a fifty-person company is between 400 and 800 person-hours across engineering, IT, HR, and finance — spread across the year, but concentrated in the readiness and fieldwork phases. Engineering loses roughly a quarter of one senior person's time for the duration. If that capacity isn't planned in, it comes out of feature delivery, and the friction between the security programme and the product roadmap becomes the politics that quietly stalls the audit.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this because the sales-driven timeline is the single most common cause of failed SOC 2 programmes we see. The deal closes on the strength of a Type I, the Type II observation window starts immediately, the team that built the controls moves on to other priorities, and twelve months later the auditor produces a report nobody wants to send to a customer.`,
+          `A SOC 2 programme is an operational commitment, not a procurement deliverable. The organisations that treat it as the first lets the report speak honestly about how they run. The ones that treat it as the second find out, on the second cycle, that the controls have to actually work for the certificate to mean anything.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "msp-contract-3am-coverage-gap",
+    title: "Why Your MSP Contract Doesn't Cover the Things That Wake You Up at 3am",
+    date: "2026-04-29",
+    readTime: "8 min read",
+    tags: ["Managed Services", "MSP", "Contracts", "Vendor Risk"],
+    category: "Engineering Culture",
+    excerpt:
+      "The MSP contract coverage gap is the space between what the SLA measures and what your customers actually experience. The two have rarely been the same document.",
+    sections: [
+      {
+        paragraphs: [
+          `The application was down for forty minutes. The status page on the MSP's portal stayed green the entire time. When the post-incident report arrived, it noted that all monitored endpoints had returned 200 OK throughout the incident window, and therefore the SLA had not been breached. The credit owed for the outage was zero. The refunds owed to customers, by the operating company's own published guarantees, were closer to $200,000.`,
+          `That gap — between what the MSP contract measures and what the business actually experiences — is the MSP contract coverage gap, and it is structural. The SLA wasn't written to measure customer experience. It was written to measure something the provider could control and report on consistently. The two have rarely been the same document.`,
+        ],
+      },
+      {
+        heading: "What 99.9% uptime actually measures",
+        paragraphs: [
+          `Most managed services uptime guarantees are calculated against an external ping. The provider pings the load balancer every minute. If it responds, the minute counts as up. 99.9% of those minutes adds up to a clean monthly report, regardless of what the application was actually doing during the minutes in question.`,
+          `A login endpoint that returns 200 OK with a generic error page is up by this measure. A checkout flow that completes the payment step and then fails to record the order is up by this measure. A database that has fallen over to a read-only replica and is silently rejecting writes is up by this measure, because the read endpoint still answers. The SLA is meeting its commitment. The business is not.`,
+          `Real availability requires synthetic transactions — a scripted user journey that runs continuously, logs in, performs the core action, and confirms the result is correct. Synthetic monitoring tells you whether the product works. It is also more expensive to maintain than ping monitoring, which is why most MSP contracts don't include it, which is why most SLA reports don't reflect it.`,
+        ],
+      },
+      {
+        heading: "The carve-outs that absorb the real incidents",
+        paragraphs: [
+          `Read the exclusions section carefully. Scheduled maintenance is excluded from uptime calculations, which means the four-hour window your provider takes every Saturday at 2am doesn't count against the SLA, even though it is a customer-facing outage that you are absorbing into your own reliability numbers. Third-party provider outages are usually excluded, which means an AWS regional incident that takes you offline for six hours doesn't count, despite being the kind of incident an MSP relationship was supposed to insulate you from. Force majeure clauses absorb anything left over.`,
+          `By the time you've subtracted scheduled maintenance, third-party failures, customer-caused incidents, and force majeure events, the set of incidents that actually count against the SLA is small. The reported uptime number stays close to 100% almost regardless of what happens. The credit-back clause, which typically returns 5% of the monthly fee for the first SLA breach and tops out at 20% for a catastrophic one, is calculated against a denominator that has been carefully constructed to stay small.`,
+          `A $15,000 monthly contract returns at most $3,000 in credits for an incident that costs the customer-facing business $200,000 in refunds and reputational damage. The mathematics of the credit-back clause have never been about compensation. They have been about administrative finality — closing the incident in a way that releases the provider from further obligation.`,
+        ],
+      },
+      {
+        heading: "The supply chain you inherit",
+        paragraphs: [
+          `The MSP relationship is also a supply chain commitment. Whatever security posture your provider runs becomes part of your security posture, and the providers themselves have become a high-value target. The Kaseya VSA attack in July 2021 — REvil ransomware delivered through a compromised MSP platform — affected something like 1,500 downstream businesses through a single point of compromise. The pattern has repeated since.`,
+          `The ConnectWise ScreenConnect vulnerability disclosed in February 2024 (CVE-2024-1709) was an authentication bypass that allowed unauthenticated attackers to create administrator accounts on unpatched instances. The product is widely deployed across MSPs to manage downstream client environments. Within days of disclosure, exploitation was widespread, and the downstream impact landed on businesses who had never made a decision about ConnectWise — they had made a decision about an MSP whose platform happened to run on it.`,
+          `The contracts we read rarely require the MSP to maintain a specific patch SLA on their own tooling, to provide breach notification within a defined window, or to carry the kind of cyber liability cover that would meaningfully offset a downstream incident. Those terms exist; they have to be negotiated in, and most mid-market clients don't have the leverage or the in-house expertise to negotiate them.`,
+        ],
+      },
+      {
+        heading: "What good looks like",
+        paragraphs: [
+          `An MSP relationship that actually covers the things that wake you up at 3am looks different from the standard contract. Availability is measured with synthetic transactions against critical user journeys, not pings against the load balancer. Incident response time is measured from the moment the issue was detectable in monitoring, not from the moment the customer raised a ticket. Root-cause analysis is delivered within a defined window with a named owner, not at the MSP's convenience as a one-paragraph summary.`,
+          `Patch management on the provider's own tooling is contractually specified. Breach notification is contractually specified with a window short enough to matter. Cyber liability cover is named and high enough to absorb the kind of downstream incident that gets MSPs in the news. None of this is exotic. All of it has to be in the contract, because what isn't in the contract isn't a commitment.`,
+          `Communication during incidents is the other clause that tends to be missing. The standard contract obliges the provider to "use commercially reasonable efforts" to notify the customer of significant incidents — a phrase that has been interpreted, in practice, as a status page update some hours after detection. A contract written from the customer's side names the communication channel, the cadence of updates, the role of the named technical contact on the bridge, and the post-incident report deliverable with a date attached. None of these change the underlying engineering. They change the experience of being the customer during the incident, which is the experience the contract is supposed to govern.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this from the side of the table that lives with the consequences. We have built and operated managed services for clients in healthcare, financial services, and government IT, and we read other people's MSP contracts when those clients ask us to. The pattern is consistent. The metrics measured are the ones the provider can hit; the metrics that matter are the ones the customer is left to track themselves.`,
+          `A managed services relationship that works for the customer rather than the provider is possible. It is also rare, and it is rare because it requires the kind of contractual specificity that most procurement processes never produce. The conversation about what the contract actually covers is the conversation worth having before you sign, not after the first 3am call that revealed the gap.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "cyber-insurance-2026-underwriting-requirements",
+    title: "Cyber Insurance Got Harder in 2026: What Underwriters Now Require Before They'll Quote",
+    date: "2026-04-23",
+    readTime: "9 min read",
+    tags: ["Cyber Insurance", "Risk", "Compliance", "Underwriting"],
+    category: "Security",
+    excerpt:
+      "The cyber insurance underwriting requirements 2026 brought are an evidence regime, not a checklist. Asserting controls is no longer enough to get a quote.",
+    sections: [
+      {
+        paragraphs: [
+          `The broker called on a Thursday. The renewal questionnaire that used to take an afternoon now ran to forty pages, the carriers had asked for screenshots of MFA configurations, EDR coverage reports, and the last three incident response test outputs, and two of the four incumbents had already declined to quote before seeing the answers. The premium, when it arrived, was 67% higher than the previous year for a policy with a higher retention and tighter sub-limits on ransomware coverage.`,
+          `That experience is the new normal. The cyber insurance underwriting requirements 2026 carriers have adopted are not a checklist any more — they are an evidence regime, and the SMBs and mid-market operators who relied on assertion-based applications for the past five years are discovering that the door has narrowed.`,
+        ],
+      },
+      {
+        heading: "What changed the market",
+        paragraphs: [
+          `Cyber insurance was a soft market through the late 2010s. Capacity was abundant, ransomware was a manageable line item, and carriers competed on price. The shift began in 2020, accelerated through the ransomware wave of 2021 and 2022, and reached its current shape after the events of 2023 and 2024 — MOVEit (May 2023, exploited by Cl0p, affecting more than 2,700 organisations including major government agencies), Change Healthcare (February 2024, $22m ransom paid, ~190 million PHI records exposed), CDK Global (June 2024, weeks of dealer downtime, estimated billion-dollar industry impact), and Halliburton (August 2024).`,
+          `The Marsh Global Insurance Market Index has tracked the response. After several quarters of sharply rising cyber premiums through 2021 and 2022, the market stabilised somewhat in 2023 and 2024 as buyers improved controls and capacity returned. The relief was uneven. Carriers became significantly more selective about which risks they were prepared to write at all, and the questionnaire became the mechanism by which they sorted applicants into write, decline, and write-with-tight-conditions buckets.`,
+        ],
+      },
+      {
+        heading: "The controls the questionnaire now asks about",
+        paragraphs: [
+          `Multi-factor authentication on privileged access is non-negotiable. Carriers ask which systems require it, which authentication factors are accepted, whether SMS is excluded as a factor for administrative access, and how the configuration is monitored for drift. An organisation that asserts MFA but cannot produce the configuration evidence is treated as if MFA isn't in place.`,
+          `Endpoint detection and response coverage is the second requirement. The expectation is named-vendor EDR — CrowdStrike, SentinelOne, Microsoft Defender for Endpoint, or equivalents — running on every endpoint in the environment, with central visibility into alert volumes and response times. Legacy antivirus does not satisfy the requirement, and the questionnaire asks specifically what percentage of endpoints are covered.`,
+          `Backups have to be immutable or offline. The carriers learned from the 2021–2022 ransomware wave that an attacker with privileged access will encrypt or delete the backups before triggering the ransomware, and a backup strategy that lives in the same identity boundary as production is no longer counted. Object-lock S3 buckets, immutable Azure Blob policies, tape, or air-gapped repositories all qualify. Nightly snapshots to a sibling AWS account with the same IAM trust relationship do not.`,
+          `Incident response plans have to be tested, with evidence. A document called "Incident Response Plan v1.2" sitting in a SharePoint folder satisfies nothing. A tabletop exercise conducted in the past twelve months with named participants, documented findings, and a remediation log satisfies the requirement.`,
+          `Third-party risk management is the newest addition to the standard set. After Kaseya, MOVEit, and the broader pattern of supply-chain compromises, carriers want to know which critical vendors you depend on, what your due diligence on their security posture looks like, and what your contractual recourse is if a vendor incident impacts your environment.`,
+        ],
+      },
+      {
+        heading: "Premium hardening and capacity withdrawal",
+        paragraphs: [
+          `Premium movement across 2024 and 2025 was uneven by segment. Mid-market organisations with mature controls saw modest single-digit increases or even decreases at renewal. Mid-market organisations whose controls hadn't kept pace saw double-digit increases, tighter sub-limits on ransomware, higher retentions, and in some cases declined renewals. The carriers were not raising prices uniformly — they were repricing risk per applicant, and the differentiation grew steeper through 2025 and into 2026.`,
+          `The denied-quote outcome is the one the broker community talks about least publicly. An SMB without EDR, without documented MFA, without an offline backup target, and without a tested IR plan will struggle to get even a single carrier to quote at all in the current market. The path to coverage runs through closing those gaps first, sometimes over several months, then re-approaching the market with evidence.`,
+        ],
+      },
+      {
+        heading: "Evidence beats assertion every time",
+        paragraphs: [
+          `The shift to evidence-based underwriting matters because it changes who can answer the questionnaire honestly. An organisation with mature security operations can produce the EDR coverage report, the MFA configuration export, the backup immutability proof, and the IR exercise findings in a few hours. An organisation that has been asserting these controls without operationalising them cannot, and the gap becomes visible at the worst possible moment in the renewal cycle.`,
+          `What good preparation looks like, increasingly, is a renewal package assembled six weeks before the policy expires — questionnaire answered with attached evidence, screenshots and reports labelled clearly, security improvements made in the past year highlighted with supporting documentation. Brokers tell us that the applications submitted this way receive meaningfully better terms than the applications submitted at the deadline with hedged answers.`,
+          `The first time we walked a client through this exercise, the prep package ran to roughly sixty pages of structured evidence and produced a quoted premium nearly 30% below the first carrier's initial indication on the same risk. The work hadn't changed the underlying security posture; it had changed what the underwriter could see, and the underwriter priced what they could see. The teams that treat the renewal as a presentation rather than a form get a different conversation, and the conversation determines the premium.`,
+          `What ties this to broader operational health is that the controls the underwriters now require are the same controls that reduce real incident likelihood and severity. MFA, EDR, immutable backups, and a tested IR plan are not insurance theatre — they are the things that change whether a ransomware incident becomes a six-figure disruption or a seven-figure existential event. The market is, with imperfect fidelity, pricing the security investments that organisations should have been making for their own sake.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this because cyber insurance has become one of the conversations we are pulled into most often, and not because clients want help filling in the form. They want help producing the evidence the form now demands, on the kind of timeline that produces a quotable application rather than a declined one.`,
+          `Insurance was always meant to price residual risk after controls had done their work. The 2026 market is enforcing that sequence. The organisations that invest in controls and document them well will continue to be insurable. The ones that hope to transfer the risk without first reducing it will find that the market they remember from 2018 is not the market they are renewing into.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "iso-27001-vs-soc-2-which-buyers-want",
+    title: "ISO 27001 vs SOC 2: Which Certification Your Buyers Actually Want",
+    date: "2026-04-17",
+    readTime: "9 min read",
+    tags: ["ISO 27001", "SOC 2", "Compliance", "Certification"],
+    category: "Security",
+    excerpt:
+      "ISO 27001 vs SOC 2 is a question of geography and buyer type as much as content. The right answer depends on who's signing the contract, not which framework reads better.",
+    sections: [
+      {
+        paragraphs: [
+          `The deal was a healthtech platform expanding from a US customer base into the UK and Germany. They had a clean SOC 2 Type II report, two years of clean renewals, and a sales team that had never had to lead with anything else. The first European hospital procurement team asked for the ISO 27001 certificate, was told one wasn't available, and the deal stalled in security review for nine months while the organisation worked out which programme to start.`,
+          `The ISO 27001 vs SOC 2 question is the wrong question framed as a content comparison. The two frameworks overlap substantially on controls. They differ in structure, geography, and what they actually deliver to a buyer, and the right answer for any given organisation depends almost entirely on who is signing the contract.`,
+        ],
+      },
+      {
+        heading: "What each framework actually is",
+        paragraphs: [
+          `SOC 2 is an attestation. A licensed CPA firm examines a service organisation's controls against the Trust Services Criteria and produces a report — either Type I (point-in-time design) or Type II (operating effectiveness across a window). It is not a certification, the AICPA does not issue one, and there is no global registry of "SOC 2 certified" companies because the concept doesn't exist. The deliverable is the report itself, which buyers read and security teams review in detail.`,
+          `ISO 27001 is a certification of an Information Security Management System. An accredited certification body audits the ISMS against the standard, and on successful completion issues a certificate that is publicly verifiable. The current version is ISO/IEC 27001:2022, published in October 2022, with a three-year transition window for organisations holding certificates against the 2013 version. The transition deadline for the 2013 version was 31 October 2025, after which only 27001:2022 certificates remained valid.`,
+          `The conceptual difference matters. SOC 2 examines whether your controls work. ISO 27001 examines whether you have a working system for managing controls — a continuous loop of risk assessment, control selection, implementation, monitoring, and improvement. The two answer overlapping but distinct questions.`,
+        ],
+      },
+      {
+        heading: "Geography is most of the answer",
+        paragraphs: [
+          `SOC 2 dominates US enterprise procurement. If your buyers are in San Francisco, Seattle, New York, or Austin, the security questionnaire will ask for a SOC 2 report, the procurement team will know how to read one, and your sales motion will move faster with one in hand. SOC 2 also has growing acceptance in Canada and parts of Asia-Pacific, particularly for SaaS targeting US-headquartered multinationals.`,
+          `ISO 27001 is the dominant frame everywhere else. European procurement teams — especially in Germany, the Nordics, and the UK — default to ISO 27001 as the baseline expectation. Middle Eastern enterprise buyers, particularly in the GCC, expect ISO 27001 alongside any sector-specific requirements. Australian and Japanese buyers tend to recognise both but favour ISO when given the choice. Public sector procurement in most of the world specifies ISO 27001 explicitly.`,
+          `An organisation that sells predominantly to US tech companies can run on SOC 2 alone for a long time. An organisation expanding internationally, or selling into European public sector, regulated industries in the UK, or any of the markets where ISO is the default, will eventually need the certificate. The question is whether they need it now or in eighteen months.`,
+        ],
+      },
+      {
+        heading: "Cost, time, and the cumulative case",
+        paragraphs: [
+          `A first-time SOC 2 Type II runs roughly $30,000 to $80,000 in audit fees and takes twelve months end-to-end including the observation window. A first-time ISO 27001 certification runs roughly $25,000 to $100,000 in audit fees across the Stage 1 and Stage 2 audits, plus annual surveillance audits, and typically takes nine to fifteen months from readiness kickoff depending on the existing ISMS maturity.`,
+          `The control overlap between the two frameworks is substantial. Estimates vary, but most readiness consultants put the shared control set at somewhere between 70% and 85%, depending on which Trust Services Criteria are in scope for SOC 2 and which Annex A controls are in scope for ISO. An organisation that has done the work for one can usually achieve the other within a few additional months of targeted remediation and a separate audit cycle. Many mature companies eventually carry both, partly because the marginal cost is lower than the first programme and partly because the cumulative signal to buyers is meaningfully stronger.`,
+        ],
+      },
+      {
+        heading: "The 27001:2022 transition and what it changed",
+        paragraphs: [
+          `The 2022 revision restructured Annex A from 114 controls in fourteen domains down to 93 controls organised into four themes — organisational, people, physical, and technological. Eleven new controls were added, covering areas that have become operationally significant since 2013: threat intelligence, information security for cloud services, ICT readiness for business continuity, data masking, data leakage prevention, monitoring activities, web filtering, secure coding, configuration management, information deletion, and physical security monitoring.`,
+          `The transition deadline of 31 October 2025 has now passed, and certificates issued against the 2013 version are no longer valid. Organisations still holding 2013 certificates at the end of 2025 face a re-certification cycle against the new standard rather than a transition audit, which is a more involved and more expensive engagement. If you are reading a vendor's ISO 27001 certificate today and it references the 2013 standard, treat it as expired.`,
+        ],
+      },
+      {
+        heading: "Which one first, then",
+        paragraphs: [
+          `The decision rule we use with clients is uncomplicated. If your next twelve months of pipeline is US enterprise SaaS, start with SOC 2. If your pipeline is European, UK, Middle Eastern, public sector, or any combination of those, start with ISO 27001. If your pipeline is genuinely split, start with whichever framework your largest near-term deals are blocking on, and plan the second within twelve to eighteen months of the first.`,
+          `What we counsel against is starting both simultaneously. The operational discipline required to sustain either programme is substantial, the audit cycles overlap in awkward ways, and the dual workload tends to produce two mediocre programmes rather than one strong one. Sequencing matters; the gap between the first certification and starting the second is the period when the team builds the maturity to carry both.`,
+        ],
+      },
+      {
+        paragraphs: [
+          `We wrote this because the choice between ISO 27001 and SOC 2 is one of the more consequential procurement decisions a growing organisation makes, and it tends to be made by whoever happened to be in the room when the first major deal asked for one of them. The framework that fits your buyers is the framework worth building toward; the framework that fits your engineering preferences is largely beside the point.`,
+          `Certification is a means to an end. The end is shorter security reviews, faster procurement cycles, and the credibility to be considered for the kind of buyer who reads the report rather than skimming the certificate. Both frameworks deliver that, in different markets, to different audiences. The question worth asking is not which one is better, but which one your next twenty deals are going to ask for.`,
+        ],
+      },
+    ],
+  },
+
+  {
     slug: "the-infrastructure-nobody-thinks-about",
     title: "The Infrastructure Nobody Thinks About (Until It's 3am)",
     date: "2026-04-08",
