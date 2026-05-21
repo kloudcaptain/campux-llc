@@ -6,58 +6,60 @@ export const dynamic = "force-static"
 const siteUrl = "https://campux.co"
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const buildDate = new Date()
+
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
-      lastModified: new Date("2025-05-10"),
+      lastModified: buildDate,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${siteUrl}/services`,
-      lastModified: new Date("2025-05-10"),
+      lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${siteUrl}/industries`,
-      lastModified: new Date("2025-05-10"),
+      lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.85,
     },
     {
       url: `${siteUrl}/solutions`,
-      lastModified: new Date("2025-05-10"),
+      lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.85,
     },
     {
       url: `${siteUrl}/contact`,
-      lastModified: new Date("2025-05-10"),
+      lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${siteUrl}/insights`,
-      lastModified: new Date("2025-05-10"),
+      lastModified: buildDate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${siteUrl}/about`,
-      lastModified: new Date("2025-05-10"),
+      lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${siteUrl}/terms`,
-      lastModified: new Date("2025-04-01"),
+      lastModified: buildDate,
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
       url: `${siteUrl}/privacy-policy`,
-      lastModified: new Date("2025-04-01"),
+      lastModified: buildDate,
       changeFrequency: "yearly",
       priority: 0.2,
     },
