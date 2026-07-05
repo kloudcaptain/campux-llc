@@ -2,14 +2,14 @@ import type { Metadata } from "next"
 import HomePageClient from "./components/HomePageClient"
 
 export const metadata: Metadata = {
-  title: "Campux — Managed Infrastructure & Security Operations | US",
+  title: "Azure Cloud Consulting & IT Training | Atlanta, GA",
   description:
-    "US-based managed infrastructure and security operations. We run your servers, cloud environments, networks, databases, and compliance posture — one team, one contract, no handoffs.",
+    "Atlanta-based Azure cloud consulting and IT training firm. We design, secure, and optimize Azure environments — and teach teams to run them. Founded 2024. Small, senior, hands-on.",
   alternates: { canonical: "https://campux.co" },
   openGraph: {
-    title: "Campux — Managed Infrastructure & Security Operations | US",
+    title: "Azure Cloud Consulting & IT Training | Atlanta, GA",
     description:
-      "US-based managed infrastructure and security operations. Server estates, cloud environments, networks, databases, and compliance posture — operated as one accountable function.",
+      "Atlanta-based Azure cloud consulting and IT training firm. We design, secure, and optimize Azure environments — and teach teams to run them.",
     url: "https://campux.co",
     type: "website",
   },

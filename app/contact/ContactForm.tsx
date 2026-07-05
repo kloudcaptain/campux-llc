@@ -113,7 +113,7 @@ export default function ContactForm() {
 
       {status === 'error' && (
         <p role="alert" style={{ fontSize: 14, color: '#ff8a65', margin: 0 }}>
-          Something went wrong sending the message. Please email <a href="mailto:project@campux.co" style={{ color: '#ff8a65', textDecoration: 'underline' }}>project@campux.co</a> directly.
+          Something went wrong sending the message. Please email <a href="mailto:victor@campux.co" style={{ color: '#ff8a65', textDecoration: 'underline' }}>victor@campux.co</a> directly.
         </p>
       )}
 

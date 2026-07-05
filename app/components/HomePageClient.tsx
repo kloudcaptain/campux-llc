@@ -3,12 +3,10 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 
 const serviceData = [
-  { tag: 'Server Infrastructure', title: 'On-premises, cloud, hybrid — we run it.', body: 'Full operational ownership: provisioning, patching, monitoring, change records, and runbooks that reflect actual state. When something fails at 2am, there is a current document to follow — not someone\'s memory of how it used to work.', image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=700&h=380&fit=crop&q=80&auto=format' },
-  { tag: 'Cloud Environments', title: 'Every resource tracked. Nothing drifting.', body: 'AWS, Azure, GCP — version-controlled, policy-enforced, auditable against a known baseline. Drift is caught and remediated before it causes an incident. IAM boundaries and multi-account structures are designed in from the start, not bolted on when the access model breaks.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&h=380&fit=crop&q=80&auto=format' },
-  { tag: 'Security Operations', title: 'Compliance year-round, not just before audits.', body: 'ISO 27001, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials. Controls are structural where possible — Policy-as-Code means misconfigured resources fail before they deploy. Audit prep takes hours, not weeks of emergency effort.', image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=700&h=380&fit=crop&q=80&auto=format' },
-  { tag: 'Network Engineering', title: 'Designed for your environment, not templated.', body: 'SD-WAN, firewalls, segmentation, access control — built to your actual security obligations, not a generic template applied to every engagement. Networks we manage have topology diagrams that reflect current routing, not original design intent.', image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=700&h=380&fit=crop&q=80&auto=format' },
-  { tag: 'Database Management', title: 'Backup that gets tested. Recovery that works.', body: 'RTO and RPO targets agreed before we start, then actually met. We restore backups on a schedule and document the results. If the last restore test was more than a quarter ago, that is not a backup strategy — it is a backup habit.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&h=380&fit=crop&q=80&auto=format' },
-  { tag: 'Integrated Managed IT', title: 'Everything under one contract.', body: 'All five service lines as a single managed function. One SLA, one quarterly review, one escalation path. For organisations that want infrastructure genuinely off their plate — not distributed across three suppliers, each owning a third of the failure.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'Cloud Architecture & Migration', title: 'Azure landing zones, built to scale.', body: 'Azure landing zones, tenant migrations, hybrid connectivity, and infrastructure as code with Bicep and Terraform — architected for what your environment needs to become, not just where it is today.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'DevSecOps & Automation', title: 'Security built into the pipeline, not bolted on after.', body: 'CI/CD pipelines, SAST/DAST integration, policy-as-code, Microsoft Defender for Cloud, and Zero Trust baselines — security and delivery treated as one discipline.', image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'Cloud FinOps & Cost Optimization', title: 'Spend that maps to what you actually use.', body: 'Spend analysis, right-sizing, serverless migration, and governance guardrails that keep cost under control as the environment grows.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&h=380&fit=crop&q=80&auto=format' },
+  { tag: 'IT Training & Curriculum Development', title: 'Teams that can run what we help you build.', body: 'Instructor-led Azure and DevOps training, hands-on lab environments, and custom curriculum built for your team.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&h=380&fit=crop&q=80&auto=format' },
 ]
 
 export default function HomePageClient() {
@@ -82,30 +80,6 @@ export default function HomePageClient() {
     }, { threshold: 0.12 })
     els.forEach(el => observer.observe(el))
     return () => observer.disconnect()
-  }, [])
-
-  // Stat count-up
-  useEffect(() => {
-    const statEls = document.querySelectorAll<HTMLElement>('.stat-num')
-    const statObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const el = e.target as HTMLElement
-          const target = parseInt(el.dataset.target || '0')
-          const hasPct = el.dataset.suffix === '%'
-          let current = 0
-          const increment = target / 40
-          const timer = setInterval(() => {
-            current = Math.min(current + increment, target)
-            el.innerHTML = Math.round(current) + (hasPct ? '<span style="font-size:0.6em;">%</span>' : '')
-            if (current >= target) clearInterval(timer)
-          }, 30)
-          statObserver.unobserve(el)
-        }
-      })
-    }, { threshold: 0.5 })
-    statEls.forEach(el => statObserver.observe(el))
-    return () => statObserver.disconnect()
   }, [])
 
   // Analog grain canvas
@@ -305,26 +279,11 @@ export default function HomePageClient() {
                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 4l3.5 3.5L9 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
               </button>
               <div data-dropdown="services" className="hp-dropdown" style={{ display: 'none' }} onClick={e => e.stopPropagation()}>
-                <a href="/services">Server Infrastructure</a>
-                <a href="/services">Cloud Environments</a>
-                <a href="/services">Network Engineering</a>
-                <a href="/services">Database Management</a>
-                <a href="/services">Security Operations</a>
-                <a href="/services">Integrated Managed IT</a>
+                <a href="/services">Cloud Architecture &amp; Migration</a>
+                <a href="/services">DevSecOps &amp; Automation</a>
+                <a href="/services">Cloud FinOps &amp; Cost Optimization</a>
+                <a href="/services">IT Training &amp; Curriculum Development</a>
                 <a href="#contact-form" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 4, paddingTop: 12 }}>Get in touch →</a>
-              </div>
-            </div>
-            <div style={{ position: 'relative' }}>
-              <button data-menu="sectors" className="link-nav" style={{ padding: '9px 16px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.75)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'inherit', transition: 'color 0.2s' }}>
-                Sectors
-                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 4l3.5 3.5L9 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-              </button>
-              <div data-dropdown="sectors" className="hp-dropdown" style={{ display: 'none' }} onClick={e => e.stopPropagation()}>
-                <a href="/industries">Startups &amp; Growth</a>
-                <a href="/industries">Enterprise</a>
-                <a href="/industries">Government &amp; Regulated</a>
-                <a href="/industries">Healthcare</a>
-                <a href="/industries">Financial Services</a>
               </div>
             </div>
             <div style={{ position: 'relative' }}>
@@ -333,9 +292,10 @@ export default function HomePageClient() {
                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 4l3.5 3.5L9 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
               </button>
               <div data-dropdown="about" className="hp-dropdown" style={{ display: 'none' }} onClick={e => e.stopPropagation()}>
-                <a href="#contact-form">Who we are</a>
+                <a href="/about">Who we are</a>
+                <a href="/government">Government Contracting</a>
                 <a href="/insights">Insights</a>
-                <a href="mailto:project@campux.co">Email us</a>
+                <a href="mailto:victor@campux.co">Email us</a>
               </div>
             </div>
             <a href="/insights" className="link-nav" style={{ padding: '9px 16px', borderRadius: 8, fontSize: 14, fontWeight: 500, display: 'inline-block' }}>Insights</a>
@@ -362,13 +322,13 @@ export default function HomePageClient() {
             <button onClick={() => setMobMenu(false)} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 8, padding: '8px 12px', color: 'white', cursor: 'pointer', fontSize: 18, lineHeight: 1 }}>✕</button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 16, flex: 1 }}>
-            {[['Services', '/services'], ['Sectors', '/industries'], ['Insights', '/insights'], ['Solutions', '/solutions'], ['About', '/about']].map(([label, href]) => (
+            {[['Services', '/services'], ['Insights', '/insights'], ['About', '/about'], ['Government', '/government']].map(([label, href]) => (
               <a key={label} href={href} onClick={() => setMobMenu(false)} style={{ fontSize: 28, fontWeight: 400, color: 'white', padding: '20px 0', borderBottom: '1px solid rgba(255,255,255,0.07)', letterSpacing: '-0.02em', fontFamily: 'var(--font-dm-serif), Georgia, serif' }}>{label}</a>
             ))}
           </div>
           <div style={{ paddingTop: 32, paddingBottom: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
             <a href="#contact-form" onClick={() => setMobMenu(false)} style={{ display: 'block', background: 'white', color: '#111', padding: '16px 24px', borderRadius: 8, fontSize: 16, fontWeight: 600, textAlign: 'center', letterSpacing: '-0.01em' }}>Get in touch</a>
-            <a href="mailto:project@campux.co" style={{ display: 'block', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)', padding: '14px 24px', borderRadius: 8, fontSize: 15, textAlign: 'center' }}>project@campux.co</a>
+            <a href="mailto:victor@campux.co" style={{ display: 'block', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)', padding: '14px 24px', borderRadius: 8, fontSize: 15, textAlign: 'center' }}>victor@campux.co</a>
           </div>
         </div>
       )}
@@ -378,14 +338,14 @@ export default function HomePageClient() {
         <div className="rsp-hero-grid" style={{ maxWidth: 1320, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingTop: 72 }}>
           <div>
             <div className="hero-h1" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 100, padding: '5px 16px 5px 12px', marginBottom: 36, backdropFilter: 'blur(8px)' }}>
-              <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 100, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', padding: '3px 10px', color: 'white', textTransform: 'uppercase' }}>Managed IT</span>
-              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>US-based · Since 2023</span>
+              <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 100, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', padding: '3px 10px', color: 'white', textTransform: 'uppercase' }}>Azure Cloud Consulting</span>
+              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>Atlanta, GA · Founded 2024</span>
             </div>
             <h1 className="hero-h1" style={{ fontFamily: serif, fontSize: 'clamp(52px, 6.5vw, 92px)', fontWeight: 400, lineHeight: 1.02, letterSpacing: '-0.02em', color: 'white', marginBottom: 32 }}>
-              We operate the<br />infrastructure<br /><em style={{ opacity: 0.55, fontStyle: 'italic' }}>others avoid.</em>
+              Azure engineering<br />and training, done<br /><em style={{ opacity: 0.55, fontStyle: 'italic' }}>by people who&apos;ve run it in production.</em>
             </h1>
             <p className="hero-p" style={{ fontSize: 18, color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 460, marginBottom: 44, fontWeight: 300 }}>
-              Server estates. Cloud environments. Networks. Databases. Security operations. All managed as one function, by engineers who know your environment — not account managers who don't.
+              CAMPUX is an Atlanta-based cloud consulting and IT training firm. We design, secure, and optimize Azure environments — and teach teams to run them. Founded 2024. Small, senior, hands-on.
             </p>
             <div className="hero-cta" style={{ display: 'flex', gap: 16 }}>
               <a href="#contact-form" className="btn-dark">Get in touch</a>
@@ -400,18 +360,17 @@ export default function HomePageClient() {
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#d06030' }} />
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.15)' }} />
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(255,255,255,0.15)' }} />
-                <span style={{ marginLeft: 14, fontSize: 12, color: 'rgba(255,255,255,0.3)', fontFamily: 'monospace', letterSpacing: '0.06em' }}>campux — ops-console</span>
+                <span style={{ marginLeft: 14, fontSize: 12, color: 'rgba(255,255,255,0.3)', fontFamily: 'monospace', letterSpacing: '0.06em' }}>campux — bicep deploy</span>
               </div>
               <div style={{ padding: 20, fontFamily: 'monospace', fontSize: 12.5, lineHeight: 1, display: 'flex', flexDirection: 'column' }}>
                 {[
-                  { status: 'HEALTHY', color: '#4ade80', name: 'prod-infra-01', note: 'uptime 99.98%' },
-                  { status: 'HEALTHY', color: '#4ade80', name: 'prod-infra-02', note: 'uptime 99.97%' },
-                  { status: 'HEALTHY', color: '#4ade80', name: 'db-cluster-primary', note: 'restore tested 6d ago' },
-                  { status: 'REVIEW', color: '#fbbf24', name: 'staging-net-02', note: 'patch scheduled' },
-                  { status: 'HEALTHY', color: '#4ade80', name: 'security-ops', note: '0 open incidents' },
-                  { status: 'HEALTHY', color: '#4ade80', name: 'cloud-compliance', note: 'policy enforced' },
+                  { status: 'PLANNED', color: '#4ade80', name: 'landing-zone-hub', note: '+12 ~3 -0' },
+                  { status: 'APPLIED', color: '#4ade80', name: 'aks-prod-cluster', note: 'zero trust baseline' },
+                  { status: 'ENFORCED', color: '#4ade80', name: 'defender-for-cloud', note: 'policy-as-code' },
+                  { status: 'PASSED', color: '#4ade80', name: 'ci-pipeline', note: 'sast + dast' },
+                  { status: 'ACTIVE', color: '#4ade80', name: 'finops-guardrails', note: 'budget alerts on' },
                 ].map((row, i, arr) => (
-                  <div key={row.name} style={{ display: 'grid', gridTemplateColumns: '8px 56px 1fr auto', gap: 12, alignItems: 'center', padding: '12px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.05)' : undefined }}>
+                  <div key={row.name} style={{ display: 'grid', gridTemplateColumns: '8px 70px 1fr auto', gap: 12, alignItems: 'center', padding: '12px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.05)' : undefined }}>
                     <span style={{ fontSize: 7, color: row.color }}>●</span>
                     <span style={{ color: row.color, fontSize: 10, fontWeight: 700 }}>{row.status}</span>
                     <span style={{ color: 'rgba(255,255,255,0.6)' }}>{row.name}</span>
@@ -420,27 +379,12 @@ export default function HomePageClient() {
                 ))}
               </div>
               <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace', fontSize: 11, color: 'rgba(255,255,255,0.2)' }}>
-                <span>SLA compliance: 100%</span><span>Next review: scheduled</span>
+                <span>az deployment sub create</span><span>env: dev</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ── TRUSTED BY TICKER ── */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', borderBottom: '1px solid rgba(255,255,255,0.1)', padding: '32px 0', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
-        <div style={{ textAlign: 'center', marginBottom: 24 }}>
-          <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>Trusted Across</span>
-        </div>
-        <div style={{ overflow: 'hidden', maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
-          <div className="ticker-track" style={{ display: 'flex', gap: 80, width: 'max-content', alignItems: 'center' }}>
-            {['Healthcare', 'Financial Services', 'Central Government', 'Local Government', 'Retail & Commerce', 'Series A–C Startups', 'Regulated Fintech', 'Insurance', 'Legal & Professional',
-              'Healthcare', 'Financial Services', 'Central Government', 'Local Government', 'Retail & Commerce', 'Series A–C Startups', 'Regulated Fintech', 'Insurance', 'Legal & Professional'].map((s, i) => (
-              <span key={i} style={{ fontSize: 15, fontWeight: 500, color: 'rgba(255,255,255,0.45)', whiteSpace: 'nowrap' }}>{s}</span>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* ── SERVICES ── */}
       <section id="services" className="rsp-section" style={{ padding: '140px 48px', position: 'relative', zIndex: 1 }}>
@@ -449,7 +393,7 @@ export default function HomePageClient() {
           <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
             <div>
               <h2 className="reveal" style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 72px)', fontWeight: 400, letterSpacing: '-0.02em', color: 'white', lineHeight: 1.06, marginBottom: 28 }}>
-                Six disciplines. One operational team.
+                Four disciplines. One operational team.
               </h2>
               <a href="#contact-form" className="reveal btn-ghost" style={{ marginBottom: 56, display: 'inline-block', fontSize: 14, padding: '11px 24px' }}>Talk to us about your setup</a>
 
@@ -501,105 +445,32 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      {/* ── DARK FOLD: STATS ── */}
+      {/* ── EXPERIENCE ── */}
       <section className="dark-fold rsp-section" style={{ padding: '120px 48px' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-          <p className="reveal" style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 24 }}>By the numbers</p>
-          <h2 className="reveal" style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 68px)', fontWeight: 400, color: 'white', letterSpacing: '-0.02em', lineHeight: 1.06, marginBottom: 96 }}>
-            Straightforward to measure.<br />Hard to fake.
+          <p className="reveal" style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 24 }}>Experience</p>
+          <h2 className="reveal" style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 68px)', fontWeight: 400, color: 'white', letterSpacing: '-0.02em', lineHeight: 1.06, marginBottom: 32 }}>
+            Work led by our principal engineer includes:
           </h2>
-          <div className="rsp-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
-            <div className="reveal rsp-stat-pad" style={{ padding: '0 56px 0 0', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.5), rgba(255,255,255,0.1))', marginBottom: 32 }} />
-              <div className="stat-num" data-target="100" data-suffix="%" style={{ fontFamily: serif, fontSize: 'clamp(64px, 8vw, 108px)', fontWeight: 400, color: 'white', lineHeight: 1, marginBottom: 24, letterSpacing: '-0.04em' }}>0<span style={{ fontSize: '0.6em' }}>%</span></div>
-              <div style={{ width: 48, height: 2, background: 'rgba(208,96,48,0.8)', marginBottom: 24 }} />
-              <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>of environments we manage have written runbooks and tested failover procedures. Not scheduled. Done.</div>
-            </div>
-            <div className="reveal reveal-delay-1 rsp-stat-pad" style={{ padding: '0 56px', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-              <div style={{ width: 36, height: 36, borderRadius: 4, border: '1.5px solid rgba(255,255,255,0.25)', background: 'rgba(255,255,255,0.04)', marginBottom: 32, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, padding: 6 }}>
-                <div style={{ background: 'rgba(255,255,255,0.3)', borderRadius: 1 }} />
-                <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 1 }} />
-                <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 1 }} />
-                <div style={{ background: 'rgba(255,255,255,0.3)', borderRadius: 1 }} />
-              </div>
-              <div className="stat-num" data-target="6" style={{ fontFamily: serif, fontSize: 'clamp(64px, 8vw, 108px)', fontWeight: 400, color: 'white', lineHeight: 1, marginBottom: 24, letterSpacing: '-0.04em' }}>0</div>
-              <div style={{ width: 48, height: 2, background: 'rgba(208,96,48,0.8)', marginBottom: 24 }} />
-              <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>service lines. One contract, one SLA, one escalation path. No gaps between who owns what.</div>
-            </div>
-            <div className="reveal reveal-delay-2 rsp-stat-pad rsp-stat-last" style={{ padding: '0 0 0 56px' }}>
-              <div style={{ width: 36, height: 36, marginBottom: 32, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ position: 'absolute', width: 36, height: 1.5, background: 'rgba(255,255,255,0.25)', transform: 'rotate(45deg)' }} />
-                <div style={{ position: 'absolute', width: 36, height: 1.5, background: 'rgba(255,255,255,0.25)', transform: 'rotate(-45deg)' }} />
-                <div style={{ width: 10, height: 10, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.35)' }} />
-              </div>
-              <div className="stat-num" data-target="4" style={{ fontFamily: serif, fontSize: 'clamp(64px, 8vw, 108px)', fontWeight: 400, color: 'white', lineHeight: 1, marginBottom: 24, letterSpacing: '-0.04em' }}>0</div>
-              <div style={{ width: 48, height: 2, background: 'rgba(208,96,48,0.8)', marginBottom: 24 }} />
-              <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>regulated sectors. Healthcare, financial services, retail, government. We do not take on work we cannot do properly.</div>
-            </div>
+          <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '28px 64px', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 40 }}>
+            {[
+              'Tenant-to-tenant migration of 150+ applications for a national distributor — secure landing zones, dependency mapping, zero-loss cutover',
+              '80% Azure SQL cost reduction via serverless migration in a FinOps engagement',
+              'AKS platform builds, Zero Trust baselines, and compliance-aligned IaC across HIPAA, GDPR, and PCI-DSS environments',
+              '34 production-context hands-on labs authored for Azure Data Factory training',
+            ].map((item, i) => (
+              <div key={i} className="reveal" style={{ fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>{item}</div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── FEATURE BLOCKS ── */}
-      <section className="rsp-section-top" style={{ padding: '140px 48px 0', position: 'relative', zIndex: 1 }}>
-        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
-
-          {/* Feature 1 */}
-          <div className="reveal rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingBottom: 120, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-            <div style={{ background: 'rgba(6,4,10,0.5)', borderRadius: 16, border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden', backdropFilter: 'blur(12px)' }}>
-              <div style={{ background: 'rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '16px 24px', fontSize: 11, color: 'rgba(255,255,255,0.3)', letterSpacing: '0.1em', fontFamily: 'monospace', textTransform: 'uppercase' }}>Quarterly Operational Review — Q1 2026</div>
-              <div style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {[
-                  { label: 'Infrastructure documentation', val: 'Complete', c: '#4ade80' },
-                  { label: 'Failover tests executed', val: '4 of 4', c: '#4ade80' },
-                  { label: 'SLA compliance', val: '100%', c: '#4ade80' },
-                  { label: 'Open recommendations', val: '3 items', c: '#fbbf24' },
-                  { label: 'Evidence pack', val: 'Delivered', c: '#4ade80' },
-                ].map(row => (
-                  <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 16, background: 'rgba(255,255,255,0.04)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.07)' }}>
-                    <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)' }}>{row.label}</span>
-                    <span style={{ fontSize: 13, color: row.c, fontWeight: 600 }}>{row.val}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 20 }}>How we work</p>
-              <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 56px)', fontWeight: 400, color: 'white', lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 24 }}>
-                You get written records, not slide decks.
-              </h2>
-              <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, marginBottom: 20 }}>Every environment we manage has current runbooks, topology diagrams, and change records. Not documents from the migration three years ago — what is actually running, updated after every change.</p>
-              <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, marginBottom: 36 }}>Quarterly reviews are written, not verbal. They include recommendations and evidence packs. If something needs fixing, it gets tracked to completion — not added to a backlog that nobody reviews.</p>
-              <a href="#contact-form" className="btn-ghost" style={{ fontSize: 14, padding: '12px 24px' }}>Talk to us</a>
-            </div>
-          </div>
-
-          {/* Feature 2 */}
-          <div className="reveal rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingTop: 120, paddingBottom: 140 }}>
-            <div>
-              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 20 }}>Security & compliance</p>
-              <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 56px)', fontWeight: 400, color: 'white', lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 24 }}>
-                Compliance that holds up when someone actually checks.
-              </h2>
-              <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, marginBottom: 20 }}>We build controls into the infrastructure itself — not into a policy document that relies on someone following it. Enforcement at the pipeline and access layer means it happens whether or not the right person is in the office.</p>
-              <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, marginBottom: 36 }}>ISO 27001, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials. Whichever applies to your business, we build for it before the auditors arrive — and keep it maintained after they leave.</p>
-              <a href="#contact-form" className="btn-ghost" style={{ fontSize: 14, padding: '12px 24px' }}>Talk to us</a>
-            </div>
-            <div style={{ background: 'rgba(6,4,10,0.5)', borderRadius: 16, border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden', backdropFilter: 'blur(12px)', padding: 40 }}>
-              <div style={{ fontFamily: 'monospace', fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 2.2 }}>
-                <div style={{ color: 'rgba(255,255,255,0.25)', marginBottom: 12, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Policy-as-Code enforcement</div>
-                {['encryption-at-rest', 'mfa-required', 'access-logging', 'patch-policy', 'network-segmentation'].map(p => (
-                  <div key={p}><span style={{ color: '#d06030' }}>✓</span> <span style={{ color: 'rgba(255,255,255,0.7)' }}>{p}</span> <span style={{ color: '#4ade80' }}>enforced</span></div>
-                ))}
-                <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.25)', fontSize: 11 }}>0 policy violations · last scan: now</div>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 28 }}>
-                {['ISO 27001', 'SOC 2', 'PCI-DSS', 'NIST', 'Cyber Essentials'].map(b => (
-                  <span key={b} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', border: '1px solid rgba(255,255,255,0.12)', padding: '4px 10px', borderRadius: 4 }}>{b}</span>
-                ))}
-              </div>
-            </div>
-          </div>
+      {/* ── CREDENTIALS STRIP ── */}
+      <section className="rsp-section" style={{ padding: '64px 48px', position: 'relative', zIndex: 1, borderTop: '1px solid rgba(255,255,255,0.08)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10 }}>
+          {['M.S. Cybersecurity & Information Assurance', 'CompTIA Security+', 'Pentest+', 'CySA+', 'ITIL v4', 'AZ-305 (in progress)', 'DP-700 (in progress)'].map(b => (
+            <span key={b} style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.04em', color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.14)', padding: '6px 14px', borderRadius: 100 }}>{b}</span>
+          ))}
         </div>
       </section>
 
@@ -650,7 +521,7 @@ export default function HomePageClient() {
             <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 58px)', fontWeight: 400, color: 'white', letterSpacing: '-0.02em', lineHeight: 1.08, marginBottom: 24 }}>Tell us what you're dealing with.</h2>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.4)', lineHeight: 1.75, maxWidth: 440 }}>We'll read it, reply within a working day, and if it sounds like a fit, we'll find time for a conversation. No sales deck, no discovery call with someone who doesn't know the product.</p>
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {[['Email', 'project@campux.co', 'mailto:project@campux.co'], ['Insights', 'Read our latest thinking', '/insights']].map(([label, val, href]) => (
+              {[['Email', 'victor@campux.co', 'mailto:victor@campux.co'], ['Insights', 'Read our latest thinking', '/insights']].map(([label, val, href]) => (
                 <a key={label} href={href} style={{ display: 'flex', alignItems: 'center', gap: 14, color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s', fontSize: 15 }}
                   onMouseOver={e => (e.currentTarget.style.color = 'white')}
                   onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}>
@@ -756,7 +627,7 @@ export default function HomePageClient() {
                 </button>
                 {formState === 'error' && (
                   <p role="alert" style={{ marginTop: 14, fontSize: 13, color: '#ff8a65', lineHeight: 1.5 }}>
-                    Something went wrong. Please email <a href="mailto:project@campux.co" style={{ color: '#ff8a65', textDecoration: 'underline' }}>project@campux.co</a> directly.
+                    Something went wrong. Please email <a href="mailto:victor@campux.co" style={{ color: '#ff8a65', textDecoration: 'underline' }}>victor@campux.co</a> directly.
                   </p>
                 )}
               </form>
@@ -770,7 +641,7 @@ export default function HomePageClient() {
         <div style={{ maxWidth: 1320, margin: '0 auto' }}>
 
           {/* Footer links */}
-          <div className="rsp-footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr 1fr 1fr 1fr', gap: 40, paddingTop: 64, paddingBottom: 60 }}>
+          <div className="rsp-footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr 1fr 1fr', gap: 40, paddingTop: 64, paddingBottom: 60 }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
                 <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
@@ -781,18 +652,12 @@ export default function HomePageClient() {
                 </svg>
                 <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
               </div>
-              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.35)', lineHeight: 1.75, maxWidth: 260, marginBottom: 20 }}>Managed infrastructure for organisations where downtime is not an option. US-based. Operating since 2023.</p>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {['ISO 27001', 'SOC 2', 'Cyber Essentials'].map(b => (
-                  <span key={b} style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', border: '1px solid rgba(255,255,255,0.1)', padding: '3px 8px', borderRadius: 3 }}>{b}</span>
-                ))}
-              </div>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.35)', lineHeight: 1.75, maxWidth: 260, marginBottom: 20 }}>Azure cloud consulting and IT training. Atlanta, GA. Founded 2024.</p>
             </div>
             {[
-              { heading: 'Services', links: [['Server Infrastructure', '/#services'], ['Cloud Environments', '/#services'], ['Network Engineering', '/#services'], ['Database Management', '/#services'], ['Security Operations', '/#services'], ['Integrated Managed IT', '/#services']] },
-              { heading: 'Sectors', links: [['Startups & Growth', '/#services'], ['Enterprise', '/#services'], ['Government & Regulated', '/#services']] },
+              { heading: 'Services', links: [['Cloud Architecture & Migration', '/#services'], ['DevSecOps & Automation', '/#services'], ['Cloud FinOps & Cost Optimization', '/#services'], ['IT Training & Curriculum Development', '/#services']] },
               { heading: 'Resources', links: [['Insights', '/insights']] },
-              { heading: 'Company', links: [['About Campux', '#contact-form'], ['Contact', 'mailto:project@campux.co']] },
+              { heading: 'Company', links: [['About Campux', '/about'], ['Government Contracting', '/government'], ['Contact', 'mailto:victor@campux.co']] },
             ].map(col => (
               <div key={col.heading}>
                 <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 20 }}>{col.heading}</p>

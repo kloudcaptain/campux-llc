@@ -2,13 +2,13 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Managed Infrastructure & Security Services",
+  title: "Azure Cloud Consulting & IT Training | Atlanta, GA",
   description:
-    "Server infrastructure, cloud environments, security operations, network engineering, and database management — operated as one accountable team. No handoffs. No gaps.",
+    "Cloud architecture and migration, DevSecOps and automation, cloud FinOps, and IT training — Azure engineering and training done by people who've run it in production.",
   alternates: { canonical: "https://campux.co/services" },
   openGraph: {
-    title: "Managed Infrastructure & Security Services | Campux",
-    description: "Six fully managed service lines operated as one team. One SLA, one quarterly review, one escalation path.",
+    title: "Azure Cloud Consulting & IT Training | Campux",
+    description: "Cloud architecture and migration, DevSecOps and automation, cloud FinOps, and IT training and curriculum development.",
     url: "https://campux.co/services",
     type: "website",
   },
@@ -21,63 +21,43 @@ const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, 
 const services = [
   {
     number: "01",
-    name: "Server Infrastructure",
-    headline: "We run the servers. Properly.",
+    name: "Cloud Architecture & Migration",
+    headline: "Azure landing zones, built to scale.",
     body: [
-      "On-premises, colocation, hybrid — full operational ownership. Provisioning, patching, monitoring, change records, and runbooks that reflect actual state, not original design intent. Every server estate we manage has documented procedures, patch compliance tracked to schedule, and a change history that survives staff turnover.",
-      "When something fails at 2am, there is a current document to follow — not someone's memory of how it used to work. That is the standard we hold ourselves to across every environment we manage.",
+      "Azure landing zones, tenant migrations, and hybrid connectivity — architected around your actual growth path, not a generic template. Infrastructure as code with Bicep and Terraform means every environment is version-controlled and repeatable.",
+      "Migrations are planned around dependency mapping and rehearsed cutovers, so the environment you land on is the one you designed — not whatever survived the move.",
     ],
-    detail: "Bare metal, VMware, Hyper-V, Proxmox. Hardware lifecycle management. Colocation coordination. Patch management with defined SLAs.",
+    detail: "Azure landing zone design. Tenant-to-tenant migration. Hybrid connectivity (ExpressRoute, VPN gateways). Infrastructure as code with Bicep and Terraform.",
   },
   {
     number: "02",
-    name: "Cloud Environments",
-    headline: "Infrastructure as Code. Not as improvisation.",
+    name: "DevSecOps & Automation",
+    headline: "Security built into the pipeline, not bolted on after.",
     body: [
-      "AWS, Azure, GCP — every resource version-controlled, every change tracked, every configuration auditable against a known baseline. Drift is caught and remediated before it causes an incident, not discovered during a post-mortem. IAM boundaries and multi-account structures are designed in from the start, not bolted on when the access model breaks.",
-      "We implement automated compliance scanning, cost controls, and resource governance that keeps your cloud estate manageable. What engineers can deploy is defined by policy, not by whether someone senior is paying attention.",
+      "CI/CD pipelines with SAST/DAST integration and policy-as-code mean security checks run automatically on every change, not as a manual gate before release.",
+      "Microsoft Defender for Cloud and Zero Trust baselines are configured as part of the platform build, not layered on after something goes wrong.",
     ],
-    detail: "Terraform, Bicep, CloudFormation. Multi-account structures. Cost governance. Drift detection and automated remediation. IAM and access boundary management.",
+    detail: "CI/CD pipeline design. SAST/DAST integration. Policy-as-code. Microsoft Defender for Cloud configuration. Zero Trust baseline implementation.",
   },
   {
     number: "03",
-    name: "Security Operations",
-    headline: "Compliance as a state, not a season.",
+    name: "Cloud FinOps & Cost Optimization",
+    headline: "Spend that maps to what you actually use.",
     body: [
-      "ISO 27001, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials — we align your environment to the frameworks you need to pass and maintain that alignment year-round. Not just in the six weeks before an audit. Controls are structural where possible: Policy-as-Code means misconfigured resources fail before they deploy, generating a continuous evidence stream.",
-      "Audit preparation becomes a matter of hours rather than weeks. We do not deliver a report and move on. We manage the security posture as an ongoing function and track remediation to completion.",
+      "Spend analysis and right-sizing identify where cost and usage have drifted apart. Serverless migration and governance guardrails keep them aligned as the environment scales.",
+      "The goal is predictable spend with visibility into what is driving it — not a one-time cost-cutting exercise that drifts back within a quarter.",
     ],
-    detail: "Vulnerability management. Continuous compliance scanning. Security incident response. Evidence pack production. Framework alignment across ISO, SOC 2, HIPAA, PCI-DSS, NIST, Cyber Essentials.",
+    detail: "Cloud spend analysis. Resource right-sizing. Serverless migration. Budget alerts and governance guardrails.",
   },
   {
     number: "04",
-    name: "Network Engineering",
-    headline: "Designed for your obligations, not templated from someone else's.",
+    name: "IT Training & Curriculum Development",
+    headline: "Teams that can run what we help you build.",
     body: [
-      "We design, implement, and manage enterprise networks with your specific security and regulatory requirements as the starting point — not a generic template from a previous engagement. SD-WAN, firewall architecture, segmentation, and access control are built to your actual operational reality, then managed with full documentation and ongoing support.",
-      "Networks we operate have topology diagrams that reflect current routing, not the original design intent. Firewall rules have owners and review dates. Access policy is testable. Nothing about it is a black box.",
+      "Instructor-led Azure and DevOps training with hands-on lab environments — built around your team's actual tooling and workflows, not a generic vendor course.",
+      "Curriculum is custom-developed per engagement, so training time goes toward the skills your team will actually use.",
     ],
-    detail: "SD-WAN. Firewall management (Fortinet, Palo Alto, pfSense, Cisco). Network segmentation and micro-segmentation. VLAN architecture. NAC. VPN and remote access.",
-  },
-  {
-    number: "05",
-    name: "Database Management",
-    headline: "Backup that gets tested. Recovery that works when you need it.",
-    body: [
-      "We manage relational and NoSQL database operations with a focus on what actually matters during an incident: backup integrity, tested recovery procedures, and failover paths that function under real pressure. RTO and RPO targets are agreed before we start — not estimated after something breaks. We test restores on a schedule and document the results.",
-      "If the last restore test was more than a quarter ago, that is not a backup strategy. It is a backup habit. We run the procedure before the incident, not during it.",
-    ],
-    detail: "PostgreSQL, MySQL, SQL Server, MongoDB, Redis. Backup and recovery planning. Restore testing. Performance monitoring and query optimisation. Replication and high availability.",
-  },
-  {
-    number: "06",
-    name: "Integrated Managed IT",
-    headline: "Everything under one contract. One team. One place to call.",
-    body: [
-      "All five service lines operating as a single managed function. One SLA, one quarterly review, one escalation path. For organisations that want infrastructure genuinely off their plate — not distributed across three suppliers, each owning a third of the failure and pointing at each other when something spans two of them.",
-      "We replace or augment internal infrastructure teams, handle the operational work so engineers can focus on product, and produce written quarterly reviews covering what happened, what we recommend, and what we are watching.",
-    ],
-    detail: "Full-scope managed service. Dedicated account management. Monthly reporting. Quarterly operational reviews with written recommendations. On-call coverage to agreed SLAs.",
+    detail: "Instructor-led Azure and DevOps training. Hands-on lab environment design. Custom curriculum development for teams.",
   },
 ]
 
@@ -94,7 +74,7 @@ export default function ServicesPage() {
           </Link>
           <div className="rsp-nav-links" style={{ display: 'flex', gap: 4, flex: 1 }}>
             <Link href="/services" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'white', background: 'rgba(255,255,255,0.08)' }}>Services</Link>
-            <Link href="/industries" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Sectors</Link>
+            <Link href="/government" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Government</Link>
             <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
             <Link href="/about" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>About</Link>
           </div>
@@ -106,7 +86,7 @@ export default function ServicesPage() {
                 <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}><svg width="24" height="24" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg><span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '-0.04em', color: 'white' }}>Campux</span></Link>
               </div>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', paddingTop: 32, gap: 4 }}>
-                {([['/', 'Home'], ['/services', 'Services'], ['/industries', 'Sectors'], ['/insights', 'Insights'], ['/about', 'About']] as [string,string][]).map(([href, label]) => (
+                {([['/', 'Home'], ['/services', 'Services'], ['/government', 'Government'], ['/insights', 'Insights'], ['/about', 'About']] as [string,string][]).map(([href, label]) => (
                   <Link key={href} href={href} style={{ fontSize: 28, fontFamily: 'var(--font-dm-serif),Georgia,serif', fontWeight: 400, color: 'white', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.08)', letterSpacing: '-0.02em' }}>{label}</Link>
                 ))}
                 <Link href="/contact" style={{ marginTop: 32, display: 'block', background: 'white', color: '#111', padding: '16px 24px', borderRadius: 10, fontSize: 16, fontWeight: 600, textAlign: 'center' }}>Get in touch</Link>
@@ -120,10 +100,10 @@ export default function ServicesPage() {
       <section className="rsp-section" style={{ maxWidth: 1320, margin: '0 auto', padding: '100px 48px 80px' }}>
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 20 }}>What we do</p>
         <h1 style={{ fontFamily: serif, fontSize: 'clamp(48px, 6vw, 84px)', fontWeight: 400, lineHeight: 1.04, letterSpacing: '-0.02em', marginBottom: 32, maxWidth: 760 }}>
-          Six disciplines.<br /><em style={{ opacity: 0.5 }}>One operational team.</em>
+          Four disciplines.<br /><em style={{ opacity: 0.5 }}>One operational team.</em>
         </h1>
         <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.72)', lineHeight: 1.75, maxWidth: 560, fontWeight: 300 }}>
-          Not a helpdesk. Not a consultant with slides. We operate infrastructure and own what happens to it — server estates, cloud environments, networks, databases, and security posture, managed as a single function.
+          Azure engineering and training, done by people who&apos;ve run it in production. Small, senior, hands-on.
         </p>
       </section>
 

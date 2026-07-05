@@ -13,11 +13,11 @@ const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, 
 const sections = [
   {
     title: "Services",
-    content: "Campux provides managed infrastructure, security operations, cloud environment management, network engineering, database management, and related professional services ('Services') as described in the applicable statement of work or service agreement ('Agreement') entered into between Campux and the client. These Terms and Conditions ('Terms') apply to all Services unless expressly superseded by a written Agreement signed by both parties.",
+    content: "Campux provides Azure cloud consulting, migration, DevSecOps, cloud FinOps, and IT training services ('Services') as described in the applicable statement of work or service agreement ('Agreement') entered into between Campux and the client. These Terms and Conditions ('Terms') apply to all Services unless expressly superseded by a written Agreement signed by both parties.",
   },
   {
     title: "Engagement and Scope",
-    content: "The scope of Services delivered by Campux is defined in each individual Agreement. Campux will not undertake work outside the agreed scope without written authorisation. Any changes to scope, including additions, removals, or modifications to managed environments, must be agreed in writing before implementation. Verbal instructions to expand scope are not binding on Campux.",
+    content: "The scope of Services delivered by Campux is defined in each individual Agreement. Campux will not undertake work outside the agreed scope without written authorization. Any changes to scope, including additions, removals, or modifications to managed environments, must be agreed in writing before implementation. Verbal instructions to expand scope are not binding on Campux.",
   },
   {
     title: "Client Obligations",
@@ -25,7 +25,7 @@ const sections = [
   },
   {
     title: "Confidentiality",
-    content: "Both parties agree to treat all information received from the other as confidential and not to disclose it to third parties without prior written consent, except as required by law or regulation. Campux implements technical and organisational controls to protect client environment data and credentials. These controls are described in the applicable Data Processing Agreement where regulated data is involved.",
+    content: "Both parties agree to treat all information received from the other as confidential and not to disclose it to third parties without prior written consent, except as required by law or regulation. Campux implements technical and organizational controls to protect client environment data and credentials. These controls are described in the applicable Data Processing Agreement where regulated data is involved.",
   },
   {
     title: "Intellectual Property",
@@ -66,7 +66,7 @@ export default function TermsPage() {
           </Link>
           <div className="rsp-nav-links" style={{ display: 'flex', gap: 4, flex: 1 }}>
             <Link href="/services" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Services</Link>
-            <Link href="/industries" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Sectors</Link>
+            <Link href="/government" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Government</Link>
             <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
             <Link href="/about" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>About</Link>
           </div>
@@ -78,7 +78,7 @@ export default function TermsPage() {
                 <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}><svg width="24" height="24" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg><span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '-0.04em', color: 'white' }}>Campux</span></Link>
               </div>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', paddingTop: 32, gap: 4 }}>
-                {([['/', 'Home'], ['/services', 'Services'], ['/industries', 'Sectors'], ['/insights', 'Insights'], ['/about', 'About']] as [string,string][]).map(([href, label]) => (
+                {([['/', 'Home'], ['/services', 'Services'], ['/government', 'Government'], ['/insights', 'Insights'], ['/about', 'About']] as [string,string][]).map(([href, label]) => (
                   <Link key={href} href={href} style={{ fontSize: 28, fontFamily: 'var(--font-dm-serif),Georgia,serif', fontWeight: 400, color: 'white', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.08)', letterSpacing: '-0.02em' }}>{label}</Link>
                 ))}
                 <Link href="/contact" style={{ marginTop: 32, display: 'block', background: 'white', color: '#111', padding: '16px 24px', borderRadius: 10, fontSize: 16, fontWeight: 600, textAlign: 'center' }}>Get in touch</Link>
@@ -105,7 +105,7 @@ export default function TermsPage() {
 
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 40, marginTop: 0 }}>
           <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
-            Questions about these Terms should be directed to <a href="mailto:project@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>project@campux.co</a>. Campux is incorporated in the United States.
+            Questions about these Terms should be directed to <a href="mailto:victor@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>victor@campux.co</a>. Campux is incorporated in the United States.
           </p>
         </div>
       </section>

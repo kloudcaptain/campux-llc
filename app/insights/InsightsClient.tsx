@@ -70,6 +70,7 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
           </Link>
           <div className="rsp-nav-links" style={{ display: 'flex', gap: 2, flex: 1 }}>
             <Link href="/#services" className="link-dark" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500 }}>Services</Link>
+            <Link href="/government" className="link-dark" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500 }}>Government</Link>
             <Link href="/insights" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500, color: '#1a1a1a', background: 'rgba(0,0,0,0.06)' }}>Insights</Link>
             <Link href="/about" className="link-dark" style={{ padding: '8px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500 }}>About</Link>
           </div>
@@ -90,7 +91,7 @@ export default function InsightsClient({ posts }: { posts: BlogPost[] }) {
               <button onClick={() => setMobMenu(false)} style={{ background: 'rgba(0,0,0,0.07)', border: '1px solid rgba(0,0,0,0.12)', borderRadius: 8, padding: '8px 12px', cursor: 'pointer', fontSize: 18, color: '#1a1a1a', lineHeight: 1 }}>✕</button>
             </div>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', paddingTop: 40, gap: 8 }}>
-              {[{href:'/', label:'Home'},{href:'/services',label:'Services'},{href:'/industries',label:'Sectors'},{href:'/insights',label:'Insights'},{href:'/about',label:'About'}].map(l => (
+              {[{href:'/', label:'Home'},{href:'/services',label:'Services'},{href:'/government',label:'Government'},{href:'/insights',label:'Insights'},{href:'/about',label:'About'}].map(l => (
                 <Link key={l.href} href={l.href} onClick={() => setMobMenu(false)} style={{ fontSize: 28, fontFamily: 'var(--font-dm-serif),Georgia,serif', fontWeight: 400, color: '#1a1a1a', padding: '14px 0', borderBottom: '1px solid rgba(0,0,0,0.08)', letterSpacing: '-0.02em' }}>{l.label}</Link>
               ))}
               <Link href="/contact" onClick={() => setMobMenu(false)} style={{ marginTop: 32, display: 'block', background: '#1a1a1a', color: 'white', padding: '16px 24px', borderRadius: 10, fontSize: 16, fontWeight: 600, textAlign: 'center' }}>Get in touch</Link>

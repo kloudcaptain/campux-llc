@@ -40,7 +40,7 @@ export default function Image() {
             marginBottom: 28,
           }}
         >
-          Managed Infrastructure &amp; Security Operations
+          Azure Cloud Consulting &amp; IT Training
         </div>
         <div
           style={{
@@ -49,7 +49,7 @@ export default function Image() {
             lineHeight: 1.5,
           }}
         >
-          US-based. One team. No handoffs.
+          Atlanta, GA. Founded 2024.
         </div>
       </div>
     ),

@@ -13,19 +13,19 @@ const bg = "radial-gradient(ellipse 100% 50% at 8% 6%, rgba(200,75,20,0.55) 0%, 
 const sections = [
   {
     title: "Who we are",
-    content: "Campux is a managed infrastructure and security operations firm registered in the United States. We are the data controller for personal data collected through this website and in connection with our services. You can contact us at project@campux.co.",
+    content: "Campux is an Azure cloud consulting and IT training firm registered in the United States. We are the data controller for personal data collected through this website and in connection with our services. You can contact us at victor@campux.co.",
   },
   {
     title: "What we collect and why",
-    content: "When you contact us through this website, we collect the information you submit: name, email address, company name, and any details you provide about your environment or requirements. We use this information solely to respond to your enquiry and to assess whether we can help. We do not add you to mailing lists without your explicit consent. If you subscribe to our Insights newsletter, we collect your email address to send you new posts. You can unsubscribe at any time.",
+    content: "When you contact us through this website, we collect the information you submit: name, email address, company name, and any details you provide about your environment or requirements. We use this information solely to respond to your inquiry and to assess whether we can help. We do not add you to mailing lists without your explicit consent. If you subscribe to our Insights newsletter, we collect your email address to send you new posts. You can unsubscribe at any time.",
   },
   {
     title: "Lawful basis for processing",
-    content: "We process contact enquiry data on the basis of legitimate interests — specifically, responding to inbound requests from prospective clients. We process newsletter subscriber data on the basis of consent. Where we process data in connection with an active service engagement, we do so under a contract. We do not rely on legitimate interests where your interests or rights override ours.",
+    content: "We process contact inquiry data on the basis of legitimate interests — specifically, responding to inbound requests from prospective clients. We process newsletter subscriber data on the basis of consent. Where we process data in connection with an active service engagement, we do so under a contract. We do not rely on legitimate interests where your interests or rights override ours.",
   },
   {
     title: "Service delivery and client data",
-    content: "In the course of delivering managed infrastructure services, Campux may process personal data on behalf of clients — for example, data held within client systems that we manage. In these cases, Campux acts as a data processor and the client acts as the data controller. The terms governing this processing are set out in the applicable Data Processing Agreement. Campux implements appropriate technical and organisational controls to protect client data and does not use client data for any purpose other than delivering the agreed services.",
+    content: "In the course of delivering cloud consulting and training services, Campux may process personal data on behalf of clients — for example, data held within client Azure environments we are engaged to work on. In these cases, Campux acts as a data processor and the client acts as the data controller. The terms governing this processing are set out in the applicable Data Processing Agreement. Campux implements appropriate technical and organizational controls to protect client data and does not use client data for any purpose other than delivering the agreed services.",
   },
   {
     title: "Data sharing",
@@ -33,7 +33,7 @@ const sections = [
   },
   {
     title: "Retention",
-    content: "We retain contact enquiry data for up to two years from the date of the enquiry, or until you ask us to delete it. Newsletter subscriber data is retained until you unsubscribe. Data held in connection with active service engagements is retained for the duration of the engagement and for a further period as required by applicable legal or regulatory obligations. When data is no longer needed, we delete or anonymise it.",
+    content: "We retain contact inquiry data for up to two years from the date of the inquiry, or until you ask us to delete it. Newsletter subscriber data is retained until you unsubscribe. Data held in connection with active service engagements is retained for the duration of the engagement and for a further period as required by applicable legal or regulatory obligations. When data is no longer needed, we delete or anonymize it.",
   },
   {
     title: "Cookies",
@@ -41,7 +41,7 @@ const sections = [
   },
   {
     title: "Your rights",
-    content: "Under applicable US privacy law, you have the right to access personal data we hold about you, to correct inaccurate data, to request erasure, to restrict processing, and to data portability. You also have the right to object to processing based on legitimate interests. To exercise any of these rights, contact us at project@campux.co. We will respond within thirty days.",
+    content: "Under applicable US privacy law, you have the right to access personal data we hold about you, to correct inaccurate data, to request erasure, to restrict processing, and to data portability. You also have the right to object to processing based on legitimate interests. To exercise any of these rights, contact us at victor@campux.co. We will respond within thirty days.",
   },
   {
     title: "International transfers",
@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage() {
           </Link>
           <div className="rsp-nav-links" style={{ display: 'flex', gap: 4, flex: 1 }}>
             <Link href="/services" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Services</Link>
-            <Link href="/industries" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Sectors</Link>
+            <Link href="/government" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Government</Link>
             <Link href="/insights" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>Insights</Link>
             <Link href="/about" className="link-nav" style={{ padding: '8px 14px', borderRadius: 8, fontSize: 14, fontWeight: 500 }}>About</Link>
           </div>
@@ -78,7 +78,7 @@ export default function PrivacyPolicyPage() {
                 <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}><svg width="24" height="24" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg><span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '-0.04em', color: 'white' }}>Campux</span></Link>
               </div>
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', paddingTop: 32, gap: 4 }}>
-                {([['/', 'Home'], ['/services', 'Services'], ['/industries', 'Sectors'], ['/insights', 'Insights'], ['/about', 'About']] as [string,string][]).map(([href, label]) => (
+                {([['/', 'Home'], ['/services', 'Services'], ['/government', 'Government'], ['/insights', 'Insights'], ['/about', 'About']] as [string,string][]).map(([href, label]) => (
                   <Link key={href} href={href} style={{ fontSize: 28, fontFamily: 'var(--font-dm-serif),Georgia,serif', fontWeight: 400, color: 'white', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.08)', letterSpacing: '-0.02em' }}>{label}</Link>
                 ))}
                 <Link href="/contact" style={{ marginTop: 32, display: 'block', background: 'white', color: '#111', padding: '16px 24px', borderRadius: 10, fontSize: 16, fontWeight: 600, textAlign: 'center' }}>Get in touch</Link>
@@ -105,7 +105,7 @@ export default function PrivacyPolicyPage() {
 
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 40, marginTop: 0 }}>
           <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
-            Privacy enquiries: <a href="mailto:project@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>project@campux.co</a>. You may also write to us at our registered address. Campux is incorporated in the United States.
+            Privacy enquiries: <a href="mailto:victor@campux.co" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>victor@campux.co</a>. You may also write to us at our registered address. Campux is incorporated in the United States.
           </p>
         </div>
       </section>

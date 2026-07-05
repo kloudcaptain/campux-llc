@@ -22,13 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/industries`,
-      lastModified: buildDate,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${siteUrl}/solutions`,
+      url: `${siteUrl}/government`,
       lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.85,

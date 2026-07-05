@@ -74,7 +74,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
     },
     body: JSON.stringify({
       from: "Campux Forms <forms@campux.co>",
-      to: ["project@campux.co"],
+      to: ["victor@campux.co"],
       reply_to: email,
       subject,
       text,
