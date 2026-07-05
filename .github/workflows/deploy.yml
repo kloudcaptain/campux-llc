@@ -34,15 +34,21 @@ jobs:
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
+        continue-on-error: true
         with:
           languages: javascript-typescript
           queries: security-and-quality
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
+        continue-on-error: true
 
       - name: Run CodeQL analysis
+        # Code scanning (SARIF upload) requires GitHub Advanced Security, which
+        # isn't available on private repos on the free plan. Non-blocking so it
+        # starts working automatically if GHAS is enabled or the repo goes public.
         uses: github/codeql-action/analyze@v3
+        continue-on-error: true
         with:
           category: '/language:javascript-typescript'
 
