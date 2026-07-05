@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
+import Nav from './Nav'
 
 const serviceData = [
   { tag: 'Cloud Architecture & Migration', title: 'Azure landing zones, built to scale.', body: 'Azure landing zones, tenant migrations, hybrid connectivity, and infrastructure as code with Bicep and Terraform — architected for what your environment needs to become, not just where it is today.', image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&h=380&fit=crop&q=80&auto=format' },
@@ -10,15 +11,13 @@ const serviceData = [
 ]
 
 export default function HomePageClient() {
-  const navRef = useRef<HTMLElement>(null)
   const heroVisRef = useRef<HTMLDivElement>(null)
   const grainCanvasRef = useRef<HTMLCanvasElement>(null)
   const particlesCanvasRef = useRef<HTMLCanvasElement>(null)
   const [openAcc, setOpenAcc] = useState<number | null>(null)
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
-  const [panelData, setPanelData] = useState<{ tag: string; title: string; body: string; image?: string }>({ tag: 'Select a service line', title: 'One team.', body: "We are not a helpdesk or a body shop. Engagements are scoped, architected, and delivered by the same senior engineer — and every engagement leaves your team more capable of running the platform than before." })
-  const [mobMenu, setMobMenu] = useState(false)
+  const [panelData, setPanelData] = useState<{ tag: string; title: string; body: string; image?: string }>(serviceData[0])
 
   const toggleAcc = useCallback((idx: number) => {
     setOpenAcc(prev => {
@@ -26,45 +25,6 @@ export default function HomePageClient() {
       setPanelData(serviceData[idx])
       return idx
     })
-  }, [])
-
-  // Dropdown via DOM (avoids React synthetic event ordering issues)
-  useEffect(() => {
-    const nav = navRef.current
-    if (!nav) return
-    const closeAll = () => nav.querySelectorAll<HTMLElement>('[data-dropdown]').forEach(d => { d.style.display = 'none' })
-    const buttons = nav.querySelectorAll<HTMLButtonElement>('[data-menu]')
-    buttons.forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation()
-        const name = btn.dataset.menu!
-        const dd = nav.querySelector<HTMLElement>(`[data-dropdown="${name}"]`)
-        const isOpen = dd?.style.display === 'block'
-        closeAll()
-        if (!isOpen && dd) dd.style.display = 'block'
-      })
-    })
-    document.addEventListener('click', closeAll)
-    return () => document.removeEventListener('click', closeAll)
-  }, [])
-
-  // Nav scroll
-  useEffect(() => {
-    const nav = navRef.current
-    if (!nav) return
-    const onScroll = () => {
-      if (window.scrollY > 40) {
-        nav.style.background = 'rgba(10,6,14,0.9)'
-        nav.style.backdropFilter = 'blur(24px)'
-        nav.style.borderColor = 'rgba(255,255,255,0.08)'
-      } else {
-        nav.style.background = 'transparent'
-        nav.style.backdropFilter = 'none'
-        nav.style.borderColor = 'transparent'
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   // Scroll reveal
@@ -257,85 +217,11 @@ export default function HomePageClient() {
       {/* Particles canvas */}
       <canvas ref={particlesCanvasRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }} />
 
-      {/* ── NAV ── */}
-      <nav ref={navRef} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 300, transition: 'background 0.4s, backdrop-filter 0.4s, border-color 0.4s', borderBottom: '1px solid transparent' }}>
-        <div className="rsp-nav-inner" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
-          {/* Logo */}
-          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
-            <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-              <rect x="3" y="3" width="13" height="13" rx="3" fill="white" />
-              <rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4" />
-              <rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4" />
-              <rect x="20" y="20" width="13" height="13" rx="3" fill="white" />
-            </svg>
-            <span style={{ fontWeight: 700, fontSize: 22, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
-          </a>
-
-          {/* Links */}
-          <div className="rsp-nav-links" style={{ display: 'flex', gap: 2, flex: 1, position: 'relative' }}>
-            <div style={{ position: 'relative' }}>
-              <button data-menu="services" className="link-nav" style={{ padding: '9px 16px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.75)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'inherit', transition: 'color 0.2s' }}>
-                Services
-                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 4l3.5 3.5L9 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-              </button>
-              <div data-dropdown="services" className="hp-dropdown" style={{ display: 'none' }} onClick={e => e.stopPropagation()}>
-                <a href="/services">Cloud Architecture &amp; Migration</a>
-                <a href="/services">DevSecOps &amp; Automation</a>
-                <a href="/services">Cloud FinOps &amp; Cost Optimization</a>
-                <a href="/services">IT Training &amp; Curriculum Development</a>
-                <a href="#contact-form" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 4, paddingTop: 12 }}>Get in touch →</a>
-              </div>
-            </div>
-            <div style={{ position: 'relative' }}>
-              <button data-menu="about" className="link-nav" style={{ padding: '9px 16px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.75)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'inherit', transition: 'color 0.2s' }}>
-                About
-                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 4l3.5 3.5L9 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-              </button>
-              <div data-dropdown="about" className="hp-dropdown" style={{ display: 'none' }} onClick={e => e.stopPropagation()}>
-                <a href="/about">Who we are</a>
-                <a href="/government">Government Contracting</a>
-                <a href="/insights">Insights</a>
-                <a href="mailto:victor@campux.co">Email us</a>
-              </div>
-            </div>
-            <a href="/insights" className="link-nav" style={{ padding: '9px 16px', borderRadius: 8, fontSize: 14, fontWeight: 500, display: 'inline-block' }}>Insights</a>
-          </div>
-
-          {/* CTAs */}
-          <div style={{ display: 'flex', gap: 12, flex: '0 0 auto', alignItems: 'center' }}>
-            <a href="#contact-form" className="btn-dark" style={{ padding: '9px 22px', fontSize: 14 }}>Get in touch</a>
-            <button className="mob-hamburger" onClick={() => setMobMenu(true)} aria-label="Open menu">
-              <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect y="0" width="18" height="2" rx="1" fill="white"/><rect y="6" width="18" height="2" rx="1" fill="white"/><rect y="12" width="18" height="2" rx="1" fill="white"/></svg>
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* ── MOBILE MENU ── */}
-      {mobMenu && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(10,6,14,0.98)', zIndex: 600, display: 'flex', flexDirection: 'column', padding: '0 20px', overflowY: 'auto' }}>
-          <div style={{ height: 72, display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.1)', flexShrink: 0 }}>
-            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="13" height="13" rx="3" fill="white"/><rect x="20" y="3" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="3" y="20" width="13" height="13" rx="3" fill="white" opacity="0.4"/><rect x="20" y="20" width="13" height="13" rx="3" fill="white"/></svg>
-              <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-0.04em', color: 'white' }}>Campux</span>
-            </a>
-            <button onClick={() => setMobMenu(false)} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 8, padding: '8px 12px', color: 'white', cursor: 'pointer', fontSize: 18, lineHeight: 1 }}>✕</button>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 16, flex: 1 }}>
-            {[['Services', '/services'], ['Insights', '/insights'], ['About', '/about'], ['Government', '/government']].map(([label, href]) => (
-              <a key={label} href={href} onClick={() => setMobMenu(false)} style={{ fontSize: 28, fontWeight: 400, color: 'white', padding: '20px 0', borderBottom: '1px solid rgba(255,255,255,0.07)', letterSpacing: '-0.02em', fontFamily: 'var(--font-dm-serif), Georgia, serif' }}>{label}</a>
-            ))}
-          </div>
-          <div style={{ paddingTop: 32, paddingBottom: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <a href="#contact-form" onClick={() => setMobMenu(false)} style={{ display: 'block', background: 'white', color: '#111', padding: '16px 24px', borderRadius: 8, fontSize: 16, fontWeight: 600, textAlign: 'center', letterSpacing: '-0.01em' }}>Get in touch</a>
-            <a href="mailto:victor@campux.co" style={{ display: 'block', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)', padding: '14px 24px', borderRadius: 8, fontSize: 15, textAlign: 'center' }}>victor@campux.co</a>
-          </div>
-        </div>
-      )}
+      <Nav ctaHref="#contact-form" ctaLabel="Get in touch" />
 
       {/* ── HERO ── */}
-      <section className="rsp-hero-section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '0 48px', position: 'relative', zIndex: 1 }}>
-        <div className="rsp-hero-grid" style={{ maxWidth: 1320, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', paddingTop: 72 }}>
+      <section className="rsp-hero-section" style={{ minHeight: 'calc(100vh - 72px)', display: 'flex', alignItems: 'center', padding: '0 48px', position: 'relative', zIndex: 1 }}>
+        <div className="rsp-hero-grid" style={{ maxWidth: 1320, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
           <div>
             <div className="hero-h1" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 100, padding: '5px 16px 5px 12px', marginBottom: 36, backdropFilter: 'blur(8px)' }}>
               <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 100, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', padding: '3px 10px', color: 'white', textTransform: 'uppercase' }}>Azure Cloud Consulting</span>
@@ -393,7 +279,7 @@ export default function HomePageClient() {
           <div className="rsp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
             <div>
               <h2 className="reveal" style={{ fontFamily: serif, fontSize: 'clamp(40px, 5vw, 72px)', fontWeight: 400, letterSpacing: '-0.02em', color: 'white', lineHeight: 1.06, marginBottom: 28 }}>
-                Four disciplines. One operational team.
+                Four disciplines. One senior engineer.
               </h2>
               <a href="#contact-form" className="reveal btn-ghost" style={{ marginBottom: 56, display: 'inline-block', fontSize: 14, padding: '11px 24px' }}>Talk to us about your setup</a>
 
@@ -409,7 +295,7 @@ export default function HomePageClient() {
                       <span style={{ fontSize: 26, fontWeight: 300, color: openAcc === idx ? '#d06030' : 'rgba(255,255,255,0.35)', transform: openAcc === idx ? 'rotate(45deg)' : 'none', transition: 'transform 0.3s, color 0.3s', flexShrink: 0 }}>+</span>
                     </button>
                     <div className="acc-body" style={{ maxHeight: openAcc === idx ? 300 : 0, opacity: openAcc === idx ? 1 : 0, paddingBottom: openAcc === idx ? 28 : 0 }}>
-                      <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>{svc.body}</p>
+                      <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.78)', lineHeight: 1.8 }}>{svc.body}</p>
                     </div>
                   </div>
                 ))}
@@ -431,9 +317,9 @@ export default function HomePageClient() {
                 )}
                 <div style={{ padding: 40, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
                   <div>
-                    <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 20 }}>{panelData.tag}</p>
+                    <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 20 }}>{panelData.tag}</p>
                     <h3 style={{ fontFamily: serif, fontSize: 'clamp(22px, 2.5vw, 32px)', fontWeight: 400, color: 'white', lineHeight: 1.25, marginBottom: 16, letterSpacing: '-0.02em' }}>{panelData.title}</h3>
-                    <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.5)', lineHeight: 1.8 }}>{panelData.body}</p>
+                    <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', lineHeight: 1.8 }}>{panelData.body}</p>
                   </div>
                   <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                     <a href="#contact-form" className="btn-ghost" style={{ fontSize: 14, padding: '11px 22px' }}>Talk to our team</a>
@@ -497,7 +383,6 @@ export default function HomePageClient() {
                     <img src={card.img} alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18, mixBlendMode: 'luminosity', pointerEvents: 'none' }} />
                     <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(135deg, transparent, transparent 20px, rgba(255,255,255,0.015) 20px, rgba(255,255,255,0.015) 21px)' }} />
                     <div style={{ position: 'relative' }}><span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '-0.02em', color: 'white' }}>Campux</span></div>
-                    <div style={{ position: 'relative' }}><p style={{ fontSize: 16, fontWeight: 600, color: 'white', lineHeight: 1.35, letterSpacing: '-0.02em' }}>{card.title}</p></div>
                   </div>
                   <div style={{ background: 'linear-gradient(180deg, #fff9f4 0%, #fde8d0 60%, #f5c8a0 100%)', padding: '20px 24px 24px' }}>
                     <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
@@ -519,7 +404,7 @@ export default function HomePageClient() {
           <div className="reveal">
             <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>Get in touch</p>
             <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 58px)', fontWeight: 400, color: 'white', letterSpacing: '-0.02em', lineHeight: 1.08, marginBottom: 24 }}>Tell us what you're dealing with.</h2>
-            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.4)', lineHeight: 1.75, maxWidth: 440 }}>We'll read it, reply within a working day, and if it sounds like a fit, we'll find time for a conversation. No sales deck, no discovery call with someone who doesn't know the product.</p>
+            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.4)', lineHeight: 1.75, maxWidth: 440 }}>We'll read it, reply within a working day, and if it sounds like a fit, we'll find time for a conversation. No sales deck, no discovery call with someone who doesn't know the work.</p>
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[['Email', 'victor@campux.co', 'mailto:victor@campux.co'], ['Insights', 'Read our latest thinking', '/insights']].map(([label, val, href]) => (
                 <a key={label} href={href} style={{ display: 'flex', alignItems: 'center', gap: 14, color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s', fontSize: 15 }}

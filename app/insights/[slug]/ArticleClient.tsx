@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import type { BlogPost } from '@/app/data/blog'
+import Nav from '../../components/Nav'
 
 const serif = "var(--font-dm-serif), Georgia, serif"
 
@@ -42,28 +43,7 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
       {/* Reading progress */}
       <div id="reading-progress" style={{ position: 'fixed', top: 0, left: 0, height: 2, background: '#c04818', zIndex: 1000, width: '0%', transition: 'width 0.1s' }} />
 
-      {/* ── NAV ── */}
-      <nav style={{ position: 'sticky', top: 0, zIndex: 200, background: 'rgba(240,235,226,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-        <div className="rsp-nav-inner" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 68, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
-              <rect x="3" y="3" width="13" height="13" rx="3" fill="#1a1a1a" />
-              <rect x="20" y="3" width="13" height="13" rx="3" fill="#1a1a1a" opacity="0.3" />
-              <rect x="3" y="20" width="13" height="13" rx="3" fill="#1a1a1a" opacity="0.3" />
-              <rect x="20" y="20" width="13" height="13" rx="3" fill="#1a1a1a" />
-            </svg>
-            <span style={{ fontWeight: 700, fontSize: 19, letterSpacing: '-0.04em', color: '#1a1a1a' }}>Campux</span>
-          </Link>
-          <div className="rsp-nav-links" style={{ display: 'flex', gap: 10 }}>
-            <Link href="/insights" className="link-dark" style={{ padding: '8px 16px', borderRadius: 6, fontSize: 13, fontWeight: 500 }}>All Insights</Link>
-            <Link href="/contact" style={{ background: '#1a1a1a', color: 'white', padding: '8px 18px', borderRadius: 6, fontSize: 13, fontWeight: 600, transition: 'opacity 0.2s' }}
-              onMouseOver={e => (e.currentTarget.style.opacity = '0.8')}
-              onMouseOut={e => (e.currentTarget.style.opacity = '1')}>
-              Get in touch
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Nav theme="light" active="insights" ctaLabel="Get in touch" />
 
       {/* ── ARTICLE ── */}
       <main className="rsp-article-main" style={{ maxWidth: 1160, margin: '0 auto', padding: '56px 48px 120px', display: 'grid', gridTemplateColumns: '1fr 340px', gap: 80, alignItems: 'start' }}>

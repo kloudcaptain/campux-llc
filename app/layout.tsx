@@ -46,6 +46,14 @@ export const metadata: Metadata = {
     title: "Campux — Azure Cloud Consulting & IT Training | Atlanta, GA",
     description:
       "Atlanta-based Azure cloud consulting and IT training firm. We design, secure, and optimize Azure environments — and teach teams to run them.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Campux — Azure Cloud Consulting & IT Training, Atlanta GA",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -73,7 +81,18 @@ const orgJsonLd = {
       "@type": ["Organization", "ProfessionalService"],
       "@id": `${siteUrl}/#organization`,
       name: "Campux",
+      legalName: "CAMPUX LLC",
       url: siteUrl,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Lilburn",
+        addressRegion: "GA",
+        addressCountry: "US",
+      },
+      telephone: "+1-470-718-4440",
+      sameAs: [
+        // TODO: LinkedIn company URL
+      ],
       logo: {
         "@type": "ImageObject",
         url: `${siteUrl}/opengraph-image`,
