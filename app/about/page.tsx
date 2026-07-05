@@ -84,7 +84,36 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* TODO: "How we work" principles section removed — the original copy (documentation practices, tested recovery, one-SLA accountability) described a managed-services/MSP operating model that does not match CAMPUX's actual principal-led consulting and training model. No approved replacement copy was provided for this section; needs real content from the founder. */}
+      {/* PRINCIPLES */}
+      <section style={{ background: '#141414', padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 20 }}>How we work</p>
+          <h2 style={{ fontFamily: serif, fontSize: 'clamp(36px, 4vw, 58px)', fontWeight: 400, lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: 72 }}>
+            A few things we believe.
+          </h2>
+          <div className="rsp-about-principles" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 48 }}>
+            {[
+              {
+                title: "Senior from day one.",
+                body: "No account layers, no handoffs — the engineer who scopes the work delivers it."
+              },
+              {
+                title: "Infrastructure as code, always.",
+                body: "Everything we build is versioned, repeatable, and documented. You own the code and can run it without us."
+              },
+              {
+                title: "Teach as we go.",
+                body: "Every engagement transfers knowledge — runbooks, walkthroughs, and training so your team operates what we build."
+              },
+            ].map(p => (
+              <div key={p.title} style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32 }}>
+                <h3 style={{ fontFamily: serif, fontSize: 22, fontWeight: 400, lineHeight: 1.3, letterSpacing: '-0.01em', marginBottom: 16, color: 'white' }}>{p.title}</h3>
+                <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section style={{ padding: '100px 48px', borderTop: '1px solid rgba(255,255,255,0.06)', background: '#141414' }}>
