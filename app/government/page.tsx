@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Government Contracting",
   description: "CAMPUX LLC is registered in SAM.gov as a small business, minority-owned, Black American-owned federal contractor. UEI, NAICS codes, and capability statement.",
   alternates: { canonical: "https://campux.co/government" },
+  openGraph: {
+    title: "Government Contracting | Campux",
+    description: "CAMPUX LLC is registered in SAM.gov as a small business, minority-owned, Black American-owned federal contractor. UEI, NAICS codes, and capability statement.",
+    url: "https://campux.co/government",
+    type: "website",
+  },
 }
 
 const serif = "var(--font-dm-serif), Georgia, serif"
@@ -77,7 +83,11 @@ export default function GovernmentPage() {
           </div>
         </div>
 
-        {/* TODO: capability statement PDF download link */}
+        <div style={{ marginTop: 32 }}>
+          <a href="/campux-capability-statement.pdf" download style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'white', color: '#111', padding: '13px 24px', borderRadius: 8, fontSize: 14, fontWeight: 600, textDecoration: 'none', letterSpacing: '-0.01em' }}>
+            Download Capability Statement
+          </a>
+        </div>
 
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 32, marginTop: 40 }}>
           <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>

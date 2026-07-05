@@ -17,7 +17,7 @@ export default function HomePageClient() {
   const [openAcc, setOpenAcc] = useState<number | null>(null)
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
-  const [panelData, setPanelData] = useState<{ tag: string; title: string; body: string; image?: string }>({ tag: 'Select a service line', title: 'One team. Everything under one roof.', body: "We are not a helpdesk, a cloud reseller, or a consultancy that delivers reports and moves on. We manage infrastructure as an ongoing function and own the operational outcomes — not just the activity." })
+  const [panelData, setPanelData] = useState<{ tag: string; title: string; body: string; image?: string }>({ tag: 'Select a service line', title: 'One team.', body: "We are not a helpdesk or a body shop. Engagements are scoped, architected, and delivered by the same senior engineer — and every engagement leaves your team more capable of running the platform than before." })
   const [mobMenu, setMobMenu] = useState(false)
 
   const toggleAcc = useCallback((idx: number) => {
@@ -489,8 +489,8 @@ export default function HomePageClient() {
             <div className="rsp-insights-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, alignItems: 'start' }}>
               {[
                 { delay: '', bg: 'linear-gradient(160deg,#2a1a10 0%,#1a0c08 100%)', tags: ['ENGINEERING'], title: "The Business Risk of Siloed Architecture Knowledge in Enterprise IT Teams", href: '/insights/siloed-architecture-knowledge-enterprise-risk', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=320&fit=crop&q=80&auto=format' },
-                { delay: 'reveal-delay-1', bg: 'linear-gradient(160deg,#1a2a18 0%,#0e1810 100%)', tags: ['SECURITY'], title: 'Why Most Security Audits Miss the Point', href: '/insights', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&h=320&fit=crop&q=80&auto=format' },
-                { delay: 'reveal-delay-2', bg: 'linear-gradient(160deg,#1a1a2a 0%,#0e0e1a 100%)', tags: ['DEVOPS'], title: 'The Deployment Pipeline Nobody Reviewed for Eighteen Months', href: '/insights', img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=320&fit=crop&q=80&auto=format' },
+                { delay: 'reveal-delay-1', bg: 'linear-gradient(160deg,#1a2a18 0%,#0e1810 100%)', tags: ['SECURITY'], title: 'Reducing SOC Alert Fatigue: Why Prevention, Not Detection, Is the Enterprise Security Imperative', href: '/insights/soc-alert-fatigue-policy-as-code', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&h=320&fit=crop&q=80&auto=format' },
+                { delay: 'reveal-delay-2', bg: 'linear-gradient(160deg,#1a1a2a 0%,#0e0e1a 100%)', tags: ['DEVOPS'], title: "We've Decided This Is the Best Deployment Strategy", href: '/insights/best-deployment-strategy', img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=320&fit=crop&q=80&auto=format' },
               ].map((card, i) => (
                 <a key={i} href={card.href} className={`reveal card-lift ${card.delay}`} style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 8px 40px rgba(0,0,0,0.4)' }}>
                   <div style={{ background: card.bg, padding: 24, minHeight: 160, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative', overflow: 'hidden' }}>
@@ -673,7 +673,7 @@ export default function HomePageClient() {
           <div className="rsp-footer-bottom" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)' }}>© 2026 Campux. All rights reserved.</p>
             <div style={{ display: 'flex', gap: 28 }}>
-              {[['Terms & Conditions', '/terms'], ['Privacy Policy', '/privacy-policy'], ['Security', '/about']].map(([label, href]) => (
+              {[['Terms & Conditions', '/terms'], ['Privacy Policy', '/privacy-policy']].map(([label, href]) => (
                 <a key={label} href={href} className="link-muted" style={{ fontSize: 12 }}>{label}</a>
               ))}
             </div>
