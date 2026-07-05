@@ -23,8 +23,6 @@
 //
 // FEATURED / HERO POST:
 //   The first post in the array is automatically featured in the blog marquee.
-//   The slug "the-infrastructure-nobody-thinks-about" is hardcoded as the hero
-//   post in app/insights/[slug]/page.tsx — update that constant if you change it.
 
 export interface BlogSection {
   heading?: string
@@ -43,126 +41,6 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
-  {
-    slug: "hidden-cost-of-cloud-migration",
-    title: "The Hidden Cost of Cloud Migration: What AWS Cost Calculators Don't Show",
-    date: "2026-05-09",
-    readTime: "9 min read",
-    tags: ["Cloud", "FinOps", "AWS", "Cost Optimisation"],
-    category: "DevOps & Deployment",
-    excerpt:
-      "The hidden cloud migration costs aren't compute and storage. They're the line items the calculator never asked about and the engineering hours nobody costed.",
-    sections: [
-      {
-        paragraphs: [
-          `The calculator said $47,000 a month. The first invoice said $89,000. By the third month, after the team had wired up observability, finished the lift-and-shift of the secondary environment, and turned on cross-region replication for the database, the run rate was approaching $140,000 and the CFO wanted a meeting.`,
-          `Every cloud migration story we've seen at scale has a version of this moment. The hidden cloud migration costs are not hidden in any conspiratorial sense — they are itemised on the bill, available in the documentation, and clearly explained in the FAQ if you happen to read the right page. They are hidden in the sense that the cost calculator the migration team used to justify the project to the board does not ask about them, and the team building the architecture has no reason to surface them until the bill arrives.`,
-        ],
-      },
-      {
-        heading: "The line items the calculator skips",
-        paragraphs: [
-          `Data transfer is the most predictable surprise. EC2 to internet egress on AWS is $0.09 per GB in most regions for the first 10 TB, and the volume discounts only become meaningful at scale that mid-market workloads don't reach. A workload that moves 50 TB a month out of the cloud — not unusual for a backend serving a web and mobile audience — costs roughly $4,500 just in egress before you have priced a single compute hour.`,
-          `NAT gateway is the next one. The price is $0.045 per hour for the gateway itself, plus $0.045 per GB of data processed. A single NAT gateway running continuously costs $32 a month, which sounds trivial, until you realise that an architecture with three availability zones and isolated subnets per environment ends up with twenty of them, and the data processing charge on a moderately busy private subnet can run into thousands a month. We have seen organizations whose NAT gateway data processing fees exceeded their EC2 spend.`,
-          `CloudWatch ingestion deserves its own paragraph. Logs are billed at $0.50 per GB ingested in most regions. A verbose application logging at debug level can produce hundreds of gigabytes a month per service. Multiply by the number of services. Add custom metrics at $0.30 each per month. Add the dashboards, the alarms, the contributor insights rules. A non-trivial production environment can run a four-figure CloudWatch bill without anyone making a deliberate decision to spend that much.`,
-        ],
-      },
-      {
-        heading: "The infrastructure that compounds",
-        paragraphs: [
-          `Snapshot retention follows the same pattern. The first snapshot of a 500 GB volume is roughly $25 a month at standard EBS snapshot pricing. The seventh nightly snapshot, retained because the data retention policy says seven days, is another $25 minus whatever the incremental changes deduplicate. The monthly snapshot retained for a year is another $25. None of these are individually expensive. The accumulated snapshot bill across a hundred volumes and a multi-tier retention policy is regularly the third largest line on the invoice.`,
-          `Cross-AZ traffic is the one that catches teams who designed for resilience without modelling the cost. Traffic between availability zones is $0.01 per GB in each direction. A chatty microservice architecture with services placed across three AZs for high availability can produce terabytes of inter-AZ traffic a month, and the bill makes a strong case for either re-thinking the placement strategy or accepting that resilience has a recurring price tag.`,
-          `Observability vendors add their own markup on top. Datadog, New Relic, and the modern equivalents typically charge per host, per container, per custom metric, per million events ingested. A migration that replaces a single on-premises monitoring server with a per-host SaaS bill can quietly add six figures a year to operating costs, justified entirely on the basis of features the team is not yet using.`,
-        ],
-      },
-      {
-        heading: "The engineering hours nobody costed",
-        paragraphs: [
-          `The migration plan budgeted for the lift. It did not budget for the steady-state operational load — the engineer hours spent debugging cost spikes, tagging resources for chargeback, writing Lambda functions to enforce lifecycle policies, building the dashboards that show finance what their teams are spending. FinOps work is real engineering work and on most teams it is unfunded, which means it doesn't happen, which means the bill keeps growing in ways nobody is reviewing.`,
-          `The FinOps Foundation's 2024 State of FinOps report estimated that organizations were wasting upward of 30% of their cloud spend on idle resources, oversized instances, and forgotten infrastructure. That number has been remarkably stable across years of the same survey, which suggests not that organizations are getting worse at cost management, but that the rate at which new waste accumulates roughly matches the rate at which the FinOps team can address it.`,
-          `The other engineering cost is the design tax. Cloud architectures that minimise the bill look different from cloud architectures that maximise developer convenience. Reserved instances and savings plans require a forecast nobody wants to commit to. Spot instances require a workload that tolerates interruption. Right-sizing requires baseline data that the team hasn't been collecting. Each of these optimisations is a meaningful percentage off the bill, and each one requires engineering effort that competes with feature work. Teams that haven't budgeted for the optimisation work tend to pay the unoptimised price indefinitely.`,
-        ],
-      },
-      {
-        heading: "37signals and the case for re-evaluation",
-        paragraphs: [
-          `In 2023, 37signals — the company behind Basecamp and HEY — announced they were exiting the cloud for most of their workloads, citing an annual cloud bill of roughly $3.2 million and projecting savings of around $7 million over five years by moving back to colocated hardware. The numbers were controversial and the conclusions were specific to a workload with predictable scale, mature operations, and the engineering capability to run their own infrastructure. The case became a touchstone not because every workload should follow the same path, but because it forced a conversation that the cloud-by-default consensus had largely suppressed.`,
-          `The honest reading is not that cloud is a mistake. It is that the cloud-versus-on-prem decision is a workload-by-workload analysis, and the calculator that compared cloud against a hypothetical data center at the start of a migration is not the right tool to make the inverse comparison three years later. Workloads with steady, predictable load and high data egress tend to look very different on the cloud bill than they did in the original business case.`,
-        ],
-      },
-      {
-        paragraphs: [
-          `We wrote this because we spend a meaningful share of our engagements helping clients understand where their cloud bill actually goes. The conversation almost always uncovers two things — line items the team didn't know were on the invoice, and architectural decisions made for reasons that no longer apply but that continue to cost money every hour of every day.`,
-          `Cloud cost optimisation is not glamorous work. It is the slow accumulation of small improvements, governance that prevents the next surprise, and the discipline to look at the bill carefully rather than just paying it. The teams that do this well end up with cloud costs that scale with usage. The ones that don't end up with cloud costs that scale with neglect.`,
-        ],
-      },
-    ],
-  },
-
-
-  {
-    slug: "the-infrastructure-nobody-thinks-about",
-    title: "The Infrastructure Nobody Thinks About (Until It's 3am)",
-    date: "2026-04-08",
-    readTime: "8 min read",
-    tags: ["Infrastructure", "Reliability", "Leadership", "On-Call"],
-    category: "Engineering Culture",
-    excerpt:
-      "Good infrastructure is invisible. You can run a business for years on systems nobody has seriously thought about since the day they were set up. This is fine — until the moment it isn't.",
-    sections: [
-      {
-        paragraphs: [
-          `There is a particular quality to the silence just before an incident. The dashboard that was green a moment ago. The status page still reading "All Systems Operational." The engineer at a team dinner, phone face-down on the table, unaware that something has started unraveling.`,
-          `Good infrastructure has a structural problem: it is invisible. Not invisible the way dark matter is invisible — theoretically significant but practically irrelevant to daily life. Invisible the way a reliable postal service is invisible. You post a letter and it arrives. The system only becomes noticeable the moment it fails.`,
-          `This is the thing organizations rarely talk about until they have to.`,
-        ],
-      },
-      {
-        heading: "What invisibility actually costs",
-        paragraphs: [
-          `The trouble with invisible things is that it is genuinely hard to argue for investing in them. If your databases have never had a catastrophic failure, the case for improving database practices sounds abstract — an engineering preference dressed up as a business concern. If your deployment pipeline has never caused a production incident, improving it looks like gold-plating.`,
-          `So the investment doesn't happen. Runbooks get written once and never tested. Monitoring alerts get configured during an incident and never revisited. The on-call rotation grows by one person every time someone leaves, rather than shrinking because the system has become more reliable. Infrastructure accumulates debt in the places nobody looks — which is precisely what makes the debt so dangerous.`,
-          `Then a Tuesday in July comes along.`,
-          `On July 19, 2024, a routine update to CrowdStrike's Falcon sensor software was pushed automatically to 8.5 million Windows machines worldwide. A faulty content configuration file triggered a kernel panic that wouldn't recover. Airlines grounded fleets. Hospitals deferred procedures. Banks couldn't open. Delta estimated $500 million in losses from a single bad file, deployed through a channel that bypassed the testing that might have caught it.`,
-          `CrowdStrike aren't careless engineers. They built systems that worked — until a combination of circumstances they hadn't fully modeled arrived all at once. That is the thing about infrastructure failures: they expose the gap between the scenarios you designed for and the scenario that actually showed up.`,
-        ],
-      },
-      {
-        heading: "The accumulation",
-        paragraphs: [
-          `Most infrastructure failures are nothing like CrowdStrike. They don't make the news. They happen to a company with thirty engineers and four hundred customers on a Wednesday afternoon, get fixed by Friday, and get filed as a closed incident that nobody reads again.`,
-          `What accumulates isn't the incidents. It's the habits that form around them.`,
-          `The patch deferred because the system seemed stable. The monitoring threshold set to a number that sounded reasonable without reference to actual baseline behavior. The failover that's documented but not tested, because testing it means planned downtime, and planned downtime requires approvals, and approvals take time nobody has. The alert that pages at 2am for something that resolves itself — so the on-call engineer learns to silence it rather than investigate the root cause.`,
-          `Each of these is a small decision, made reasonably at the time, that slightly degrades the system's reliability. Individually, none of them are mistakes. Collectively, they become the fragility that surfaces at the worst possible moment.`,
-        ],
-      },
-      {
-        heading: "What treating infrastructure seriously actually looks like",
-        paragraphs: [
-          `Companies that operate reliably at scale — quietly, without the incidents that make headlines — tend to share practices that aren't secret or particularly novel. They write runbooks and test them on a schedule. They instrument their systems carefully enough to understand what normal looks like, so they can recognize when something is drifting before a customer does. They practice incident response before they need it, so the decisions made under pressure aren't being made for the first time.`,
-          `They treat the deployment pipeline as a product worth maintaining. They have rollback procedures that are practiced, documented, and genuinely fast under pressure. They think about the on-call experience as something to engineer away from — not by eliminating the rotation, but by systematically reducing the number of things that require human attention at 2am.`,
-          `None of this is advanced engineering. What it requires is protected time and the organizational will to invest in something that won't produce a visible return until it quietly prevents an incident nobody knows about. That's a hard sell in most planning cycles. It's also the right investment.`,
-        ],
-      },
-      {
-        heading: "The 3am call is a design choice",
-        paragraphs: [
-          `Every 3am page is the result of a decision made in daylight.`,
-          `Not always a bad decision — sometimes shipping fast genuinely is the right call, and improving monitoring can wait until next sprint. But a decision. The alert threshold set too low and then muted because it was too noisy. The deployment window chosen for speed rather than recoverability. The dependency update deferred because nothing had visibly broken yet.`,
-          `Infrastructure work is largely the practice of making better decisions in daylight so the night stays quiet. It is unglamorous. It doesn't ship user-visible features. It doesn't move metrics that appear in board presentations. It shows up only in its absence — in the outage that didn't happen, the data loss that didn't occur, the audit that found nothing to flag.`,
-          `Good infrastructure earns no credit for what it prevents. But it also doesn't start the conversation that begins with "what are we going to tell the customers."`,
-          `That trade — invisibility for reliability — is the one worth making.`,
-        ],
-      },
-      {
-        paragraphs: [
-          `We wrote this because we have been on both sides of it. Organisations that invested in infrastructure before it mattered, and organizations rebuilding customer trust after an incident that a different set of decisions could have avoided. The gap between those two situations is rarely a technology gap. It is almost always a prioritization one.`,
-          `Infrastructure doesn't ask for attention. But it rewards the teams who give it some.`,
-        ],
-      },
-    ],
-  },
-
   {
     slug: "ai-is-the-new-junior-developer",
     title: "AI Is the New Junior Developer — And That's Okay",

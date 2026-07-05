@@ -488,7 +488,7 @@ export default function HomePageClient() {
             </div>
             <div className="rsp-insights-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, alignItems: 'start' }}>
               {[
-                { delay: '', bg: 'linear-gradient(160deg,#2a1a10 0%,#1a0c08 100%)', tags: ['ENGINEERING'], title: "The Infrastructure Nobody Thinks About (Until It's 3am)", href: '/insights/the-infrastructure-nobody-thinks-about', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=320&fit=crop&q=80&auto=format' },
+                { delay: '', bg: 'linear-gradient(160deg,#2a1a10 0%,#1a0c08 100%)', tags: ['ENGINEERING'], title: "The Business Risk of Siloed Architecture Knowledge in Enterprise IT Teams", href: '/insights/siloed-architecture-knowledge-enterprise-risk', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&h=320&fit=crop&q=80&auto=format' },
                 { delay: 'reveal-delay-1', bg: 'linear-gradient(160deg,#1a2a18 0%,#0e1810 100%)', tags: ['SECURITY'], title: 'Why Most Security Audits Miss the Point', href: '/insights', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&h=320&fit=crop&q=80&auto=format' },
                 { delay: 'reveal-delay-2', bg: 'linear-gradient(160deg,#1a1a2a 0%,#0e0e1a 100%)', tags: ['DEVOPS'], title: 'The Deployment Pipeline Nobody Reviewed for Eighteen Months', href: '/insights', img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=320&fit=crop&q=80&auto=format' },
               ].map((card, i) => (
