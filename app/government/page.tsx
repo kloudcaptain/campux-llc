@@ -57,7 +57,7 @@ export default function GovernmentPage() {
 
         <div style={{ marginTop: 32 }}>
           <a href="/campux-capability-statement.pdf" download style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'white', color: '#111', padding: '13px 24px', borderRadius: 8, fontSize: 14, fontWeight: 600, textDecoration: 'none', letterSpacing: '-0.01em' }}>
-            Download Capability Statement
+            Download Capability Statement (PDF)
           </a>
         </div>
 
