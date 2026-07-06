@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     url: "https://campux.co/government",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Government Contracting | Campux",
+    description: "CAMPUX LLC is registered in SAM.gov as a small business, minority-owned, Black American-owned federal contractor. UEI, NAICS codes, and capability statement.",
+  },
 }
 
 const serif = "var(--font-dm-serif), Georgia, serif"
