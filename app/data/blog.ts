@@ -53,6 +53,210 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "azure-policy-vs-opa",
+    title: "Azure Policy vs OPA: Choosing a Policy Engine for Your Azure Environment",
+    seoTitle: "Azure Policy vs OPA: Which Policy Engine to Use",
+    metaDescription:
+      "Azure Policy or Open Policy Agent? The honest answer for most Azure estates is both — at different layers. Here is how to decide where each one belongs.",
+    date: "2026-07-08",
+    readTime: "8 min read",
+    tags: ["Azure", "Policy-as-Code", "Compliance", "Governance", "Security"],
+    category: "Security",
+    excerpt:
+      "Azure Policy or Open Policy Agent? The honest answer for most Azure estates is both — at different layers. Here is how to decide where each one belongs.",
+    sections: [
+      {
+        paragraphs: [
+          `Once an organization accepts that [compliance should be enforced by code rather than documents](/insights/policy-as-code-enterprise), the next question in an Azure environment is which engine does the enforcing. The two serious candidates are [Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/overview), Microsoft's native governance service, and [Open Policy Agent](https://www.openpolicyagent.org/), the CNCF-graduated engine that has become the de facto standard for portable policy enforcement.`,
+          `The comparison gets framed as a versus decision, and vendors on both sides are happy to keep it that way. In practice, for most Azure estates we work with, the answer is not either. It is both, deployed at different layers, doing the jobs each one is actually built for.`,
+        ],
+      },
+      {
+        heading: "What Azure Policy Does Well",
+        paragraphs: [
+          `Azure Policy's decisive advantage is that it is enforcement at the platform layer. A policy assignment on a management group applies to every subscription beneath it, every resource group in those subscriptions, and every resource — regardless of how the resource was created. Portal click, CLI command, Terraform apply, a script someone ran from their laptop: the policy evaluates all of them. There is no pipeline to bypass because the enforcement is not in the pipeline.`,
+          `It also arrives with an enormous library of built-in policy definitions, including full initiative sets that map to regulatory frameworks — NIST 800-53, PCI-DSS, ISO 27001, CIS benchmarks. For a compliance program, this is months of policy authoring you do not have to do. The compliance dashboard aggregates evaluation state across the estate, and remediation tasks can automatically correct certain classes of non-compliant resources rather than just reporting them.`,
+          `The limitations are the flip side of being native. Azure Policy speaks Azure Resource Manager and nothing else. Its language — JSON with a constrained expression syntax — handles the common cases well but becomes awkward for genuinely complex logic. And its evaluation is tied to the ARM control plane, which means it evaluates resources, not arbitrary questions.`,
+        ],
+      },
+      {
+        heading: "What OPA Does Well",
+        paragraphs: [
+          `Open Policy Agent is a general-purpose policy engine. It evaluates any structured input — a Terraform plan, a Kubernetes admission request, an API authorization decision, a CI/CD pipeline context — against policies written in Rego. That generality is its entire value proposition: one policy language, enforced anywhere you can run the engine.`,
+          `In an Azure context, OPA earns its place in two spots. The first is [the CI/CD pipeline](/insights/policy-as-code-cicd-compliance-enterprise), where tools like Conftest evaluate Terraform plans before apply — catching violations minutes after a developer writes them, with feedback in the pull request, rather than at deployment time when the context has left everyone's head. The second is Kubernetes admission control, where OPA Gatekeeper enforces policy on workloads inside AKS clusters — a layer Azure Policy historically could not see into.`,
+          `The cost is Rego. It is a capable language, but it is a language, with a learning curve your team has to budget for. And OPA gives you an engine, not a program: no built-in regulatory initiative library, no compliance dashboard, no managed remediation. You assemble those yourself.`,
+        ],
+      },
+      {
+        heading: "The Detail Most Comparisons Miss",
+        paragraphs: [
+          `Here is the detail that collapses most of the versus framing: [Azure Policy for Kubernetes](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes) — the add-on that extends Azure Policy into AKS clusters — is built on Gatekeeper, which is built on OPA. Microsoft's own answer to in-cluster policy enforcement is OPA with an Azure management plane on top.`,
+          `That tells you how Microsoft itself sees the division of labor. Azure Policy is the management and compliance layer: assignment scoping, the regulatory library, the dashboard, the audit trail. OPA is the evaluation engine where flexibility matters. They are not competitors so much as layers of the same stack.`,
+        ],
+      },
+      {
+        heading: "A Practical Decision Framework",
+        paragraphs: [
+          `Use Azure Policy as your foundation if your estate is Azure. Platform-level guardrails — allowed regions, required tags, denied SKUs, mandatory encryption, diagnostic settings — belong at the management group level where nothing can route around them. If you are subject to a regulatory framework, assign the corresponding built-in initiative before writing anything custom. This is the highest-leverage, lowest-effort enforcement available to you, and [it is where alert fatigue goes to die](/insights/soc-alert-fatigue-policy-as-code): misconfigurations that cannot deploy do not page anyone.`,
+          `Add OPA where Azure Policy runs out: pipeline-stage evaluation of Terraform plans, so developers get feedback before merge rather than a deployment failure after; custom admission logic in AKS beyond what the built-in Kubernetes policies express; and any policy decision that is not an ARM resource — service-to-service authorization, data access rules, CI/CD context checks.`,
+          `The anti-pattern is duplicating the same rules in both engines and hoping they stay synchronized by discipline. They will not. Decide which layer owns which rule, document the split, and let each engine do its job. If you want help designing that split for a real estate, [that is work we do](/services).`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "azure-landing-zone-design-decisions",
+    title: "Azure Landing Zones: The Design Decisions That Actually Matter",
+    seoTitle: "Azure Landing Zone Design: What Actually Matters",
+    metaDescription:
+      "Most Azure landing zone guidance buries the four decisions that are expensive to reverse: management groups, subscriptions, network topology, and identity.",
+    date: "2026-06-30",
+    readTime: "9 min read",
+    tags: ["Azure", "Landing Zones", "Cloud Architecture", "Governance", "Enterprise"],
+    category: "DevOps & Deployment",
+    excerpt:
+      "Most Azure landing zone guidance buries the four decisions that are expensive to reverse: management groups, subscriptions, network topology, and identity.",
+    sections: [
+      {
+        paragraphs: [
+          `Microsoft's [Cloud Adoption Framework landing zone guidance](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/) is thorough, well-maintained, and long. Somewhere inside its reference architectures, implementation options, and design area documentation are the handful of decisions that will still be shaping your Azure estate five years from now. This post is about those decisions and only those.`,
+          `A landing zone, stripped of framework vocabulary, is the answer to one question: when a team needs to deploy a workload into Azure, what do they land in — and what is already true about that place before their first resource exists? Governance, identity, networking, and monitoring, decided once and inherited by everything.`,
+        ],
+      },
+      {
+        heading: "Management Group Hierarchy: Design for Policy, Not Org Charts",
+        paragraphs: [
+          `The management group hierarchy exists for exactly one purpose: it is the scoping mechanism for [Azure Policy](/insights/azure-policy-vs-opa) and role assignments. The most common mistake is mirroring the company org chart — departments, divisions, reporting lines. Org charts change constantly and reflect who reports to whom, not which rules apply to which workloads.`,
+          `Structure the hierarchy by how policy differs. The canonical CAF shape is right for most organizations precisely because it is policy-shaped: a platform branch for shared infrastructure, a landing zones branch split by workload archetype — corp for internal, online for internet-facing — plus a sandbox branch with relaxed policy and a decommissioned branch. Workloads with the same governance requirements sit under the same node, and policy assignment stays simple.`,
+          `Keep it shallow. Three or four levels is almost always enough. Every additional level is another place someone has to look to understand why a deployment was denied — and [architecture that nobody can explain is a business risk](/insights/siloed-architecture-knowledge-enterprise-risk), not a sophistication signal.`,
+        ],
+      },
+      {
+        heading: "Subscription Strategy: The Unit of Everything",
+        paragraphs: [
+          `The subscription is Azure's real isolation boundary — for billing, for policy, for RBAC, for API limits, for blast radius. The design question is what one subscription maps to, and the failed answer is already well documented in a thousand enterprises: one big shared subscription where every workload lives, every team has some level of access, and nobody can say what anything costs.`,
+          `The pattern that works is subscription-per-workload-per-environment, vended automatically. Production and non-production separated by subscription, not by naming convention. A new workload gets a new subscription stamped from a template — policy inherited from its management group, networking pre-connected, diagnostic settings on, budget alerts configured — in hours, not through a six-week ticket queue.`,
+          `This is also your cost model for free: a subscription's invoice section is the workload's cost, no tag archaeology required.`,
+        ],
+      },
+      {
+        heading: "Network Topology: Hub-and-Spoke Unless You Can Say Why Not",
+        paragraphs: [
+          `Hub-and-spoke remains the default for a reason: shared services — firewall, DNS, VPN or ExpressRoute gateways, inspection — live in a hub VNet, each workload gets a spoke peered to it, and spokes are isolated from each other unless you deliberately connect them. It is well understood, well documented, and every Azure network engineer you ever hire will recognize it.`,
+          `Azure Virtual WAN is the managed alternative, and it earns its complexity when you have many regions, many branch sites, or heavy SD-WAN integration. If you are a single-region organization with a handful of spokes, Virtual WAN is capability you are paying for and not using. Choose it for the topology you have, not the one on the vendor slide — [over-engineering has a real cost](/insights/over-engineering-enterprise-cost), and network architecture is one of its favorite hiding places.`,
+          `Decide IP address space early and generously. Address space is the one thing in the landing zone that is genuinely painful to re-plan once workloads are running on it.`,
+        ],
+      },
+      {
+        heading: "Start Smaller Than the Reference Architecture",
+        paragraphs: [
+          `The full enterprise-scale reference implementation deploys a management group tree, dozens of policy assignments, hub networking, and logging infrastructure in one motion. For an organization with hundreds of workloads and a platform team to run it, that is appropriate. For an organization moving its first ten workloads, it is a governance apparatus operated by nobody.`,
+          `Deploy the smallest landing zone that makes your first workloads governed: the management group skeleton, the deny-level policies you actually mean, one hub, one identity model, logging on. Grow it as workload count grows. The framework is a menu, not a mandate — and the teams that treat it as a menu are the ones still using their landing zone in year three instead of rebuilding it.`,
+          `Designing and building landing zones — right-sized, not reference-sized — is [core work for us](/services). The retrofit conversation two years in is always more expensive than the design conversation up front.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "bicep-vs-terraform-azure",
+    title: "Bicep vs Terraform for Azure: An Honest Comparison",
+    seoTitle: "Bicep vs Terraform for Azure: Which to Choose",
+    metaDescription:
+      "Bicep or Terraform for Azure infrastructure? The state file is the real difference. An honest comparison from a team that runs both in production.",
+    date: "2026-06-23",
+    readTime: "8 min read",
+    tags: ["Azure", "Bicep", "Terraform", "Infrastructure as Code", "DevOps"],
+    category: "DevOps & Deployment",
+    excerpt:
+      "Bicep or Terraform for Azure infrastructure? The state file is the real difference. An honest comparison from a team that runs both in production.",
+    sections: [
+      {
+        paragraphs: [
+          `If your infrastructure is on Azure, the infrastructure-as-code decision comes down to two serious options: [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview), Microsoft's domain-specific language that compiles to ARM templates, and [Terraform](https://developer.hashicorp.com/terraform), the multi-cloud standard. Both are mature. Both are used in production by very large organizations. And most comparisons of the two are written by people with something to sell.`,
+          `We run both in client environments. Here is the comparison we give clients, including the part most articles soft-pedal: the state file is the real difference, and it cuts both ways.`,
+        ],
+      },
+      {
+        heading: "The Case for Bicep",
+        paragraphs: [
+          `Bicep's headline advantage is that it has no state file. A deployment is submitted to Azure Resource Manager, and ARM itself reconciles what exists — Azure is the state. There is no state file to store, lock, corrupt, leak secrets through, or drift out of sync with reality. An entire category of operational failure that Terraform teams manage weekly simply does not exist.`,
+          `Being Microsoft's own language buys day-zero resource support: when a new Azure service ships, it is deployable via Bicep immediately because Bicep is just ARM with better syntax. Terraform's AzureRM provider follows later — usually quickly, occasionally not. Bicep also needs no third-party tooling relationship, no provider version matrix, and no license discussion: it is part of the platform you already pay for, and what-if deployments give you a plan-style preview before apply.`,
+          `The honest limits: Bicep speaks Azure only. Deployments are fire-and-forget against ARM, which means no equivalent of Terraform's plan-time graph across external systems — if your infrastructure definition needs to touch Cloudflare, Datadog, GitHub, and Azure in one motion, Bicep cannot be the whole answer.`,
+        ],
+      },
+      {
+        heading: "The Case for Terraform",
+        paragraphs: [
+          `Terraform's provider ecosystem is the argument. Thousands of providers mean your DNS, monitoring, source control, identity provider, and cloud estate can live in one dependency graph, planned and applied together. If you are multi-cloud — or realistically expect to be — a single language and workflow across estates is worth a great deal.`,
+          `The state file, for all its operational burden, is also a feature: it is what lets Terraform detect drift, plan destructive changes precisely, and manage resources whose existence Azure cannot infer. The module registry gives you a mature reuse story, and the hiring market is deep — Terraform experience is common; Bicep experience is Azure-shop experience.`,
+          `The costs are the ones every Terraform team knows: state storage and locking to operate, provider lag on new Azure features, upgrade churn across provider majors, and a licensing landscape post-BSL that enterprises now have to at least have an opinion about.`,
+        ],
+      },
+      {
+        heading: "How to Actually Decide",
+        paragraphs: [
+          `If your estate is Azure and will stay Azure, Bicep is the simpler system with fewer moving parts and fewer failure modes. Removing the state file removes real operational surface, and [simplicity is an enterprise advantage](/insights/over-engineering-enterprise-cost) that compounds. Azure-focused teams that choose Bicep rarely regret it.`,
+          `If you are genuinely multi-cloud, need to orchestrate non-Azure systems in the same graph, or your team already carries deep Terraform capability, Terraform is the right call — the ecosystem advantage is decisive and the state file is a manageable, well-understood cost. What we advise against is choosing Terraform on Azure-only estates purely as multi-cloud insurance. That option has a daily premium, and most organizations that pay it never file the claim.`,
+          `Either way, the tool matters less than the pipeline around it: version control, review, [policy checks before apply](/insights/policy-as-code-cicd-compliance-enterprise), and no console changes outside the code path. A disciplined Bicep shop beats an undisciplined Terraform shop every time — the [branching and integration habits](/insights/best-branching-strategy) transfer directly to infrastructure code.`,
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "azure-cost-optimization-finops",
+    title: "Azure Cost Optimization: Where FinOps Actually Finds the Money",
+    seoTitle: "Azure Cost Optimization: Where the Money Actually Is",
+    metaDescription:
+      "Most Azure cost reviews find 20-30% of spend that buys nothing. Where the waste hides, what to fix first, and why tooling alone never keeps the bill down.",
+    date: "2026-06-16",
+    readTime: "8 min read",
+    tags: ["Azure", "FinOps", "Cost Optimization", "Cloud", "Operations"],
+    category: "Engineering Culture",
+    excerpt:
+      "Most Azure cost reviews find 20-30% of spend that buys nothing. Where the waste hides, what to fix first, and why tooling alone never keeps the bill down.",
+    sections: [
+      {
+        paragraphs: [
+          `Most Azure cost conversations start the same way: the bill has grown month over month for a year, nobody can fully explain it, and someone senior has finally asked why. The good news, from having run this exercise across many estates: the first serious cost review of an unmanaged Azure environment reliably finds 20 to 30 percent of spend that is buying nothing. The waste concentrates in the same places every time.`,
+        ],
+      },
+      {
+        heading: "Where Azure Spend Actually Leaks",
+        paragraphs: [
+          `Oversized compute is the largest single line. VMs sized by guess at migration time and never revisited, running at single-digit CPU utilization around the clock. App Service plans on premium tiers that a load test would put on standard. AKS node pools sized for a peak that occurs four hours per month. [Azure Advisor](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview) flags most of this for free — the recommendations sit unread in the portal of nearly every subscription we open.`,
+          `Orphaned resources are second: managed disks unattached since the VM they served was deleted, public IPs allocated to nothing, load balancers with no backend, old snapshots accumulating since a migration two years ago, and storage accounts full of data nobody can name an owner for. Each item is small. Estates carry thousands of them, silently, forever — orphaned resources do not page anyone.`,
+          `Third: non-production running around the clock. A dev environment used forty hours a week and billed for one hundred sixty-eight is paying a four-times multiplier on everything in it. Auto-shutdown schedules are among the least glamorous and highest-return changes in all of cloud cost work.`,
+        ],
+      },
+      {
+        heading: "Commitment Discounts: Free Money with a Prerequisite",
+        paragraphs: [
+          `Azure Reservations and Savings Plans discount compute by thirty to sixty-five percent in exchange for one- or three-year commitments. For any baseline load you are confident about, running it at pay-as-you-go rates is simply donating margin to Microsoft.`,
+          `The prerequisite matters, though: commit after right-sizing, not before. A reservation on an oversized VM locks in the oversizing for three years. This sequencing mistake is common and expensive, usually driven by a fiscal-year deadline to show savings. Do the sizing work first, then buy commitments against the corrected baseline.`,
+        ],
+      },
+      {
+        heading: "Why the Savings Never Stick Without Ownership",
+        paragraphs: [
+          `Every one of these fixes is well documented, and yet the same estates re-accumulate the same waste within a year of a cleanup. The reason is structural: the people creating the cost — engineers deploying resources — never see it. The bill goes to finance, finance sees one number, and the feedback loop that would correct behavior does not exist. Nobody is being careless; the cost is invisible at the point of creation, and [what is invisible in a system does not get managed](/insights/siloed-architecture-knowledge-enterprise-risk).`,
+          `This is what the [FinOps](https://www.finops.org/) discipline actually addresses — not tooling, but accountability. Costs allocated to the teams that create them, through subscription design or enforced tagging. Budgets with alerts that reach the workload owner, not a distribution list. Cost review as a standing item in engineering rhythm, not an annual crisis. Unit economics — cost per customer, per transaction, per environment — so growth in spend can be distinguished from waste.`,
+          `Architectural simplicity helps here too: [every component you did not deploy](/insights/over-engineering-enterprise-cost) is a line item that never appears.`,
+        ],
+      },
+      {
+        heading: "The First Three Moves",
+        paragraphs: [
+          `If you are starting from an unmanaged estate: first, work through Azure Advisor's cost recommendations and delete the orphaned resources — days of effort, immediate return. Second, put auto-shutdown on every non-production environment. Third, right-size the top twenty compute resources by spend, then buy reservations or a savings plan against the corrected baseline.`,
+          `That sequence routinely takes double-digit percentages off the monthly bill without touching a single architecture decision. The structural work — allocation, ownership, review cadence — is what keeps it off. [Cloud FinOps is one of our four practice areas](/services); if your bill has been growing faster than your usage and nobody can say why, that is exactly the conversation we are built for.`,
+        ],
+      },
+    ],
+  },
+
+  {
     slug: "ai-is-the-new-junior-developer",
     title: "AI Is the New Junior Developer — And That's Okay",
     metaDescription:
