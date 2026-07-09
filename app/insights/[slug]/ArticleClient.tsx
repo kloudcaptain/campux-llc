@@ -2,7 +2,7 @@
 
 import { useEffect, type CSSProperties, type ReactNode } from 'react'
 import Link from 'next/link'
-import type { BlogPost } from '@/app/data/blog'
+import { blogAuthor, type BlogPost } from '@/app/data/blog'
 import Nav from '../../components/Nav'
 
 const serif = "var(--font-dm-serif), Georgia, serif"
@@ -125,8 +125,8 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
                 <span style={{ fontSize: 16, fontWeight: 700, color: 'white' }}>V</span>
               </div>
               <div>
-                <Link href="/about" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.01em', display: 'block' }}>Victor Thomson</Link>
-                <p style={{ fontSize: 13, color: 'rgba(0,0,0,0.45)' }}>Founder &amp; Principal Engineer, Campux</p>
+                <Link href="/about" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.01em', display: 'block' }}>{blogAuthor.name}</Link>
+                <p style={{ fontSize: 13, color: 'rgba(0,0,0,0.45)' }}>{blogAuthor.jobTitle}</p>
               </div>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(0,0,0,0.5)', lineHeight: 1.65 }}>Notes on infrastructure, security, and the operational decisions that matter — from people who&apos;ve had to make them.</p>

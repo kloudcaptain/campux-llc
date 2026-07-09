@@ -31,7 +31,7 @@ export interface BlogSection {
 
 // Byline shown on every article and used in Article JSON-LD. One place to change.
 export const blogAuthor = {
-  name: "Victor Thomson",
+  name: "Victor T",
   jobTitle: "Founder & Principal Engineer, Campux",
   url: "https://campux.co/about",
 }
