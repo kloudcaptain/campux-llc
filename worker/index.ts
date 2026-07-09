@@ -19,6 +19,15 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url)
 
+    // Canonical host: force https://campux.co (no www, no http) so Google sees
+    // one URL per page instead of duplicate www/http variants.
+    if (url.hostname !== "campux.co" || url.protocol !== "https:") {
+      url.hostname = "campux.co"
+      url.protocol = "https:"
+      url.port = ""
+      return Response.redirect(url.toString(), 301)
+    }
+
     if (url.pathname === "/api/contact" && request.method === "POST") {
       return handleContact(request, env)
     }
