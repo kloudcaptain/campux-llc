@@ -28,12 +28,60 @@ export default {
       return Response.redirect(url.toString(), 301)
     }
 
+    // Old WordPress site is gone. Return 410 (not 404) for its legacy URLs so
+    // Google drops them from the index immediately instead of re-crawling dead
+    // pages for months. Only matches known-old paths — never a current route.
+    if (isLegacyUrl(url.pathname)) {
+      return new Response("Gone", {
+        status: 410,
+        headers: { "Content-Type": "text/plain" },
+      })
+    }
+
     if (url.pathname === "/api/contact" && request.method === "POST") {
       return handleContact(request, env)
     }
 
     return env.ASSETS.fetch(request)
   },
+}
+
+// Legacy WordPress URLs from the previous site on this domain. These 404 today;
+// 410 tells Google they are permanently gone.
+const LEGACY_EXACT = new Set([
+  "/digital-marketing-agency-augusta",
+  "/find-vetted-talents",
+  "/business-internship",
+  "/seo-training-in-lagos-nigeria",
+  "/how-lucrative-is-digital-marketing-in-nigeria",
+  "/sitemap_index.xml",
+  "/page-sitemap.xml",
+  "/post-sitemap.xml",
+  "/category-sitemap.xml",
+])
+
+const LEGACY_PREFIXES = [
+  "/shop-2/",
+  "/shop/",
+  "/course-category/",
+  "/courses/",
+  "/product/",
+  "/product-category/",
+  "/category/",
+  "/tag/",
+  "/author/",
+  "/wp-content/",
+  "/wp-admin/",
+  "/wp-includes/",
+  "/wp-json/",
+]
+
+function isLegacyUrl(pathname: string): boolean {
+  const path = pathname !== "/" && pathname.endsWith("/")
+    ? pathname.slice(0, -1)
+    : pathname
+  if (LEGACY_EXACT.has(path)) return true
+  return LEGACY_PREFIXES.some((prefix) => pathname.startsWith(prefix))
 }
 
 async function handleContact(request: Request, env: Env): Promise<Response> {
