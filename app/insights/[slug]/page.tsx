@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { blogPosts, getPostBySlug, getRelatedPosts } from "@/app/data/blog"
+import { blogAuthor, blogPosts, getPostBySlug, getRelatedPosts } from "@/app/data/blog"
 import ArticleClient from "./ArticleClient"
 
 const siteUrl = "https://campux.co"
@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug)
   if (!post) return {}
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: post.seoTitle ?? post.title,
+    description: post.metaDescription ?? post.excerpt,
     alternates: { canonical: `${siteUrl}/insights/${post.slug}` },
     openGraph: {
       title: `${post.title} | Campux`,
@@ -49,9 +49,11 @@ export default async function InsightsPostPage({ params }: { params: Promise<{ s
     datePublished: post.date,
     dateModified: post.date,
     author: {
-      "@type": "Organization",
-      name: "Campux",
-      url: siteUrl,
+      "@type": "Person",
+      name: blogAuthor.name,
+      jobTitle: blogAuthor.jobTitle,
+      url: blogAuthor.url,
+      worksFor: { "@type": "Organization", name: "Campux", url: siteUrl },
     },
     publisher: {
       "@type": "Organization",

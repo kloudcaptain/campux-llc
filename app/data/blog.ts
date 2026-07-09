@@ -29,9 +29,20 @@ export interface BlogSection {
   paragraphs: string[]
 }
 
+// Byline shown on every article and used in Article JSON-LD. One place to change.
+export const blogAuthor = {
+  name: "Victor Thomson",
+  jobTitle: "Founder & Principal Engineer, Campux",
+  url: "https://campux.co/about",
+}
+
 export interface BlogPost {
   slug: string
   title: string
+  /** Optional shorter <title> for search results (≤60 chars). Falls back to title. */
+  seoTitle?: string
+  /** Optional meta description (≤160 chars). Falls back to excerpt. */
+  metaDescription?: string
   date: string
   readTime: string
   tags: string[]
@@ -44,6 +55,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "ai-is-the-new-junior-developer",
     title: "AI Is the New Junior Developer — And That's Okay",
+    metaDescription:
+      "AI now handles boilerplate and the mechanical layer of software engineering. That changes what early-career development means — not whether it exists.",
     date: "2026-03-18",
     readTime: "8 min read",
     tags: ["AI", "Engineering Culture", "Career"],
@@ -82,7 +95,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "The Net Effect",
         paragraphs: [
-          `Teams that treat AI as a replacement for junior engineers will find they have solved a short-term cost problem and created a long-term capability problem. The seniors will eventually leave or age out. The AI will keep producing plausible-looking code that someone needs to actually understand.`,
+          `Teams that treat AI as a replacement for junior engineers will find they have solved a short-term cost problem and created a long-term capability problem. The seniors will eventually leave or age out. The AI will keep producing plausible-looking code that someone needs to actually understand. We have written before about [what happens when you remove humans from a system entirely](/insights/removing-humans-from-automation) — the failure mode here is the same one, playing out in slow motion.`,
           `Teams that treat AI as an accelerant — using it to free junior engineers from the tedious layer and give them more time on design decisions, architecture discussions, and substantive code review — will compound their talent faster than teams that do not.`,
           `AI is the new junior developer in the way that calculators replaced slide rules. The job did not disappear. The baseline moved. The engineers who understand that will build better teams. The ones who do not will eventually wonder why their codebase is full of confident-looking code that nobody can explain.`,
         ],
@@ -93,6 +106,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "removing-humans-from-automation",
     title: "What Happens When You Remove Humans from Automation Entirely",
+    metaDescription:
+      "Full automation is fast until it is catastrophically wrong. The human in the loop is the error-correction mechanism that makes the system trustworthy.",
     date: "2026-03-04",
     readTime: "7 min read",
     tags: ["Automation", "Engineering", "Operations"],
@@ -109,7 +124,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "The Knight Capital Incident",
         paragraphs: [
-          `On August 1, 2012, Knight Capital deployed new code to its trading systems. Due to a configuration error — the kind that happens in rushed deployments — a piece of old code was accidentally reactivated. The system began executing erroneous trades at machine speed, buying high and selling low, over and over, for 45 minutes. The result was $440 million in losses. Knight Capital nearly ceased to exist.`,
+          `On August 1, 2012, Knight Capital deployed new code to its trading systems. Due to a configuration error — the kind that happens in rushed deployments — a piece of old code was accidentally reactivated. The system began executing erroneous trades at machine speed, buying high and selling low, over and over, for 45 minutes. The result was [$440 million in losses and an SEC enforcement action](https://www.sec.gov/newsroom/press-releases/2013-222). Knight Capital nearly ceased to exist.`,
           `Here is what is notable: the system was automated, operating exactly as it was configured, at speeds no human could match. The problem was not the automation itself. It was the absence of any human checkpoint that could recognize something had gone catastrophically wrong and intervene. When you remove humans from automation entirely, you remove the circuit breaker.`,
         ],
       },
@@ -124,7 +139,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "The Automation Spectrum",
         paragraphs: [
-          `The practical answer is not humans instead of automation. It is humans and automation, with deliberate handoff points. Fully automated: routine, well-understood, low-risk tasks where the cost of an occasional error is recoverable. Dependency updates, formatting checks, unit test runs, static analysis. Human-in-the-loop: higher-stakes decisions where automation does the analysis but a human approves. Production deployments for critical paths, cost-significant infrastructure changes, security policy exceptions.`,
+          `The practical answer is not humans instead of automation. It is humans and automation, with deliberate handoff points. Fully automated: routine, well-understood, low-risk tasks where the cost of an occasional error is recoverable. Dependency updates, formatting checks, unit test runs, static analysis. Human-in-the-loop: higher-stakes decisions where automation does the analysis but a human approves. [Production deployments for critical paths](/insights/best-deployment-strategy), cost-significant infrastructure changes, security policy exceptions.`,
           `Human-led: novel, high-consequence, or ethically significant decisions. Incident response choices under ambiguity, architectural decisions with long-term implications, anything that affects people's livelihoods directly. The framework is not complex. The discipline is in correctly categorising your operations and maintaining the categories under pressure.`,
         ],
       },
@@ -142,6 +157,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "policy-as-code-enterprise",
     title: "Policy as Code: How Enterprises Enforce Compliance at Scale",
+    metaDescription:
+      "Policy as Code turns regulatory requirements into version-controlled, automatically enforced guardrails — and turns audit season into a formality.",
     date: "2026-02-19",
     readTime: "9 min read",
     tags: ["Compliance", "Security", "Infrastructure", "Enterprise"],
@@ -152,7 +169,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           `Compliance is one of the most expensive problems in enterprise engineering — not because the regulations are complex, though they are, but because the traditional approach to enforcing them is completely unscalable.`,
-          `Someone writes a policy document. Someone else reads it selectively. A team interprets it slightly differently. An audit arrives once a quarter and discovers six months of accumulated drift. The fix is a scramble. The next quarter's drift begins immediately. This is the lifecycle of manual compliance. Policy as Code is the engineering response to it.`,
+          `Someone writes a policy document. Someone else reads it selectively. A team interprets it slightly differently. An audit arrives once a quarter and discovers six months of accumulated drift. The fix is a scramble. The next quarter's drift begins immediately. This is the lifecycle of manual compliance. Policy as Code is the engineering response to it. (Running a smaller team? Start with [Policy as Code for small business](/insights/policy-as-code-small-business) instead — same principle, lighter tooling.)`,
         ],
       },
       {
@@ -165,7 +182,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "The Tools Enterprises Actually Use",
         paragraphs: [
-          `Open Policy Agent with Rego is the de facto standard for policy enforcement across Kubernetes, APIs, and general-purpose authorization contexts. Its strength is flexibility — Rego can express nearly any policy logic and integrates with almost every infrastructure tool. Its weakness is the learning curve. Rego is a declarative language that takes genuine time to internalize, and teams should budget for that.`,
+          `[Open Policy Agent](https://www.openpolicyagent.org/) with Rego is the de facto standard for policy enforcement across Kubernetes, APIs, and general-purpose authorization contexts. Its strength is flexibility — Rego can express nearly any policy logic and integrates with almost every infrastructure tool. Its weakness is the learning curve. Rego is a declarative language that takes genuine time to internalize, and teams should budget for that.`,
           `HashiCorp Sentinel lives in the Terraform and Vault ecosystem and is significantly more accessible for infrastructure-focused teams. If your infrastructure is already managed through Terraform Cloud or HCP, Sentinel is the lowest-friction path. AWS Cedar, released more recently, is purpose-built for authorization policies and performs well in multi-tenant SaaS contexts.`,
           `For most enterprises, the tool selection follows the existing stack. The more consequential question is not which tool to use — it is where to enforce, and at how many layers.`,
         ],
@@ -174,7 +191,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Where Enforcement Happens",
         paragraphs: [
           `The power of Policy as Code is that enforcement can occur at multiple layers simultaneously. Pre-commit hooks catch obvious violations before they reach code review. These are fast, cheap to implement, and suitable for simple checks — detecting committed secrets, validating Terraform syntax, enforcing required resource tags.`,
-          `CI/CD pipeline checks run against every proposed change and give developers immediate feedback before anything reaches an environment. This is where OPA and Sentinel earn their keep. Admission control in Kubernetes — via OPA Gatekeeper or Kyverno — enforces policy at runtime, so even changes that bypass the pipeline cannot produce non-compliant workloads in the cluster.`,
+          `[CI/CD pipeline checks](/insights/policy-as-code-cicd-compliance-enterprise) run against every proposed change and give developers immediate feedback before anything reaches an environment. This is where OPA and Sentinel earn their keep. Admission control in Kubernetes — via OPA Gatekeeper or Kyverno — enforces policy at runtime, so even changes that bypass the pipeline cannot produce non-compliant workloads in the cluster.`,
           `Continuous compliance scanning tools like Prowler, Steampipe, and Cloud Custodian audit your existing infrastructure state and catch drift that occurred outside the normal change process. A mature implementation uses all of these layers together, not as a single checkpoint at the end.`,
         ],
       },
@@ -198,6 +215,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "policy-as-code-small-business",
     title: "Policy as Code for Small Business: Start Simple, Stay Consistent",
+    metaDescription:
+      "You do not need OPA to start with Policy as Code. Pre-commit hooks and GitHub Actions are already in your stack — use them deliberately.",
     date: "2026-02-05",
     readTime: "6 min read",
     tags: ["Compliance", "Security", "Small Business", "DevOps"],
@@ -221,8 +240,8 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Start with Pre-Commit Hooks",
         paragraphs: [
-          `The most accessible entry point is pre-commit hooks — scripts that execute before a git commit is allowed to complete. If the script exits with an error, the commit is blocked. Tools like pre-commit, the Python package that works across any language stack, make this straightforward to configure and share across a team.`,
-          `In an afternoon, a small team can implement secret scanning with detect-secrets or gitleaks, blocking any commit that contains an API key, password, or private key pattern. They can add dependency vulnerability checks that flag known CVEs before they reach a branch, Terraform format and validate checks that catch syntax errors before code review, and lint rules that enforce coding standards without consuming reviewer attention on the trivial things.`,
+          `The most accessible entry point is pre-commit hooks — scripts that execute before a git commit is allowed to complete. If the script exits with an error, the commit is blocked. Tools like [pre-commit](https://pre-commit.com/), the Python package that works across any language stack, make this straightforward to configure and share across a team.`,
+          `In an afternoon, a small team can implement secret scanning with detect-secrets or [gitleaks](https://github.com/gitleaks/gitleaks), blocking any commit that contains an API key, password, or private key pattern. They can add dependency vulnerability checks that flag known CVEs before they reach a branch, Terraform format and validate checks that catch syntax errors before code review, and lint rules that enforce coding standards without consuming reviewer attention on the trivial things.`,
           `Each of these is a policy. Each runs automatically on every commit. Each is in version control alongside your application code. That is Policy as Code, without a single line of Rego.`,
         ],
       },
@@ -243,7 +262,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Scaling It Gradually",
         paragraphs: [
           `Policy as Code does not need to be comprehensive on day one to be valuable. Start with the highest-consequence, lowest-effort checks. Add policies incrementally as you identify pain points. When a production incident could have been caught by an automated check, that is the signal to add the check and prevent the next occurrence.`,
-          `Small businesses that build this habit early will grow into mid-sized companies with the infrastructure already in place. They will not need a policy as code initiative later — they will simply extend what they are already doing. The investment compounds quietly in the background while the team focuses on building the actual product.`,
+          `Small businesses that build this habit early will grow into mid-sized companies with the infrastructure already in place. They will not need a policy as code initiative later — they will simply extend what they are already doing, following [the same path enterprises use to enforce compliance at scale](/insights/policy-as-code-enterprise). The investment compounds quietly in the background while the team focuses on building the actual product.`,
         ],
       },
     ],
@@ -252,6 +271,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "best-time-to-ship-code",
     title: "The Best Time to Ship Code (It's Not When You Think)",
+    metaDescription:
+      "'Never deploy on Friday' is a heuristic for teams that have not solved deployment safety. If timing determines risk, the release process is the real problem.",
     date: "2026-01-22",
     readTime: "7 min read",
     tags: ["Deployment", "Engineering Culture", "DevOps"],
@@ -277,7 +298,7 @@ export const blogPosts: BlogPost[] = [
         heading: "What Low-Risk Deployments Look Like",
         paragraphs: [
           `Companies that deploy dozens or hundreds of times per day do not have a Friday rule. They have a different architecture. Feature flags decouple deployment from release. Code ships to production and sits dormant behind a flag. When the business is ready — when testing is complete, when the communication is drafted, when stakeholders have signed off — the flag flips. Rolling back is another flag flip. No redeployment, no downtime, no incident at 6pm on a Friday.`,
-          `Canary and progressive delivery means new code starts serving 1% of traffic, then 10%, then the remainder — with automatic rollback if error rates cross a threshold. If something is wrong, the blast radius is limited by design. Comprehensive observability means the team knows within minutes whether a deployment changed system behavior in ways that matter.`,
+          `[Canary and progressive delivery](/insights/best-deployment-strategy) means new code starts serving 1% of traffic, then 10%, then the remainder — with automatic rollback if error rates cross a threshold. If something is wrong, the blast radius is limited by design. Comprehensive observability means the team knows within minutes whether a deployment changed system behavior in ways that matter.`,
           `Short-lived branches and deliberately small changesets mean each deployment is a small, understandable delta from the previous state. The cognitive overhead of assessing risk is manageable because the change is manageable.`,
         ],
       },
@@ -285,7 +306,7 @@ export const blogPosts: BlogPost[] = [
         heading: "So When Should You Deploy?",
         paragraphs: [
           `If you have built the infrastructure described above, the answer is: whenever the code is ready and the change has been validated. The time of day and day of the week do not determine risk when rollback takes thirty seconds and your monitoring tells you within two minutes whether something is wrong.`,
-          `If you have not yet built that infrastructure, the pragmatic answer is during business hours, on days when your team is reachable and operating at capacity. Not because production is inherently more stable on Tuesdays, but because you need qualified people available to respond if something goes wrong. The Friday rule is a stopgap, not a strategy.`,
+          `If you have not yet built that infrastructure, the pragmatic answer is during business hours, on days when your team is reachable and operating at capacity. Not because production is inherently more stable on Tuesdays, but because you need qualified people available to respond if something goes wrong. The Friday rule is a stopgap, not a strategy. (There is a formal risk-management case for this too — we cover it in [deployment timing as a change management decision](/insights/change-management-deployment-risk-enterprise).)`,
         ],
       },
       {
@@ -301,6 +322,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "is-your-environment-truly-agile",
     title: "Is Your Environment Truly Agile?",
+    metaDescription:
+      "Most agile environments are cargo cult agile — the ceremonies without the values. The honest measure is how long it takes to act on customer feedback.",
     date: "2026-01-08",
     readTime: "8 min read",
     tags: ["Agile", "Engineering Culture", "Leadership"],
@@ -310,7 +333,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          `In 2001, seventeen software developers met at a ski resort in Utah and wrote the Agile Manifesto. It was one page long. It valued individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan.`,
+          `In 2001, seventeen software developers met at a ski resort in Utah and wrote the [Agile Manifesto](https://agilemanifesto.org/). It was one page long. It valued individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan.`,
           `It said nothing about two-week sprints. Nothing about story points. Nothing about Jira tickets, velocity charts, or SAFe. Nothing about any of the frameworks that now constitute a multi-billion dollar industry built entirely around the concept of agility. Something significant went wrong somewhere between 2001 and now.`,
         ],
       },
@@ -350,6 +373,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "best-branching-strategy",
     title: "Why Trunk-Based Development Is the Branching Strategy You've Been Looking For",
+    seoTitle: "Why Trunk-Based Development Is the Best Branching Strategy",
+    metaDescription:
+      "GitFlow is complex for reasons most teams do not have. Trunk-based development with feature flags resolves the objections and compounds delivery speed.",
     date: "2025-12-17",
     readTime: "9 min read",
     tags: ["Git", "Engineering", "DevOps", "Best Practices"],
@@ -373,7 +399,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "What Trunk-Based Development Actually Proposes",
         paragraphs: [
-          `Trunk-based development is simple in principle: everyone integrates to the trunk — main, master, whatever you call it — at least once per day. Feature branches, where they exist at all, are short-lived: hours to a couple of days at most, never weeks.`,
+          `[Trunk-based development](https://trunkbaseddevelopment.com/) is simple in principle: everyone integrates to the trunk — main, master, whatever you call it — at least once per day. Feature branches, where they exist at all, are short-lived: hours to a couple of days at most, never weeks.`,
           `The mental model shift is significant. Instead of I will work on this for two weeks and then merge, it becomes I will commit the foundation today, build incrementally, and integrate against reality continuously. The work is smaller, more frequently integrated, and validated against the actual state of the codebase much sooner. Problems surface when they are small.`,
         ],
       },
@@ -381,7 +407,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Feature Flags Are What Make This Possible",
         paragraphs: [
           `The obvious objection: if I am committing to trunk daily, how do I ship half-built features without breaking the product for users? The answer is feature flags, also called feature toggles. They allow code to exist in production in a dormant state until it is explicitly activated, independently of when it was deployed.`,
-          `You can commit an incomplete checkout flow to main today, wrap it in a flag, deploy it, and it simply does not exist for users until you choose to enable it. This decouples deployment — code reaching production — from release — users seeing the feature. It is a genuinely important distinction that resolves most of the practical objections to trunk-based development.`,
+          `You can commit an incomplete checkout flow to main today, wrap it in a flag, deploy it, and it simply does not exist for users until you choose to enable it. This decouples deployment — code reaching production — from release — users seeing the feature. It is a genuinely important distinction that resolves most of the practical objections to trunk-based development, and it is the same distinction that drives [our deployment strategy recommendation](/insights/best-deployment-strategy).`,
         ],
       },
       {
@@ -405,6 +431,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "best-deployment-strategy",
     title: "We've Decided This Is the Best Deployment Strategy",
+    metaDescription:
+      "Progressive delivery with feature flags wins in most production contexts — but a credible, practiced rollback story matters more than strategy choice.",
     date: "2025-12-03",
     readTime: "8 min read",
     tags: ["Deployment", "DevOps", "Infrastructure", "Engineering"],
@@ -429,7 +457,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Where Feature Flags Fit",
         paragraphs: [
-          `Feature flags deserve separate consideration because they change the nature of the question. If you are using flags properly, deployment and release are different events with different risk profiles. You can deploy any time because the user-visible change is controlled independently through the flag system. This dramatically lowers the stakes of the deployment mechanism itself.`,
+          `Feature flags deserve separate consideration because they change the nature of the question. If you are using flags properly, deployment and release are different events with different risk profiles. You can deploy any time because the user-visible change is controlled independently through the flag system. This dramatically lowers the stakes of the deployment mechanism itself. (Flags are also what make [trunk-based development](/insights/best-branching-strategy) workable in practice.)`,
           `Teams that invest in feature flag infrastructure often find that their choice of deployment strategy becomes less consequential over time, because each deployment is smaller and its user impact is more precisely controlled. The deployment strategy handles infrastructure risk. The flag system handles product risk. Separating those concerns is valuable.`,
         ],
       },
@@ -455,6 +483,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "soc-alert-fatigue-policy-as-code",
     title: "Reducing SOC Alert Fatigue: Why Prevention, Not Detection, Is the Enterprise Security Imperative",
+    seoTitle: "Reducing SOC Alert Fatigue with Policy-as-Code",
     date: "2026-04-09",
     readTime: "9 min read",
     tags: ["Security", "SOC", "Policy-as-Code", "Compliance", "Enterprise"],
@@ -464,7 +493,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          `The Microsoft State of the SOC report is not comfortable reading for anyone responsible for a security operations function. Analysts are losing approximately 20 percent of their working week to manual data correlation and triage — tasks that add no direct investigative value. Nearly half of all alerts generated are false positives. And 42 percent of alerts are being ignored entirely.`,
+          `The Microsoft [State of the SOC report](https://www.microsoft.com/en-us/security/blog/2026/02/17/unify-now-or-pay-later-new-research-exposes-the-operational-cost-of-a-fragmented-soc/) is not comfortable reading for anyone responsible for a security operations function. Analysts are losing approximately 20 percent of their working week to manual data correlation and triage — tasks that add no direct investigative value. Nearly half of all alerts generated are false positives. And 42 percent of alerts are being ignored entirely.`,
           `That last figure is the one that should concern CISOs and security leadership most. When nearly half your alert volume is being dismissed, you do not have a monitoring program. You have a noise generator that your analysts have learned to tune out — and somewhere inside that noise, your actual threat signals are waiting to be found.`,
           `The instinct, when confronted with these numbers, is to reach for a better platform. Consolidate telemetry, unify dashboards, add a SOAR layer to automate the triage. These are reasonable operational improvements. But they address the symptoms rather than the condition. If your security estate is generating thousands of alerts per day, the question worth asking is not "how do we process this volume faster?" but "why is this volume being generated in the first place?"`,
         ],
@@ -480,17 +509,17 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Shifting the Model: From Detection to Prevention at the Pipeline",
         paragraphs: [
-          `The more effective architectural response is to prevent insecure configuration from reaching production environments in the first place. Policy-as-Code is the mechanism that makes this possible at scale.`,
+          `The more effective architectural response is to prevent insecure configuration from reaching production environments in the first place. Policy-as-Code is the mechanism that makes this possible at scale. (We go deeper on the pipeline mechanics in [how Policy-as-Code enforces compliance across CI/CD](/insights/policy-as-code-cicd-compliance-enterprise).)`,
           `Rather than defining security requirements in a standards document that is reviewed periodically and enforced manually, Policy-as-Code encodes those requirements as executable rules that are evaluated automatically every time infrastructure is deployed or modified. The result is that configuration which violates your security baseline — an open port, an unencrypted storage resource, a public endpoint that should be private — does not deploy. It fails at the pipeline stage, before it reaches production, before it generates an alert, and before it becomes an analyst workload.`,
-          `For organizations using Infrastructure as Code — Terraform, Bicep, AWS CloudFormation, Azure Resource Manager — integration points are well established. Tools such as Azure Policy, AWS Config Rules, Open Policy Agent, and Checkov allow policy evaluation to be embedded directly into CI/CD pipelines. Every proposed change is evaluated against your defined controls before deployment approval is granted.`,
+          `For organizations using Infrastructure as Code — Terraform, Bicep, AWS CloudFormation, Azure Resource Manager — integration points are well established. Tools such as Azure Policy, AWS Config Rules, [Open Policy Agent](https://www.openpolicyagent.org/), and [Checkov](https://www.checkov.io/) allow policy evaluation to be embedded directly into CI/CD pipelines. Every proposed change is evaluated against your defined controls before deployment approval is granted.`,
         ],
       },
       {
         heading: "What This Means for Enterprise and Government Environments",
         paragraphs: [
           `For enterprise organizations, the operational benefit is measurable. Analyst time currently consumed by misconfiguration-related alerts is redirected toward genuine threat investigation. Alert volumes decrease not because alerts are being suppressed or filtered, but because the conditions that generate them are prevented structurally. The signal-to-noise ratio improves because the noise is eliminated upstream.`,
-          `For government environments, the compliance dimension is equally significant. Policy-as-Code does not only prevent misconfiguration — it produces an auditable record of every policy evaluation, every deployment decision, and every exception. For organizations operating under frameworks such as NIST 800-53, ISO 27001, or Cyber Essentials, this continuous evidence stream substantially reduces the manual effort required for audit preparation and ongoing compliance attestation.`,
-          `Government technology programs increasingly face requirements to demonstrate that security controls are structural rather than procedural — that they are enforced by the system rather than depending on individual compliance. Policy-as-Code satisfies this requirement directly.`,
+          `For government environments, the compliance dimension is equally significant. Policy-as-Code does not only prevent misconfiguration — it produces an auditable record of every policy evaluation, every deployment decision, and every exception. For organizations operating under frameworks such as [NIST 800-53](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final), ISO 27001, or Cyber Essentials, this continuous evidence stream substantially reduces the manual effort required for audit preparation and ongoing compliance attestation.`,
+          `[Government technology programs](/government) increasingly face requirements to demonstrate that security controls are structural rather than procedural — that they are enforced by the system rather than depending on individual compliance. Policy-as-Code satisfies this requirement directly.`,
         ],
       },
       {
@@ -507,6 +536,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "siloed-architecture-knowledge-enterprise-risk",
     title: "The Business Risk of Siloed Architecture Knowledge in Enterprise IT Teams",
+    seoTitle: "The Business Risk of Siloed Architecture Knowledge",
     date: "2026-04-07",
     readTime: "7 min read",
     tags: ["Architecture", "Documentation", "Enterprise", "Team Culture", "Risk"],
@@ -533,7 +563,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           `Architecture diagrams are often treated as artifacts produced at the beginning of a project and updated infrequently thereafter. This is a misunderstanding of their purpose. A current, accurate architecture diagram is not a deliverable. It is operational infrastructure — as important to your engineering function as the monitoring dashboards that tell you the system is running.`,
           `For enterprise organizations, the business case for maintaining architectural documentation is not primarily about helping engineers navigate complexity. It is about reducing organizational risk. It is about ensuring that the people who are on call have the context to resolve incidents without escalating to architects at every turn. It is about enabling procurement reviewers and security assessors to understand what they are evaluating. It is about giving a new CTO or engineering director the ability to understand the environment they have inherited without a six-month tour of tribal knowledge.`,
-          `Government technology programs face a particular version of this challenge. Systems built and documented for an original team frequently survive multiple technology refresh cycles, vendor transitions, and staff rotations. The gap between documented architecture and actual architecture is itself a security and audit risk.`,
+          `Government technology programs face a particular version of this challenge. Systems built and documented for an original team frequently survive multiple technology refresh cycles, vendor transitions, and staff rotations. The gap between documented architecture and actual architecture is itself a security and audit risk — one that compounds with [the cost of over-engineered systems](/insights/over-engineering-enterprise-cost), because complexity nobody documented becomes complexity nobody understands.`,
         ],
       },
       {
@@ -551,6 +581,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "over-engineering-enterprise-cost",
     title: "The Business Cost of Over-Engineered IT Systems: Why Architectural Simplicity Is an Enterprise Advantage",
+    seoTitle: "The Business Cost of Over-Engineered IT Systems",
     date: "2026-04-06",
     readTime: "8 min read",
     tags: ["Architecture", "Simplicity", "Technical Debt", "Enterprise", "Engineering"],
@@ -569,7 +600,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           `Complex systems are expensive in ways that are not always visible at the point of architectural decision. The costs are deferred, and they compound.`,
           `A distributed microservices architecture built on the latest managed Kubernetes offering may perform well at launch. But every additional component in the dependency graph is an additional failure mode. Every inter-service communication boundary is a latency source, a serialisation overhead, and a potential failure point. Every novel managed service introduced into the estate requires someone to understand it deeply enough to operate it, troubleshoot it, and plan for its version lifecycle.`,
-          `These costs are paid in engineering time — specifically, in the engineering time required to debug, maintain, and evolve the system. A system that requires specialist knowledge across eight distinct platforms to diagnose a production incident is not a technical achievement. It is an operational liability. For regulated industries and government environments, this carries additional weight: security assessors and compliance auditors need to understand what a system does and how it does it. Simplicity is not only operationally advantageous — it is a compliance asset.`,
+          `These costs are paid in engineering time — specifically, in the engineering time required to debug, maintain, and evolve the system. A system that requires specialist knowledge across eight distinct platforms to diagnose a production incident is not a technical achievement. It is an operational liability — and it is how [architecture knowledge ends up siloed](/insights/siloed-architecture-knowledge-enterprise-risk) in two or three people's heads. For regulated industries and government environments, this carries additional weight: security assessors and compliance auditors need to understand what a system does and how it does it. Simplicity is not only operationally advantageous — it is a compliance asset.`,
         ],
       },
       {
@@ -602,6 +633,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "change-management-deployment-risk-enterprise",
     title: "Change Management in Enterprise IT: Why Deployment Timing Is a Risk Management Decision, Not an Engineering Preference",
+    seoTitle: "Deployment Timing Is a Risk Decision, Not a Preference",
+    metaDescription:
+      "Whether to deploy on a Friday is not a technical question. It is a risk management question — with a well-established answer in change management practice.",
     date: "2026-04-05",
     readTime: "7 min read",
     tags: ["Change Management", "Deployment", "ITIL", "Risk Management", "Operations"],
@@ -613,7 +647,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           `The pipeline is green. The Terraform plan shows no unexpected changes. The code has passed review, staging has been validated, and the deployment is technically ready. The question is whether to push to production.`,
           `This is, on the surface, a technical question. But for enterprise and government technology teams, it is actually a risk management question — one that has a well-established answer in the IT service management literature, and one that has significant implications for operational stability, incident response capacity, and business continuity.`,
-          `The answer, for most production deployments on a Friday afternoon, is: not yet.`,
+          `The answer, for most production deployments on a Friday afternoon, is: not yet. (We have also made [the engineering case on deployment timing](/insights/best-time-to-ship-code) — this is the risk-management side of the same argument.)`,
         ],
       },
       {
@@ -654,6 +688,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "policy-as-code-cicd-compliance-enterprise",
     title: "How Policy-as-Code Enforces Infrastructure Compliance Across Enterprise CI/CD Pipelines",
+    seoTitle: "Policy-as-Code for CI/CD Infrastructure Compliance",
+    metaDescription:
+      "Cloud misconfiguration is a leading cause of enterprise breaches. Manual review does not scale to enterprise CI/CD velocity. Policy-as-Code does.",
     date: "2026-04-04",
     readTime: "9 min read",
     tags: ["Policy-as-Code", "CI/CD", "Compliance", "Infrastructure", "DevSecOps", "Enterprise"],
@@ -663,7 +700,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          `The IBM Cost of a Data Breach Report 2024 puts the global average cost of a data breach at $4.88 million. Cloud misconfiguration — not sophisticated adversary tradecraft, not zero-day vulnerabilities — is consistently identified as one of the leading causes. Gartner has projected that through 2025, the overwhelming majority of cloud security failures will result from customer-side configuration errors rather than provider-side compromise.`,
+          `The [IBM Cost of a Data Breach Report](https://www.ibm.com/reports/data-breach) puts the global average cost of a data breach at $4.88 million. Cloud misconfiguration — not sophisticated adversary tradecraft, not zero-day vulnerabilities — is consistently identified as one of the leading causes. Gartner has projected that through 2025, the overwhelming majority of cloud security failures will result from customer-side configuration errors rather than provider-side compromise.`,
           `These are not edge cases. Misconfigured cloud resources are the most common, most preventable, and arguably most expensive class of security failure in enterprise and government IT environments. And the dominant response — manual review by engineers at the point of infrastructure change — is not working at the pace, scale, or reliability that modern deployment velocity demands.`,
         ],
       },
@@ -678,15 +715,15 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Policy-as-Code as Automated Compliance Enforcement",
         paragraphs: [
-          `Policy-as-Code addresses this problem by relocating compliance enforcement from human review to automated pipeline evaluation. Security and compliance requirements — the specific, codified rules that govern what configuration is and is not acceptable in your environment — are encoded as machine-evaluable policies and integrated directly into the CI/CD pipeline.`,
+          `Policy-as-Code addresses this problem by relocating compliance enforcement from human review to automated pipeline evaluation. Security and compliance requirements — the specific, codified rules that govern what configuration is and is not acceptable in your environment — are encoded as machine-evaluable policies and integrated directly into the CI/CD pipeline. (For the broader governance picture, see [how enterprises enforce compliance at scale with Policy as Code](/insights/policy-as-code-enterprise).)`,
           `The effect is that every proposed infrastructure change is evaluated against your defined compliance baseline before it can proceed. A virtual machine deployed outside approved SKU boundaries fails the pipeline. A storage account with public blob access enabled fails the pipeline. A network security group rule that permits unrestricted inbound traffic on sensitive ports fails the pipeline. These failures occur automatically, consistently, and before the change reaches a human reviewer — or production.`,
-          `The practical tooling for this is mature. Azure Policy provides native evaluation with enterprise-grade policy libraries. Open Policy Agent and Checkov provide framework-level enforcement that integrates with most major CI/CD platforms. AWS Config Rules and Service Control Policies provide equivalent functionality at both the pipeline and the account level.`,
+          `The practical tooling for this is mature. Azure Policy provides native evaluation with enterprise-grade policy libraries. [Open Policy Agent](https://www.openpolicyagent.org/) and [Checkov](https://www.checkov.io/) provide framework-level enforcement that integrates with most major CI/CD platforms. AWS Config Rules and Service Control Policies provide equivalent functionality at both the pipeline and the account level.`,
         ],
       },
       {
         heading: "What This Means for Compliance and Audit",
         paragraphs: [
-          `For regulated industries — financial services, healthcare, government — the compliance implications extend beyond operational security. Every policy evaluation generates a structured log record: what was evaluated, which policies were applied, what the result was, and what action was taken. This continuous, machine-generated evidence stream is directly applicable to the compliance demonstration requirements of frameworks including ISO 27001, SOC 2 Type II, HIPAA, PCI-DSS, and the government security frameworks that align to NIST 800-53.`,
+          `For regulated industries — financial services, healthcare, government — the compliance implications extend beyond operational security. Every policy evaluation generates a structured log record: what was evaluated, which policies were applied, what the result was, and what action was taken. This continuous, machine-generated evidence stream is directly applicable to the compliance demonstration requirements of frameworks including ISO 27001, SOC 2 Type II, HIPAA, PCI-DSS, and the government security frameworks that align to [NIST 800-53](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final).`,
           `The traditional audit preparation cycle — assembling evidence from disparate systems, reconciling configuration state with documented policy, producing attestations that accurately reflect the production environment — is substantially simplified when compliance enforcement is structural rather than procedural. The evidence exists because the process generates it continuously, not because an audit is approaching and someone needs to produce it.`,
           `For government technology programs subject to security accreditation, the ability to demonstrate that security controls are enforced by the pipeline — not by individual human review — is a materially stronger compliance position than reliance on documented procedures alone.`,
         ],
@@ -695,7 +732,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Implementing Policy-as-Code in Practice",
         paragraphs: [
           `The implementation path begins with policy library definition. Before anything can be enforced automatically, the organization must articulate what its security baseline actually requires — the specific configuration rules that distinguish acceptable from unacceptable infrastructure state. For most enterprise organizations, this is an exercise that surfaces informal standards that have existed in team practice but were never formally documented. This is valuable independent of the tooling question.`,
-          `Once policies are defined, pipeline integration is an engineering task with well-established patterns. The enforcement model — block, warn, or report — should be calibrated to the policy category and the team's operational maturity. Starting with warning mode for lower-severity policies while enforcing blocking for high-severity security controls allows teams to build confidence in the policy library before moving to full enforcement.`,
+          `Once policies are defined, pipeline integration is an engineering task with well-established patterns — and [work we do for clients](/services), if you would rather not build the policy library from scratch. The enforcement model — block, warn, or report — should be calibrated to the policy category and the team's operational maturity. Starting with warning mode for lower-severity policies while enforcing blocking for high-severity security controls allows teams to build confidence in the policy library before moving to full enforcement.`,
           `Human reviewers can then focus on architectural appropriateness, design intent, and edge cases that require contextual judgment, rather than performing the same configuration checklist that automation can execute more reliably. Infrastructure compliance is not a checkpoint. It is a continuous state — one that automated enforcement is far better equipped to maintain than manual review alone.`,
         ],
       },

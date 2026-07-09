@@ -1,11 +1,35 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, type CSSProperties, type ReactNode } from 'react'
 import Link from 'next/link'
 import type { BlogPost } from '@/app/data/blog'
 import Nav from '../../components/Nav'
 
 const serif = "var(--font-dm-serif), Georgia, serif"
+
+const linkStyle: CSSProperties = { color: '#c04818', textDecoration: 'underline', textUnderlineOffset: 3 }
+
+// Renders [label](href) markdown links inside paragraph text. Internal hrefs
+// (starting with /) use next/link; external links open in a new tab.
+function renderInline(text: string): ReactNode {
+  const re = /\[([^\]]+)\]\(([^)\s]+)\)/g
+  const parts: React.ReactNode[] = []
+  let last = 0
+  let m: RegExpExecArray | null
+  while ((m = re.exec(text))) {
+    if (m.index > last) parts.push(text.slice(last, m.index))
+    const [, label, href] = m
+    parts.push(
+      href.startsWith('/')
+        ? <Link key={m.index} href={href} style={linkStyle}>{label}</Link>
+        : <a key={m.index} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>{label}</a>
+    )
+    last = m.index + m[0].length
+  }
+  if (parts.length === 0) return text
+  if (last < text.length) parts.push(text.slice(last))
+  return parts
+}
 
 const gradients: Record<string, string> = {
   'Engineering Culture': 'linear-gradient(140deg,#c85a20,#7a1a18,#2a0818)',
@@ -84,7 +108,7 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
               <div key={si}>
                 {section.heading && <h2>{section.heading}</h2>}
                 {section.paragraphs.map((para, pi) => (
-                  <p key={pi}>{para}</p>
+                  <p key={pi}>{renderInline(para)}</p>
                 ))}
               </div>
             ))}
@@ -98,11 +122,11 @@ export default function ArticleClient({ post, related }: { post: BlogPost; relat
             <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.4)', marginBottom: 16 }}>Written by</p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
               <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'linear-gradient(135deg,#c85a20,#7a1a18)', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: 16, fontWeight: 700, color: 'white' }}>T</span>
+                <span style={{ fontSize: 16, fontWeight: 700, color: 'white' }}>V</span>
               </div>
               <div>
-                <p style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.01em' }}>Campux</p>
-                <p style={{ fontSize: 13, color: 'rgba(0,0,0,0.45)' }}>Enterprise IT</p>
+                <Link href="/about" style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.01em', display: 'block' }}>Victor Thomson</Link>
+                <p style={{ fontSize: 13, color: 'rgba(0,0,0,0.45)' }}>Founder &amp; Principal Engineer, Campux</p>
               </div>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(0,0,0,0.5)', lineHeight: 1.65 }}>Notes on infrastructure, security, and the operational decisions that matter — from people who&apos;ve had to make them.</p>
