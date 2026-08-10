@@ -30,7 +30,10 @@ export default function Nav({ active, theme = 'dark', ctaHref = '/contact', ctaL
     : { background: '#1a1a1a', color: 'white', padding: '9px 22px', borderRadius: 8, fontSize: 14, fontWeight: 600 as const }
 
   return (
-    <nav style={{ position: 'sticky', top: 0, zIndex: 300, background: navBg, backdropFilter: 'blur(24px)', borderBottom: `1px solid ${borderColor}` }}>
+    <nav style={{ position: 'sticky', top: 0, zIndex: 300, background: navBg, borderBottom: `1px solid ${borderColor}` }}>
+      {/* Blur lives on its own layer so the sticky nav doesn't become a containing
+          block for the fixed mobile overlay (backdrop-filter would trap it in the bar). */}
+      <div aria-hidden style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', pointerEvents: 'none', zIndex: -1 }} />
       <div className="rsp-nav-inner" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 48px', height: 72, display: 'flex', alignItems: 'center' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, flex: '0 0 auto', marginRight: 56 }}>
           <svg width="28" height="28" viewBox="0 0 36 36" fill="none">

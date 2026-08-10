@@ -243,7 +243,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Static-page hamburger using <details> */
-.mob-menu-toggle { display: none; }
+.mob-menu-toggle { display: none; margin-left: auto; }
 .mob-menu-toggle summary {
   list-style: none;
   background: rgba(255,255,255,0.08);
