@@ -22,10 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/government`,
+      url: `${siteUrl}/public-sector`,
       lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/working-with-us`,
+      lastModified: buildDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${siteUrl}/contact`,
@@ -40,19 +46,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/about`,
-      lastModified: buildDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${siteUrl}/terms`,
       lastModified: buildDate,
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
-      url: `${siteUrl}/privacy-policy`,
+      url: `${siteUrl}/privacy`,
+      lastModified: buildDate,
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${siteUrl}/accessibility`,
       lastModified: buildDate,
       changeFrequency: "yearly",
       priority: 0.2,

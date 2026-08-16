@@ -28,6 +28,14 @@ export default {
       return Response.redirect(url.toString(), 301)
     }
 
+    // Permanent redirects: routes renamed in the newcampux redesign, and three
+    // insights articles that were unpublished during curation (301 -> /insights).
+    const redirectTarget = REDIRECTS[stripSlash(url.pathname)]
+    if (redirectTarget) {
+      url.pathname = redirectTarget
+      return Response.redirect(url.toString(), 301)
+    }
+
     // Old WordPress site is gone. Return 410 (not 404) for its legacy URLs so
     // Google drops them from the index immediately instead of re-crawling dead
     // pages for months. Only matches known-old paths — never a current route.
@@ -44,6 +52,23 @@ export default {
 
     return env.ASSETS.fetch(request)
   },
+}
+
+// Routes renamed / articles unpublished in the newcampux redesign.
+// Keys are path without trailing slash; values are the new destination.
+const REDIRECTS: Record<string, string> = {
+  "/government": "/public-sector",
+  "/about": "/",
+  "/privacy-policy": "/privacy",
+  "/insights/ai-is-the-new-junior-developer": "/insights",
+  "/insights/best-time-to-ship-code": "/insights",
+  "/insights/is-your-environment-truly-agile": "/insights",
+}
+
+function stripSlash(pathname: string): string {
+  return pathname !== "/" && pathname.endsWith("/")
+    ? pathname.slice(0, -1)
+    : pathname
 }
 
 // Legacy WordPress URLs from the previous site on this domain. These 404 today;

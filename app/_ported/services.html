@@ -1,0 +1,126 @@
+<div class="util"><div class="wrap">
+  <span>Atlanta, Georgia · Microsoft Azure practice</span>
+  <span class="r"><a href="/public-sector#capability">Capability statement</a><a href="/contact">Contact</a></span>
+</div></div>
+
+<header><div class="wrap">
+  <a class="brand" href="/" aria-label="Campux home"><img src="/campux-logo.png" alt="Campux"></a>
+  <nav class="primary" aria-label="Primary">
+    <span class="has-menu"><a href="/services" data-nav="services" class="active">Services</a>
+      <div class="menu">
+        <a href="/services#architecture">Architecture &amp; landing zones<small>Management groups, hub-spoke, migration, as code</small></a>
+        <a href="/services#devsecops">DevSecOps<small>Pipelines, policy-as-code, Defender, Zero Trust</small></a>
+        <a href="/services#automation">Automation &amp; AI-assisted operations<small>Runbooks, workflows, document agents</small></a>
+        <a href="/services#finops">FinOps &amp; cost governance<small>Spend analysis, right-sizing, guardrails that hold</small></a>
+        <a href="/services#training">Training &amp; curriculum<small>Instructor-led, on lab tenants mirroring yours</small></a>
+      </div></span>
+    <a href="/public-sector" data-nav="public-sector">Public sector</a>
+    <a href="/working-with-us" data-nav="working">Working with us</a>
+    <a href="/insights" data-nav="insights">Insights</a>
+  </nav>
+  <a class="btn btn-primary" href="/contact">Talk to an engineer</a>
+</div></header>
+
+<main id="top">
+<section class="pagehead"><div class="wrap">
+  <p class="kicker">Services</p><h1>What we do</h1>
+  <p class="lede">Five practices, one lifecycle. Our core work is cloud landing zones and governance for public-sector and regulated organizations. The other four practices make that platform secure, automated, cost-controlled and easy for your team to run. Azure first; AWS where you already run there.</p>
+</div></section>
+<div class="subnav"><div class="wrap"><a href="#architecture">Architecture &amp; landing zones</a><a href="#devsecops">DevSecOps</a><a href="#automation">Automation &amp; AI-assisted operations</a><a href="#finops">FinOps &amp; cost governance</a><a href="#training">Training &amp; curriculum</a></div></div>
+<section class="svc" id="architecture"><div class="wrap">
+  <div>
+    <h2>Architecture &amp; landing zones</h2><p class="tag">Management groups, subscriptions, identity, network</p>
+    <p>We design and build the foundation your workloads sit on. On Azure that means a landing zone aligned to the Cloud Adoption Framework: management-group hierarchy, platform subscriptions for identity, management and connectivity, and workload subscriptions joined to a hub by hub-and-spoke or Virtual WAN. On AWS it means Control Tower with a multi-account structure and guardrails.</p><p>The environment is written in Bicep or Terraform, reviewed in your repository, and enforced by policy from the first deployment. Migrations are planned around dependency mapping and rehearsed cutovers, and every workload move has a rollback path.</p><p>This practice is for organizations standing up a first tenant properly, inheriting a tenant that no longer matches its design, or moving a datacenter or another cloud into Azure or AWS.</p>
+    <p class="shape"><strong>How it is engaged.</strong> Architecture review (fixed price) → landing zone build or migration (fixed price or T&amp;M) → retained advisory.</p>
+    <p style="margin-top:22px"><a class="link" href="/contact?need=Landing%20zone%20%2F%20migration">Discuss this practice</a></p>
+  </div>
+  <div class="aside">
+    <svg viewBox="0 0 104 72"><rect class="n" x="38" y="2" width="28" height="14" rx="1"/><path class="l" d="M52 16v10M20 26h64M20 26v10M52 26v10M84 26v10"/><rect class="n" x="6" y="36" width="28" height="14" rx="1"/><rect class="f" x="38" y="36" width="28" height="14" rx="1"/><rect class="n" x="70" y="36" width="28" height="14" rx="1"/><path class="a" d="M52 50v8M40 58h24M40 58v6M64 58v6"/><rect class="n" x="30" y="64" width="20" height="8"/><rect class="n" x="54" y="64" width="20" height="8"/></svg>
+    <h4>Scope</h4><ul><li>Azure landing zone design</li><li>AWS Control Tower &amp; multi-account setup</li><li>Management-group &amp; policy hierarchy</li><li>Hub-spoke / Virtual WAN networking</li><li>ExpressRoute, VPN &amp; hybrid DNS</li><li>Tenant, subscription &amp; account strategy</li><li>Migration assessment &amp; dependency mapping</li><li>Cutover rehearsal &amp; rollback plans</li></ul>
+    <h4>Deliverables</h4><ul><li>Bicep or Terraform modules in your repository</li><li>Policy initiative set and RBAC model</li><li>Network and naming standards</li><li>Migration runbook and cutover plan</li><li>Architecture decision records</li></ul>
+  </div>
+</div></section>
+<section class="svc" id="devsecops"><div class="wrap">
+  <div>
+    <h2>DevSecOps</h2><p class="tag">Pipelines, policy-as-code, Defender, Zero Trust</p>
+    <p>We build the delivery pipeline and the security controls together, so every change is checked before it ships. Pipelines run in Azure DevOps or GitHub Actions with code scanning, secret scanning, dependency and SBOM checks, and policy gates that block non-compliant infrastructure before it deploys.</p><p>On the platform side we configure Microsoft Defender for Cloud and Defender for APIs, Key Vault and workload identity, and Zero Trust baselines for identity and network. On AWS the same controls run through Security Hub, AWS Config and IAM Access Analyzer.</p><p>This practice is for teams whose security review happens once a year, whose pipelines deploy without gates, or who are exposing APIs and need an edge that is actually private behind it.</p>
+    <p class="shape"><strong>How it is engaged.</strong> Pipeline and posture review (fixed price) → build (fixed price or T&amp;M) → retained advisory.</p>
+    <p style="margin-top:22px"><a class="link" href="/contact?need=DevSecOps%20%26%20automation">Discuss this practice</a></p>
+  </div>
+  <div class="aside">
+    <svg viewBox="0 0 104 72"><path class="l" d="M4 36h96"/><circle class="n" cx="16" cy="36" r="8"/><circle class="n" cx="40" cy="36" r="8"/><circle class="f" cx="64" cy="36" r="8"/><circle class="n" cx="88" cy="36" r="8"/><path class="a" d="M64 6l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V9z"/><path class="a" d="M60 14l3 3 5-5"/><text x="16" y="60" text-anchor="middle" style="font:10px var(--sans);fill:#6A7583">build</text><text x="40" y="60" text-anchor="middle" style="font:10px var(--sans);fill:#6A7583">test</text><text x="64" y="60" text-anchor="middle" style="font:10px var(--sans);fill:#0E7C86">scan+policy</text><text x="88" y="60" text-anchor="middle" style="font:10px var(--sans);fill:#6A7583">deploy</text></svg>
+    <h4>Scope</h4><ul><li>CI/CD design &amp; release gates</li><li>SAST / DAST / secret &amp; dependency scanning</li><li>Azure Policy &amp; initiatives as code</li><li>Defender for Cloud &amp; Defender for APIs</li><li>Key Vault &amp; workload identity</li><li>API Management &amp; Front Door (WAF, Private Link)</li><li>Security Hub, Config, Access Analyzer (AWS)</li><li>Zero Trust identity &amp; network baselines</li></ul>
+    <h4>Deliverables</h4><ul><li>Pipeline templates in your repository</li><li>Policy-as-code library with tests</li><li>Defender / Security Hub configuration</li><li>Secure API edge pattern deployed</li><li>Security runbooks and alert routing</li></ul>
+  </div>
+</div></section>
+<section class="svc" id="automation"><div class="wrap">
+  <div>
+    <h2>Automation &amp; AI-assisted operations</h2><p class="tag">Runbooks, workflows, integrations, document agents</p>
+    <p>We turn the recurring work that keeps a platform running into scheduled, logged automation: environment refreshes, access reviews, drift checks, reporting, and ticket or document handling. For platform tasks we use Azure Automation and PowerShell. For business workflows we use Logic Apps, Azure Functions and Power Automate, or Lambda, EventBridge and Step Functions on AWS.</p><p>Where it is useful we add AI-assisted agents for document intake, classification and summarization. Every agent we build has a person reviewing its output before anything is acted on, and every run is logged.</p><p>This practice is for teams doing the same manual task every week, for compliance work that depends on someone remembering to run a report, and for document-heavy processes that need triage before a human sees them.</p>
+    <p class="shape"><strong>How it is engaged.</strong> Automation assessment (fixed price) → build (fixed price) → retained advisory.</p>
+    <p style="margin-top:22px"><a class="link" href="/contact?need=DevSecOps%20%26%20automation">Discuss this practice</a></p>
+  </div>
+  <div class="aside">
+    <svg viewBox="0 0 104 72"><circle class="a" cx="24" cy="36" r="14"/><path class="a" d="M24 22v-6M24 56v-6M10 36H4M44 36h-6M14 26l-4-4M38 46l-4-4M14 46l-4 4M38 26l-4 4"/><circle class="f" cx="24" cy="36" r="5"/><path class="l" d="M44 36h14"/><rect class="n" x="58" y="10" width="40" height="14"/><rect class="n" x="58" y="29" width="40" height="14"/><rect class="n" x="58" y="48" width="40" height="14"/><path class="l" d="M58 17h-6v34h6"/><text x="78" y="20" text-anchor="middle" style="font:8.5px var(--sans);fill:#3A4552">runbook</text><text x="78" y="39" text-anchor="middle" style="font:8.5px var(--sans);fill:#3A4552">workflow</text><text x="78" y="58" text-anchor="middle" style="font:8.5px var(--sans);fill:#3A4552">agent</text></svg>
+    <h4>Scope</h4><ul><li>Azure Automation &amp; PowerShell runbooks</li><li>Logic Apps, Functions, Power Automate</li><li>Lambda, EventBridge, Step Functions (AWS)</li><li>Environment refresh &amp; data masking</li><li>Access review &amp; drift detection</li><li>Monitoring, alerting &amp; auto-remediation</li><li>AI document intake &amp; summarization agents</li><li>Integration with ticketing and M365</li></ul>
+    <h4>Deliverables</h4><ul><li>Runbooks and workflows in your repository</li><li>Schedules, alerting and run history</li><li>Masking rule set (where refresh applies)</li><li>Agent design with human-review step</li><li>Operations guide for your staff</li></ul>
+  </div>
+</div></section>
+<section class="svc" id="finops"><div class="wrap">
+  <div>
+    <h2>FinOps &amp; cost governance</h2><p class="tag">Spend analysis, right-sizing, guardrails</p>
+    <p>We analyze spend, right-size resources and review reservations and savings plans, then put budgets, alerts and tagging policy in place so the savings hold. Your finance team gets a monthly report they can read without an engineer, and your platform team gets the guardrails that stop new deployments from undoing the work.</p><p>This runs on Azure Cost Management and on AWS Cost Explorer and Budgets, with the same tagging and showback model across both.</p><p>This practice is for organizations whose bill went back up after a savings exercise, who cannot attribute cost to a team or a service, or who need predictable spend for a budget cycle.</p>
+    <p class="shape"><strong>How it is engaged.</strong> Cost review (fixed price) → governance build (fixed price) → quarterly review under retainer.</p>
+    <p style="margin-top:22px"><a class="link" href="/contact?need=Cost%20governance">Discuss this practice</a></p>
+  </div>
+  <div class="aside">
+    <svg viewBox="0 0 104 72"><path class="l" d="M6 66h92M6 66V6"/><rect class="n" x="14" y="16" width="12" height="50"/><rect class="n" x="34" y="26" width="12" height="40"/><rect class="n" x="54" y="30" width="12" height="36"/><rect class="f" x="74" y="34" width="12" height="32"/><path class="a" d="M20 14C40 20 60 26 80 32" stroke-dasharray="3 3"/><path class="a" d="M6 40h92" /><text x="98" y="37" text-anchor="end" style="font:9px var(--sans);fill:#0E7C86">budget</text></svg>
+    <h4>Scope</h4><ul><li>Spend &amp; usage analysis</li><li>Right-sizing &amp; reservation / savings-plan review</li><li>Budgets, alerts &amp; anomaly detection</li><li>Tagging policy &amp; showback</li><li>Monthly cost review</li><li>Cost guardrails in policy</li><li>Azure Cost Management &amp; AWS Cost Explorer</li></ul>
+    <h4>Deliverables</h4><ul><li>Cost baseline and savings plan</li><li>Tagging standard enforced by policy</li><li>Budgets and alerts configured</li><li>Monthly report template</li><li>Quarterly review (under retainer)</li></ul>
+  </div>
+</div></section>
+<section class="svc" id="training"><div class="wrap">
+  <div>
+    <h2>Training &amp; curriculum</h2><p class="tag">Instructor-led, live lab tenants</p>
+    <p>Training is the last part of every build, not a separate business. Your engineers work alongside us during the engagement, write the runbooks themselves, and finish with lab time on a tenant that mirrors production. Where a client wants more than that, we deliver a short instructor-led program, two to five days, written around their tools and operating model.</p><p>This practice is for teams inheriting a platform we built or one they already run, and for staff moving from on-premises into cloud operations.</p>
+    <p class="shape"><strong>How it is engaged.</strong> Included in a build; standalone programs priced per day.</p>
+    <p style="margin-top:22px"><a class="link" href="/contact?need=Team%20training">Discuss this practice</a></p>
+  </div>
+  <div class="aside">
+    <svg viewBox="0 0 104 72"><rect class="n" x="4" y="6" width="96" height="40" rx="1"/><path class="l" d="M4 16h96"/><rect class="f" x="10" y="22" width="34" height="18"/><path class="l" d="M50 24h44M50 30h36M50 36h40"/><circle class="n" cx="22" cy="60" r="5"/><circle class="n" cx="40" cy="60" r="5"/><circle class="n" cx="58" cy="60" r="5"/><circle class="a" cx="76" cy="60" r="5"/><path class="l" d="M22 55V46M40 55V46M58 55V46M76 55V46"/></svg>
+    <h4>Scope</h4><ul><li>Enablement embedded in every build</li><li>Short instructor-led programs (2–5 days)</li><li>Lab tenant mirroring your environment</li><li>Runbook authoring with your staff</li><li>AZ-104 / AZ-400 preparation on request</li></ul>
+    <h4>Deliverables</h4><ul><li>Runbooks authored by your staff</li><li>Lab tenant and exercises</li><li>Materials you own after delivery</li></ul>
+  </div>
+</div></section>
+<section style="padding:88px 0"><div class="wrap"><aside class="retainer" id="retainer" style="margin-top:0">
+      <div>
+        <p class="kicker">Retained advisory</p>
+        <h3>After handover, we stay available</h3>
+        <p>A monthly retainer keeps the engineer who built your platform on call. It includes a block of hours, a quarterly governance and cost review, and priority response for changes and incidents. Your team runs the environment. We are the second opinion and the extra capacity when you need it.</p>
+      </div>
+      <ul>
+        <li><strong>Reviewer</strong> — quarterly architecture, policy and spend review; written report.</li>
+        <li><strong>Advisor</strong> — reviewer plus a monthly hour block for changes, upgrades and pipeline work.</li>
+        <li><strong>Operator</strong> — advisor plus priority incident response and named coverage windows.</li>
+      </ul>
+    </aside></div></section>
+<section class="cta-band"><div class="wrap">
+  <div><h2>Not sure which practice you need?</h2><p>Start with a fixed-scope architecture review. The findings tell you where the work is, and you keep them either way.</p></div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-primary" href="/contact?need=Architecture%20review">Request an architecture review</a><a class="btn btn-outline" href="mailto:hello@campux.co">hello@campux.co</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="grid">
+    <div>
+      <a class="brand" href="/"><img src="/campux-logo-white.png" alt="Campux" style="height:20px"></a>
+      <p style="margin-top:16px;max-width:32ch">Microsoft Azure architecture, DevSecOps, automation, FinOps and workforce training. Atlanta, Georgia.</p>
+      <p style="margin-top:10px"><a href="mailto:hello@campux.co">hello@campux.co</a></p>
+    </div>
+    <div><h4>Practices</h4><ul><li><a href="/services#architecture">Architecture &amp; landing zones</a></li><li><a href="/services#devsecops">DevSecOps</a></li><li><a href="/services#automation">Automation &amp; AI operations</a></li><li><a href="/services#finops">FinOps &amp; cost governance</a></li><li><a href="/services#training">Training &amp; curriculum</a></li></ul></div>
+    <div><h4>Sectors</h4><ul><li><a href="/public-sector">State &amp; local government</a></li><li><a href="/public-sector#engage">Federal subcontracting</a></li><li><a href="/services">Healthcare &amp; life sciences</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="/#firm">The firm</a></li><li><a href="/insights">Insights</a></li><li><a href="/working-with-us">Working with us</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <div><h4>Procurement</h4><ul><li><a href="/public-sector#capability">Capability statement</a></li><li><a href="/public-sector#capability">UEI / CAGE / NAICS</a></li><li><a href="/working-with-us">Working with us</a></li><li><a href="/working-with-us#teaming">Teaming</a></li></ul></div>
+  </div>
+  <div class="legal"><span>© 2026 Campux LLC. All rights reserved.</span><span><a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/accessibility">Accessibility statement (WCAG 2.1 AA)</a></span></div>
+</div></footer>

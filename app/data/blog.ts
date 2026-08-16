@@ -31,9 +31,9 @@ export interface BlogSection {
 
 // Byline shown on every article and used in Article JSON-LD. One place to change.
 export const blogAuthor = {
-  name: "Victor T",
-  jobTitle: "Founder & Principal Engineer, Campux",
-  url: "https://campux.co/about",
+  name: "Campux",
+  jobTitle: "Campux",
+  url: "https://campux.co/insights",
 }
 
 export interface BlogPost {
@@ -51,7 +51,7 @@ export interface BlogPost {
   sections: BlogSection[]
 }
 
-export const blogPosts: BlogPost[] = [
+const rawBlogPosts: BlogPost[] = [
   {
     slug: "azure-policy-vs-opa",
     title: "Azure Policy vs OPA: Choosing a Policy Engine for Your Azure Environment",
@@ -944,6 +944,89 @@ export const blogPosts: BlogPost[] = [
   },
 
 ]
+
+// ── INSIGHTS CURATION ─────────────────────────────────────────────────────────
+// Applies the editorial decisions in
+// newcampux/campux-site-pages/.../insights-curation.md to the raw posts above,
+// without rewriting article bodies. Final categories: Architecture · DevSecOps ·
+// Automation · FinOps · Engineering. Three off-practice posts are unpublished
+// (the worker 301s their old URLs to /insights).
+
+// Slugs removed from the site (unpublished). Old URLs 301 -> /insights (worker).
+export const removedInsightSlugs = new Set<string>([
+  "ai-is-the-new-junior-developer",
+  "best-time-to-ship-code",
+  "is-your-environment-truly-agile",
+])
+
+// slug -> { category, title? }. Title set only where curation retitles or
+// normalizes to the ranking title. Categories mapped to the five practices.
+const curation: Record<string, { category: string; title?: string }> = {
+  "azure-landing-zone-design-decisions": {
+    category: "Architecture",
+    title: "Azure landing zones: the design decisions that actually matter",
+  },
+  "bicep-vs-terraform-azure": {
+    category: "DevSecOps",
+    title: "Bicep vs Terraform for Azure",
+  },
+  "azure-policy-vs-opa": {
+    category: "DevSecOps",
+    title: "Azure Policy vs OPA: choosing a policy engine",
+  },
+  "azure-cost-optimization-finops": {
+    category: "FinOps",
+    title: "Azure cost optimization: where FinOps actually finds the money",
+  },
+  "policy-as-code-cicd-compliance-enterprise": {
+    category: "DevSecOps",
+    title: "Policy-as-code in CI/CD: enforcing infrastructure compliance",
+  },
+  "policy-as-code-enterprise": {
+    category: "DevSecOps",
+    title: "Policy as code at enterprise scale",
+  },
+  "policy-as-code-small-business": {
+    category: "DevSecOps",
+    title: "Policy as code for small teams: start simple, stay consistent",
+  },
+  "best-branching-strategy": {
+    category: "DevSecOps",
+    title: "Trunk-based development: why we default to it",
+  },
+  "best-deployment-strategy": {
+    category: "DevSecOps",
+    title: "Choosing a deployment strategy",
+  },
+  "change-management-deployment-risk-enterprise": {
+    category: "DevSecOps",
+    title: "Deployment timing is a risk decision",
+  },
+  "soc-alert-fatigue-policy-as-code": {
+    category: "DevSecOps",
+    title: "Prevention before detection: policy-as-code and SOC alert fatigue",
+  },
+  "removing-humans-from-automation": {
+    category: "Automation",
+    title: "What breaks when automation has no human in the loop",
+  },
+  "over-engineering-enterprise-cost": {
+    category: "Engineering",
+    title: "The cost of over-engineered systems",
+  },
+  "siloed-architecture-knowledge-enterprise-risk": {
+    category: "Engineering",
+    title: "Siloed architecture knowledge is a business risk",
+  },
+}
+
+export const blogPosts: BlogPost[] = rawBlogPosts
+  .filter((p) => !removedInsightSlugs.has(p.slug))
+  .map((p) => {
+    const c = curation[p.slug]
+    if (!c) return p
+    return { ...p, category: c.category, title: c.title ?? p.title }
+  })
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug)

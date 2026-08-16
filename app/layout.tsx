@@ -1,40 +1,17 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-});
-
-const dmSerif = DM_Serif_Display({
-  variable: "--font-dm-serif",
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-});
-
-const siteUrl = "https://campux.co"
+const siteUrl = "https://campux.co";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Campux — Azure Cloud Consulting & IT Training | Atlanta, GA",
+    default:
+      "Campux — We build the cloud environment. Your team runs it. · Atlanta",
     template: "%s | Campux",
   },
   description:
-    "Atlanta-based Azure cloud consulting and IT training firm. Cloud architecture and migration, DevSecOps, FinOps, and hands-on Azure training. Founded 2024. Small, senior, hands-on.",
-  keywords: [
-    "Azure cloud consulting",
-    "Azure migration Atlanta",
-    "DevSecOps consulting",
-    "cloud FinOps",
-    "Azure IT training",
-    "cloud architecture",
-    "Bicep Terraform infrastructure as code",
-    "Azure landing zones",
-    "federal contractor cloud consulting",
-  ],
+    "Campux LLC builds and secures Microsoft Azure platforms, and AWS where you already run there, for public-sector and regulated organizations, then trains the internal team to run them. Atlanta, Georgia.",
   authors: [{ name: "Campux", url: siteUrl }],
   creator: "Campux",
   publisher: "Campux",
@@ -43,23 +20,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Campux",
-    title: "Campux — Azure Cloud Consulting & IT Training | Atlanta, GA",
+    title: "Campux — We build the cloud environment. Your team runs it.",
     description:
-      "Atlanta-based Azure cloud consulting and IT training firm. We design, secure, and optimize Azure environments — and teach teams to run them.",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Campux — Azure Cloud Consulting & IT Training, Atlanta GA",
-      },
-    ],
+      "Azure-first, AWS-capable cloud consulting for public-sector and regulated organizations. Architecture, DevSecOps, automation, FinOps and training. Atlanta, Georgia.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Campux" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Campux — Azure Cloud Consulting & IT Training",
+    title: "Campux — We build the cloud environment. Your team runs it.",
     description:
-      "Atlanta-based Azure cloud consulting and IT training firm. Founded 2024. Small, senior, hands-on.",
+      "Azure-first, AWS-capable cloud consulting for public-sector and regulated organizations. Atlanta, Georgia.",
   },
   robots: {
     index: true,
@@ -85,14 +55,12 @@ const orgJsonLd = {
       url: siteUrl,
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Lilburn",
+        addressLocality: "Atlanta",
         addressRegion: "GA",
         addressCountry: "US",
       },
+      email: "hello@campux.co",
       telephone: "+1-470-718-4440",
-      sameAs: [
-        // TODO: LinkedIn company URL
-      ],
       logo: {
         "@type": "ImageObject",
         url: `${siteUrl}/opengraph-image`,
@@ -100,32 +68,21 @@ const orgJsonLd = {
         height: 630,
       },
       description:
-        "Atlanta-based Azure cloud consulting and IT training firm. We design, secure, and optimize Azure environments, and teach teams to run them.",
+        "Azure-first, AWS-capable cloud consulting for public-sector and regulated organizations. We build the cloud environment; your team runs it.",
       foundingDate: "2024",
-      areaServed: [
-        { "@type": "Country", name: "United States" },
-      ],
+      areaServed: [{ "@type": "Country", name: "United States" }],
       knowsAbout: [
         "Azure Cloud Architecture",
+        "Azure Landing Zones",
         "Cloud Migration",
         "DevSecOps",
         "Infrastructure as Code",
         "Cloud FinOps",
         "IT Training",
       ],
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Azure Cloud Consulting & IT Training",
-        itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cloud Architecture & Migration" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "DevSecOps & Automation" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cloud FinOps & Cost Optimization" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "IT Training & Curriculum Development" } },
-        ],
-      },
       contactPoint: {
         "@type": "ContactPoint",
-        email: "victor@campux.co",
+        email: "hello@campux.co",
         contactType: "customer service",
         areaServed: "US",
         availableLanguage: "English",
@@ -139,22 +96,33 @@ const orgJsonLd = {
       publisher: { "@id": `${siteUrl}/#organization` },
     },
   ],
-}
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmSerif.variable}`}>
+    <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
       </head>
-      <body suppressHydrationWarning style={{ fontFamily: "var(--font-dm-sans), system-ui, sans-serif", margin: 0, padding: 0 }}>
+      <body suppressHydrationWarning>
+        <a className="skip" href="#top">
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

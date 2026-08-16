@@ -1,0 +1,42 @@
+{
+  "home": {
+    "title": "Campux — We build the cloud environment. Your team runs it. · Atlanta",
+    "description": "Campux LLC builds and secures Microsoft Azure platforms, and AWS where you already run there, for public-sector and regulated organizations, then trains the internal team to run them. Atlanta, Georgia."
+  },
+  "services": {
+    "title": "Campux — Services: architecture, DevSecOps, automation, FinOps, training · Atlanta",
+    "description": "Five cloud practices for public-sector and regulated organizations: Azure and AWS landing zones, DevSecOps, automation, FinOps and instructor-led training. Atlanta, Georgia."
+  },
+  "public-sector": {
+    "title": "Campux — Public sector: SAM.gov registered Azure and AWS practice · Georgia",
+    "description": "Campux LLC is a SAM.gov-registered Georgia small business delivering Azure and AWS landing zones, DevSecOps, cost governance and training to state, local and federal buyers. UEI, CAGE and NAICS on the page."
+  },
+  "working-with-us": {
+    "title": "Campux — Working with us: engagement models, retainer tiers, terms · Atlanta",
+    "description": "How Campux engages: fixed-scope reviews, builds under a signed scope, retained advisory tiers, training programs, commercial terms, continuity, and teaming for primes."
+  },
+  "contact": {
+    "title": "Campux — Contact: request an architecture review · Atlanta",
+    "description": "Contact Campux LLC to request a fixed-scope architecture review, scope a build, or discuss training or retained advisory. Atlanta, Georgia; remote nationwide."
+  },
+  "insights": {
+    "title": "Campux — Insights: Azure landing zones, policy as code, pipelines, cost · Atlanta",
+    "description": "Articles from Campux on Azure and AWS landing zones, policy as code, DevSecOps pipelines, cost governance and automation."
+  },
+  "privacy": {
+    "title": "Campux — Privacy policy",
+    "description": "Privacy policy for campux.co and Campux LLC services."
+  },
+  "terms": {
+    "title": "Campux — Terms of service",
+    "description": "Terms of service for campux.co and Campux LLC services."
+  },
+  "accessibility": {
+    "title": "Campux — Accessibility statement",
+    "description": "Accessibility statement for campux.co and Campux LLC services."
+  },
+  "not-found": {
+    "title": "Campux — Page not found",
+    "description": "Page not found."
+  }
+}
