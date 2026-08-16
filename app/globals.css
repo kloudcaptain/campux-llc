@@ -382,6 +382,18 @@ nav.primary a.active::after{transform:scaleX(1)}
 @media (max-width:920px){.svc .wrap,.cta-band .wrap{grid-template-columns:1fr;gap:36px}.b3{grid-template-columns:1fr}.b3>div{border-right:0;margin-right:0;padding-right:0}.tiers{display:block;overflow-x:auto}}
 
 
+/* mobile nav toggle (added by MobileNav.tsx; sanctioned by the responsive contract) */
+.navtoggle{display:none;align-items:center;background:none;border:1.5px solid var(--navy);border-radius:2px;padding:9px 14px;font:600 15px var(--sans);color:var(--navy);cursor:pointer;margin-left:auto}
+.navtoggle:hover{background:var(--navy);color:#fff}
+@media (max-width:920px){
+  .navtoggle{display:inline-flex}
+  header .wrap{flex-wrap:wrap;height:auto;min-height:76px;gap:16px;padding-top:14px;padding-bottom:14px}
+  nav.primary.open{display:flex;flex-direction:column;flex-basis:100%;order:5;gap:0;border-top:1px solid var(--line-soft);margin-top:6px}
+  nav.primary.open>a,nav.primary.open .has-menu>a{padding:12px 0}
+  nav.primary.open a::after{display:none}
+  nav.primary.open .menu{position:static;display:block;min-width:0;border:0;border-top:1px solid var(--line-soft);box-shadow:none;padding:4px 0 8px 16px}
+}
+
 /* insights article template (new-design, React-rendered) */
 .article-wrap{max-width:768px;margin:0 auto;padding:64px 32px 96px}
 .article .back{color:var(--blue);font-weight:600;font-size:15px;display:inline-block;margin-bottom:32px}

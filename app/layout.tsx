@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MobileNav from "@/app/components/MobileNav";
 
 const siteUrl = "https://campux.co";
 
@@ -124,6 +125,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <MobileNav />
       </body>
     </html>
   );

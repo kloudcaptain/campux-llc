@@ -851,7 +851,7 @@ const rawBlogPosts: BlogPost[] = [
         paragraphs: [
           `The pipeline is green. The Terraform plan shows no unexpected changes. The code has passed review, staging has been validated, and the deployment is technically ready. The question is whether to push to production.`,
           `This is, on the surface, a technical question. But for enterprise and government technology teams, it is actually a risk management question — one that has a well-established answer in the IT service management literature, and one that has significant implications for operational stability, incident response capacity, and business continuity.`,
-          `The answer, for most production deployments on a Friday afternoon, is: not yet. (We have also made [the engineering case on deployment timing](/insights/best-time-to-ship-code) — this is the risk-management side of the same argument.)`,
+          `The answer, for most production deployments on a Friday afternoon, is: not yet.`,
         ],
       },
       {
