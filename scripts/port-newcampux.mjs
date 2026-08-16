@@ -87,6 +87,20 @@ for (const { file, name } of PAGES) {
   // Drop any inline <script> (prefill/validation handled by React enhancer)
   body = body.replace(/<script[\s\S]*?<\/script>/gi, "");
 
+  // Remove AI/dev footprints from the shipped markup:
+  //  - HTML comments (section markers, SVG notes, TODO notes)
+  //  - the dead "Book a call" button (href="#" placeholder) + its yellow tag
+  //  - data-todo dev attributes
+  body = body.replace(/<!--[\s\S]*?-->/g, "");
+  body = body.replace(/<div class="book">[\s\S]*?<\/div>/g, "");
+  body = body.replace(/\s*data-todo="[^"]*"/g, "");
+  // Insights category filter uses href="#" (JS-driven). Point it at /insights so
+  // there is no dead anchor and it degrades gracefully without JS.
+  body = body.replace(
+    /(<div class="filters">)([\s\S]*?)(<\/div>)/,
+    (_m, a, inner, c) => a + inner.replace(/href="#"/g, 'href="/insights"') + c
+  );
+
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)
   let logoIdx = 0;
   body = body.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, () => {

@@ -170,7 +170,7 @@ nav.primary a:hover::after{transform:scaleX(1)}
 .certs{margin-top:16px;font-size:14px;line-height:1.7;color:var(--body)}
 .certs strong{color:var(--navy);font-weight:600}
 .certs .prog{color:var(--mute)}
-.todo{margin-top:16px;background:#FFF6DB;border-left:3px solid #E3A600;padding:10px 12px;font-size:13.5px;color:#6E5300}
+.todo{margin-top:16px;background:var(--bg-2);border-left:3px solid var(--line);padding:10px 12px;font-size:13.5px;color:var(--mute)}
 
 /* cta + footer */
 .closing{padding:120px 0}
@@ -219,7 +219,7 @@ footer .legal{margin-top:44px;padding-top:18px;border-top:1px solid rgba(255,255
 .wcol li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;background:var(--blue);border-radius:50%}
 .wcol.not li::before{background:var(--line)}
 .wcol strong{color:var(--navy);font-weight:600}
-.todo-inline{background:#FFF6DB;color:#6E5300;padding:1px 6px;font-size:13px;border-radius:2px}
+.todo-inline{color:var(--mute)}
 /* contact */
 .closing .wrap{align-items:start;grid-template-columns:5fr 7fr;gap:72px}
 .cdetails{margin-top:28px;display:grid;gap:8px;font-size:15px}
@@ -235,8 +235,8 @@ footer .legal{margin-top:44px;padding-top:18px;border-top:1px solid rgba(255,255
 @media (max-width:560px){.wgrid,.frow2{grid-template-columns:1fr}}
 
 /* photo slots (shot list baked in) */
-.shot{position:relative;background:var(--line-soft);border:1px dashed var(--line);display:flex;align-items:flex-end;padding:18px 20px;color:var(--mute);font-size:13px;line-height:1.45;overflow:hidden}
-.shot::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 22px,rgba(16,35,63,.035) 22px 23px)}
+.shot{position:relative;background:var(--bg-2);border:1px solid var(--line);display:flex;align-items:flex-end;padding:18px 20px;color:var(--mute);font-size:13px;line-height:1.45;overflow:hidden}
+.shot::before{display:none}
 .shot>div{position:relative}
 .shot .no{display:block;font-weight:700;color:var(--navy);font-size:12px;letter-spacing:.06em;margin-bottom:4px}
 .shot .dir{display:block;color:var(--body);font-size:13.5px}
