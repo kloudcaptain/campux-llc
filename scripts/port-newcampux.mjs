@@ -101,6 +101,44 @@ for (const { file, name } of PAGES) {
     (_m, a, inner, c) => a + inner.replace(/href="#"/g, 'href="/insights"') + c
   );
 
+  // Swap photo-slot placeholders for the real photographs (shot list 01–04).
+  const PHOTOS = {
+    "1": {
+      src: "/photo-01-whiteboard.jpg",
+      alt: "Engineer at a whiteboard sketching a hub-and-spoke Azure landing zone",
+    },
+    "2": {
+      src: "/photo-02-principals.jpg",
+      alt: "Two Campux principals reviewing a printed architecture diagram across a table",
+    },
+    "3": {
+      src: "/photo-03-hands.jpg",
+      alt: "Close crop of hands on a keyboard with the Azure portal on screen",
+    },
+    "4": {
+      src: "/photo-04-workspace.jpg",
+      alt: "A cloud engineer's workspace with monitors and a desk",
+    },
+  };
+  body = body.replace(
+    /<div class="shot([^"]*)"[^>]*>\s*<div>[\s\S]*?PHOTO 0(\d)[\s\S]*?<\/div>\s*<\/div>/g,
+    (full, cls, n) => {
+      const p = PHOTOS[n];
+      if (!p) return full;
+      // 01 is the hero image (above the fold) — load it eagerly for LCP.
+      const load =
+        n === "1"
+          ? 'fetchpriority="high" decoding="async"'
+          : 'loading="lazy" decoding="async"';
+      return `<img class="shot${cls}" src="${p.src}" alt="${p.alt}" ${load}>`;
+    }
+  );
+
+  // Correct the published phone number.
+  body = body
+    .replace(/tel:\+14707184440/g, "tel:+17707505856")
+    .replace(/470-718-4440/g, "770-750-5856");
+
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)
   let logoIdx = 0;
   body = body.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, () => {

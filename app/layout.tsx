@@ -61,7 +61,7 @@ const orgJsonLd = {
         addressCountry: "US",
       },
       email: "hello@campux.co",
-      telephone: "+1-470-718-4440",
+      telephone: "+1-770-750-5856",
       logo: {
         "@type": "ImageObject",
         url: `${siteUrl}/opengraph-image`,
