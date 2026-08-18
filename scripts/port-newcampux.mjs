@@ -134,6 +134,59 @@ for (const { file, name } of PAGES) {
     }
   );
 
+  // Resolve owner-fact placeholders (confirmed decisions): Azure Government =
+  // not yet / commercial only; insurance = being put in place; teaming partners
+  // = none yet; unconfirmed registrations/vehicles = dropped.
+  body = body
+    // Home — commercial & compliance list
+    .replace(
+      '<li>Professional and cyber liability insurance <span class="todo-inline">[confirm carrier &amp; limits before publishing]</span>.</li>',
+      ""
+    )
+    .replace(
+      '<li>Azure Government experience <span class="todo-inline">[state honestly: yes / on request / not yet]</span>.</li>',
+      "<li>Azure commercial today. Not yet operating in Azure Government.</li>"
+    )
+    // Public sector — Azure Government honesty
+    .replace(
+      /<span class="todo-inline">\[State honestly: production experience in Azure Government[\s\S]*?<\/span>/,
+      "We work in Azure commercial today and do not yet have Azure Government or AWS GovCloud production experience. Where a contract requires it, we say so and team with a firm that holds the authorization."
+    )
+    // Public sector — drop the unconfirmed registrations/vehicles placeholder
+    .replace(
+      / ?<span class="todo-inline">\[Add each of these only once confirmed:[\s\S]*?<\/span>/,
+      ""
+    )
+    // Working with us — retainer tier cell
+    .replace(
+      ' <span class="todo-inline">[roll over / do not roll over]</span>',
+      " handled per the retainer scope"
+    )
+    // Working with us — insurance + Azure Government prose paragraph
+    .replace(
+      '<p>Professional and cyber liability insurance <span class="todo-inline">[carrier and limits]</span>. Azure Government experience <span class="todo-inline">[yes / on request / not yet]</span>. Least-privilege access, MFA, no standing credentials, access removed at close.</p>',
+      "<p>Least-privilege access, MFA, no standing credentials, access removed at close. Professional and cyber liability coverage is being put in place; a certificate will be available before contract award. Azure commercial today; not yet operating in Azure Government.</p>"
+    )
+    // Working with us — remove teaming-partner clause (none yet)
+    .replace(
+      /, and surge capacity comes from vetted teaming partners disclosed in the proposal\. ?<span class="todo-inline">\[Delete the teaming-partner sentence if none exist yet\.\]<\/span>/,
+      "."
+    )
+    // Working with us — FAQ answers
+    .replace(
+      '<span class="todo-inline">[Professional and cyber liability: carrier and limits, once confirmed.]</span>',
+      "We are putting professional and cyber liability coverage in place. A certificate of insurance will be available before contract award."
+    )
+    .replace(
+      '<span class="todo-inline">[State honestly: yes / on request / not yet.]</span>',
+      "Not yet. We work in Azure commercial today. Where a contract requires Azure Government, we say so and team with a firm that holds the authorization."
+    )
+    // No standing teaming bench yet — reframe as arranged per opportunity.
+    .replace(
+      "Surge and specialist capacity through vetted teaming partners, disclosed in the proposal.",
+      "Surge and specialist capacity arranged through teaming per opportunity, disclosed in the proposal."
+    );
+
   // Fix a mobile bug: the "four ways to engage" grid used an inline
   // grid-template-columns that overrode the responsive collapse. Use a class.
   body = body.replace(
@@ -231,6 +284,21 @@ for (const { file, name } of PAGES) {
     /<form class="cform"[^>]*>/,
     '<form class="cform" data-contact-form novalidate>'
   );
+
+  // Wire the generated capability-statement PDF as a direct download and drop
+  // the "[attach the PDF]" placeholder. Runs AFTER link rewriting, so hrefs are
+  // already /contact form. (Regenerate the PDF: npm run capability-statement)
+  const pdfBtn =
+    '<a class="btn btn-primary" href="/campux-capability-statement.pdf" download>Download capability statement (PDF)</a>';
+  body = body
+    .replace(
+      /<a class="btn btn-primary" href="[^"]*need=Federal[^"]*">Request capability statement \(PDF\)<\/a> <span class="todo-inline"[^>]*>\[attach the PDF and link it directly here\]<\/span>/,
+      pdfBtn
+    )
+    .replace(
+      '<a class="btn btn-primary" href="/contact">Request capability statement (PDF)</a>',
+      pdfBtn
+    );
 
   fs.mkdirSync(OUT, { recursive: true });
   fs.writeFileSync(path.join(OUT, `${name}.html`), body.trim() + "\n", "utf8");

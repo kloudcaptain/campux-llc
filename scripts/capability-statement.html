@@ -2,127 +2,89 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>CAMPUX LLC — Capability Statement</title>
+<title>Campux LLC — Capability Statement</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @page { size: Letter; margin: 0.6in 0.65in; }
+  @page { size: Letter; margin: 0.45in 0.6in; }
   * { box-sizing: border-box; }
+  :root {
+    --navy:#10233F; --ink:#1B2430; --body:#3A4552; --mute:#6A7583;
+    --line:#CFD6DE; --line-soft:#E4E9EF; --bg-2:#F3F5F8; --blue:#0E7C86;
+  }
   html, body {
     margin: 0; padding: 0;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    color: #17130f;
-    font-size: 9.6pt;
-    line-height: 1.45;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    color: var(--body);
+    font-size: 9.3pt;
+    line-height: 1.42;
   }
-  .serif { font-family: 'DM Serif Display', Georgia, serif; }
-  .accent { color: #c04818; }
+  .serif { font-family: 'Source Serif 4', Georgia, serif; }
 
   header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 2px solid #c04818;
-    padding-bottom: 10px;
-    margin-bottom: 18px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 9px;
+    margin-bottom: 13px;
   }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .logo {
-    width: 26px; height: 26px; flex-shrink: 0;
-  }
-  .brand-name {
-    font-size: 20pt;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-  }
-  .tagline {
-    font-size: 9.5pt;
-    color: #4a4238;
-    margin-top: 2px;
-  }
-  .contact-block {
-    text-align: right;
-    font-size: 8.6pt;
-    color: #3a332b;
-    line-height: 1.55;
-  }
+  .brand { display: flex; align-items: center; gap: 11px; }
+  .mark { width: 26px; height: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5px; flex-shrink: 0; }
+  .mark i { display: block; border-radius: 1px; background: var(--navy); }
+  .mark i:nth-child(2) { background: var(--blue); }
+  .mark i:nth-child(4) { background: #B7C3D6; }
+  .brand-name { font-size: 19pt; font-weight: 500; letter-spacing: -0.01em; color: var(--navy); }
+  .tagline { font-size: 9pt; color: var(--mute); margin-top: 2px; }
+  .contact-block { text-align: right; font-size: 8.7pt; color: var(--body); line-height: 1.6; }
+  .contact-block strong { color: var(--navy); }
 
   h2 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 9.5pt;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 8.6pt;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
-    color: #c04818;
-    margin: 0 0 8px;
-    padding-top: 14px;
-    border-top: 1px solid #e4ddd2;
+    color: var(--blue);
+    margin: 0 0 7px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line-soft);
   }
   section:first-of-type h2 { border-top: none; padding-top: 0; }
+  .lede { font-size: 10pt; color: var(--ink); line-height: 1.45; margin: 0 0 2px; }
+  .lede .serif { color: var(--navy); font-weight: 600; }
 
-  .competencies {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 24px;
-  }
-  .competency .num {
-    font-size: 8pt;
-    color: #9a8f7f;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-  .competency .name {
-    font-weight: 700;
-    font-size: 9.8pt;
-    margin: 1px 0 2px;
-  }
-  .competency .desc {
-    color: #4a4238;
-    font-size: 9pt;
-  }
+  .competencies { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 26px; }
+  .competency .name { font-family:'Source Serif 4',serif; font-weight: 600; font-size: 10pt; color: var(--navy); margin: 0 0 2px; }
+  .competency .desc { color: var(--body); font-size: 9pt; }
 
-  .differentiators { display: flex; flex-direction: column; gap: 7px; }
-  .differentiators .item .title {
-    font-weight: 700;
-    display: inline;
-  }
-  .differentiators .item .body {
-    color: #4a4238;
-    display: inline;
-  }
+  .differentiators { display: flex; flex-direction: column; gap: 5px; }
+  .differentiators .title { font-weight: 700; color: var(--navy); }
+  .differentiators .body { color: var(--body); }
 
-  ul.experience {
-    margin: 0; padding-left: 16px;
-  }
-  ul.experience li { margin-bottom: 6px; color: #2a251f; }
+  ul.build { margin: 0; padding-left: 15px; }
+  ul.build li { margin-bottom: 3px; color: var(--ink); }
+  ul.build li span { color: var(--mute); }
 
   .company-data {
-    background: #f7f3ec;
-    border: 1px solid #e4ddd2;
-    border-radius: 6px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--blue);
     padding: 12px 16px;
-    font-size: 8.8pt;
+    font-size: 9pt;
     line-height: 1.7;
-    color: #2a251f;
+    color: var(--ink);
   }
-
-  .credentials {
-    font-size: 8.6pt;
-    color: #4a4238;
-    line-height: 1.6;
-  }
+  .company-data strong { color: var(--navy); }
+  .company-data .verify { color: var(--mute); font-size: 8.4pt; }
 
   footer {
-    margin-top: 18px;
-    padding-top: 10px;
-    border-top: 1px solid #e4ddd2;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line-soft);
     font-size: 8pt;
-    color: #9a8f7f;
+    color: var(--mute);
     display: flex;
     justify-content: space-between;
   }
@@ -132,46 +94,45 @@
 
   <header>
     <div class="brand">
-      <svg class="logo" viewBox="0 0 36 36" fill="none">
-        <rect x="3" y="3" width="13" height="13" rx="3" fill="#17130f"/>
-        <rect x="20" y="3" width="13" height="13" rx="3" fill="#17130f" opacity="0.35"/>
-        <rect x="3" y="20" width="13" height="13" rx="3" fill="#17130f" opacity="0.35"/>
-        <rect x="20" y="20" width="13" height="13" rx="3" fill="#17130f"/>
-      </svg>
+      <div class="mark"><i></i><i></i><i></i><i></i></div>
       <div>
-        <div class="brand-name serif">CAMPUX LLC</div>
-        <div class="tagline">Azure Cloud Consulting &amp; IT Training</div>
+        <div class="brand-name serif">Campux LLC</div>
+        <div class="tagline">Azure-first cloud consulting for public-sector and regulated organizations</div>
       </div>
     </div>
     <div class="contact-block">
-      Atlanta, GA<br>
-      campux.co · victor@campux.co<br>
-      (470) 718-4440
+      Atlanta, Georgia<br>
+      campux.co · <strong>hello@campux.co</strong><br>
+      (770) 750-5856
     </div>
   </header>
 
   <section>
-    <h2>Core Competencies</h2>
+    <p class="lede"><span class="serif">We build the cloud environment. Your team runs it.</span> Campux builds and secures Microsoft Azure platforms, and AWS where you already run there, then trains the internal team to operate them and stays on as a retained advisor.</p>
+  </section>
+
+  <section>
+    <h2>Core competencies</h2>
     <div class="competencies">
       <div class="competency">
-        <div class="num">01</div>
-        <div class="name">Cloud Architecture &amp; Migration</div>
-        <div class="desc">Azure landing zones, built to scale.</div>
+        <div class="name">Architecture &amp; landing zones</div>
+        <div class="desc">Management groups, hub-and-spoke networking, migration, delivered as code.</div>
       </div>
       <div class="competency">
-        <div class="num">02</div>
-        <div class="name">DevSecOps &amp; Automation</div>
-        <div class="desc">Security built into the pipeline, not bolted on after.</div>
+        <div class="name">DevSecOps</div>
+        <div class="desc">Pipelines, policy-as-code, Defender for Cloud, least-privilege access.</div>
       </div>
       <div class="competency">
-        <div class="num">03</div>
-        <div class="name">Cloud FinOps &amp; Cost Optimization</div>
-        <div class="desc">Spend that maps to what you actually use.</div>
+        <div class="name">Automation &amp; AI-assisted operations</div>
+        <div class="desc">Azure Automation runbooks, workflows, and document-handling agents.</div>
       </div>
       <div class="competency">
-        <div class="num">04</div>
-        <div class="name">IT Training &amp; Curriculum Development</div>
-        <div class="desc">Teams that can run what we help you build.</div>
+        <div class="name">FinOps &amp; cost governance</div>
+        <div class="desc">Spend analysis, right-sizing, budgets and guardrails that hold.</div>
+      </div>
+      <div class="competency">
+        <div class="name">Training &amp; curriculum</div>
+        <div class="desc">Instructor-led programs for your staff, on lab tenants mirroring yours.</div>
       </div>
     </div>
   </section>
@@ -179,39 +140,35 @@
   <section>
     <h2>Differentiators</h2>
     <div class="differentiators">
-      <div class="item"><span class="title">Senior from day one.</span> <span class="body">No account layers, no handoffs — the engineer who scopes the work delivers it.</span></div>
-      <div class="item"><span class="title">Infrastructure as code, always.</span> <span class="body">Everything we build is versioned, repeatable, and documented. You own the code and can run it without us.</span></div>
-      <div class="item"><span class="title">Teach as we go.</span> <span class="body">Every engagement transfers knowledge — runbooks, walkthroughs, and training so your team operates what we build.</span></div>
+      <div><span class="title">Senior from day one.</span> <span class="body">The engineer who scopes your work is the engineer who does it. No account layer, no junior team after the sale.</span></div>
+      <div><span class="title">Delivered as code, in your repositories.</span> <span class="body">Everything is versioned, documented, and yours. You can run it without us.</span></div>
+      <div><span class="title">Handover, then retained advisory.</span> <span class="body">We train your team to operate what we build and stay reachable afterward.</span></div>
+      <div><span class="title">Small enough to be direct, structured enough to procure.</span> <span class="body">Registered and set up for direct award, subcontract, or teaming.</span></div>
     </div>
   </section>
 
   <section>
-    <h2>Principal Experience</h2>
-    <ul class="experience">
-      <li>Tenant-to-tenant migration of 150+ applications for a national distributor — secure landing zones, dependency mapping, zero-loss cutover</li>
-      <li>80% Azure SQL cost reduction via serverless migration in a FinOps engagement</li>
-      <li>AKS platform builds, Zero Trust baselines, and compliance-aligned IaC across HIPAA, GDPR, and PCI-DSS environments</li>
-      <li>34 production-context hands-on labs authored for Azure Data Factory training</li>
+    <h2>Reference architectures we deploy</h2>
+    <ul class="build">
+      <li>Enterprise landing zone, ALZ-accelerator aligned <span>— management groups, policy inheritance, hub-and-spoke, delivered as Bicep.</span></li>
+      <li>Secure API edge <span>— Front Door Premium + WAF + Private Link to APIM with Entra ID, private endpoints, Defender for APIs.</span></li>
+      <li>Environment refresh automation <span>— Azure Automation parent/child runbooks, masking to a documented rule set, Log Analytics.</span></li>
     </ul>
   </section>
 
   <section>
-    <h2>Company Data</h2>
+    <h2>Company data</h2>
     <div class="company-data">
-      UEI LZHNRGY8U3L8 · CAGE: Pending · NAICS 541512 (primary), 541511, 541519, 611420 · Small Business · Minority-Owned · Black American Owned · Founded 2024 · SAM.gov registered
-    </div>
-  </section>
-
-  <section>
-    <h2>Credentials</h2>
-    <div class="credentials">
-      M.S. Cybersecurity &amp; Information Assurance · CompTIA Security+ · Pentest+ · CySA+ · ITIL v4 · AZ-305 (in progress) · DP-700 (in progress)
+      <strong>Legal name</strong> Campux LLC · Georgia limited liability company · founded 2024<br>
+      <strong>UEI</strong> LZHNRGY8U3L8 &nbsp; <strong>CAGE</strong> 22GL8 &nbsp; <strong>SAM.gov</strong> Active &nbsp; Small business<br>
+      <strong>NAICS</strong> 541512 Computer Systems Design Services · 541519 Other Computer Related Services · 611420 Computer Training<br>
+      <span class="verify">Azure commercial today. Verify at sam.gov → Entity search → UEI.</span>
     </div>
   </section>
 
   <footer>
     <span>campux.co</span>
-    <span>victor@campux.co · (470) 718-4440</span>
+    <span>hello@campux.co · (770) 750-5856</span>
   </footer>
 
 </body>
