@@ -169,8 +169,8 @@ for (const { file, name } of PAGES) {
   // Reversible: restore the original roles block / photos in the source.
   const simpleRoles =
     '<div class="roles">' +
-    "<div class=\"role\"><strong>Principal engineer</strong><span>Senior Azure cloud and DevSecOps engineer with nine years in IT, most recently in a regulated environment. Builds and secures cloud platforms and hands them over to your team.</span></div>" +
-    "<div class=\"role\"><strong>Co-founder, operations &amp; compliance</strong><span>Clinical research background. Keeps engagements documented, compliant, and on track, including the firm's healthcare and life-sciences work.</span></div>" +
+    "<div class=\"role\"><strong>Principal engineer</strong><span>Cloud platform engineer with 10 years in IT, much of it in regulated environments. Builds and secures cloud platforms and hands them over to your team.</span></div>" +
+    "<div class=\"role\"><strong>Co-founder, operations &amp; compliance</strong><span>Experience across compliance-heavy environments. Keeps engagements documented, compliant, and on track.</span></div>" +
     "</div>";
   body = body
     .replace(/<div class="roles">[\s\S]*?<\/div>\s*<\/div>/, simpleRoles)
