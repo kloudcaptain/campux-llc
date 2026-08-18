@@ -139,6 +139,12 @@ for (const { file, name } of PAGES) {
     .replace(/tel:\+14707184440/g, "tel:+17707505856")
     .replace(/470-718-4440/g, "770-750-5856");
 
+  // Fill the registered business address placeholder with the real address.
+  body = body.replace(
+    /Atlanta metro, Georgia <span class="todo-inline">\[registered business address\]<\/span>/g,
+    "8735 Dunwoody Pl #6, Atlanta, GA 30350"
+  );
+
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)
   let logoIdx = 0;
   body = body.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, () => {
