@@ -134,6 +134,13 @@ for (const { file, name } of PAGES) {
     }
   );
 
+  // Fix a mobile bug: the "four ways to engage" grid used an inline
+  // grid-template-columns that overrode the responsive collapse. Use a class.
+  body = body.replace(
+    /<div class="b3" style="grid-template-columns:repeat\(4,1fr\)">/g,
+    '<div class="b3 four">'
+  );
+
   // Correct the published phone number.
   body = body
     .replace(/tel:\+14707184440/g, "tel:+17707505856")

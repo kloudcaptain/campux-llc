@@ -335,6 +335,7 @@ nav.primary a.active::after{transform:scaleX(1)}
 .blocks{padding:88px 0;border-bottom:1px solid var(--line)}
 .blocks .head{max-width:840px;margin-bottom:40px}
 .b3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.b3.four{grid-template-columns:repeat(4,1fr)}
 .b3>div{padding:28px 32px 28px 0;border-right:1px solid var(--line-soft);margin-right:32px}
 .b3>div:last-child{border-right:0;margin-right:0}
 .b3 h3{font-size:21px;margin-bottom:10px}
@@ -381,7 +382,8 @@ nav.primary a.active::after{transform:scaleX(1)}
 .cta-band p{margin-top:8px;color:#C7D0DD}
 .cta-band .btn-outline{border-color:#fff;color:#fff}
 .cta-band .btn-outline:hover{background:#fff;color:var(--navy)}
-@media (max-width:920px){.svc .wrap,.cta-band .wrap{grid-template-columns:1fr;gap:36px}.b3{grid-template-columns:1fr}.b3>div{border-right:0;margin-right:0;padding-right:0}.tiers{display:block;overflow-x:auto}}
+@media (max-width:920px){.svc .wrap,.cta-band .wrap{grid-template-columns:1fr;gap:36px}.b3,.b3.four{grid-template-columns:1fr}.b3>div{border-right:0;margin-right:0;padding-right:0}.tiers{display:block;overflow-x:auto}}
+@media (max-width:560px){.b3.four{grid-template-columns:1fr}}
 
 
 /* mobile nav toggle (added by MobileNav.tsx; sanctioned by the responsive contract) */
