@@ -146,6 +146,12 @@ for (const { file, name } of PAGES) {
     "Atlanta, Georgia"
   );
 
+  // No set-aside certifications yet — remove the placeholder (owner's call).
+  body = body.replace(
+    /\s*<span class="todo-inline">\[Set-aside status once certified\.\]<\/span>/g,
+    ""
+  );
+
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)
   let logoIdx = 0;
   body = body.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, () => {
