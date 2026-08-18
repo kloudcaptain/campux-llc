@@ -258,6 +258,24 @@ for (const { file, name } of PAGES) {
   ];
   for (const [find, repl] of legalFixes) body = body.replace(find, repl);
 
+  // Add a "Compliance and controls" section to /public-sector (the gov audit's
+  // biggest content gap). Frameworks the firm designs to — NIST 800-53/171 and
+  // CJIS — framed as baselines and evidence, not certifications. No ATO claim.
+  const complianceSection =
+    '<section class="blocks"><div class="wrap">' +
+    '<div class="head"><p class="kicker">Compliance and controls</p>' +
+    "<h2>Built to the control baselines your auditor already uses</h2>" +
+    '<p class="lede" style="margin-top:14px">We are not an authorizing body and we do not hold an ATO. We build your Azure environment to recognized control baselines, enforce them with Azure Policy, and hand you the evidence, so your compliance team starts from a documented position rather than a blank page.</p></div>' +
+    '<div class="b3">' +
+    "<div><h3>NIST SP 800-53</h3><p>Landing zones mapped to 800-53 rev 5 control families and enforced with the built-in Azure Policy regulatory-compliance initiatives, exported as compliance evidence.</p></div>" +
+    "<div><h3>NIST SP 800-171</h3><p>For CUI environments, controls aligned to 800-171, with the policy state and configuration evidence your SSP and POA&amp;M need.</p></div>" +
+    "<div><h3>CJIS Security Policy</h3><p>For Georgia state, local and law-enforcement work, we design to the CJIS Security Policy: advanced authentication, encryption in transit and at rest, audit logging, and personnel-screening controls.</p></div>" +
+    "</div></div></section>";
+  body = body.replace(
+    /(<section class="blocks"><div class="wrap">\s*<div class="head"><p class="kicker">Registrations and vehicles<\/p>)/,
+    complianceSection + "$1"
+  );
+
   // Fix a mobile bug: the "four ways to engage" grid used an inline
   // grid-template-columns that overrode the responsive collapse. Use a class.
   body = body.replace(
