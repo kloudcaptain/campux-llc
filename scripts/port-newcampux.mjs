@@ -152,6 +152,18 @@ for (const { file, name } of PAGES) {
     ""
   );
 
+  // Mission & vision — human, non-mercenary; sits in "The firm" section before
+  // the bios (purpose before people). Only the home fragment has .roles.
+  const missionVision =
+    '<div class="mv">' +
+    "<p><strong>Our mission.</strong> We help the people who keep public institutions running feel confident in the technology they depend on. We build their cloud environment with care, show their team how to run it themselves, and stay reachable when they need us, so no one is ever left holding a system they do not understand.</p>" +
+    "<p><strong>Our vision.</strong> Communities served by institutions that trust their own technology, run by people who feel capable and supported, not dependent on anyone.</p>" +
+    "</div>";
+  body = body.replace(
+    '<div class="roles">',
+    missionVision + '<div class="roles">'
+  );
+
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)
   let logoIdx = 0;
   body = body.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, () => {

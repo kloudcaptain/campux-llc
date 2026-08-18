@@ -396,6 +396,11 @@ nav.primary a.active::after{transform:scaleX(1)}
   nav.primary.open .menu{position:static;display:block;min-width:0;border:0;border-top:1px solid var(--line-soft);box-shadow:none;padding:4px 0 8px 16px}
 }
 
+/* mission & vision block in "The firm" section */
+.firm .mv{margin-top:26px;display:grid;gap:14px}
+.firm .mv p{font-size:17px;line-height:1.62;color:var(--body);max-width:64ch}
+.firm .mv strong{color:var(--navy);font-weight:600}
+
 /* insights article template (new-design, React-rendered) */
 .article-wrap{max-width:768px;margin:0 auto;padding:64px 32px 96px}
 .article .back{color:var(--blue);font-weight:600;font-size:15px;display:inline-block;margin-bottom:32px}
