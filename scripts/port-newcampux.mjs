@@ -164,6 +164,17 @@ for (const { file, name } of PAGES) {
     missionVision + '<div class="roles">'
   );
 
+  // Hide the founder bios, the "names/portraits" note, and the firm photos for
+  // now (owner's call; reversible by deleting these three replacements). Leaves
+  // "The firm" as a clean text section: heading, intro, mission & vision.
+  body = body
+    .replace(/<div class="roles">[\s\S]*?<\/div>\s*<\/div>/, "")
+    .replace(
+      /<p class="small"[^>]*>Names, portraits and direct lines are shared at first conversation\.<\/p>/,
+      ""
+    )
+    .replace(/<div class="photos">[\s\S]*?<\/div>/, "");
+
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)
   let logoIdx = 0;
   body = body.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, () => {
