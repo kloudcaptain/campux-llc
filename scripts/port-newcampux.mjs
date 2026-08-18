@@ -187,6 +187,77 @@ for (const { file, name } of PAGES) {
       "Surge and specialist capacity arranged through teaming per opportunity, disclosed in the proposal."
     );
 
+  // Resolve legal-page placeholders (privacy/terms/accessibility) with known
+  // facts and conservative defaults. The "draft for legal review" note at the
+  // top of each page stays, so counsel still signs off.
+  const legalFixes = [
+    [
+      `Last updated: <span class="todo-inline">[month year]</span>`,
+      "Last updated: August 2026",
+    ],
+    [
+      `<span class="todo-inline">[Registered business address]</span>`,
+      "Atlanta, Georgia",
+    ],
+    // privacy — sub-processors and log retention
+    [
+      `<span class="todo-inline">[State whether analytics is used. If none: "We do not run analytics or advertising trackers on this site."]</span>`,
+      "We do not run analytics or advertising trackers on this site.",
+    ],
+    [
+      `Form handling: <span class="todo-inline">[Formspree, or the provider Claude Code wires in]</span>`,
+      "Form handling: a Cloudflare Worker that emails your message to us, delivered via Resend.",
+    ],
+    [
+      `Call booking: <span class="todo-inline">[Microsoft Bookings / Calendly, if enabled]</span>`,
+      "Call booking: no scheduling tool is used on this site.",
+    ],
+    [
+      `Web hosting: <span class="todo-inline">[provider]</span>`,
+      "Web hosting: Cloudflare.",
+    ],
+    [
+      `Email: <span class="todo-inline">[Microsoft 365 / provider]</span>`,
+      "Email: contact-form messages are delivered by Resend.",
+    ],
+    [
+      `Fonts: <span class="todo-inline">[If Google Fonts remain, state: "Fonts are loaded from Google Fonts, which receives your IP address when the page loads." If self-hosted, delete this line.]</span>`,
+      "Fonts: loaded from Google Fonts, which receives your IP address when the page loads.",
+    ],
+    [
+      ` <span class="todo-inline">[Confirm this is still true after the form and booking tools are wired in.]</span>`,
+      "",
+    ],
+    [
+      `Server logs are kept for <span class="todo-inline">[30/90]</span>`,
+      "Server logs are kept for 30",
+    ],
+    // terms
+    [
+      ` <span class="todo-inline">[If you adopt a standard data-protection addendum, reference it here.]</span>`,
+      "",
+    ],
+    [`<span class="todo-inline">[six / twelve]</span>`, "twelve"],
+    [
+      `Unused hours <span class="todo-inline">[do / do not]</span> roll over.`,
+      "Unused-hour handling is set out in each retainer scope.",
+    ],
+    // accessibility
+    [
+      `<span class="todo-inline">[After testing, list what is not yet right, for example: "The Services drop-down menu opens on hover and keyboard focus but does not yet announce its state to screen readers." If nothing is known, say "We have not yet completed a third-party audit."]</span>`,
+      "We have not yet completed a third-party accessibility audit, so this list may not be complete.",
+    ],
+    [
+      `<span class="todo-inline">[State how the site was tested: browser, screen reader, keyboard-only, and date. Name a third-party audit if one is done.]</span>`,
+      "This site has not yet undergone formal third-party accessibility testing.",
+    ],
+    [
+      `<span class="todo-inline">[hello@campux.co]</span>`,
+      "hello@campux.co",
+    ],
+  ];
+  for (const [find, repl] of legalFixes) body = body.replace(find, repl);
+
   // Fix a mobile bug: the "four ways to engage" grid used an inline
   // grid-template-columns that overrode the responsive collapse. Use a class.
   body = body.replace(
