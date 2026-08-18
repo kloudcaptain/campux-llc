@@ -180,6 +180,32 @@ for (const { file, name } of PAGES) {
     )
     .replace(/<div class="photos">[\s\S]*?<\/div>/, "");
 
+  // Slim the homepage "Public sector" band: drop the doubled kicker and replace
+  // the full entity sheet with a compact identifier panel that links to the
+  // dedicated /public-sector page (which keeps the full sheet). HOME ONLY —
+  // /public-sector must keep its full sheet.
+  if (name === "home") {
+    body = body.replace(
+      /<p class="kicker">Public sector<\/p>\s*<h2>Public sector<\/h2>/,
+      "<h2>Public sector</h2>"
+    );
+    const compactSheet =
+      '<div class="sheet">' +
+      "<h3>Campux LLC</h3>" +
+      '<p class="sub">Georgia small business · SAM.gov active · founded 2024</p>' +
+      "<table>" +
+      "<tr><td>UEI</td><td>LZHNRGY8U3L8</td></tr>" +
+      "<tr><td>CAGE</td><td>22GL8</td></tr>" +
+      "<tr><td>NAICS</td><td>541512 · 541519 · 611420</td></tr>" +
+      "</table>" +
+      '<div class="foot"><span>Verify at sam.gov → Entity search → UEI</span><a class="link" href="/public-sector#capability">Full capability statement</a></div>' +
+      "</div>";
+    body = body.replace(
+      /<div class="sheet">[\s\S]*?<\/div>\s*<\/div>/,
+      compactSheet
+    );
+  }
+
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)
   let logoIdx = 0;
   body = body.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, () => {
