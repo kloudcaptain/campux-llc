@@ -164,11 +164,16 @@ for (const { file, name } of PAGES) {
     missionVision + '<div class="roles">'
   );
 
-  // Hide the founder bios, the "names/portraits" note, and the firm photos for
-  // now (owner's call; reversible by deleting these three replacements). Leaves
-  // "The firm" as a clean text section: heading, intro, mission & vision.
+  // Simplify the founder bios (role-only, no cert dump), drop the
+  // "names/portraits" note, and keep the firm photos hidden for now.
+  // Reversible: restore the original roles block / photos in the source.
+  const simpleRoles =
+    '<div class="roles">' +
+    "<div class=\"role\"><strong>Principal engineer</strong><span>Senior Azure cloud and DevSecOps engineer with nine years in IT, most recently in a regulated environment. Builds and secures cloud platforms and hands them over to your team.</span></div>" +
+    "<div class=\"role\"><strong>Co-founder, operations &amp; compliance</strong><span>Clinical research background. Keeps engagements documented, compliant, and on track, including the firm's healthcare and life-sciences work.</span></div>" +
+    "</div>";
   body = body
-    .replace(/<div class="roles">[\s\S]*?<\/div>\s*<\/div>/, "")
+    .replace(/<div class="roles">[\s\S]*?<\/div>\s*<\/div>/, simpleRoles)
     .replace(
       /<p class="small"[^>]*>Names, portraits and direct lines are shared at first conversation\.<\/p>/,
       ""
