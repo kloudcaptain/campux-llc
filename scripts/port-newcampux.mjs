@@ -156,8 +156,8 @@ for (const { file, name } of PAGES) {
   // the bios (purpose before people). Only the home fragment has .roles.
   const missionVision =
     '<div class="mv">' +
-    "<p><strong>Our mission.</strong> We help the people who keep public institutions running feel confident in the technology they depend on. We build their cloud environment with care, show their team how to run it themselves, and stay reachable when they need us, so no one is ever left holding a system they do not understand.</p>" +
-    "<p><strong>Our vision.</strong> Communities served by institutions that trust their own technology, run by people who feel capable and supported, not dependent on anyone.</p>" +
+    "<p><strong>Our mission.</strong> To help people with their technology, and to do it well enough that they want us to stay.</p>" +
+    "<p><strong>Our vision.</strong> Long relationships with the people we help, built on work they can trust and keep.</p>" +
     "</div>";
   body = body.replace(
     '<div class="roles">',
