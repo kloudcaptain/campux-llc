@@ -139,10 +139,11 @@ for (const { file, name } of PAGES) {
     .replace(/tel:\+14707184440/g, "tel:+17707505856")
     .replace(/470-718-4440/g, "770-750-5856");
 
-  // Fill the registered business address placeholder with the real address.
+  // Public location is metro-only by owner preference (full street address
+  // stays in SAM.gov, not on the site). Drop the address placeholder.
   body = body.replace(
     /Atlanta metro, Georgia <span class="todo-inline">\[registered business address\]<\/span>/g,
-    "8735 Dunwoody Pl #6, Atlanta, GA 30350"
+    "Atlanta, Georgia"
   );
 
   // Swap the two inlined base64 logos: 1st = header (dark), 2nd = footer (white)

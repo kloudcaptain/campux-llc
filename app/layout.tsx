@@ -56,10 +56,8 @@ const orgJsonLd = {
       url: siteUrl,
       address: {
         "@type": "PostalAddress",
-        streetAddress: "8735 Dunwoody Pl #6",
         addressLocality: "Atlanta",
         addressRegion: "GA",
-        postalCode: "30350",
         addressCountry: "US",
       },
       email: "hello@campux.co",
