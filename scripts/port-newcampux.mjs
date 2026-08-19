@@ -255,8 +255,30 @@ for (const { file, name } of PAGES) {
       `<span class="todo-inline">[hello@campux.co]</span>`,
       "hello@campux.co",
     ],
+    // accessibility — fix the broken markdown-link artifact in the email line.
+    [
+      `<a href="mailto:hello@campux.co">hello@campux.co(mailto:hello@campux.co)</a>`,
+      `<a href="mailto:hello@campux.co">hello@campux.co</a>`,
+    ],
   ];
   for (const [find, repl] of legalFixes) body = body.replace(find, repl);
+
+  // Strip internal "Note for the owner:" reminders that shipped in the legal
+  // drafts (privacy, terms, accessibility). Never meant for public eyes.
+  body = body.replace(
+    /<p>Note for the owner:[^<]*<\/p>\s*/g,
+    ""
+  );
+
+  // We are Azure commercial today — not operating in Azure Government. Remove
+  // the positive Azure Government capability claims (kept the honest "not yet"
+  // lines elsewhere). Owner decision: commercial only.
+  body = body
+    .replace(/commercial and Azure Government\./g, "commercial.")
+    .replace(
+      /Any US tenant: Azure commercial, Azure Government, AWS/g,
+      "Any US tenant: Azure commercial, AWS"
+    );
 
   // Add a "Compliance and controls" section to /public-sector (the gov audit's
   // biggest content gap). Frameworks the firm designs to — NIST 800-53/171 and
@@ -298,6 +320,12 @@ for (const { file, name } of PAGES) {
   // No set-aside certifications yet — remove the placeholder (owner's call).
   body = body.replace(
     /\s*<span class="todo-inline">\[Set-aside status once certified\.\]<\/span>/g,
+    ""
+  );
+
+  // Strip the internal reminder note on the entity sheet's Ownership row.
+  body = body.replace(
+    /<small>Add SBA \/ WOSB \/ DBE only once certified\.<\/small>/g,
     ""
   );
 

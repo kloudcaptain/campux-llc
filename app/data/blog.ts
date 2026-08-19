@@ -723,7 +723,7 @@ const rawBlogPosts: BlogPost[] = [
         paragraphs: [
           `For enterprise organizations, the operational benefit is measurable. Analyst time currently consumed by misconfiguration-related alerts is redirected toward genuine threat investigation. Alert volumes decrease not because alerts are being suppressed or filtered, but because the conditions that generate them are prevented structurally. The signal-to-noise ratio improves because the noise is eliminated upstream.`,
           `For government environments, the compliance dimension is equally significant. Policy-as-Code does not only prevent misconfiguration — it produces an auditable record of every policy evaluation, every deployment decision, and every exception. For organizations operating under frameworks such as [NIST 800-53](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final), ISO 27001, or Cyber Essentials, this continuous evidence stream substantially reduces the manual effort required for audit preparation and ongoing compliance attestation.`,
-          `[Government technology programs](/government) increasingly face requirements to demonstrate that security controls are structural rather than procedural — that they are enforced by the system rather than depending on individual compliance. Policy-as-Code satisfies this requirement directly.`,
+          `[Government technology programs](/public-sector) increasingly face requirements to demonstrate that security controls are structural rather than procedural — that they are enforced by the system rather than depending on individual compliance. Policy-as-Code satisfies this requirement directly.`,
         ],
       },
       {
