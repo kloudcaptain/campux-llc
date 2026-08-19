@@ -308,7 +308,7 @@ for (const { file, name } of PAGES) {
   // Correct the published phone number.
   body = body
     .replace(/tel:\+14707184440/g, "tel:+17707505856")
-    .replace(/470-718-4440/g, "770-750-5856");
+    .replace(/470-718-4440/g, "(770) 750-5856");
 
   // Public location is metro-only by owner preference (full street address
   // stays in SAM.gov, not on the site). Drop the address placeholder.
@@ -366,6 +366,20 @@ for (const { file, name } of PAGES) {
       /<p class="kicker">Public sector<\/p>\s*<h2>Public sector<\/h2>/,
       "<h2>Public sector</h2>"
     );
+    // Give three sections a distinct eyebrow instead of repeating the heading.
+    body = body
+      .replace(
+        '<p class="kicker">Reference architectures</p>',
+        '<p class="kicker">Proven in production</p>'
+      )
+      .replace(
+        '<p class="kicker">The firm</p>',
+        '<p class="kicker">Who you work with</p>'
+      )
+      .replace(
+        '<p class="kicker">Working with us</p>',
+        '<p class="kicker">Engagement</p>'
+      );
     const compactSheet =
       '<div class="sheet">' +
       "<h3>Campux LLC</h3>" +

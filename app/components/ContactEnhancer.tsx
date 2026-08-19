@@ -55,12 +55,22 @@ export default function ContactEnhancer({
           `[name="${name}"]`
         );
 
-      // Required: name, org, email
-      for (const key of ["name", "org", "email"]) {
+      // Required: name, org, email, message
+      const missingLabels: Record<string, string> = {
+        name: "your name",
+        org: "your organization",
+        email: "your email",
+        message: "a short note about your environment",
+      };
+      for (const key of ["name", "org", "email", "message"]) {
         const el = field(key);
         if (!el || !el.value.trim()) {
           el?.focus();
           if (el) el.style.borderColor = "#B23A2E";
+          if (statusEl) {
+            statusEl.style.color = "#B23A2E";
+            statusEl.textContent = `Please add ${missingLabels[key]} before sending.`;
+          }
           return;
         }
       }
