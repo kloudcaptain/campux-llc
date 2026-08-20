@@ -181,10 +181,10 @@ for (const { file, name } of PAGES) {
       '<span class="todo-inline">[State honestly: yes / on request / not yet.]</span>',
       "Not yet. We work in Azure commercial today. Where a contract requires Azure Government, we say so and team with a firm that holds the authorization."
     )
-    // No standing teaming bench yet — reframe as arranged per opportunity.
+    // Home continuity bullet — reflect the senior-engineer bench (owner fact).
     .replace(
-      "Surge and specialist capacity through vetted teaming partners, disclosed in the proposal.",
-      "Surge and specialist capacity arranged through teaming per opportunity, disclosed in the proposal."
+      "<li>Surge and specialist capacity through vetted teaming partners, disclosed in the proposal.</li>",
+      "<li>For scale, we add trusted senior engineers we have worked with — no junior hand-off. Specialist surge can also come through teaming, disclosed in the proposal.</li>"
     );
 
   // Resolve legal-page placeholders (privacy/terms/accessibility) with known
@@ -274,6 +274,10 @@ for (const { file, name } of PAGES) {
   // the positive Azure Government capability claims (kept the honest "not yet"
   // lines elsewhere). Owner decision: commercial only.
   body = body
+    .replace(
+      /Azure is our primary platform, commercial and Azure Government\./g,
+      "Azure commercial is our primary platform."
+    )
     .replace(/commercial and Azure Government\./g, "commercial.")
     .replace(
       /Any US tenant: Azure commercial, Azure Government, AWS/g,
@@ -328,6 +332,19 @@ for (const { file, name } of PAGES) {
     /<small>Add SBA \/ WOSB \/ DBE only once certified\.<\/small>/g,
     ""
   );
+
+  // Reflect the delivery bench: beyond the two principals, Campux brings in
+  // trusted senior engineers when a project needs more hands (owner-supplied
+  // fact). Keeps the "senior, no junior hand-off" promise intact.
+  body = body
+    .replace(
+      "Campux is run by its two founders. The engineer who scopes your work is the engineer who does it. There is no account manager in between and no junior team that arrives after the sales call.",
+      "Campux is run by its two founders, backed by a small bench of trusted senior engineers we bring in when a project needs more hands. The engineer who scopes your work is the engineer who does it — no account manager in between, and no junior team that arrives after the sales call."
+    )
+    .replace(
+      "Two principals; every engagement is led by one and known to both. All code, pipelines and documentation live in your repositories from week one. Surge and specialist capacity through vetted teaming partners, disclosed in the proposal. US-based personnel; background checks and client onboarding on request.",
+      "Two principals lead and stay close to every engagement, and we bring in trusted senior engineers we have worked with when a project needs more hands — never a junior hand-off. All code, pipelines and documentation live in your repositories from week one. Specialist surge can also come through teaming, disclosed in the proposal. US-based personnel; background checks and client onboarding on request."
+    );
 
   // Mission & vision — human, non-mercenary; sits in "The firm" section before
   // the bios (purpose before people). Only the home fragment has .roles.
