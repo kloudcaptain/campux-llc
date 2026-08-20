@@ -253,13 +253,13 @@ for (const { file, name } of PAGES) {
       "This site has not yet undergone formal third-party accessibility testing.",
     ],
     [
-      `<span class="todo-inline">[hello@campux.co]</span>`,
-      "hello@campux.co",
+      `<span class="todo-inline">[victor@campux.co]</span>`,
+      "victor@campux.co",
     ],
     // accessibility — fix the broken markdown-link artifact in the email line.
     [
-      `<a href="mailto:hello@campux.co">hello@campux.co(mailto:hello@campux.co)</a>`,
-      `<a href="mailto:hello@campux.co">hello@campux.co</a>`,
+      `<a href="mailto:victor@campux.co">victor@campux.co(mailto:victor@campux.co)</a>`,
+      `<a href="mailto:victor@campux.co">victor@campux.co</a>`,
     ],
   ];
   for (const [find, repl] of legalFixes) body = body.replace(find, repl);

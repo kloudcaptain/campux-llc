@@ -124,7 +124,7 @@ export default function ContactEnhancer({
         if (statusEl) {
           statusEl.style.color = "#B23A2E";
           statusEl.innerHTML =
-            'Something went wrong. Please email <a href="mailto:hello@campux.co">hello@campux.co</a> directly.';
+            'Something went wrong. Please email <a href="mailto:victor@campux.co">victor@campux.co</a> directly.';
         }
       } finally {
         sending = false;

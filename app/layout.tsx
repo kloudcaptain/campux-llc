@@ -60,7 +60,7 @@ const orgJsonLd = {
         addressRegion: "GA",
         addressCountry: "US",
       },
-      email: "hello@campux.co",
+      email: "victor@campux.co",
       telephone: "+1-770-750-5856",
       logo: {
         "@type": "ImageObject",
@@ -83,7 +83,7 @@ const orgJsonLd = {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        email: "hello@campux.co",
+        email: "victor@campux.co",
         contactType: "customer service",
         areaServed: "US",
         availableLanguage: "English",
