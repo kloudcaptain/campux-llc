@@ -167,10 +167,11 @@ for (const { file, name } of PAGES) {
       '<p>Professional and cyber liability insurance <span class="todo-inline">[carrier and limits]</span>. Azure Government experience <span class="todo-inline">[yes / on request / not yet]</span>. Least-privilege access, MFA, no standing credentials, access removed at close.</p>',
       "<p>Least-privilege access, MFA, no standing credentials, access removed at close. Professional and cyber liability coverage is being put in place; a certificate will be available before contract award. Azure commercial today; not yet operating in Azure Government.</p>"
     )
-    // Working with us — remove teaming-partner clause (none yet)
+    // Working with us — FAQ "What if a principal is unavailable?"; fix the
+    // dangling "known to both", reflect the bench, drop the placeholder.
     .replace(
-      /, and surge capacity comes from vetted teaming partners disclosed in the proposal\. ?<span class="todo-inline">\[Delete the teaming-partner sentence if none exist yet\.\]<\/span>/,
-      "."
+      'Every engagement is led by one principal and known to both. Documentation is written as we go, not at the end, and surge capacity comes from vetted teaming partners disclosed in the proposal. <span class="todo-inline">[Delete the teaming-partner sentence if none exist yet.]</span>',
+      "Every engagement is led by one principal and known to the other, so work continues if someone is out. Documentation is written as we go, not at the end, and we can bring in a trusted senior engineer for continuity when a project needs it."
     )
     // Working with us — FAQ answers
     .replace(
@@ -264,9 +265,10 @@ for (const { file, name } of PAGES) {
   for (const [find, repl] of legalFixes) body = body.replace(find, repl);
 
   // Strip internal "Note for the owner:" reminders that shipped in the legal
-  // drafts (privacy, terms, accessibility). Never meant for public eyes.
+  // drafts (privacy, terms, accessibility) — including the amber blockquote
+  // wrapper, which would otherwise render as an empty highlighted bar.
   body = body.replace(
-    /<p>Note for the owner:[^<]*<\/p>\s*/g,
+    /<blockquote>\s*<p>Note for the owner:[\s\S]*?<\/p>\s*<\/blockquote>\s*/g,
     ""
   );
 
