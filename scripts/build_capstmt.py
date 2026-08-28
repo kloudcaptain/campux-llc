@@ -127,7 +127,7 @@ exp = [
     "Tenant-to-tenant migration of <b>150+ applications</b> for a national distributor — secure landing zones, dependency mapping, zero-loss cutover",
     "<b>80% Azure SQL cost reduction</b> via serverless migration in a FinOps engagement",
     "AKS platform builds, Zero Trust baselines, and compliance-aligned IaC across HIPAA, GDPR, and PCI-DSS environments",
-    "<b>34 production-context hands-on labs</b> authored for Azure Data Factory training",
+    "<b>42 production-context hands-on labs</b> authored for cloud engineering training",
 ]
 for e in exp:
     y = para(f"•&nbsp;&nbsp;{e}", styles["bullet"], M, y, left_w) - 2
