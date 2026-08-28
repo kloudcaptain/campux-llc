@@ -192,7 +192,7 @@ ky = con_top - pad - 2
 ky = para("Contact", ParagraphStyle("kh", parent=styles["h2"], fontSize=11,
           textColor=white), right_x + pad, ky, right_w - 2 * pad) - 2
 contact = (f"<b>Victor Thomson</b>, Managing Partner<br/>"
-           f"{EMAIL}<br/>{PHONE}<br/>https://{SITE}/government")
+           f"{EMAIL}<br/>{PHONE}<br/>https://{SITE}/public-sector")
 ky = para(contact, ParagraphStyle("kv", parent=styles["dataval"], fontSize=8.8,
           leading=13), right_x + pad, ky, right_w - 2 * pad)
 
